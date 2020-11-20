@@ -9,45 +9,23 @@ export const LandingBio = () => (
     query={landingBioQuery}
     render={data => {
       const { author, social, introduction } = data.site.siteMetadata
+      const { fixed: profileImg } = data.profileImg.childImageSharp
 
       return (
-        <div className="bio">
-          <div className="author">
-            <div className="author-description">
+        <div className="landingBio">
+          <div className="container">
+            <Link to="/about">
               <Image
                 className="author-image"
-                fixed={data.avatar.childImageSharp.fixed}
+                fixed={profileImg}
                 alt={author}
-                style={{
-                  borderRadius: `100%`,
+                imgStyle={{
+                  borderRadius: `50%`,
                 }}
               />
-              <div className="author-name">
-                <span className="author-name-prefix">Written by</span>
-                <Link to={'/about'} className="author-name-content">
-                  <span>@{author}</span>
-                </Link>
-                <div className="author-introduction">{introduction}</div>
-                <p className="author-socials">
-                  {social.github && (
-                    <a href={`https://github.com/${social.github}`}>GitHub</a>
-                  )}
-                  {social.medium && (
-                    <a href={`https://medium.com/${social.medium}`}>Medium</a>
-                  )}
-                  {social.facebook && (
-                    <a href={`https://www.facebook.com/${social.facebook}`}>
-                      Facebook
-                    </a>
-                  )}
-                  {social.linkedin && (
-                    <a href={`https://www.linkedin.com/in/${social.linkedin}/`}>
-                      LinkedIn
-                    </a>
-                  )}
-                </p>
-              </div>
-            </div>
+            </Link>
+            <h1 className="nameHeader">{title}</h1>
+            <p className="introduction">{introduction}</p>
           </div>
         </div>
       )
@@ -59,7 +37,7 @@ const landingBioQuery = graphql`
   query landingBioQuery {
     avatar: file(absolutePath: { regex: "/profile.png/" }) {
       childImageSharp {
-        fixed(width: 72, height: 72) {
+        fixed(width: 125, height: 125) {
           ...GatsbyImageSharpFixed
         }
       }
