@@ -1,8 +1,9 @@
-import React from "react"
+import React from 'react'
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import { useIntersectionObserver } from "../hooks/useIntersectionObserver"
+import { Layout } from '../layout'
+import { SEO } from '../components/seo'
+import LandingBio from '../components/landing-bio'
+import { useIntersectionObserver } from '../hooks/useIntersectionObserver'
 
 const IndexPage = ({ data, location }) => {
   const { siteMetadata } = data.site
