@@ -64,7 +64,6 @@ export const pageQuery = graphql`
         author
         siteUrl
         comment {
-          disqusShortName
           utterances
         }
         sponsor {
