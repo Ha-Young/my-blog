@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 
 import * as Elements from '../components/elements'
 import { Layout } from '../layout'
-import { Head } from '../components/head'
+import { SEO } from '../components/seo'
 import { PostTitle } from '../components/post-title'
 import { PostDate } from '../components/post-date'
 import { PostContainer } from '../components/post-container'
@@ -32,7 +32,7 @@ export default ({ data, pageContext, location }) => {
 
   return (
     <Layout location={location} title={title}>
-      <Head title={postTitle} description={post.excerpt} />
+      <SEO title={postTitle} description={post.excerpt} />
       <PostTitle title={postTitle} />
       <PostDate date={date} />
       <PostContainer html={post.html} />
