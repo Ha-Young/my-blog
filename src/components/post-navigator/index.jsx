@@ -7,7 +7,7 @@ export const PostNavigator = ({ pageContext }) => {
   const { previous, next } = pageContext
 
   return (
-    <ul className="navigator">
+    <ul className="post-navigator">
       <li>
         {previous && (
           <Link to={previous.fields.slug} rel="prev">

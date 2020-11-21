@@ -73,10 +73,10 @@ body.dark {
     border-bottom-color: rgba(255, 255, 255, 0.3);
   }
 
-  .navigator {
+  .post-navigator {
     a {
-      background-color: $navigator-background-color;
-      color: $navigator-text-color;
+      background-color: $post-navigator-background-color;
+      color: $post-navigator-text-color;
     }
   }
   td {
