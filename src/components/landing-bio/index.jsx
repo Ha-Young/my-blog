@@ -26,7 +26,7 @@ export const LandingBio = () => (
             </Link>
             <h1 className="nameHeader">{title}</h1>
             <p className="introduction">{introduction}</p>
-            <p className="author-socials">
+            {/* <p className="author-socials">
               {social.github && (
                 <a href={`https://github.com/${social.github}`}>GitHub</a>
               )}
@@ -43,7 +43,7 @@ export const LandingBio = () => (
                   LinkedIn
                 </a>
               )}
-            </p>
+            </p> */}
           </div>
         </div>
       )
