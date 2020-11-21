@@ -13,6 +13,18 @@ export const Top = ({ title, location, rootPath }) => {
           {title}
         </Link>
       )}
+      <div className="header-navigator">
+        <Link className="nav-item" to="/blog">
+          Blog
+        </Link>
+        <Link className="nav-item" to="/category">
+          Category
+        </Link>
+        <Link className="nav-item" to="https://ha-young.github.io/resume_web/">
+          Resume
+        </Link>
+      </div>
+
       <GitHubIcon />
     </div>
   )
