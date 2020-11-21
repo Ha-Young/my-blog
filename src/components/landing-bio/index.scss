@@ -28,15 +28,17 @@
       background-position: bottom;
       background-repeat: repeat-x;
       background-size: 5%;
-      font-size: 2.7rem;
+      font-size: 2.5rem;
       font-family: 'Kurale';
+      font-weight: 400;
       text-decoration: none;
     }
 
     .introduction {
       padding: 0;
       margin-bottom: 1rem;
-      font-size: 0.85rem;
+      font-size: 0.7rem;
+      font-family: 'Kurale';
     }
 
     .author-socials {
@@ -45,7 +47,7 @@
 
     a {
       margin-right: 8px;
-      font-size: 80%;
+      font-size: 60%;
 
       &.visited {
         text-decoration: none;
