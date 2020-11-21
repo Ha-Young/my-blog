@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Top } from '../components/top'
+import { Header } from '../components/header'
 import { ThemeSwitch } from '../components/theme-switch'
 import { Footer } from '../components/footer'
 import { rhythm } from '../utils/typography'
@@ -12,7 +12,7 @@ export const Layout = ({ location, title, children }) => {
 
   return (
     <React.Fragment>
-      <Top title={title} location={location} rootPath={rootPath} />
+      <Header title={title} location={location} rootPath={rootPath} />
       <div
         style={{
           marginLeft: `auto`,

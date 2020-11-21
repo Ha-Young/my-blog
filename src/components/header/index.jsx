@@ -4,10 +4,10 @@ import { GitHubIcon } from '../social-share/github-icon'
 
 import './index.scss'
 
-export const Top = ({ title, location, rootPath }) => {
+export const Header = ({ title, location, rootPath }) => {
   const isRoot = location.pathname === rootPath
   return (
-    <div className="top">
+    <div className="header">
       {!isRoot && (
         <Link to={`/`} className="link">
           {title}
