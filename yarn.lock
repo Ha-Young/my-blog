@@ -13256,6 +13256,11 @@ typeface-catamaran@0.0.54:
   resolved "https://registry.yarnpkg.com/typeface-catamaran/-/typeface-catamaran-0.0.54.tgz#080f7e87df87a4106a40cbdad2520bbe8d02391c"
   integrity sha512-7O1tA09N76y3D8H1ONhTX9h8Qn6dedm0RYVN8qGHiVp9DZSxPR5l1B/AvQlcnI/680lBFP4gt0P7EXCi2m12uw==
 
+typeface-kurale@^1.1.13:
+  version "1.1.13"
+  resolved "https://registry.yarnpkg.com/typeface-kurale/-/typeface-kurale-1.1.13.tgz#f7802917738b8438c27472a427bab0ce59efa644"
+  integrity sha512-qDt0bcLHiGpp4rogxCm0OGYQ/L4JR3uUlt4lmj89EviLK6Mmant+7FyqYFaFM+D/u4YdO9QLRbtznnKBnQ82/A==
+
 typeface-merriweather@0.0.72:
   version "0.0.72"
   resolved "https://registry.yarnpkg.com/typeface-merriweather/-/typeface-merriweather-0.0.72.tgz#2b990f5293252052d51d170c82d3892319ff0555"
