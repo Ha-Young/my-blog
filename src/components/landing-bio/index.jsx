@@ -8,12 +8,12 @@ export const LandingBio = () => (
   <StaticQuery
     query={landingBioQuery}
     render={data => {
-      const { author, social, introduction } = data.site.siteMetadata
+      const { title, author, social, introduction } = data.site.siteMetadata
       const { fixed: profileImg } = data.profileImg.childImageSharp
 
       return (
         <div className="landingBio">
-          <div className="container">
+          <div className="landingBio-wrapper">
             <Link to="/about">
               <Image
                 className="author-image"
@@ -26,6 +26,24 @@ export const LandingBio = () => (
             </Link>
             <h1 className="nameHeader">{title}</h1>
             <p className="introduction">{introduction}</p>
+            <p className="author-socials">
+              {social.github && (
+                <a href={`https://github.com/${social.github}`}>GitHub</a>
+              )}
+              {social.medium && (
+                <a href={`https://medium.com/${social.medium}`}>Medium</a>
+              )}
+              {social.facebook && (
+                <a href={`https://www.facebook.com/${social.facebook}`}>
+                  Facebook
+                </a>
+              )}
+              {social.linkedin && (
+                <a href={`https://www.linkedin.com/in/${social.linkedin}/`}>
+                  LinkedIn
+                </a>
+              )}
+            </p>
           </div>
         </div>
       )
@@ -35,7 +53,7 @@ export const LandingBio = () => (
 
 const landingBioQuery = graphql`
   query landingBioQuery {
-    avatar: file(absolutePath: { regex: "/profile.png/" }) {
+    profileImg: file(absolutePath: { regex: "/profile.png/" }) {
       childImageSharp {
         fixed(width: 125, height: 125) {
           ...GatsbyImageSharpFixed
@@ -44,6 +62,7 @@ const landingBioQuery = graphql`
     }
     site {
       siteMetadata {
+        title
         author
         introduction
         social {
