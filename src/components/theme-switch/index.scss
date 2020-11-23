@@ -1,5 +1,9 @@
+@import '../../styles/variables.scss';
+
 .switch-container {
-  text-align: right;
+  position: absolute;
+  top: $top-header-height + 30px;
+  right: 30px;
 
   .icon {
     text-align: center;

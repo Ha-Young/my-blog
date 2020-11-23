@@ -1,13 +1,71 @@
-.home-header {
-  margin-top: 0;
-  border-bottom: none;
-  font-weight: 900;
-  font-size: 48px;
-  letter-spacing: -2px;
+@import '../../styles/variables.scss';
+@import '../../styles/responsive-device.scss';
+
+.header {
+  position: absolute;
+  top:0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: $top-header-height;
+  background: $theme-gradient;
+  
+  .link {
+    display: inline-block;
+    font-size: 28px;
+    color: $top-header-text-color;
+    opacity: 0.7;
+    margin-left: 20px;
+    font-family: 'Catamaran';
+    font-weight: 800;
+  }
+
+  .logo-image {
+    margin-top: 12px;
+    margin-right: 12px;
+    margin-bottom: 0;
+    min-width: 72px;
+  }
+
+  .header-navigator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    height: 60px;
+    
+    .nav-item {
+      position: relative;
+      display: inline-block;
+      margin-right: 15px;
+      text-decoration: none;
+      color: $top-header-text-color;
+      opacity: 0.9;
+
+      &::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        transform: scaleX(0);
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: rgba(255, 255, 255, 0.8);
+        transform-origin: bottom right;
+        transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+      }
+
+      &:hover::after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+      }
+    }
+  }
 }
 
-.link {
-  box-shadow: none;
-  text-decoration: none;
-  color: inherit;
+@include mobile {
+  .socials {
+    display: none;
+  }
 }
