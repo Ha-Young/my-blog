@@ -1,13 +1,14 @@
 // app
-$theme-gradient: linear-gradient(72deg, #291e95, #cc007a);
-$top-header-text-color: #fff;
+$theme-gradient: linear-gradient(72deg, #DBCDAD, #806854);
+$top-header-text-color: #FFF5CF;
+$top-header-height: 60px;
 
 /**
  * @light theme
  */
 
 // body
-$light-background-color: #fff;
+$light-background-color: #e4decc;
 $light-text-shadow: 0 0 0.1px rgba(0, 0, 0, 0.3);
 $light-hover-text-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
 
@@ -38,7 +39,7 @@ $light-category-item-color: #fff;
 /**
  * @dark theme
  */
-$dark-background-color: #282c35;
+$dark-background-color: #3f3127;
 $dark-link-color: #bb72ec;
 
 $dark-lightest-font-color: #fff;
