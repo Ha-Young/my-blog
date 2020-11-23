@@ -87,9 +87,9 @@ export const ThemeSwitch = () => {
               <SunIcon />
             </div>
           }
-          offColor={'#d9dfe2'}
+          offColor={'#A8BAA9'}
           offHandleColor={'#fff'}
-          onColor={'#999'}
+          onColor={'#A8BAA9'}
           onHandleColor={'#282c35'}
         />
       </label>

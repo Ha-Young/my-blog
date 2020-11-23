@@ -14,6 +14,7 @@ export const Layout = ({ location, title, children }) => {
     <React.Fragment>
       <div className="layout-wrapper">
         <Header title={title} location={location} rootPath={rootPath} />
+        <ThemeSwitch />
         <div
           style={{
             marginLeft: `auto`,
@@ -22,7 +23,6 @@ export const Layout = ({ location, title, children }) => {
             padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
           }}
         >
-          <ThemeSwitch />
           {children}
           <Footer />
         </div>
