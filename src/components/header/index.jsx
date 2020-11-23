@@ -38,7 +38,9 @@ export const Header = ({ title, location, rootPath }) => (
             <Link className="nav-item" to="/resume_web">
               Resume
             </Link>
-            <GitHubIcon />
+            <div className="socials">
+              <GitHubIcon />
+            </div>
           </div>
         </div>
       )

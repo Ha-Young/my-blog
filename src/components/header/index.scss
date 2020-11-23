@@ -1,4 +1,5 @@
 @import '../../styles/variables.scss';
+@import '../../styles/responsive-device.scss';
 
 .header {
   position: absolute;
@@ -37,7 +38,7 @@
     .nav-item {
       position: relative;
       display: inline-block;
-      margin-left: 15px;
+      margin-right: 15px;
       text-decoration: none;
       color: $top-header-text-color;
       opacity: 0.9;
@@ -60,5 +61,11 @@
         transform-origin: bottom left;
       }
     }
+  }
+}
+
+@include mobile {
+  .socials {
+    display: none;
   }
 }
