@@ -11,7 +11,6 @@ export const Header = ({ title, location, rootPath }) => (
     render={data => {
       const isRoot = location.pathname === rootPath
       const { fixed: logoImg } = data.logoImg.childImageSharp
-      console.log('img', logoImg)
 
       return (
         <div className="header">
