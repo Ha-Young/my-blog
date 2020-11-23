@@ -12,7 +12,7 @@ module.exports = {
     linkedin: `https://www.linkedin.com/in/%ED%95%98%EC%98%81-%EC%B5%9C-6832781b6/`, // Your LinkedIn account
     instagram: `https://www.instagram.com/niceha0/`,
   },
-  icon: `content/assets/logo_haong.png`, // Add your favicon
+  icon: `content/assets/logo-haong.png`, // Add your favicon
   keywords: [
     `blog`,
     `gatsby`,
@@ -26,16 +26,16 @@ module.exports = {
   ],
   comment: {
     // disqusShortName: "", // Your disqus-short-name. check disqus.com.
-    utterances: "Ha-Young/my-blog", // Your repository for archive comment
+    utterances: 'Ha-Young/my-blog', // Your repository for archive comment
   },
   configs: {
     countOfInitialPost: 10, // Config your initial count of post
   },
   sponsor: {
-    buyMeACoffeeId: "",
+    buyMeACoffeeId: '',
   },
   share: {
-    facebookAppId: "", // Add facebookAppId for using facebook share feature v3.2
+    facebookAppId: '', // Add facebookAppId for using facebook share feature v3.2
   },
-  ga: "", // Add your google analytics tranking ID
+  ga: '', // Add your google analytics tranking ID
 }
