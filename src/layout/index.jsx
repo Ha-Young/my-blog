@@ -12,18 +12,20 @@ export const Layout = ({ location, title, children }) => {
 
   return (
     <React.Fragment>
-      <Header title={title} location={location} rootPath={rootPath} />
-      <div
-        style={{
-          marginLeft: `auto`,
-          marginRight: `auto`,
-          maxWidth: rhythm(24),
-          padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
-        }}
-      >
-        <ThemeSwitch />
-        {children}
-        <Footer />
+      <div className="layout-wrapper">
+        <Header title={title} location={location} rootPath={rootPath} />
+        <div
+          style={{
+            marginLeft: `auto`,
+            marginRight: `auto`,
+            maxWidth: rhythm(24),
+            padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
+          }}
+        >
+          <ThemeSwitch />
+          {children}
+          <Footer />
+        </div>
       </div>
     </React.Fragment>
   )
