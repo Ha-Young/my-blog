@@ -3,6 +3,7 @@ import _ from 'lodash'
 import React, { useMemo } from 'react'
 import { Bio } from '../components/bio'
 import { Category } from '../components/category'
+import { CategorySide } from '../components/category-side'
 import { Contents } from '../components/contents'
 import { SEO } from '../components/seo'
 import { HOME_TITLE } from '../constants'
@@ -49,6 +50,11 @@ export default ({ data, location }) => {
     <Layout location={location} title={siteMetadata.title}>
       <SEO title={HOME_TITLE} keywords={siteMetadata.keywords} />
       <Bio />
+      <CategorySide
+        categories={categories}
+        category={category}
+        selectCategory={selectCategory}
+      />
       <Category
         categories={categories}
         category={category}
