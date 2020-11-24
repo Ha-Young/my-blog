@@ -1,3 +1,5 @@
+@import '../../styles/responsive-device.scss';
+
 .category-side-wrapper {
   position: fixed;
   left: 120px;
@@ -6,4 +8,16 @@
 
 .item {
   cursor: pointer;
+}
+
+@include tablet {
+  .category-side-wrapper {
+    display: none;
+  }
+}
+
+@include mobile {
+  .category-side-wrapper {
+    display: none;
+  }
 }
