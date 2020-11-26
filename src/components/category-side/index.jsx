@@ -7,7 +7,7 @@ export const CategorySide = ({ categories, category, selectCategory }) => {
   return (
     <div className="category-side-wrapper">
       <h3>Categories</h3>
-      <ul className="category-side-container" id="category-side">
+      <ul className="category-side-container">
         <Item
           title={'All'}
           selectedCategory={category}

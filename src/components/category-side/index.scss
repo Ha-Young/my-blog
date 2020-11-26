@@ -8,6 +8,10 @@
 
 .item {
   cursor: pointer;
+
+  &[aria-selected='true'] {
+    font-weight: bolder;
+  }
 }
 
 @include tablet {
