@@ -2,15 +2,38 @@
 
 .category-side-wrapper {
   position: fixed;
-  left: 120px;
-  top: 200px;
+  left: 200px;
+  top: 250px;
+
+  h3 {
+    font-size: 25px;
+  }
 }
 
-.item {
+.category-side-container {
+  list-style-type: none;
+}
+
+.item-side {
+  font-size: 15px;
+  font-weight: 600;
+  background: linear-gradient(to right, #806854, #806854 50%, #DBCDAD 50%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 100%;
+  background-position: 100%;
+  transition: background-position 0.5s ease;
   cursor: pointer;
+  overflow: hidden;
+
+  &:hover {
+    background-position: 0 100%;
+  }
 
   &[aria-selected='true'] {
-    font-weight: bolder;
+    background: #806844;
+    background-clip: text;
   }
 }
 
