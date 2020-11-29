@@ -1,12 +1,10 @@
 ---
-title: "Prep 8주차 월요일 오피스아워 정리"
+title: 'Prep 8주차 월요일 오피스아워 정리'
 draft: false
-date: "2020-11-16 21:09"
-path: "/vanillacoding/prep/week8_op1"
-category: "vanilla coding"
+date: '2020-11-23 21:09'
+path: '/vanillacoding/prep/week8_op1'
+category: 'vanilla coding'
 ---
-
-
 
 ## 지난주 과제(Underdash) 코드리뷰 정리
 
@@ -14,13 +12,11 @@ category: "vanilla coding"
 
 설명은 지난시간에 했음.
 
-
-
 ### 3항 연산자 중첩
 
 3항 연산자 중첩은 어디까지 허용?
 
--> **주관적이다.**  그래도 일반적으로 특별한 일이 아닌 이상은 중첩하지 않는다.
+-> **주관적이다.** 그래도 일반적으로 특별한 일이 아닌 이상은 중첩하지 않는다.
 
 코드 리뷰 받은 코드에서는 3항 연산자에서 할당문이 들어가서 가독성을 헤침.
 
@@ -28,65 +24,55 @@ category: "vanilla coding"
 
 정답은 없으므로 **본인이 봤을 때 가독성이 괜찮은지 떨어지는지 판단할 것**
 
-
-
 ### const로 객체, 배열 선언
 
 `const`와 `let`의 차이는 재할당 가능여부.
 
 객체와 배열도 재할당을 하지 않으면 **`const`로 변수선언을 해야된다.**
 
-
-
 객체와 배열은 해당 변수에 재선언을 하지 않고내부 Property추가 삭제와 Propery값을 변경하는 등의 작업을 할경우에는 변수에 대한 재선언이 아니므로 `let`으로 선언하면 안된다.
 
 ```js
-const arr = [];
-arr.push(1); // 가능
+const arr = []
+arr.push(1) // 가능
 
-arr = "something" // 다음과 같이 재선언을 할경우가 있다면 let으로 선언 
+arr = 'something' // 다음과 같이 재선언을 할경우가 있다면 let으로 선언
 ```
-
-
 
 ### 변수명에 Obj, Arr suffix
 
 ```js
-const memoObj = {};
-const memoInstance = {};
-const bookArr = [];
+const memoObj = {}
+const memoInstance = {}
+const bookArr = []
 ```
 
 다음과 같은 네이밍은 **지양**해야 한다. (사용하지 말라는건 아님.)
 
 ```js
-const memo = {};
-const animals = {};
+const memo = {}
+const animals = {}
 
-const bookList = [];
-const books = [];
+const bookList = []
+const books = []
 ```
 
 일반적으로 다음과 같이 배열은 복수형(s) 혹은 뒤에 List를 붙이고, 객체는 Obj와 같은 suffix 없이 그냥 쓰는편 (복수형도 가능)
 
-
-
 알고리즘 문제 같은걸 풀 때 Arr이나 Obj를 붙이기도 하는데, 이 처럼 특별한 경우가 아니면 잘 쓰이지 않음.
-
-
 
 ### memoize(func)
 
 - 연산 결과를 기억하고 있는 함수.
-- 다음과 같은 상황에서 매개변수로 함수를 받는경우에 어떠한 함수가 들어올지 모르기 때문에 func라고 쓸 수 있다. 
+- 다음과 같은 상황에서 매개변수로 함수를 받는경우에 어떠한 함수가 들어올지 모르기 때문에 func라고 쓸 수 있다.
   하지만, 함수 선언문으로써 func는 적절하지 않음.
 
 ```js
-function memoize (func) {
-    const memo = {
-        'args': result
-    }
-    //...
+function memoize(func) {
+  const memo = {
+    args: result,
+  }
+  //...
 }
 ```
 
@@ -95,25 +81,19 @@ function memoize (func) {
 - func의 인자값을 key로
 - 구한 연산값을 value로
 
-
-
 하지만, 값을 저장하는 객체에 대한 키값을 정하기가 쉽지않다.
 
 가장 간단한 방법이 `JSON.stringify(value)`
 
 이 외에도 key값을 구분할 수 있다면 OK.
 
-
-
 그리고, memoize는 새로운 함수를 리턴한다.
 
 ```js
-function memoize (func) {
-    const memo = {};
-    
-    return function () {
-        
-    }
+function memoize(func) {
+  const memo = {}
+
+  return function() {}
 }
 ```
 
@@ -121,31 +101,24 @@ function memoize (func) {
 
 이렇게 함수에서 함수를 리턴하는 패턴은 흔하지는 않다. 하지만, Javascript가 가지고있는 유연한 특징중에 하나라서 자주 보기도 하고 자주 쓰기도 해야하니 잘 알아둬야 한다.
 
-
-
 memoize가 return하는 함수에 대한 로직은 다음과 같아야 한다.
 
 ```js
-function memoize (func) {
-    const memo = {};
-    
-    return function () {
-        // 이미 구한 값(memo객체에 존재)이면 위 memo객체에 들어있는 값 반환
-        
-        // 구했던 값이 아니면 func를 실행해서 값을 구하고 memo객체에 저장한 뒤 반환.
-    }
+function memoize(func) {
+  const memo = {}
+
+  return function() {
+    // 이미 구한 값(memo객체에 존재)이면 위 memo객체에 들어있는 값 반환
+    // 구했던 값이 아니면 func를 실행해서 값을 구하고 memo객체에 저장한 뒤 반환.
+  }
 }
 ```
-
-
 
 #### Q. 저차함수도 있나요?
 
 고차함수가 아닌것이 다 저차함수이다.
 
 고차함수에 대한 정의는 딱 명확하게 있는데, 나중에 찾아보도록하자.
-
-
 
 #### Q. once 메소드와 차이점?
 
@@ -156,37 +129,33 @@ memoize는 어떤 인자값으로 한번 연산했을 때 구한 값을 저장�
 once는 어떤 함수가 딱 한번만 쓰일 수 있게 하려고 하는 목적.
 
 ```js
-function once (func) {
-    // func가 딱 한번만 실행되도록하는 함수 리턴. 
+function once(func) {
+  // func가 딱 한번만 실행되도록하는 함수 리턴.
 }
 ```
 
 ```js
-function add (a, b) {
-    return a + b;
+function add(a, b) {
+  return a + b
 }
 
-const fn1 = once(add);
-const fn2 = memoize(add);
+const fn1 = once(add)
+const fn2 = memoize(add)
 
-fn1(1, 2); // 3
-fn1(2, 3); // 3 이미 한번 사용했기 때문에 함수 실행이 안됨.
-fn1(3, 4); // 3
-fn1(1, 2); // 3 결과는 맞지만 내부적으로 함수 실행되지 않았음.
+fn1(1, 2) // 3
+fn1(2, 3) // 3 이미 한번 사용했기 때문에 함수 실행이 안됨.
+fn1(3, 4) // 3
+fn1(1, 2) // 3 결과는 맞지만 내부적으로 함수 실행되지 않았음.
 
-fn2(1, 2); // 3 (1,2)에 대한 인자값일 때 3이라는 결과 저장하고 반환
-fn2(2, 3); // 5 (2,3)에 대한 인자값일 때 5라는 결과 저장하고 반환
-fn2(1, 2); // 3 (1,2)에 대한 인자값에 대해 저장된 값 3 반환. 내부적으로 함수 실행되지 않음.
+fn2(1, 2) // 3 (1,2)에 대한 인자값일 때 3이라는 결과 저장하고 반환
+fn2(2, 3) // 5 (2,3)에 대한 인자값일 때 5라는 결과 저장하고 반환
+fn2(1, 2) // 3 (1,2)에 대한 인자값에 대해 저장된 값 3 반환. 내부적으로 함수 실행되지 않음.
 ```
-
-
 
 #### Q. 현업이나 프로젝트에서 클로저 이와같이 응용되나요?
 
 이와같이 의도적으로 이용하는 경우가 있지만,
 의도하지 않더라도 사용되어진다.
-
-
 
 ## 이번주 주제
 
@@ -194,8 +163,6 @@ fn2(1, 2); // 3 (1,2)에 대한 인자값에 대해 저장된 값 3 반환. 내�
 - Asynchronous Javascript
 
 Web에 대한 내용은 주요하게 보지않아도 되지만, Asynchronous(비동기)에 대한 내용은 주요하게 봐야 한다.
-
-
 
 ### 이번주 과제
 
@@ -205,19 +172,13 @@ Web에 대한 내용은 주요하게 보지않아도 되지만, Asynchronous(비
 
 ReadMe의 TODO를 꼭 읽어보자.
 
-
-
 이번 과제도 오래걸린다.
 
 어떻게 해야되는지에 대한 고민이 오래걸릴 것.
 
-
-
 ## Q. 현업에서 재귀함수 직접 구현해서 쓰나요?
 
 자주 쓴다. 기능에 재귀함수로 구현해야될 것 같으면 재귀함수로 구현한다.
-
-
 
 ## Q. 함수 선언문에서 함수는 var? let? const? 매개변수는?
 
@@ -230,14 +191,7 @@ ReadMe의 TODO를 꼭 읽어보자.
 
 var와 같은 함수 스코프라서 재할당은 되지만, **매개변수에 대해 재할당 하는것은 지양해야 한다.**
 
-
-
-
-
 ## ETC
 
 - 현재 이사하려는 곳은 무산되었습니다...
   - 새 소식은 기다려봐요
-
-
-
