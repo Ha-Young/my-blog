@@ -10,7 +10,7 @@ export const Item = ({ title, selectedCategory, onClick }) => {
       className="item-side"
       aria-selected={selectedCategory === title ? 'true' : 'false'}
     >
-      <div onClick={handleClick}>{title}</div>
+      <span onClick={handleClick}>{title}</span>
     </li>
   )
 }

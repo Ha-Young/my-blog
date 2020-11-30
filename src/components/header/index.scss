@@ -2,15 +2,13 @@
 @import '../../styles/responsive-device.scss';
 
 .header {
-  position: absolute;
-  top:0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   height: $top-header-height;
   background: $theme-gradient;
-  
+
   .link {
     display: inline-block;
     font-size: 28px;
@@ -34,7 +32,7 @@
     align-items: center;
     margin: 0;
     height: 60px;
-    
+
     .nav-item {
       position: relative;
       display: inline-block;
