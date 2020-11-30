@@ -3,7 +3,7 @@ import qs from 'query-string'
 import { CATEGORY_TYPE } from '../constants'
 import * as ScrollManager from '../utils/scroll'
 
-const DEST_POS = 316
+const DEST_POS = 200
 
 export function useCategory() {
   const [category, setCategory] = useState(CATEGORY_TYPE.ALL)
