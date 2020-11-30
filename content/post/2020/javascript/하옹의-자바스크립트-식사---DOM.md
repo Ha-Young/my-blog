@@ -1,9 +1,9 @@
 ---
-title: "하옹의 자바스크립트 식사 - DOM"
+title: '하옹의 자바스크립트 식사 - DOM'
 draft: false
 date: 2020-11-15
-path: "/javascript/DOM"
-category: "javascript"
+category: 'javascript'
+tags: ['javascript', 'dom']
 ---
 
 \* 이 글은 [MDN](https://developer.mozilla.org/es/), [Vanilla Coding Prep 강의자료](https://www.vanillacoding.co/), [PoiemaWeb](https://poiemaweb.com/)등 공신력있는 곳들을 참조한 글입니다.
@@ -22,8 +22,6 @@ MDN에서는 DOM을 이렇게 정의하고 있다.
 API는 (Application programming interface)로 소프트웨어 간의 교류를 가능하게 해주는 표면같은 것 이라고 생각하면 되는데, 프로그램에서 어떤 다른 프로그램을 사용하고 싶을 때 이 API를 사용하는 것이라고 보면 된다.
 
 따라서 이 **DOM이라는 인터페이스(API)를 사용하면 HTML 문서를 우리가 조작할 수 있다.**
-
-
 
 **아래와 같이 만들어진 html 문서를 DOM을 이용해 조작할 수 있다.**
 
@@ -50,19 +48,15 @@ API는 (Application programming interface)로 소프트웨어 간의 교류를 �
 </html>
 ```
 
-
-
 **이러한 DOM은 JavaScript 언어의 일부는 아니다.**
 
 우리가 주로 웹 페이지를 다루는데 **JavaScript 프로그래밍 언어를 통해 DOM이라는(HTML 페이지를 조작하는 )API를 사용할 뿐**이지, 파이썬과 같은 다른 프로그래밍 언어로도 DOM을 충분히 사용할 수 있다.
 
 브라우저 자체에 WEB API가 내장되어 있고, 이 WEB API내부에 DOM이 내장되어있다고 보면 된다.
 
-
-
 ## DOM Node Tree
 
-DOM은 Tree구조로 이루어져있다. 이 Tree 구조를 
+DOM은 Tree구조로 이루어져있다. 이 Tree 구조를
 
 > Tree구조는 Node들로 구성된다.
 
@@ -71,16 +65,12 @@ DOM은 Tree구조로 이루어져있다. 이 Tree 구조를
 Node 객체로부터 각 Node들에 대해 상속으로 이루어져있으며,
 자식 Node는 부모 Node들의 특성을 그대로 가지고 있다.
 
-
-
 DOM Tree를 구성하는 대표적 Node들은 다음과 같다.
 
 1. Document Node
 2. Element Node
 3. Attribute Node
 4. Text Node
-
-
 
 ### 1. Document Node
 
@@ -92,17 +82,13 @@ DOM에 접근하기위해서는 무조건 최상위 Node인 이 Document Node를
 
 HTML 문서 그 자체를 가리킨다고 보면 된다.
 
-
-
 브라우저 개발자툴 콘솔에 다음과 같이 입력해보자.
 
 ```js
-dir(document);
+dir(document)
 ```
 
 <img src=".\하옹의-자바스크립트-간편식---DOM_img1.jpg" alt="image-20201115233754845" style="zoom:67%;" />
-
-
 
 ### 2. Element Node
 
@@ -113,19 +99,17 @@ HTML 태그들의 구조화된 부모 자식 관계를 그대로 따라간다.
 그리고 모든 요소는 **HTMLElement** 객체가 상속되어 있어 **HTMLElement의 특성을 모두 포함**하고 있다.
 
 ```js
-const bodyElement = document.body; // body 태그 선택
-const someElement = document.getElementById('js-id'); // js-id의 id값을 같는 요소 선택
-const divElements = bodyElement.querySelector('div'); // css 선택자로 div태그 요소 선택
+const bodyElement = document.body // body 태그 선택
+const someElement = document.getElementById('js-id') // js-id의 id값을 같는 요소 선택
+const divElements = bodyElement.querySelector('div') // css 선택자로 div태그 요소 선택
 ```
 
 우리는 이 Element Node를 통해 HTML Tag정보를 참조, 수정할 수 있다.
 
 ```js
-const createdDivElement = document.createNode('div'); // div 태그요소 생성
-createdDivElement.innerHTML = '<h1>this is title</h1>'; // div 태그요소의 html내용 변경
+const createdDivElement = document.createNode('div') // div 태그요소 생성
+createdDivElement.innerHTML = '<h1>this is title</h1>' // div 태그요소의 html내용 변경
 ```
-
-
 
 ### 3. Attribute Node
 
@@ -135,27 +119,23 @@ Attribute Node는 HTML의 Tag가 가지고있는 Attribute와 같다고 보면 �
 우리는 이 Attribute Node를 통해 HTML Tag의 Attribute를 수정할 수 있다.
 
 ```js
-const createdDivElement = document.createNode('div'); // div 태그요소 생성
+const createdDivElement = document.createNode('div') // div 태그요소 생성
 
-createdDivElement.className = 'title-area'; // class attribute 수정
-createdDivElement.style.backgroundColor = 'red'; // style attribute 수정
+createdDivElement.className = 'title-area' // class attribute 수정
+createdDivElement.style.backgroundColor = 'red' // style attribute 수정
 ```
-
-
 
 ### 4. Text Node
 
 Text Node는 HTML의 텍스트를 가리킨다. 텍스트는 HTML내에서도 가장 최하위 요소이고, DOM에서도 마찬가지이다.
 
 ```js
-const createdDivElement = document.createNode('div');
+const createdDivElement = document.createNode('div')
 
-createdDivElement.textContext = 'Create Div Tag using by DOM';
+createdDivElement.textContext = 'Create Div Tag using by DOM'
 
-document.body.appendChild(createdDivElement); // body요소에 생성한 div태그 추가.
+document.body.appendChild(createdDivElement) // body요소에 생성한 div태그 추가.
 ```
-
-
 
 ## DOM Element 선택
 
@@ -163,8 +143,6 @@ DOM Element Node선택은 최상위 Tree Node인 Document Node를 통해 할수�
 같은 DOM Element Node를 통해 할 수도 있다.
 
 물론 자식 Node들에대해서만 선택이 가능하다. 때문에 첫 시작은 document Node가 될 수 밖에 없다.
-
-
 
 ### 선택 방법
 
@@ -175,8 +153,6 @@ DOM Element를 선택하는 방법은 다음과 같다.
 3. document.getElementsByTagName('tagName')
 4. document.querySelector('cssSelector')
 5. document.querySelectorAll('cssSelector')
-
-
 
 네이밍에서 알 수 있듯이, 1,2,3번은 <u>get element</u>가 들어가있기 때문에 `Element Node`를 가져온다는 명확한 뜻에 더해서 `id`, `class name`, `tag name`으로 가져오냐 마냐의 차이가 있다.
 
@@ -189,30 +165,32 @@ DOM Element를 선택하는 방법은 다음과 같다.
 
 ```js
 // 1개만 가져오는 방법
-const elementGottenById = document.getElementById('id name');
-const elementQuerySelector = document.querySelector('div.title-area');
-const childElementQuerySelector = elementQuerySelector.querySelector('h1.title');
+const elementGottenById = document.getElementById('id name')
+const elementQuerySelector = document.querySelector('div.title-area')
+const childElementQuerySelector = elementQuerySelector.querySelector('h1.title')
 
 // 1개 이상의 유사배열형태(HTMLCollection)로 가져오는 방법
-const elementsGottenByClassName = document.getElementsByClassName('class name');
-const childElementsGottenByClassName = elementsGottenByClassName.getElementsByClassName('child class');
+const elementsGottenByClassName = document.getElementsByClassName('class name')
+const childElementsGottenByClassName = elementsGottenByClassName.getElementsByClassName(
+  'child class'
+)
 
-const elementsGottenByTagName = document.getElementsByTagName('tag name');
-const childElementsGottenByTagName = elementsGottenByTagName.getElementsByClassName('child tag');
+const elementsGottenByTagName = document.getElementsByTagName('tag name')
+const childElementsGottenByTagName = elementsGottenByTagName.getElementsByClassName(
+  'child tag'
+)
 
-const elementsQuerySelectorAll = document.querySelectorAll('.button');
-const childElementsQuerySelectorAll = elementsQuerySelectorAll.querySelectorAll('.name');
+const elementsQuerySelectorAll = document.querySelectorAll('.button')
+const childElementsQuerySelectorAll = elementsQuerySelectorAll.querySelectorAll(
+  '.name'
+)
 ```
-
-
 
 정답은 없으나 **주로 querySelector()와 querySelectorAll()이 쓰인다.**
 
-
-
 ### 선택 결과 (return value)
 
-`Element Node`를 가져오는  방법에 따라 return되는 값의 형태는 다르다.
+`Element Node`를 가져오는 방법에 따라 return되는 값의 형태는 다르다.
 
 당연히 `Element Node` 1개만을 가져오는 방법과 여러개를 가져오는 방법으로 나뉜다.
 
@@ -228,18 +206,18 @@ const childElementsQuerySelectorAll = elementsQuerySelectorAll.querySelectorAll(
 `HTMLElement`객체의 특성을 그대로 사용할 수 있고 다음과 같이 확인할 수 있다.
 
 ```js
-const wrapperElement = document.querySelector('div');
-const buttonElement = document.getElementById('button');
-const listElement = document.getElementById('list');
-const anchorElement = document.querySelector('a.anchor');
-const inputElement = document.querySelector('input.input-text');
+const wrapperElement = document.querySelector('div')
+const buttonElement = document.getElementById('button')
+const listElement = document.getElementById('list')
+const anchorElement = document.querySelector('a.anchor')
+const inputElement = document.querySelector('input.input-text')
 
 // 각 Element Node들의 상속받은 객체를 알기위해 constructor.name 출력
-console.log(wrapperElement.constructor.name); // HTMLDivElement
-console.log(buttonElement.constructor.name); // HTMLButtonElement
-console.log(listElement.constructor.name); // HTMLLIElement
-console.log(anchorElement.constructor.name); // HTMLAnchorElement
-console.log(inputElement.constructor.name); // HTMLInputElement
+console.log(wrapperElement.constructor.name) // HTMLDivElement
+console.log(buttonElement.constructor.name) // HTMLButtonElement
+console.log(listElement.constructor.name) // HTMLLIElement
+console.log(anchorElement.constructor.name) // HTMLAnchorElement
+console.log(inputElement.constructor.name) // HTMLInputElement
 ```
 
 부모 객체 출력 결과는 각각 다른데, 그렇다고 모든 `Element Node`들이 다르지는 않다.
@@ -254,26 +232,22 @@ console.log(inputElement.constructor.name); // HTMLInputElement
 > **EventTarget은 각 Node별로 Event를 처리를 하기위해 만든 최상위 Node**
 > addEventListener(), removeEventListener() 등의 메서드가 있다.
 
-
-
 ##### 가져오지 못한 경우
 
 그리고 해당되는 `Element Node` 가 없다면 결과는 undefined가 아닌 **null**로 떨어진다.
 
 ```js
-const someElement = document.getElementById('id');
-console.log(someElement); // null
+const someElement = document.getElementById('id')
+console.log(someElement) // null
 ```
-
-
 
 #### HTMLCollection, NodeList (복수 - 1개이상)
 
-위에서 살펴본 복수개(1개이상)의 `Element Node`를 가져오는 방법에서 
+위에서 살펴본 복수개(1개이상)의 `Element Node`를 가져오는 방법에서
 
-- document.getElementsByClassName()    ->    `HTMLCollection`
-- document.getElementsByTagName()    ->    `HTMLCollection`
-- document.querySelectorAll()    ->    `NodeList`
+- document.getElementsByClassName() -> `HTMLCollection`
+- document.getElementsByTagName() -> `HTMLCollection`
+- document.querySelectorAll() -> `NodeList`
 
 들과 같은 방법으로 가져올 경우, **유사배열 형태 (Array Like)** 의 값으로 떨어진다.
 
@@ -281,27 +255,25 @@ console.log(someElement); // null
 `HTMLCollection` 형태로 값이 떨어지고 `querySelectorAll()`은 `NodeList`의 형태로 떨어지게 된다.
 
 ```js
-const listElements = document.getElementsByTagName('li');
-const activeElements = document.getElementsByClassName('active');
-const wrapperElements = document.querySelectorAll('div.wrapper');
+const listElements = document.getElementsByTagName('li')
+const activeElements = document.getElementsByClassName('active')
+const wrapperElements = document.querySelectorAll('div.wrapper')
 
 // 각 Element Node들의 상속받은 객체를 알기위해 constructor.name 출력
-console.log(listElements.constructor.name); // HTMLCollection
-console.log(activeElements.constructor.name); // HTMLCollection
-console.log(wrapperElements.constructor.name); // NodeList
+console.log(listElements.constructor.name) // HTMLCollection
+console.log(activeElements.constructor.name) // HTMLCollection
+console.log(wrapperElements.constructor.name) // NodeList
 ```
 
-다음과 같이 모두 복수형을 가져오는 결과는  **유사 배열** 형태의 `HTMLCollection` , `NodeList`의 형태로 떨어지는데, 이 **유사 배열** 에 담긴 값들은 전부 앞에서 살펴본 `HTMLElement`이다.
+다음과 같이 모두 복수형을 가져오는 결과는 **유사 배열** 형태의 `HTMLCollection` , `NodeList`의 형태로 떨어지는데, 이 **유사 배열** 에 담긴 값들은 전부 앞에서 살펴본 `HTMLElement`이다.
 
 ```js
-const wrapperElements = document.querySelectorAll('div.wrapper');
+const wrapperElements = document.querySelectorAll('div.wrapper')
 
-console.log(wrapperElements[0].constructor.name); // HTMLDivElement
+console.log(wrapperElements[0].constructor.name) // HTMLDivElement
 ```
 
 결국 `HTMLCollection` 이나 `NodeList` 이나 가져오는 **유사 배열** 형태의 차이만 있을뿐, 그 속인 내부는 `HTMLElement` 를 담고있는건 똑같다.
-
-
 
 ##### HTMLCollection VS NodeList
 
@@ -310,30 +282,28 @@ console.log(wrapperElements[0].constructor.name); // HTMLDivElement
 - `HTMLCollection` : **live** data
 - `NodeList` : **static** data
 
-
-
 이러한 특성들이 무엇인지는 소스로 비교해보자.
 
 ```html
 <body>
-    <ul class="list">
-        <li class="item">First Item</li>
-        <li class="item">Second Item</li>
-        <li class="item">Third Item</li>
-    </ul>
+  <ul class="list">
+    <li class="item">First Item</li>
+    <li class="item">Second Item</li>
+    <li class="item">Third Item</li>
+  </ul>
 </body>
 ```
 
 다음과 같은 html 파일이 있다고 할 때,
 
 ```js
-const itemElementsHTMLCollection = document.getElementsByClassName('item');
-const itemElementsNodeList = document.querySelector('.item');
+const itemElementsHTMLCollection = document.getElementsByClassName('item')
+const itemElementsNodeList = document.querySelector('.item')
 
-console.log(itemElementsHTMLCollection);
+console.log(itemElementsHTMLCollection)
 // HTMLCollection { 0: li.item, 1: li.item, 2: li.item, length: 3 }
 
-console.log(itemElementsNodeList);
+console.log(itemElementsNodeList)
 // NodeList(3) [ li.item, li.item, li.item ]
 ```
 
@@ -341,25 +311,23 @@ console.log(itemElementsNodeList);
 
 class name에 맞는 요소는 모두 알맞게 가지고 왔지만, **데이터 구조 자체에서 큰 차이**가 보인다.
 
-
-
-이렇게 가져온 **두 개의 데이터구조를 그대로 두고**,  **새로운 `<li>` 의 `Element Node`를 추가**하고 두 데이터 구조를 출력, 비교해보자.
+이렇게 가져온 **두 개의 데이터구조를 그대로 두고**, **새로운 `<li>` 의 `Element Node`를 추가**하고 두 데이터 구조를 출력, 비교해보자.
 
 ```js
-const list = document.querySelector('ul.list');
+const list = document.querySelector('ul.list')
 
 // HTMLCollection과 NodeList 데이터를 가져오자.
-const itemElementsHTMLCollection = document.getElementsByClassName('item');
-const itemElementsNodeList = document.querySelector('.item');
+const itemElementsHTMLCollection = document.getElementsByClassName('item')
+const itemElementsNodeList = document.querySelector('.item')
 
 // 여기서 새로운 element node 추가.
-list.innerHTML += '<li class="item">Fourth Item</li>';
+list.innerHTML += '<li class="item">Fourth Item</li>'
 
 // 출력해서 비교해보자.
-console.log(itemElementsHTMLCollection);
+console.log(itemElementsHTMLCollection)
 // HTMLCollection { 0: li.item, 1: li.item, 2: li.item, 3: li.item length: 4 }
 
-console.log(itemElementsNodeList);
+console.log(itemElementsNodeList)
 // NodeList(3) [ li.item, li.item, li.item ]
 ```
 
@@ -369,20 +337,16 @@ console.log(itemElementsNodeList);
 
 근데, `element.childNodes`로 가져오는 `NodeList`는 **live** 하니 `childNodes`와 `querySelectorAll()`의 `NodeList` 별 차이를 인지하고 있어야 한다.
 
-
-
 ##### 배열로 사용하기
 
-그리고 모두 **유사 배열** 형태이기 때문에 
+그리고 모두 **유사 배열** 형태이기 때문에
 
 ```js
-const arrayFromHTMLCollection = Array.from(itemElementsHTMLCollection); // HTMLCollection -> 배열 전환
-const arrayFromNodeList = Array.from(itemElementsNodeList); // NodeList -> 배열 전환
+const arrayFromHTMLCollection = Array.from(itemElementsHTMLCollection) // HTMLCollection -> 배열 전환
+const arrayFromNodeList = Array.from(itemElementsNodeList) // NodeList -> 배열 전환
 ```
 
 과 같이 `Array.from()` 을 통해 배열로 변환하여 **Array.prototype method**들을 사용할 수 있다.
-
-
 
 ### 자식, 부모 Node 탐색
 
@@ -393,8 +357,6 @@ const arrayFromNodeList = Array.from(itemElementsNodeList); // NodeList -> 배�
 부모, 자식 `Node`를 구하는 Property는 다음과 같으며 `Node`객체의 프로퍼티는 모두 read-only property이다.
 
 > ParentNode는 Node 객체의 믹스인으로써 모든 Node 인스턴스가 공통으로 가지고있다고 보면 된다. (상속객체 포함)
-
-
 
 - Node.parentNode
   - 부모 `Node` 탐색
@@ -411,22 +373,18 @@ const arrayFromNodeList = Array.from(itemElementsNodeList); // NodeList -> 배�
 - Node.
 
 ```js
-const someElement = document.querySelector('ul.list');
+const someElement = document.querySelector('ul.list')
 
-const parentNode = someElement.parentNode; // 부모노드 가져오기
-const childNodes = someElement.childNodes; // 자식노드 유사배열(NodeList) 가져오기
-const firstChild = someElement.firstChild; // 첫번째 자식노드 가져오기
-const lastChild = someElement.lastChild; // 마지막 자식노드 가져오기
-const children = someElement.children; // 자식노드 유사배열(HTMLCollection) 가져오기
+const parentNode = someElement.parentNode // 부모노드 가져오기
+const childNodes = someElement.childNodes // 자식노드 유사배열(NodeList) 가져오기
+const firstChild = someElement.firstChild // 첫번째 자식노드 가져오기
+const lastChild = someElement.lastChild // 마지막 자식노드 가져오기
+const children = someElement.children // 자식노드 유사배열(HTMLCollection) 가져오기
 
 if (someElement.hasChildNodes()) {
-    // ToDo...
+  // ToDo...
 }
 ```
-
-
-
-
 
 #### Node.childNodes VS ParentNode.children
 
@@ -438,16 +396,14 @@ if (someElement.hasChildNodes()) {
 > static data와 live data의 차이는 앞서 설명하였다.
 
 ```js
-const someElement = document.querySelector('ul.list');
+const someElement = document.querySelector('ul.list')
 
-const nodesByChildNodes = someElement.childNodes;
-const nodesByChildren = someElement.children;
+const nodesByChildNodes = someElement.childNodes
+const nodesByChildren = someElement.children
 
-console.log(nodesByChildNodes.constructor.name); // NodeList
-console.log(nodesByChildren.constructor.name); // HTMLCollection
+console.log(nodesByChildNodes.constructor.name) // NodeList
+console.log(nodesByChildren.constructor.name) // HTMLCollection
 ```
-
-
 
 ### 형제 Node 탐색
 
@@ -457,8 +413,6 @@ console.log(nodesByChildren.constructor.name); // HTMLCollection
 - Node.nestSibling
 - Node.previousElementSibling
 - Node.nextElementSibling
-
-
 
 ## Element 요소 조작 (변경, 생성, 삭제)
 
@@ -471,8 +425,6 @@ console.log(nodesByChildren.constructor.name); // HTMLCollection
 2. **Text Node**
 3. 내부 HTML 조작
 
-
-
 ### Attribute Node 조작
 
 `Attribute Node`조작은 쉽다.
@@ -482,14 +434,14 @@ console.log(nodesByChildren.constructor.name); // HTMLCollection
 따라서 다음과 같이 작업할 수 있다.
 
 ```js
-const someElement = document.querySelector('ul.list');
+const someElement = document.querySelector('ul.list')
 
-someElement.style.backgroundColor = 'red'; // style Attribute Node 조작
-someElement.className = 'list c1'; // class 구분은 html에서의 작업과 같이 ' ' (space)이다.
-someElement.id = 'id'; // Element.id 조작
-someElement.classList.add('c2'); // Element.classList 조작
+someElement.style.backgroundColor = 'red' // style Attribute Node 조작
+someElement.className = 'list c1' // class 구분은 html에서의 작업과 같이 ' ' (space)이다.
+someElement.id = 'id' // Element.id 조작
+someElement.classList.add('c2') // Element.classList 조작
 
-console.log(someElement.className); // 
+console.log(someElement.className) //
 ```
 
 #### classList를 통한 class 조작
@@ -507,8 +459,6 @@ html 요소에 class를 조작할때에, className으로 조작도 가능하지�
 
 등의 메서드를 제공한다.
 
-
-
 ### Text Node 조작
 
 `Text Node`는 다양한 방법이 있지만,
@@ -519,59 +469,51 @@ html 요소에 class를 조작할때에, className으로 조작도 가능하지�
 2. HTMLElement.**innerText**
 
 ```js
-const h1Element = document.querySelector('h1');
+const h1Element = document.querySelector('h1')
 
-h1Element.textContent = 'Hello World';
-h1Element.innerText = 'Hello World';
+h1Element.textContent = 'Hello World'
+h1Element.innerText = 'Hello World'
 ```
-
-
 
 #### textContent VS innerText
 
-둘 다 요소의 Text를 가져오고 수정한다는 것은 똑같으나 차이점이 있다면 
-가져올 때 **모든 부분을 가져오느냐, 특정부분만 가져오느냐**와 
+둘 다 요소의 Text를 가져오고 수정한다는 것은 똑같으나 차이점이 있다면
+가져올 때 **모든 부분을 가져오느냐, 특정부분만 가져오느냐**와
 수정할 때 **있는 그대로 표현하느냐 , 별도의 어떤 처리가 들어가느냐**라고 할 수 있다.
 
 우선 소스코드를 통해 비교해보자
 
 ```html
 <div id="wrapper">
-    <div>hello,
-        ha-young
-    </div>
-    <div style="visibility:hidden"> nice to meet you</div>
+  <div>hello, ha-young</div>
+  <div style="visibility:hidden">nice to meet you</div>
 </div>
 ```
 
-다음과 같은 상황일때, 
+다음과 같은 상황일때,
 
 ```js
-const wrapperDivElement = document.querySelector('.wrapper');
+const wrapperDivElement = document.querySelector('.wrapper')
 
-console.log(wrapperDivElement.innerText); // ?
-console.log(wrapperDivElement.textContent); // ?
+console.log(wrapperDivElement.innerText) // ?
+console.log(wrapperDivElement.textContent) // ?
 ```
 
 다음과 같이 출력하면 어떻게 결과가 나올까?
 
-- Line 3 :  `hello, ha-young`
+- Line 3 : `hello, ha-young`
 
-- Line 4 :  `Hello, \nha-young nice to meet you` 와 같이 나온다.
-
-
+- Line 4 : `Hello, \nha-young nice to meet you` 와 같이 나온다.
 
 다음을 보면 알 수 있듯이 `innerText`는 가져온 결과를 체크하고 수정하는 등 별도 처리과정이 존재한다.
 
-반면에, `textContent`는 rawData 라고 봐도 무방하다. 
+반면에, `textContent`는 rawData 라고 봐도 무방하다.
 
-`innerText`에 대해 좀 더 자세히 말하자면, 브라우저에 탑재되어있는 css스타일 처리와 위치를 파악하는 등의 작업을 하는  **auto layout 과 상호작용**하기 때문에 이러한 결과가 나오는 것.
+`innerText`에 대해 좀 더 자세히 말하자면, 브라우저에 탑재되어있는 css스타일 처리와 위치를 파악하는 등의 작업을 하는 **auto layout 과 상호작용**하기 때문에 이러한 결과가 나오는 것.
 
 **그렇기 때문에 textContext보다 현격히 느릴 수 밖에 없고,** **브라우저의 성능을 떨어뜨리고 예상치 못하게 작동할 우려가 있기 때문에 사용을 권장하지 않는다.**
 
 더 디테일한 내용은 [다음 사이트](https://kellegous.com/j/2013/02/27/innertext-vs-textcontent/)를 참조하자.
-
-
 
 ### 내부 HTML 조작
 
@@ -582,20 +524,18 @@ HTML을 조작하려면 DOM을 통해서 조작하는 방법도 있지만,
 
 HTML Mark Up으로 이루어진 문자열을 통해 조작 가능하며 이러한 문자열을 DOM 문자열 이라고도 한다.
 
-
-
 ```js
-const listElement = document.querySelector('ul.list');
-const className = 'item';
+const listElement = document.querySelector('ul.list')
+const className = 'item'
 
 listElement.innerHTML = `
 	<li class=${item}>first</li>
 	<li class=${item}>second</li>
 	<li class=${item}>third</li>
 	<li class=${item}>fourth</li>
-`;
+`
 
-console.log(listElement.innerHTML);
+console.log(listElement.innerHTML)
 // <li class=${item}>first</li><li class=${item}>second</li><li class=${item}>third</li><li class=${item}>fourth</li>
 ```
 
@@ -604,9 +544,7 @@ console.log(listElement.innerHTML);
 우선 둘의 장단점은 명확한데,
 
 - innerHTML은 DOM 조작보다 빠르고 간편하지만, 보안의 위험이 있고(XSS),
-- DOM 조작은 innerHTML에 비해 javascript로 DOM요소의 속성들을 사용(classList와 같은)할 수 있다는 점이 있지만,  innerHTML보다 느리고 많은 코드가 필요하다.
-
-
+- DOM 조작은 innerHTML에 비해 javascript로 DOM요소의 속성들을 사용(classList와 같은)할 수 있다는 점이 있지만, innerHTML보다 느리고 많은 코드가 필요하다.
 
 innerHTML은 기존에 있던 HTML요소를 없애고 다시 등록하는 것이므로, 내용은 많은데 변하는 내용이 적다면 오히려 더 비효율 적일 수가 있다. (기존의 내용을 다시 생성)
 
@@ -614,8 +552,6 @@ HTML 내용에 많은 변화가 필요하다면 innerHTML을 사용하고, (보�
 특정 노드에 대해서 처리를 하려면 DOM 조작이 적합하다.
 
 **하지만 이미 MarkUp되어있는 환경에서 요소만 조작이 필요할 경우가 많으므로 보안이 취약한 innerHTML보다 DOM 조작을 우선순위로 사용하여야 한다.**
-
-
 
 ### Element 요소 생성
 
@@ -626,16 +562,14 @@ Element 요소를 생성하는 방법은
 가 있다.
 
 ```js
-const createdDIVElement = document.createElement('div'); // div tag의 Element 생성(HTMLDivElement)
-const createdInputElement = document.createElement('input'); // input tag의 Element 생성(HTMLInputElement)
-const createListElement = document.createElement('ul'); // ul tag의 Element 생성(HTMLUlElement)
+const createdDIVElement = document.createElement('div') // div tag의 Element 생성(HTMLDivElement)
+const createdInputElement = document.createElement('input') // input tag의 Element 생성(HTMLInputElement)
+const createListElement = document.createElement('ul') // ul tag의 Element 생성(HTMLUlElement)
 ```
 
 와 같이 생성가능하며, 생성된 요소는 `HTMLElement`를 상속받는 객체이다. (`HTMLDivElement`과 같은)
 
 이와 같이 생성된 HTML 요소는 위에서 다루었던 AttributeNode 수정 등의 작업들을 거친뒤에 부모 Node에 추가되면서 HTML 페이지에 추가할 수 있다.
-
-
 
 ### Element 요소 추가
 
@@ -645,17 +579,15 @@ Element 요소를 추가하는 방법은
 
 를 이용한다.
 
-`Node.appendChild(Node객체)` 와 같이 **Node 객체를 인자값으로** 넘긴다. 
+`Node.appendChild(Node객체)` 와 같이 **Node 객체를 인자값으로** 넘긴다.
 
 ```js
-const parentElement = document.querySelector('.wrapper');
+const parentElement = document.querySelector('.wrapper')
 
-const createdListElement = document.createElement('ul'); // ul tag의 Element 생성(HTMLUlElement)
+const createdListElement = document.createElement('ul') // ul tag의 Element 생성(HTMLUlElement)
 
-parentElement.appendChild(createdListElement); // 생성한 ul Element를 자식요소로 추가
+parentElement.appendChild(createdListElement) // 생성한 ul Element를 자식요소로 추가
 ```
-
-
 
 ### Element 요소 제거
 
@@ -665,18 +597,16 @@ Element 요소를 제거하는 방법은
 
 를 이용한다.
 
-`Node.removeChild(Node객체)` 와 같이 **Node 객체를 인자값으로** 넘긴다. 
+`Node.removeChild(Node객체)` 와 같이 **Node 객체를 인자값으로** 넘긴다.
 
 ```js
-const parentElement = document.querySelector('.wrapper');
-const removeElement = parentElement.querySelector('ul');
+const parentElement = document.querySelector('.wrapper')
+const removeElement = parentElement.querySelector('ul')
 
-parentElement.removeChild(removeElement); // ul Element를 제거
-parentElement.removeChild(parentElement.lastChild); // 마지막 자식 Node를 제거한다
-document.removeChild(parentElemet); // document도 Node 객체이므로 사용가능하다
+parentElement.removeChild(removeElement) // ul Element를 제거
+parentElement.removeChild(parentElement.lastChild) // 마지막 자식 Node를 제거한다
+document.removeChild(parentElemet) // document도 Node 객체이므로 사용가능하다
 ```
-
-
 
 ### Element Event 추가
 
@@ -687,17 +617,14 @@ document.removeChild(parentElemet); // document도 Node 객체이므로 사용�
 - EventTarget.**addEventListener()**
 
 ```js
-const buttonElement = document.querySelector('button');
+const buttonElement = document.querySelector('button')
 
-buttonElement.addEventListener("click", function onButtonClick() {
-    console.log("Hello World")
-});
+buttonElement.addEventListener('click', function onButtonClick() {
+  console.log('Hello World')
+})
 ```
-
-
 
 이벤트를 추가시킬 수 있는 [addEventListener](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)는 기본적으로 두개의 인자가 필요하다.
 
 - event type : 이벤트의 종류 ([여기 참조](https://developer.mozilla.org/en-US/docs/Web/Events))
 - event listener : 이벤트 발생시 실행되는 함수
-

@@ -1,17 +1,13 @@
 ---
-title: "javascript prototype 생성자 함수 내부에 체이닝을 하면 안되는 이유"
+title: 'javascript prototype 생성자 함수 내부에 체이닝을 하면 안되는 이유'
 draft: true
-date: "2020-11-12"
-path: "/javascript/protype_constructor_doNotChaning"
-category: "javascript"
+date: 2020-11-12
+category: 'javascript'
+tags: ['javascript', 'prototype']
 ---
 
-
-
-
-
 ```
-const House = function(width, length, height) {  
+const House = function(width, length, height) {
   this.width = width;
   this.length = length;
   this.height = height;
@@ -52,10 +48,6 @@ console.log('my Room area is', myRoom.calculateArea(), '/' , 'my Room volume is'
 그런데 오류가 발생할 때 `Room` 디렉토리를 보면 `caculateArea`와 `caculateVolume`을 상속받고 있다고 나옵니다.(아래 사진 첨부)
 그래서 왜 오류가 나오는지 궁금했습니다. ![:thinking_face:](https://a.slack-edge.com/production-standard-emoji-assets/10.2/google-medium/1f914.png)(실제로 사용하기에 적절한 코드는 아니지만 공부하다보니 궁금해졌습니다... ![:point_right:](https://a.slack-edge.com/production-standard-emoji-assets/10.2/google-medium/1f449.png)![:point_left:](https://a.slack-edge.com/production-standard-emoji-assets/10.2/google-medium/1f448.png))
 
-
-
-
-
 ## 나의 답변
 
 상엽님 이거는 생성자함수인 `Room`을 dir 하기보다는 생성자함수로 생성된 객체인스턴스인 `myRoom`을 dir 해보는게 맞을 것 같아요!실제로 `dir(myRoom)` 해보면 결과가 다르게 나옵니다!생성자 함수에 prototype 상속 체인 작업
@@ -74,10 +66,8 @@ console.log('my Room area is', myRoom.calculateArea(), '/' , 'my Room volume is'
 
 이렇게 한번 해보세요~
 
-
-
 생성자 함수 내부에서 `Room.prototype = Object.create(House.rpototype)` 을 하더라도 이미 인스턴스로 생성된 `this` 는 `Room.prototype = Object.create(House.rpototype)` 이 반영되어있지 않은 상태로 생성되어져 버렸기 때문에 바로 적용이 안되는것이구요. 내부에서
-`console.log(this.__``*proto__)*` 해보시면 Object입니다.순서가
+` console.log(this.__``*proto__)* ` 해보시면 Object입니다.순서가
 
 ```
 const Room = function (width, length, height, hasWindows) {

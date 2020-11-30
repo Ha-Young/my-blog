@@ -1,10 +1,9 @@
 ---
-title: "git pull(fatal: refusing to merge unrelated histories) 오류"
-date: "2020-08-28 16:52"
+title: 'git pull(fatal: refusing to merge unrelated histories) 오류'
+date: 2020-08-28 16:52
 draft: false
-path: "/git/error_refusing_to_merge"
 category: 'git'
-
+tags: ['git']
 ---
 
 ## git pull refusing to merge unrelated
@@ -15,9 +14,7 @@ category: 'git'
 
 마침 블로그 포스팅을 뭐라도 하려고 왔기 때문에 해당 부분에 대해 포스팅을 하면 좋을 것 같아 포스팅을 한다.
 
-
-
-###  refusing to merge unrelated는 왜 나는 걸까?
+### refusing to merge unrelated는 왜 나는 걸까?
 
 우선 오류의 전체적인 메세지를 보자
 
@@ -35,8 +32,6 @@ git pull origin master
 
 **local 저장소와 remote 저장소의 history를 비교했을 때 소스코드의 차이가 지나칠 때, merge 문제가 발생 할 수 있어서 오류 메세지를 띄우는 것** 이다.
 
-
-
 ### 해결방법
 
 이럴 때에는 간단하게 해결 할 수 있는데,
@@ -51,8 +46,6 @@ git pull origin master --allow-unrelated-histories
 
 **근데 해당 작업 전에 먼저 원격 저장소의 경로가 올바르게 되어있는지 먼저 확인하자.**
 
-
-
 ### 문제가 더 있나요?
 
 위 방법으로 진행을 해도 아래와 같이 애러가 날 수 있다.
@@ -64,9 +57,7 @@ git pull origin master --allow-unrelated-histories
 
 <img src="./img3.png" alt="image-20200828172219624" style="zoom:50%;" />
 
-
-
-나와 같이 아래 나온 메세지 
+나와 같이 아래 나온 메세지
 **Please commit your changes or stash them before you merge**
 
 가 있다면 먼저 commit을 한 후에 위 명령어를 입력하자.
@@ -76,9 +67,7 @@ git add .
 git commit -m "your commit message"
 ```
 
-
-
-그러면 
+그러면
 
 ![image-20200828173128779](./img4.png)
 
@@ -87,15 +76,10 @@ git commit -m "your commit message"
 SourceTree나 Github Desktop 을 쓰면 간단하게 할 수 있으니 써보는 것도 방법.
 (나는 일일이 파일 보면서하는데 아주 귀찮다.)
 
-
-
 ### 못하겠거나 귀찮거나 그래도 안된다면?
 
 만약, 작업을 진행중에 pull과정에서 애러가 났다면 **새롭게 clone을 하는 것**이 더 좋은 방법일 수가 있다.
 
 push중 애러라면 새롭게 클론 한 뒤에 작업한 파일들을 복사 붙여넣기나 수정을 해주자.
 
-
-
 (나도 그냥 clone했다...)
-

@@ -1,10 +1,9 @@
 ---
-title: "GraphQL이란?"
-date: "2020-08-28 18:00"
+title: 'GraphQL이란?'
+date: 2020-08-28 18:00
 draft: false
-path: "/GraphQL/what"
 category: 'graphQL'
-
+tags: ['graphQL']
 ---
 
 ![graphql](https://graphql-kr.github.io/img/logo.svg)
@@ -21,8 +20,6 @@ Gatsby 기술스택에 GraphQL 있어서 알아보았다.
 (여기저기 찾아봤는데 그 중에서 너무 설명을 잘 한 유튜브가 있어서 추천.)
 
 [![YouTube](http://img.youtube.com/vi/EkWI6Ru8lFQ/0.jpg)](https://www.youtube.com/watch?v=EkWI6Ru8lFQ)
-
-
 
 ### GraphQL?
 
@@ -51,11 +48,9 @@ GraphQL은 위키백과를 참고하자면
 
 제일 두드러지는 GraphQL의 특성은 아무래도 설정된 데이터set을 한꺼번에 받는 REST API와는 다르게 **데이터 set 중에서 원하는 데이터만을 추출**하는 것이 아닐까 한다.
 
-
-
 ### 기존 방식과 차이
 
-이는 기존에 서버에서 클라이언트가 받을 데이터를 설계하거나 예측해서 API를 설계하는 서버중심에서 
+이는 기존에 서버에서 클라이언트가 받을 데이터를 설계하거나 예측해서 API를 설계하는 서버중심에서
 
 GraphQL 클라이언트가 필요한 데이터를 GraphQL이라는 질의어로 뽑아 쓸 수 있다는 것인데, 클라이언트 쪽에서 데이터를 다루기 훨씬 편리해졌다고 볼 수 있다.
 
@@ -75,8 +70,6 @@ SELECT plot_id, species_id, sex, weight, ROUND(weight / 1000.0, 2) FROM surveys;
 ```
 
 참조 : [kakao Tech](https://tech.kakao.com/2019/08/01/graphql-basic/)
-
-
 
 ![RestAPI vs GraphQLAPI](http://tech.kakao.com/files/graphql-mobile-api.png)
 
@@ -115,8 +108,6 @@ SELECT plot_id, species_id, sex, weight, ROUND(weight / 1000.0, 2) FROM surveys;
 
 5. 클라이언트에서 필요한 데이터만 JSON으로 받아 데이터 처리
 
-
-
 ### 그럼 데이터 생성과 삭제는?
 
 자 그럼 데이터 요청은 위에서 살펴봤던대로 graphQL질의어로 하면 되지만, 생성과 삭제는 어떻게 할까?
@@ -149,4 +140,3 @@ mutation CreateReviewForEpisode($ep: Episode!, $review: ReviewInput!) {
 ```
 
 다음과 같이 mutation 키워드를 사용하면서 create를 질의할 수 있다.
-

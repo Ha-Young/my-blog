@@ -1,9 +1,9 @@
 ---
-title: "Lexical Scope? Javascript Scope"
+title: 'Lexical Scope? Javascript Scope'
 draft: true
-date: "2020-11-12"
-path: "/javascript/lexicalscope"
-category: "javascript"
+date: 2020-11-12
+category: 'javascript'
+tags: ['javascript', 'prototype']
 ---
 
 여러분 lexical scope라는 말을 알고계신가용 (알고 계셨다면 죄송합니당...)
