@@ -49,13 +49,7 @@
   }
 }
 
-@include tablet {
-  .category-side-wrapper {
-    display: none;
-  }
-}
-
-@include mobile {
+@media (max-width: 1248px) {
   .category-side-wrapper {
     display: none;
   }
