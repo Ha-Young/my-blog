@@ -1,16 +1,14 @@
 ---
 title: "바닐라코딩 Prep 과제로 받은 코드스타일링"
-draft: true
+draft: false
 date: "2020-12-03"
 category: "vanilla coding"
 tags: ['javascript', 'prep', 'code-review', 'code-styling']
 ---
 
-## Prep 코드리뷰로 정리하는 코드 스타일링
+## 🔧 개발관련
 
-### 개발관련
-
-#### .gitignore에 package-lock.json을 넣으면 안된다.
+### ● .gitignore에 package-lock.json을 넣으면 안된다.
 
 나는 `package-lock.json`이 필요없이, 그냥 `npm install`시에 생기는 부산물이라고 생각해서 `.gitignore`에 `package-lock.json`을 추가했던 적이 있다. 하지만 이 `package-lock.json`은 `package.json`의 부족한 정보를 담고있는 것인데, `pack.json`에 우리가 다운받으면 나오는 버전에 대한 정보는 사실 명확한 버전이 아니라 버전에 대한 `범위(Caret Range)`를 표기하고 있다. 그래서 명확한 버전이 아니기 때문에 명확한 버전에 대한 정보를 담는 것이 바로 `package-lock.json`이고 이 `package-lock.json`이 있다면 `npm install`시에 `package-lock.json`을 통해 `node-modules`폴더를 생성하게 된다. 만약, `package-lock.json`이 없다면 `package.json`을 참고해서 생성되기 때문에 명확하지 않은 정보로 생성이 된다. 
 
@@ -20,23 +18,15 @@ tags: ['javascript', 'prep', 'code-review', 'code-styling']
 
 
 
-#### newline 추가
+### ● npm 패키지 매니저를 쓴 프로젝트라면 계속 npm으로 사용하자
 
-git을 이용할때에는 항상 파일의 끝에 `new line`이 추가되어야 한다.
+package-lock.json이 있다면, npm 패키지 매니저를 이용해 모듈 인스톨이 구성된 상태일 것이다.
 
-이는 git에서 `new line`을 통해 파일 구분을 하기 때문.
-
-**`new line`이 없다면 git에서 문제가 생길 확률이 높다.**
+하지만 모르고 yarn을 이용해 다시 yarn add를 통해서 구현을 했는데, 이렇게 하면 위와 같이 package-lock.json을 참조하지않아 제대로 된 버전의 모듈들이 설치되지 않는다. 즉, 이전에 개발된 환경과 다른 개발환경이 조성되어 문제가 생길 확률이 높다. 따라서 npm 패키지 매니저를 쓴 프로젝트라면 계속해서 npm 패키지 매니저를 써야 한다.
 
 
 
-#### 사용하지 않는 변수 꼭 제거하기
-
-사용하지 않는 변수는 꼭 제거해야 한다.
-
-
-
-#### 변수에 leteral로 할당하는 것 보다 상수로 관리할 수 있다면 관리하자.
+### ● 변수에 leteral로 할당하는 것 보다 상수로 관리할 수 있다면 관리하자.
 
 ```js
 const startButtonElement = document.querySelector('.start-btn');
@@ -64,19 +54,182 @@ const timeLimit = TIME_LIMIT;
 
 
 
-#### 디버깅을 위한 console.log는 PR(Pull Request) 혹은 MR(Merge Request)전에 항상 제거하자
+### ● 디버깅을 위한 console.log는 PR(Pull Request) 혹은 MR(Merge Request)전에 항상 제거하자
 
 완성 후 제출을 하는 PR이나 MR에서 디버깅을 위한 console.log가 찍혀있다면 코드 완성도의 느낌이 떨어질 수 있고, master에 Merge시킬 때 관리자가 일일이 다 제거해야되는 번거로움이 생긴다. 
 
 
 
-### 코드스타일 관련
+### ● 커밋후 PR 혹은 MR로 올리는 작업에 ToDo와 같은 주석은 없도록 하자
 
-#### 줄임말 보다는 길더라도 명확하게 Naming하자
+```js
+function doWorkSomething() {
+    // ToDo
+}
+```
+
+이 부분은 실제 업무로 들어갔을 때 만약 남들이 봤을 때 주석으로 ToDo로 적혀있다면,
+해당 커밋과 PR, MR에 대한 작업을 덜 한건지 다음 작업을 위해 남겨둔건지 햇갈린다.
+
+해당 PR, MR에 대한 작업을 덜 한것처럼 보일 수 있기때문에 미완성의 느낌이 나서 커밋에 대한 작업이 다 된건지 안된건지 보는사람으로 부터 생각을 하게 한다는 점 때문에 없애는 편이 낫다.
 
 
 
-#### 함축적인 표현보다 길더라도 명확하게 Naming하자
+### ●  css 반응형 작업은 (media query) break point를 4~5개 기준을 두고 작업한다.
+
+이 부분은 내가 break point를 디바이스 (width) 기준으로 break point를 4~5개로 잡고 작업하는지 모르고,
+
+```css
+@media (min-width:361px) and (max-width:399px) {
+  html {
+    font-size: 30%;
+  }
+}
+
+@media (min-width:400px) and (max-width:439px) {
+  html {
+    font-size: 32.5%;
+  }
+}
+
+@media (min-width:440px) and (max-width:479px) {
+  html {
+    font-size: 35%;
+  }
+}
+
+/* ... 반복 ...*/
+```
+
+다음과 같이 40px정도 단위로 작업을 해서 media query가 굉장히 많았다.
+
+
+
+이럴경우 유지보수가 힘들기 때문에 4~5개의 기준을 두고 일한다고 한다.
+
+기준은 각 회사나 제품마다 다르겠지만 4~5 개의 break point를 두는건 비슷한 것 같다.
+
+참고자료
+
+- [Bootstrap 기준 참고](https://getbootstrap.com/docs/4.5/layout/grid/#grid-options)
+
+
+
+### ● ID Selector는 사용하지 말자
+
+```css
+#id-selector {
+    background-color: 'black';
+    ...
+}
+```
+
+CSS에서 ID 선택자는 잘 사용하지 않는다. ID 선택자는  유연성이 떨어지고 (하나 이상이 필요한 경우 더 추가 할 수 없음) 필요한 경우 재정의하기가 더 어렵고 클래스보다 특이성이 높다.
+
+
+
+참고자료
+[Don't use ID selectors](https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Code_guidelines/CSS#Dont_use_ID_selectors)
+
+
+
+### ● 스크롤 없는 풀페이지 화면을 만들고 싶다면 overflow: hidden을 사용하자
+
+풀페이지 화면을 만들기위해 body에 margin-top 속성을 작성한 적이 있었는데,
+body에 margin-top을 넣는경우는 잘 없으니 body에 overflow: hidden을 사용하자.
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/overflow
+
+
+
+
+
+## 🎭 코드스타일 관련
+
+### ● 줄임말 보다는 길더라도 명확하게 Naming하자
+
+과제 중에 상수로 표기하고 싶어서 , 이를 리뷰로 남겨주셨다.
+
+```js
+const ClassNames = {
+    active: "active",
+    gBoardCell: "gboard_cell", // gboard도 globalBoard인지 gameBoard인지 햇갈린다.
+    
+    qs: { // qs가 무엇일까?
+        player1Score: "#play1-score",
+        player2Score: "#play2-score",
+        tieScore: "#ties-score",
+        soundOn: "#sound-on",
+        soundOff: "#sound-off",
+  	},
+};
+```
+
+다음과 같이 DOM조작을 위해서 HTML의 class name을 상수화 시켰었다.
+여기서 `query selector`를 `qs`로 줄여 썼는데 리뷰어분이 `qs`가 무엇인지 추론을 해야 하는 상황이 생겼고 이는 한번 볼 코드를 여러번 보게 만든 요인이 된다.
+
+또 위의 `gBoardCell` 또한 `global board`인지 `game board`인지 햇갈린다.
+
+> 실제로 리뷰어님은 global board로 인지하셨다.
+
+다음과 같이 네이밍에 있어서 줄임말이 효과적인지 다시한번 생각해보게 되었고 줄여서 누구나 알 수 있거나 명확하지 않다면 줄임말을 사용하지 않기로 하였다.
+
+
+
+### ● var 대신에 let, const를 사용하자
+
+var는 호이스팅의 문제와 함수 스코프가 적용되는 등의 개발중에 알수없는 문제를 야기시킬 수 있다.
+
+따라서 var 대신 let, const를 사용하자.
+
+변수 선언은 
+
+const로 선언하고 변경되는 값이면 let으로 변경하도록 하자.
+
+참고자료
+
+- [var](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var)
+- [const](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const)
+- [let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)
+- [Const in JavaScript: when to use it and is it necessary?](https://stackoverflow.com/questions/21237105/const-in-javascript-when-to-use-it-and-is-it-necessary)
+- [What's the difference between using “let” and “var”?](https://stackoverflow.com/questions/762011/whats-the-difference-between-using-let-and-var)
+
+
+
+### ● naming에 있어서 일관성을 가져가자
+
+```js
+const className = {
+  btnStart: "btn-start",
+  soundBtn: "sound-btn",
+  restartBtn: "restart-btn",
+}
+
+const btnStartElement = document.querySelector('btn-start');
+const soundBtnElement = document.querySelector('sound-btn');
+const restartBtnElement = document.querySelector('restart-btn');
+```
+
+다음과 같은 코드의 문제점은 무엇일까? 
+
+-> 코드의 일관성이 떨어져 보인다.
+
+`btnStart`는 btn으로 시작되지만, `soundBtn`과 `restartBtn`은 btn으로 끝난다.
+이는 코드가 정돈되어 보이지 않고 심할경우 가독성 또한 헤칠 수 있다.
+
+왠만하면 네이밍에 있어서도 코드의 일관성을 가지자.
+
+```js
+const className = {
+  startBtn: "start-btn",
+  soundBtn: "sound-btn",
+  restartBtn: "restart-btn",
+}
+```
+
+
+
+### ● 함축적인 표현보다 길더라도 명확하게 Naming하자
 
 변수나 함수 Naming시에 짧고 함축적인 것 보다 무조건 명확하게 작성하는게 중요하다.
 
@@ -111,19 +264,180 @@ function allQuizCount() {
 
 
 
+### ● Bool 변수 Naming
+
+Bool 변수 네이밍에 있어서 일반변수처럼 표기하기보다는 Bool 변수임을 알 수 있도록 표기하는것이 좋다.
+
+```js
+const myTurn = true; // X
+const isMyTurn = true; // O
+```
+
+아래 사이트를 참조하자.
+
+[Bool 변수 이름 제대로 짓기 위한 최소한의 영어 문법](https://soojin.ro/blog/naming-boolean-variables)
+
+
+
+### ● css 작성시에는 규칙성을 가져야 한다.
+
+css 작성시에 아무 속성이나 순서없이 적지말고 이 또한 규칙성을 가지고 작성해야 한다.
+
+```
+1. Layout Properties (position, float, clear, display)
+2. Box Model Properties (width, height, margin, padding)
+3. Visual Properties (color, background, border, box-shadow)
+4. Typography Properties (font-size, font-family, text-align, text-transform)
+5. Misc Properties (cursor, overflow, z-index)
+```
+
+대부분 위의 순으로 작성을 한다.
+
+이외에도 알파벳 순이라던지 회사마다 다른 컨벤션을 가지고 있다.
+
+중점은 **css작성에도 규칙성과 일관성이 있어야 된다는 점!**
+
+
+
+### ● newline 추가
+
+git을 이용할때에는 항상 파일의 끝에 `new line`이 추가되어야 한다.
+
+이는 git에서 `new line`을 통해 파일 구분을 하기 때문.
+
+**`new line`이 없다면 git에서 문제가 생길 확률이 높다.**
+
+없으면 git에서 No newline at end of file이라는 경고를 보여준다.
+
+
+
+아래 문서를 참조하자
+
+[Why should text files end with a newline?](https://stackoverflow.com/questions/729692/why-should-text-files-end-with-a-newline)
+
+
+
+### ● 사용하지 않는 변수 꼭 제거하기
+
+사용하지 않는 변수는 꼭 제거해야 한다.
+
+
+
+### ● 함수 Naming에서는 동사가 앞에 와야 한다.
+
+함수 이름은 동사로 시작하는 것이 일반적.
+
+국내에만 국한된 것이 아니라 세계적으로 쓰는 컨벤션.
+
+영어로 이해할 수 있게 잘 네이밍 하는 것이 상당히 중요하다.
+
+
+
+### ● 자바스크립트는 일반적으로 camelCase를 사용한다
+
+```js
+const camelCase = 'thisIsCamelCase';
+```
+
+
+
+### ● Naming할 때 단수, 복수 표현을 명확히 하자.
+
+```js
+ 
+```
+
+
+
+### ● DOM 요소 Naming
 
 
 
 
-#### Bool 변수 Naming
 
-#### 함수 Naming에서는 동사가 앞에 와야 한다.
+## 📕 자바스크립트 문법 관련
+
+### ● Array.prototype.fill()
+
+```js
+const squares = [null, null, null, null, null, null, null, null, null];
+```
+
+다음과 같이 반복적인 표현을 
+
+```js
+const squares = Array.from({length:9}).fill(null);
+```
+
+와 같은 표현으로 간단하게 표현할 수 있다.
 
 
 
-### 자바스크립트 문법 관련
+### ● Logical TRUE, NOT을 잘 활용하자 (Truthy, Falsy)
 
-#### addEventListener callback함수의 인자인 event 객체에서 target과 currentTarget 차이?
+```js
+if (someVariable === null) {
+    // ToDo...
+}
+```
+
+와 같은 표현보다
+
+```js
+if (!someVariable) {
+    // ToDo...
+}
+```
+
+와 같이 Falsy를 이용하자.
+
+
+
+참고자료
+[Logical NOT (!)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_NOT)
+
+
+
+### ● DOM으로 style property를 수정하는 것 대신 classList로 스타일 변경을 꾀하자
+
+```js
+if (soundFlag) {
+    soundOn.style.display = "block";
+    soundOff.style.display = "none";
+} else {
+    soundOn.style.display = "none";
+    soundOff.style.display = "block";
+```
+
+다음과 같이 직접적으로 DOM Element의 style property를 수정하지 말고,
+classList로 이미 정의된 class를 추가함으로써 스타일 변경을 꾀하는 것이 좋다.
+
+위와 같이 수정하면 inline css로 적용되기 때문에 css적용 우선순위의 문제와 가독성을 헤칠 가능성이 있다.
+또, css파일로 스타일을 관리하는 것이 훨씬 유지보수성이 좋다.
+
+```js
+element.style.backgroundColor = "white";
+```
+
+```html
+<h1 style="background-color: white">안녕하세요</h1>
+```
+
+
+
+정리하자면, **css파일에 적용시킬 css class를 미리 만들어놓고 이 class를 add, remove** 하는 식으로 관리하는 것이 훨씬 좋다.
+
+
+
+참고자료
+
+- [External CSS VS Internal CSS VS Inline CSS](https://www.w3schools.com/css/css_howto.asp)
+
+
+
+
+
+### ● addEventListener callback함수의 인자인 event 객체에서 target과 currentTarget 차이?
 
 event 객체에서, target은 event가 실제로 일어나는 element라고 보면되고,
 
@@ -159,7 +473,7 @@ target과 currentTarget이 달라질 수 있다.
 
 
 
-#### addEventListener에 함수 인스턴스 차이
+### ● addEventListener에 함수 인스턴스 차이
 
 아래 예제를 통해 차이를 확인하자.
 
@@ -177,8 +491,8 @@ target과 currentTarget이 달라질 수 있다.
   buttonElement.addEventListener('click', onClickHandler);
   formElement.addEventListener('submit', onSubmitMessage);
   
-  buttonElement.addEventListener('click', onClickHandler); // 이미 똑같은 함수 인스턴스로 이벤트 등록되어 있기 때문에 추가 등록 되지 않음
-  formElement.addEventListener('submit', onSubmitMessage);  // 이미 똑같은 함수 인스턴스로 이벤트 등록되어 있기 때문에 추가 등록 되지 않음
+  buttonElement.addEventListener('click', onClickHandler); // 이미 똑같은 함수 인스턴스로 이벤트 등록되어 있기 때문에 추가 등록 되지 않음 replace됨
+  formElement.addEventListener('submit', onSubmitMessage);  // 이미 똑같은 함수 인스턴스로 이벤트 등록되어 있기 때문에 추가 등록 되지 않음 replace됨
   
   // 버튼 클릭시 'click' 로그 한 번
   // submit시 'submit' 로그 한 번
@@ -212,7 +526,7 @@ target과 currentTarget이 달라질 수 있다.
 
 
 
-#### * addEventListener의 callback 함수에서의 this 키워드
+### 🎇 addEventListener의 callback 함수에서의 this 키워드
 
 내가 클래스 키워드를 이용해서 컴포넌트를 만들어봤는데, 이 때 이 컴포넌트에 해당되는 버튼을 클릭하면 버튼클릭 이벤트를 추가하는 부분을 넣은 적이 있었다. 하지만 내부에서 `this`키워드가 제대로 동작하지 않았는데 다음을 살펴보자.
 
@@ -254,10 +568,43 @@ export default class myComponent {
 
 
 
+### 🎇 module.exports는 ES5가 아니라 NodeJS 문법이고, CommonJS이다.
+
+우리가 흔히 쓰는 `import` `export` 키워드는 ES2015에서 새롭게 도입된 키워드.
+
+```js
+import lodash from "lodash";
+
+export default function moduleFunc() {
+    // ToDo...
+}
+```
 
 
 
+하지만 이 전에 모듈사용은 다음과같이
+
+```js
+const lodash = require("lodash");
+
+function moduleFunc() {
+    // ToDo...
+}
+
+module.exports = moduleFunc;
+```
+
+와 같이 `require`를 사용하였는데, 이는 JavaScript 문법이 아니고 당연히 ES5 문법이 아니다.
+
+**이는 `NodeJS`에서 기본모듈시스템으로 도입된 `CommonJS`이다.**
 
 
 
-### 
+CommonJS 관련 문서는 아래를 참조하자.
+
+- [Indroduction to CommonJS](https://flaviocopes.com/commonjs/)
+- [Poiemaweb Module](https://poiemaweb.com/es6-module)
+- [Node.js Documentation Modules](https://nodejs.org/docs/latest/api/modules.html)
+
+
+
