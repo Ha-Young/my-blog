@@ -1,4 +1,9 @@
-# Prep 7주차 금요일 오피스아워 정리
+---
+title: "바닐라코딩 Prep 7주차 금요일 오피스아워 정리"
+draft: false
+date: "2020-11-20 21:20"
+category: "vanilla coding"
+---
 
 ## Underdash
 

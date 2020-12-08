@@ -1,14 +1,10 @@
 ---
-title: "Prep 4주차 월요일 오피스아워 정리"
+title: "바닐라코딩 Prep 4주차 월요일 오피스아워 정리"
 draft: false
 date: "2020-10-26 21:20"
-path: "/vanillacoding/prep/week4_op1"
 category: "vanilla coding"
+tags: ['vanilla coding', 'prep']
 ---
-
-
-
-
 
 ## ToDo 리스트 활용
 

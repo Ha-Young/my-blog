@@ -1,9 +1,9 @@
 ---
-title: "Prep 2주차 월요일 오피스아워 정리"
+title: "바닐라코딩 Prep 2주차 월요일 오피스아워 정리"
 draft: false
 date: "2020-10-12 21:05:00"
-path: "/vanillacoding/prep/week2_op1"
 category: "vanilla coding"
+tags: ['vanilla coding', 'prep']
 ---
 
 ## 코드리뷰 요청시

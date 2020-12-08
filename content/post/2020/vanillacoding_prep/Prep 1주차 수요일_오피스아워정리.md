@@ -1,9 +1,9 @@
 ---
-title: "바닐라코딩 Prep코스 사전준비 - 1주차 두번째 오피스아워 정리"
+title: "바닐라코딩 Prep 1주차 수요일 오피스아워 정리"
 draft: false
-path: "/vanillacoding/prep/week1_oh2"
 date: "2020-10-07 21:00"
 category: 'vanilla coding'
+tags: ['vanilla coding', 'prep']
 ---
 
 ## 오피스아워에서 하는 것

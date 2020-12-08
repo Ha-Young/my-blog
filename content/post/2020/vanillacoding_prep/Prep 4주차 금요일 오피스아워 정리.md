@@ -1,4 +1,12 @@
-# Prep 4주차 금요일 오피스아워 정리
+---
+title: "바닐라코딩 Prep 4주차 금요일 오피스아워 정리"
+draft: false
+date: "2020-10-30 22:00"
+category: "vanilla coding"
+tags: ['vanilla coding', 'prep']
+---
+
+
 
 ## Q. 콜백함수에서의 this는 일반함수로 실행되는거?
 

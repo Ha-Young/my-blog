@@ -1,14 +1,10 @@
 ---
-title: "Prep 4주차 수요일 오피스아워 정리"
+title: "바닐라코딩 Prep 4주차 수요일 오피스아워 정리"
 draft: false
 date: "2020-10-28 22:00"
-path: "/vanillacoding/prep/week4_op2"
 category: "vanilla coding"
+tags: ['vanilla coding', 'prep']
 ---
-
-
-
-
 
 ## strict mode?
 
