@@ -70,7 +70,118 @@ const timeLimit = TIME_LIMIT;
 
 
 
+#### html에 dataset 속성 사용
+
+html에 특정 정보를 담고싶을 때 `data-*` 속성을 사용하면 좋다.
+
+```html
+<article
+  id="electriccars"
+  data-columns="3"
+  data-index-number="12314"
+  data-parent="cars">
+...
+</article>
+```
+
+```js
+var article = document.getElementById('electriccars');
+ 
+article.dataset.columns // "3"
+article.dataset.indexNumber // "12314"
+article.dataset.parent // "cars"
+```
+
+위와 같이 가능.
+
+
+
+하지만 이 dataset 속성으로 저장된 값은 검색 크롤러에 의해 읽히지 않아 SEO에 불리하며,
+
+지원하지않는 브라우저(IE10 이하)가 있기 때문에 고려해서 사용해야 한다.
+
+[참조](https://developer.mozilla.org/ko/docs/Learn/HTML/Howto/%EB%8D%B0%EC%9D%B4%ED%84%B0_%EC%86%8D%EC%84%B1_%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0)
+
+
+
+#### early return (fail fest)
+
+```js
+if (isTrue) {
+    // A..
+    // B..
+    // C..
+    // D..
+} else {
+    return "early return";
+}
+```
+
+다음과 같은 분기중에서 한쪽은 길고 한쪽은 짧을 때 혹은 if else문을 통한 예외처리를 `early return` 처리하면 좋다.
+
+```js
+if (errorCheck()) {
+    return "fail fest";
+}
+
+if (!isTrue) {
+    return "early return";
+}
+
+// A..
+// B..
+// C..
+// D..
+```
+
+이렇게 할 경우, 가독성이 좋아지고 효율이 좋아진다.
+
+또
+
+- 가독성이 좋아진다.
+  - indentation이 줄고,
+  - if else문을 다 안봐도 된다.
+- if, else 문에 대해 다 보지 않기 때문에 효율성이 있다.
+- 예외처리를 `early return`처리하면 **`fail fest`**한 코드가 되어서 빠른 예외처리로 불필요한 로직수행이 없어진다.
+
+
+
 ### 코드스타일 관련
+
+#### html img tag에 alt값을 꼭 넣자
+
+img tag에서
+
+- src : 필수이고 포함하고자 하는 이미지의 경로를 지정
+- alt: 필수는 아니지만, 필수적으로 기입해야 한다.이미지의 텍스트 설명이지만 웹 접근성으로 스크린리더가 읽어주기도 하고 오류로인한 이미지를 가져올 수 없을 때 이미지를 대체하는 텍스트로 쓰이기 때문
+
+[참고자료](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img)
+
+
+
+#### Header의 h1은 반드시 1개로 하고 순서를 반드시 지키도록 하자
+
+[해당 문서 참고](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements#Accessibility_concerns)
+
+
+
+#### 정보성 값들은 css에 있으면 안되고 반드시 html에 있어야 한다
+
+내가 개발시
+
+```css
+.quiz-score::before {
+  content: "score : ";
+}
+```
+
+다음과 같은 처리를 하였는데 이렇게 하면 안된다. (정보성이기 때문에)
+
+왜냐면, 이 정보값은 DOM에 포함되어있지 않아 페이지에서 콘텐츠로 쓰이지 않는다. 따라서 DOM으로 조작할 수도 없고 검색 크롤러가 크롤링 하지도 못한다.
+
+[다음 문서를 참고하자](https://developer.mozilla.org/en-US/docs/Web/CSS/content#Accessibility_concerns)
+
+
 
 #### 줄임말 보다는 길더라도 명확하게 Naming하자
 
@@ -111,17 +222,87 @@ function allQuizCount() {
 
 
 
-
-
-
-
 #### Bool 변수 Naming
+
+
 
 #### 함수 Naming에서는 동사가 앞에 와야 한다.
 
 
 
+#### arrow function에는 세미콜론(;)을 붙여야 한다.
+
+함수 표현식과 arrow function은 세미콜론을 붙여야 한다.
+
+```js
+// function expression
+const func1 = function() {
+    console.log('func1');
+};
+
+// arrow function
+const func2 = () => {
+    cosnsole.log('func2');
+};
+```
+
+
+
+
+
 ### 자바스크립트 문법 관련
+
+#### 배열 판별은 Array.prototype.isArray
+
+```js
+const arr = [];
+
+console.log(typeof arr); // 'object'
+console.log(Array.isArray(arr)); // true
+```
+
+[참고](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray)
+
+
+
+#### object propery access -> dot notation VS bracket notation
+
+object의 속성에 접근할 때 `.property`으로 접근하는 dot-notation과 `[''property"]`로 접근하는 bracket-notation이 있다. 차이는 아래 참고자료로 확인
+
+참고자료
+
+- [Property_Accessors](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_Accessors)
+- [dot-notation vs. bracket-notation](https://codeburst.io/javascript-quickie-dot-notation-vs-bracket-notation-333641c0f781)
+
+
+
+#### 배열의 length와 관련있는 numerical한 property, method와의 관계
+
+우리가 배열에서 사용하는 메서들 중에는 length속성과 관련이 있는 프로퍼티, 메서드들이 있다.
+
+가령 `join()` `slice()` `push()` 등등이 있는데, 아래 페이지를 참조해보자.
+
+[해당 페이지 참조](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Relationship_between_length_and_numerical_properties)
+
+
+
+#### type coercion
+
+자바스크립트에서 `2 + "2"`의 결과는 어떤지 다들 알고있을 것이다.
+
+이와 같이 강제 형변환이 일어나는 것에 대해서  `type corecion`이라고 하는데 아래 참고자료를 확인하자.
+
+`==`와 `===`의 관계또한 알아보자.
+
+참고자료
+
+- [Type_coercion](https://developer.mozilla.org/en-US/docs/Glossary/Type_coercion)
+- [Equality](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Equality)
+- [Strict_equality](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Strict_equality)
+
+
+
+#### 
 
 #### addEventListener callback함수의 인자인 event 객체에서 target과 currentTarget 차이?
 
@@ -251,6 +432,69 @@ export default class myComponent {
 
 문제는 `addEventListener`로 등록된 `onButtonClickInnerHandler` 함수에서 발생하였는데,
 `addEventListener`로 등록된 함수에서의 `this`키워드는 `event.target`과 똑같다.
+
+```js
+someElement.addEventListener('click', function (e) {
+    console.log(e.currentTarget === this); // true
+}
+```
+
+
+
+참고자료: 
+
+- [this: As a DOM event handler](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this#As_a_DOM_event_handler)
+
+- ["this" and Arrow Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#this_and_Arrow_Functions)
+
+  
+
+그래서 나는 해결을
+
+```js
+	onButtonClickInnerHandler = (event) => {
+    	console.log('this data:', this.requireData); // 현재 클래스로 생성된 인스턴스의 requireData를 사용하려고 하였음.
+        
+        this.#onClickButton(); // 생성자 인자로 받았던 onClickButton함수 실행
+	}
+```
+
+와 같이 class 내부에서 arrow function으로 해결을 했는데 class내부에서 arrow function은 쓰면 안된다.
+
+
+
+
+
+#### class 내부에서 arrow function 사용 불가능
+
+class 내부에서 arrow function 사용 불가능하다.
+
+위와같이 class 내부에서 이벤트함수로 this를 사용해야된다면 this를 bind시키는 방법을 사용하자.
+
+```js
+export default class myComponent {
+    constructor ({ $target, requireData, onClickButton }) {
+        this.targetElement = $target;
+        this.requireData = requireData;
+        this.onClickButton = onClickButton;
+        
+        this.buttonElement = this.targetElement.querySelector('.button');
+        
+        this.setEvent();
+    }
+
+	function setEvent() {
+        // 아래와 같이 button Element에 함수 선언식으로 구현된 함수를 onClick Event로 추가
+        this.buttonElement.addEventListener('click', this.onButtonClickInnerHandler.bind(this)); // this bind!
+    }
+    
+	function onButtonClickInnerHandler(event) {
+    	console.log('this data:', this.requireData); // 현재 클래스로 생성된 인스턴스의 requireData를 사용하려고 하였음.
+        
+        this.#onClickButton(); // 생성자 인자로 받았던 onClickButton함수 실행
+	}
+}
+```
 
 
 
