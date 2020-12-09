@@ -8,6 +8,17 @@ tags: ['javascript', 'prep', 'code-review', 'code-styling']
 
 ## 🔧 개발관련
 
+### ● git 커밋은 작업의 단계별로 수행하고 메세지도 명확하게 잘 적자.
+
+현업에서는 commit을 취소하거나 수정하는 일이 발생하기 때문에 commit은 단일 작업을 기준으로 쪼개는 것이 버그를 찾거나 수정할 때 좋은 습관이 된다.
+
+참고
+
+[커밋 메세지를 잘 짓는 법](https://blog.ull.im/engineering/2019/03/10/logs-on-git.html)
+
+<br>
+<br>
+
 ### ● .gitignore에 package-lock.json을 넣으면 안된다.
 
 나는 `package-lock.json`이 필요없이, 그냥 `npm install`시에 생기는 부산물이라고 생각해서 `.gitignore`에 `package-lock.json`을 추가했던 적이 있다. 하지만 이 `package-lock.json`은 `package.json`의 부족한 정보를 담고있는 것인데, `pack.json`에 우리가 다운받으면 나오는 버전에 대한 정보는 사실 명확한 버전이 아니라 버전에 대한 `범위(Caret Range)`를 표기하고 있다. 그래서 명확한 버전이 아니기 때문에 명확한 버전에 대한 정보를 담는 것이 바로 `package-lock.json`이고 이 `package-lock.json`이 있다면 `npm install`시에 `package-lock.json`을 통해 `node-modules`폴더를 생성하게 된다. 만약, `package-lock.json`이 없다면 `package.json`을 참고해서 생성되기 때문에 명확하지 않은 정보로 생성이 된다.
@@ -379,7 +390,13 @@ function allQuizCount() {
 
 와 같이 표현하는게 훨씬 좋다.
 
+<br>
+<br>
+
 #### 함수 Naming에서는 동사가 앞에 와야 한다.
+
+<br>
+<br>
 
 #### arrow function에는 세미콜론(;)을 붙여야 한다.
 
@@ -433,60 +450,6 @@ css 작성시에 아무 속성이나 순서없이 적지말고 이 또한 규칙
 이외에도 알파벳 순이라던지 회사마다 다른 컨벤션을 가지고 있다.
 
 중점은 **css작성에도 규칙성과 일관성이 있어야 된다는 점!**
-
-<br>
-<br>
-
-### ● 배열 판별은 Array.prototype.isArray
-
-```js
-const arr = []
-
-console.log(typeof arr) // 'object'
-console.log(Array.isArray(arr)) // true
-```
-
-[참고](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray)
-
-<br>
-<br>
-
-### ● object propery access -> dot notation VS bracket notation
-
-object의 속성에 접근할 때 `.property`으로 접근하는 dot-notation과 `[''property"]`로 접근하는 bracket-notation이 있다. 차이는 아래 참고자료로 확인
-
-참고자료
-
-- [Property_Accessors](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_Accessors)
-- [dot-notation vs. bracket-notation](https://codeburst.io/javascript-quickie-dot-notation-vs-bracket-notation-333641c0f781)
-
-<br>
-<br>
-
-### ● 배열의 length와 관련있는 numerical한 property, method와의 관계
-
-우리가 배열에서 사용하는 메서들 중에는 length속성과 관련이 있는 프로퍼티, 메서드들이 있다.
-
-가령 `join()` `slice()` `push()` 등등이 있는데, 아래 페이지를 참조해보자.
-
-[해당 페이지 참조](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Relationship_between_length_and_numerical_properties)
-
-<br>
-<br>
-
-### ● type coercion
-
-자바스크립트에서 `2 + "2"`의 결과는 어떤지 다들 알고있을 것이다.
-
-이와 같이 강제 형변환이 일어나는 것에 대해서 `type corecion`이라고 하는데 아래 참고자료를 확인하자.
-
-`==`와 `===`의 관계또한 알아보자.
-
-참고자료
-
-- [Type_coercion](https://developer.mozilla.org/en-US/docs/Glossary/Type_coercion)
-- [Equality](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Equality)
-- [Strict_equality](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Strict_equality)
 
 <br>
 <br>
@@ -550,6 +513,132 @@ const camelCase = 'thisIsCamelCase'
 <br>
 
 ## 📕 자바스크립트 문법 관련
+
+### ● 배열 판별은 Array.prototype.isArray
+
+```js
+const arr = []
+
+console.log(typeof arr) // 'object'
+console.log(Array.isArray(arr)) // true
+```
+
+[참고](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray)
+
+<br>
+<br>
+
+### ● object propery access -> dot notation VS bracket notation
+
+object의 속성에 접근할 때 `.property`으로 접근하는 dot-notation과 `[''property"]`로 접근하는 bracket-notation이 있다. 차이는 아래 참고자료로 확인
+
+참고자료
+
+- [Property_Accessors](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_Accessors)
+- [dot-notation vs. bracket-notation](https://codeburst.io/javascript-quickie-dot-notation-vs-bracket-notation-333641c0f781)
+
+<br>
+<br>
+
+### ● 배열의 length와 관련있는 numerical한 property, method와의 관계
+
+우리가 배열에서 사용하는 메서들 중에는 length속성과 관련이 있는 프로퍼티, 메서드들이 있다.
+
+가령 `join()` `slice()` `push()` 등등이 있는데, 아래 페이지를 참조해보자.
+
+[해당 페이지 참조](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Relationship_between_length_and_numerical_properties)
+
+<br>
+<br>
+
+### ● type coercion
+
+자바스크립트에서 `2 + "2"`의 결과는 어떤지 다들 알고있을 것이다.
+
+이와 같이 강제 형변환이 일어나는 것에 대해서 `type corecion`이라고 하는데 아래 참고자료를 확인하자.
+
+`==`와 `===`의 관계또한 알아보자.
+
+참고자료
+
+- [Type_coercion](https://developer.mozilla.org/en-US/docs/Glossary/Type_coercion)
+- [Equality](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Equality)
+- [Strict_equality](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Strict_equality)
+
+<br><br>
+
+### ● 함수 내부의 arguments 키워드
+
+arguments 키워드는 함수 내부에 전달된 인자값 (argument)들을 가지고 있는 유사배열(Array Like)이다.
+
+```js
+function checkArguments() {
+    console.log(arguments);
+}
+
+checkArguments(1, "5", 23, "555"); // Arguments(4) [1, "5", 23, "555"]
+```
+
+
+
+ES2015로 들어오면서부터 rest연산자로 이를 대체 할 수도 있다.
+
+```js
+function checkArguments(...args) {
+    console.log(args);
+}
+
+checkArguments(1, "5", 23, "555"); // (4) [1, "5", 23, "555"]
+```
+
+**위 arguments 키워드는 Array Like, 유사배열이지만 아래 rest 연산자를통해 받은 args는 Array이다.**
+
+
+
+아래 참조
+
+- [arguments MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments)
+
+<br>
+<br>
+
+### 자바스크립트 Array Like
+
+Array처럼 보이지만 실제로는 Object이고 배열과 같이 index 엑세스, length 속성이 있다.
+Array가 아니기 때문에 Array와 Array.prototype의 length를 제외한 속성과 메서드들은 사용할 수 없다.
+
+
+
+대표적인 Array Like가 위의 arguments.
+
+Array Like를 일반 배열로 변환해서 사용하면 편한데,
+방법은 다음과 같다.
+
+```js
+(function () {
+	const arrLike = arguments;
+
+	const arr1 = Array.prototype.slice.call(arrLike);
+    const arr2 = Array.from(arrLike);
+    const arr3 = [...arrLike];
+})();
+```
+
+셋 중 가장 많이 사용되는 방법은 Array.from인 것 같다.
+
+하지만 속도는 가장 고전적 방법인 Array.prototype.slice.call이 가장 빠르다.
+
+![img](.\하옹의-바닐라코딩-Prep-코드리뷰-식사_array_like_test.jpg)
+
+
+
+참조
+
+- [array like object](https://2ality.com/2013/05/quirk-array-like-objects.html)
+- [array like](https://dzone.com/articles/js-array-from-an-array-like-object)
+
+<br>
+<br>
 
 ### ● Array.prototype.fill()
 
@@ -627,12 +716,6 @@ element.style.backgroundColor = 'white'
 <br>
 
 ### ● addEventListener callback함수의 인자인 event 객체에서 target과 currentTarget 차이?
-
-> > > > > > > 54ba5a9d0cf9e79eaa3b956dc3c9339c58ac51ca
-
-event 객체에서, target은 event가 실제로 일어나는 element라고 보면되고,
-
-> click이벤트면 실제 click한 element
 
 event.currentTarget은 event가 실제 장착된 element라고 보면 된다.
 
