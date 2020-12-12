@@ -1,10 +1,16 @@
 ---
-title: '바닐라코딩 Prep 과제로 받은 코드스타일링'
+title: '바닐라코딩 Prep 과제 코드리뷰 모음'
 draft: false
 date: '2020-12-03'
 category: 'vanilla coding'
-tags: ['javascript', 'prep', 'code-review', 'code-styling']
+tags: ['javascript', 'prep', 'code-review']
 ---
+
+- [개발 관련](./#-개발관련)
+- [코드스타일 관련](./#-코드스타일-관련)
+- [자바스크립트 문법 관련](./#-자바스크립트-문법-관련)
+
+
 
 ## 🔧 개발관련
 
@@ -26,6 +32,7 @@ tags: ['javascript', 'prep', 'code-review', 'code-styling']
 소스를 배포나 공유시에 이 `package-lock.json`이 없다면, 내가 다운받고 개발한 환경과 다르게 `package.json`을 통해 명확하지 않은 모듈들을 받을 수 있으므로 제대로 작동하지 않을 확률이 높다.
 
 따라서 **`package-lock.json`은 소스 코드를 배포 혹은 공유시에 함게 공유**되어야 한다.
+
 <br>
 <br>
 
@@ -34,10 +41,11 @@ tags: ['javascript', 'prep', 'code-review', 'code-styling']
 package-lock.json이 있다면, npm 패키지 매니저를 이용해 모듈 인스톨이 구성된 상태일 것이다.
 
 하지만 모르고 yarn을 이용해 다시 yarn add를 통해서 구현을 했는데, 이렇게 하면 위와 같이 package-lock.json을 참조하지않아 제대로 된 버전의 모듈들이 설치되지 않는다. 즉, 이전에 개발된 환경과 다른 개발환경이 조성되어 문제가 생길 확률이 높다. 따라서 npm 패키지 매니저를 쓴 프로젝트라면 계속해서 npm 패키지 매니저를 써야 한다.
+
 <br>
 <br>
 
-### ● 변수에 leteral로 할당하는 것 보다 상수로 관리할 수 있다면 관리하자.
+### ● 변수에 문자열이나 숫자값을 literal로 할당하는 것 보다 상수로 관리할 수 있다면 관리하자.
 
 ```js
 const startButtonElement = document.querySelector('.start-btn')
@@ -62,12 +70,14 @@ const timeLimit = TIME_LIMIT
 ```
 
 와 같이 상수를 이용하게끔 하면 재사용에 대해 대비할 수 있고 훨씬 완성도 있어 보인다.
+
 <br>
 <br>
 
 ### ● 디버깅을 위한 console.log는 PR(Pull Request) 혹은 MR(Merge Request)전에 항상 제거하자
 
 완성 후 제출을 하는 PR이나 MR에서 디버깅을 위한 console.log가 찍혀있다면 코드 완성도의 느낌이 떨어질 수 있고, master에 Merge시킬 때 관리자가 일일이 다 제거해야되는 번거로움이 생긴다.
+
 <br>
 <br>
 
@@ -230,7 +240,116 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/overflow
 <br>
 <br>
 
+### ● map과같은 반복되는 로직을 가지고있는 함수에서 체킹하는 작업은 따로 빼자
+
+```js
+_.invoke = function (collection, functionOrKey) {
+    return _.map(collection, function (element) {
+      func = typeof functionOrKey === "function"
+          ? functionOrKey
+          : element[functionOrKey];
+      return func.call(element);
+    });
+```
+
+다음과 같이 map는 인자로 넘기는 함수가 반복되는 로직이므로 안의 체크작업같은건 밖으로 빼내는 것이 좋다.
+
+```js
+_.invoke = function(collection, functionOrKey) {
+  if (typeof functionOrKey === 'function') {
+    return _.map(collection, element => functionOrKey.call(element))
+  }
+
+  if (typeof functionOrKey === 'string') {
+    return _.map(collection, element => element[functionOrKey].call(element))
+  }
+}
+```
+
+<br><br>
+
+### ● 개발시에 항상 메모리 관리가 잘 되고있는지 생각하자
+
+내가 개발시에 어떤 Component의 render함수에 다음과 같이 1초마다 다시 render되도록 로직을 짠 적이 있었다.
+
+```js
+setInterval(() => {
+  clockComponent.time = getTimeStamp()
+  clockComponent.render()
+}, 1000)
+```
+
+문제는, 이 render함수에 addEventListener가 있었다는것. (아래는 정확한 소스가 아닌 예시)
+
+```js
+Component.prototype.render = function() {
+  const node = createNode()
+
+  if (!this.$el) {
+    this.$el = node
+    this.$parent.appendChild(this.$el)
+  } else {
+    // 이미 Component가 생성되어 html에 있으면 innerHTML만 바꾼다.
+    this.$el.innerHTML = node.innerHTML
+  }
+
+  for (const eventTarget in events) {
+    // events (eventTaget/eventHandler)로 받았던 것들을 등록한다.
+    const $eventTarget = this.$el.querySelector(eventTarget)
+    $eventTarget.addEventListener('click', events[eventTarget])
+  }
+}
+```
+
+이벤트는 딱 한번만 설정되면 되는 것인데, 반복적으로 render가 되면서 이 addEventListener또한 지속적으로 일어나는 것이 문제였다.
+
+그래서 render함수의 node 생성부분에 딱 한번만 addEventListener 되도록 바꿨다. (부모 노드에 addEventListener)
+
+```js
+Component.prototype.render = function() {
+  const node = createNode()
+
+  if (!this.$el) {
+    this.$el = node
+    this.$parent.appendChild(this.$el)
+    this.$el.addEventListener('click', e => {
+      for (let eventTarget in events) {
+        const $eventTarget = this.$el.querySelector(eventTarget)
+
+        if (e.target === $eventTarget) {
+          events[eventTarget]()
+        }
+      }
+    })
+  } else {
+    // 이미 Component가 생성되어 html에 있으면 innerHTML만 바꾼다.
+    this.$el.innerHTML = node.innerHTML
+  }
+}
+```
+
+이와같이 개발시에 **항상 로직이 메모리 관리가 잘 되고있는지 생각**하면서 개발을 해야 한다.
+
+참고자료
+[how javascript works memory management how to handle 4 common memory leak](how-javascript-works-memory-management-how-to-handle-4-common-memory-leaks-3f28b94cfbec)
+
+[Common_causes_of_memory_leaks_in_extensions](https://developer.mozilla.org/en-US/docs/Extensions/Common_causes_of_memory_leaks_in_extensions)
+
+<br><br>
+
+### ● 항상 개발시에 validation, error check 하는 코드를 삽입하자
+
+이 부분은 정확한 예는 들 수 없지만, 함수를 만들때, 이 함수에 대해 애러 발생이 짐작되는 부분이 있다면 해당 부분에 대해서 validation 하는 처리를 넣거나 error check해서 별도의 처리를 해주는 습관을 기르자.
+
+훨씬 안전한 코드를 만들 수 있고 이런 validation 처리나 error check처리는 early return으로 fail fest하게 처리하면 더 좋다.
+
 ## 🎭 코드스타일 관련
+
+코드 스타일은 코드를 어떠한 흐름으로 작성해야 가독성이 좋을지를 항상 고민해야되는건 Base이고 일반적인 컨벤션을 따라가고 일관성있게 코드를 작성해야 한다.
+
+일반적인 Javascript Naming Convention은 여기를 참고하고, 아래 나와있는건 리뷰로 받은 것들이다.
+
+[javascript Naming Convention](https://www.robinwieruch.de/javascript-naming-conventions)
 
 ### ● 줄임말 보다는 길더라도 명확하게 Naming하자
 
@@ -278,12 +397,30 @@ img tag에서
 
 ### ● Header의 h1은 반드시 1개로 하고 순서를 반드시 지키도록 하자
 
+반드시 페이지 하나 당 `<h1>` 태그는 1개만 있어야 한다. 둘 이상을 사용하면 오류는 발생하지 않지만, 2개이상 사용하면 논리적으로 오류가 있는것과 같다. `<h1>` 태그는 논리적으로 가장 중요한 제목이며 전체 페이지의 목적이 무엇인지 알려주는 것과 같은데, 이 `<h1>` 태그가 둘 이상이라는 것은 영화나 책에 제목이 두 개 이상이라는 것과 같은 것.
+
+또한, h1이 하나만 있는 것이 사용자와 SEO상으로도 좋다.
+
+참고
+
+https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements
+
+또한 header는 적히는 순서를 순차적으로 해야 한다.
+
+```html
+<h1>Heading level 1</h1>
+<h3>Heading level 3</h3>
+<h4>Heading level 4</h4>
+```
+
+위와 같이 h1 -> h3로 껑충 뛰는 것도 오류는 발생하지 않지만 논리적으로 오류가 있는 것.
+
 [해당 문서 참고](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements#Accessibility_concerns)
 
 <br>
 <br>
 
-### 정보성 값들은 css에 있으면 안되고 반드시 html에 있어야 한다
+### ● 정보성 값들은 css에 있으면 안되고 반드시 html에 있어야 한다
 
 내가 개발시
 
@@ -390,15 +527,32 @@ function allQuizCount() {
 
 와 같이 표현하는게 훨씬 좋다.
 
+참고
+[좋은 변수, 함수 이름 만들기](https://m.blog.naver.com/PostView.nhn?blogId=vicfaith&logNo=221166340935&proxyReferer=https:%2F%2Fwww.google.com%2F)
+
+<br>
+
 <br>
 <br>
 
-#### 함수 Naming에서는 동사가 앞에 와야 한다.
+### ● 함수 Naming에서는 동사가 앞에 오는것이 일반적.
+
+함수 이름은 동사로 시작하는 것이 일반적.
+
+```js
+function getProperty() {}
+function setProperty() {}
+function changeTime() {}
+```
+
+국내에만 국한된 것이 아니라 세계적으로 쓰는 컨벤션.
+
+영어로 이해할 수 있게 잘 네이밍 하는 것이 상당히 중요하다.
 
 <br>
 <br>
 
-#### arrow function에는 세미콜론(;)을 붙여야 한다.
+### ● Arrow function에는 세미콜론(;)을 붙여야 한다.
 
 함수 표현식과 arrow function은 세미콜론을 붙여야 한다.
 
@@ -495,22 +649,186 @@ git을 이용할때에는 항상 파일의 끝에 `new line`이 추가되어야 
 const camelCase = 'thisIsCamelCase'
 ```
 
+이러한 camelCase를 썼다면 다른 변수에도 쓰도록하여 코드 일관성을 지킬 수 있게 하자.
+
 <br>
 <br>
 
 ### ● Naming할 때 단수, 복수 표현을 명확히 하자.
-
-```js
-
-```
 
 <br>
 <br>
 
 ### ● DOM 요소 Naming
 
+```js
+// 뒤에 Element 붙이기
+const someButtonElement = document.querySelector('.myClassName')
+
+// 앞에 $ 붙이기
+const $someButton = document.querySelector('.myClassName')
+```
+
+DOM 변수를 명확하게 알아볼 수 있게 해야된다.
+
 <br>
 <br>
+
+### ● 삼항연산자는 간단할때만 쓰고 중첩해서 쓰지 말자 (중첩해서 쓰더라도 인덴팅을 꼭 지키자)
+
+되도록 삼항연산자는 간단하게 한눈에 들어올 것 같을 때에만 쓰고 그 외의 상황에서는 모두 if else문을 쓰는 것이 가독성 측면에서 훨씬 좋다.
+
+삼항연산자를 써도 되긴 하는데 중첩해서 쓸 경우에는 꼭 인덴팅을 지켜주자.
+
+```js
+return n === undefined ? 'foo' : n > 1 ? 'bar' : 'foobar'
+```
+
+사실, 쓰고 안쓰고의 정답은 없으므로 **본인이 봤을 때 가독성이 괜찮은지 떨어지는지 판단할 것**
+
+<br>
+<br>
+
+### ● 매개변수 재할당은 하지말자
+
+함수 사용에 있어서 매개변수를 재할당 해서 사용하는일은 없어야 한다.
+
+```js
+function func(arg1, arg2) {
+  arg1 = 10 // X
+  for (arg2 of arr) {
+  } // X
+}
+```
+
+위와 같이 매개변수를 수정 또는 재할당 할 경우, 의도치않은 동작이 일어날 수 있다.
+
+참고
+
+[ESLint-no-param-reassign](https://eslint.org/docs/rules/no-param-reassign)
+
+<br>
+<br>
+
+### ● rest 파라미터로 가져오는 argument에 대한 Naming
+
+```js
+_.extend = function(obj, ...others) {
+  // ToDo...
+}
+```
+
+다음과 같이 rest 파라미터에 대한 네이밍은 others 대신
+`args` 혹은 `sources`와 같은 네이밍이 더 좋을 것 같다.
+
+<br>
+<br>
+
+### ● Naming에 Obj, Arr와 같이 타입을 나타내는 suffix는 지양
+
+```js
+const memoObj = {}
+const memoInstance = {}
+const bookArr = []
+```
+
+다음과 같은 네이밍은 **지양**해야 한다. (사용하지 말라는건 아님.)
+
+```js
+const memo = {}
+const animals = {}
+
+const bookList = []
+const books = []
+```
+
+일반적으로 다음과 같이 배열은 복수형(s) 혹은 뒤에 List를 붙이고, 객체는 Obj와 같은 suffix 없이 그냥 쓰는편 (복수형도 가능)
+
+알고리즘 문제 같은걸 풀 때 Arr이나 Obj를 붙이기도 하는데, 이 처럼 특별한 경우가 아니면 잘 쓰이지 않음.
+
+<br><br>
+
+### ● const로 객체, 배열 선언
+
+`const`와 `let`의 차이는 재할당 가능여부.
+
+객체와 배열도 재할당을 하지 않으면 **`const`로 변수선언을 해야된다.**
+
+객체와 배열은 해당 변수에 재선언을 하지 않고내부 Property추가 삭제와 Propery값을 변경하는 등의 작업을 할경우에는 변수에 대한 재선언이 아니므로 `let`으로 선언하면 안된다.
+
+```js
+const arr = []
+arr.push(1) // 가능
+
+arr = 'something' // 다음과 같이 재선언을 할경우가 있다면 let으로 선언
+```
+
+또, `for in` 혹은 `for of`를 쓸 때 value값에 대해서도 `const`로 선언해두면 좋다.
+
+```js
+const arr = [1, 2, 3, 4]
+
+for (const value of arr) {
+  // ...
+}
+```
+
+<br><br>
+
+### ● 할당할 때 줄바꿈은 하지 말자
+
+```js
+  _.invoke = function (collection, functionOrKey) {
+    return _.map(collection, function (element) {
+      func =
+        typeof functionOrKey === "function"
+          ? functionOrKey
+          : element[functionOrKey];
+      return func.call(element);
+    });
+```
+
+간혹 prettier와 같은 code formater를 사용하면 이와같이 변수할당에 있어서 줄넘김이 발생할 수도 있는데, 왠만하면 변수 할당에 있어서 줄넘김은 하지 말자. prettier에서 이러한 줄넘김 옵션을 제거하도록 하자.
+
+<br><br>
+
+### ● 화살표 함수를 썼을때 더 깔끔해진다면 화살표 함수를 사용하자
+
+```js
+_.sortBy = function (collection, iterator) {
+    if (iterator) {
+      var sortFunc =
+        typeof iterator === "string"
+          ? function (a, b) {
+              return a[iterator] - b[iterator];
+            }
+          : function (a, b) {
+              return iterator(a) - iterator(b);
+            };
+    }
+
+    return collection.sort(sortFunc);
+```
+
+다음과 같이 함수 선언문을 이용해서 가독성이 좋지 못한반면에,
+
+```js
+_.sortBy = function (collection, iterator) {
+    if (iterator) {
+      var sortFunc = typeof iterator === "string"
+        ? (a, b) => a[iterator] - b[iterator]
+        : (a, b) => iterator(a) - iterator(b);
+    }
+
+    return collection.sort(sortFunc);
+
+```
+
+화살표 함수를 쓰면 가독성이 더 좋아진다. (함수 선언문에 집착 X)
+
+화살표함수의 특성과 사용법을 잘유의해서 사용만한다면 훨씬 가독성이 좋은 코드를 만들 수 있다.
+
+<br><br>
 
 ## 📕 자바스크립트 문법 관련
 
@@ -573,27 +891,23 @@ arguments 키워드는 함수 내부에 전달된 인자값 (argument)들을 가
 
 ```js
 function checkArguments() {
-    console.log(arguments);
+  console.log(arguments)
 }
 
-checkArguments(1, "5", 23, "555"); // Arguments(4) [1, "5", 23, "555"]
+checkArguments(1, '5', 23, '555') // Arguments(4) [1, "5", 23, "555"]
 ```
-
-
 
 ES2015로 들어오면서부터 rest연산자로 이를 대체 할 수도 있다.
 
 ```js
 function checkArguments(...args) {
-    console.log(args);
+  console.log(args)
 }
 
-checkArguments(1, "5", 23, "555"); // (4) [1, "5", 23, "555"]
+checkArguments(1, '5', 23, '555') // (4) [1, "5", 23, "555"]
 ```
 
 **위 arguments 키워드는 Array Like, 유사배열이지만 아래 rest 연산자를통해 받은 args는 Array이다.**
-
-
 
 아래 참조
 
@@ -602,12 +916,10 @@ checkArguments(1, "5", 23, "555"); // (4) [1, "5", 23, "555"]
 <br>
 <br>
 
-### 자바스크립트 Array Like
+### ● 자바스크립트 Array Like
 
 Array처럼 보이지만 실제로는 Object이고 배열과 같이 index 엑세스, length 속성이 있다.
 Array가 아니기 때문에 Array와 Array.prototype의 length를 제외한 속성과 메서드들은 사용할 수 없다.
-
-
 
 대표적인 Array Like가 위의 arguments.
 
@@ -615,13 +927,13 @@ Array Like를 일반 배열로 변환해서 사용하면 편한데,
 방법은 다음과 같다.
 
 ```js
-(function () {
-	const arrLike = arguments;
+;(function() {
+  const arrLike = arguments
 
-	const arr1 = Array.prototype.slice.call(arrLike);
-    const arr2 = Array.from(arrLike);
-    const arr3 = [...arrLike];
-})();
+  const arr1 = Array.prototype.slice.call(arrLike)
+  const arr2 = Array.from(arrLike)
+  const arr3 = [...arrLike]
+})()
 ```
 
 셋 중 가장 많이 사용되는 방법은 Array.from인 것 같다.
@@ -629,8 +941,6 @@ Array Like를 일반 배열로 변환해서 사용하면 편한데,
 하지만 속도는 가장 고전적 방법인 Array.prototype.slice.call이 가장 빠르다.
 
 ![img](.\하옹의-바닐라코딩-Prep-코드리뷰-식사_array_like_test.jpg)
-
-
 
 참조
 
@@ -933,3 +1243,150 @@ CommonJS 관련 문서는 아래를 참조하자.
 
 <br>
 <br>
+
+### ● Array.prototype.slice()의 음수 인덱스
+
+배열의 뒤쪽에서부터의 처리를 하고 싶다면 Array.prototype.slice()의 음수 인덱스를 활용하면 좋다.
+
+```js
+const arr = [1, 2, 3, 4]
+console.log(arr.slice(-2)) // (2) [3, 4]
+```
+
+<br>
+<br>
+
+### ● 초기화된 배열을 만들때에는 new Array보단 Array.from 혹은 리터럴로 선언하자
+
+`new Array(len)`을 통해 초기화된 배열을 선언하면 단순히 length Property만 설정이되고 실제 real element는 아예 없는 상태 즉, 각 index property도 없고 `undefined`로도 할당되지 않는다.
+
+```js
+;[undefined, undefined].map(e => 1) // [1, 1]
+new Array(2).map(e => 1) // "(2) [undefined × 2]" in Chrome
+```
+
+위와 같이 아예 `undefined`도 없는 real element가 없는 상태이기 때문에 map 함수도 제대로 작동하지 않는다.
+
+따라서 초기화된 배열을 만들떄에는 `Array.from({length: lengthj})`로 선언을 하거나 그냥 배열 리터럴`[]`로 생성하는 것이 좋다. 이 둘 방법은 `new Array(length)`와 같은 문제를 야기시키지 않는다.
+
+참고
+
+[difference between 'Array()' and '[]'](https://stackoverflow.com/questions/931872/what-s-the-difference-between-array-and-while-declaring-a-javascript-ar/44471705#44471705)
+
+<br>
+<br>
+
+### ● Object.hasOwnProperty()
+
+객체들을 순회할 때 `for in` 문을 사용 할 때, 꼭 써야되는 메서드가 있는데,
+바로 `Object.hasOwnProperty()` 함수.
+
+```js
+const person = {
+  key: 172,
+  age: 37,
+}
+
+Object.prototype.pigeon = 9999999
+
+// 객체에는 순서가 없기 때문에 for in문 써도 된다. (순서가 보장되야되면 for in 문쓰면 안됨)
+for (const prop in person) {
+  // prop는 문자열!
+  console.log(prop) // 위의 prototype 까지 출력된다.
+}
+```
+
+위와 같이 쓸 경우에 Object.prototype 까지 값을 가져와버리므로 저렇게 쓰면 안된다.
+
+```js
+for (const prop in person) {
+  if (person.hasOwnProperty(prop)) {
+    console.log(prop)
+  }
+}
+```
+
+다음과 같이 hasOwnProperty()를 통해 체크할 수 있다.
+
+<br><br>
+
+### ● JSON.stringfy()
+
+lodash의 memoize() 함수를 직접 구현할 때 인자값에 대한 해쉬키를 만드는 함수를 직접 구현했지만,
+JSON.stringfy()를 사용하면 훨씬 간단하다.
+
+```js
+_.memoize = function(func) {
+  const cache = {}
+  function makeKeyHash(args) {
+    return _.reduce(
+      argArr,
+      function(keyHash, argument, index) {
+        return keyHash + index + argument.toString()
+      },
+      ''
+    )
+  }
+
+  return function(...args) {
+    const key = makeKeyHash(args)
+    if (!cache.hasOwnProperty(key)) {
+      cache[key] = func.apply(this, args)
+    }
+
+    return cache[key]
+  }
+}
+```
+
+이렇게 직접 해쉬키를 만드는 함수를 구현하는 것 대신
+
+```js
+_.memoize = function(func) {
+  const cache = {}
+
+  return function(...args) {
+    const key = JSON.stringify(args)
+    if (!cache.hasOwnProperty(key)) {
+      cache[key] = func.apply(this, args)
+    }
+
+    return cache[key]
+  }
+}
+```
+
+JSON.stringfy를 사용하면 훨씬 간단해진다.
+
+<br><br>
+
+### ● setTimeout 3번째 부터 매개변수는 setTimeout 내부 함수의 매개변수
+
+```js
+_.delay = function (func, wait, ...args) {
+    setTimeout(function () {
+        func(...args);
+    }, wait);
+```
+
+다음과 같이 setTimeout을 사용해도 되지만, setTimeout의 세번째 부터의 매개변수가 setTimeout 내부함수의 매개변수가 되기 때문에 아래와같이 확 줄여서 표현가능해진다.
+
+```js
+_.delay = function(func, wait, ...args) {
+  setTimeout(...arguments)
+}
+```
+
+이와 같이 스펙을 잘 참조하고 또 이용하면 훨씬 간결한코드를 만들 수 있으니 setTimeout뿐만이 아니라도 다른 함수들의 스펙을 잘 참조해보고 이용하자.
+
+<br><br>
+
+### ● 효율적인 DOM 조작 방법
+
+https://dev.to/grandemayta/javascript-dom-manipulation-to-improve-performance-459a
+
+<br><br>
+
+### ● Event Bubbling, Capturing
+
+[bubbling-and-capturing](https://javascript.info/bubbling-and-capturing)
