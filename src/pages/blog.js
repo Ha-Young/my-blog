@@ -96,6 +96,7 @@ export const pageQuery = graphql`
             title
             category
             draft
+            tags
           }
         }
       }
