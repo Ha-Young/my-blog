@@ -15,6 +15,17 @@ export const Contents = ({ posts, countOfInitialPost, count, category }) => {
       .slice(0, count * countOfInitialPost)
   )
 
+  const tags = useMemo(() => {
+    var result = []
+    posts.map(({ node }) => (result = [...result, ...node.frontmatter.tags]))
+    for (let i = 0; i < result.length; i++) {
+      for (let j = i + 1; j < result.length; j++) {
+        if (result[i] === result[j]) result.splice(j--, 1)
+      }
+    }
+    return result
+  }, [posts])
+
   return (
     <ThumbnailContainer>
       {refinedPosts.map(({ node }, index) => (
