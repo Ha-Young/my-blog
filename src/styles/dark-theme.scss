@@ -82,4 +82,31 @@ body.dark {
   td {
     border-bottom: 1px solid #eee;
   }
+
+  // tags
+  .tags {
+    .tag {
+      background: $dark-tag-color;
+      color: $dark-lightest-font-color;
+
+      &::before {
+        background: $dark-lightest-font-color;
+        box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
+      }
+
+      &::after {
+        background: $dark-background-color;
+        border-left: 10px solid $dark-tag-color;
+      }
+
+      &:hover {
+        background-color: $dark-tag-complementary;
+        color: white;
+      }
+
+      &:hover::after {
+        border-left-color: $dark-tag-complementary;
+      }
+    }
+  }
 }

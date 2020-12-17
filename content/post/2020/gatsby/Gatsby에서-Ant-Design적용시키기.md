@@ -1,10 +1,9 @@
 ---
-title: "Gatsby에서 Ant Design적용시키기"
-date: "2020-08-17 22:10:13"
+title: 'Gatsby에서 Ant Design적용시키기'
+date: 2020-08-17 22:10:13
 draft: false
-path: "/gatsby/antd"
 category: 'gatsby'
-
+tags: ['gatsby']
 ---
 
 ### Gatsby에서 Ant Design 적용시키기
@@ -81,7 +80,7 @@ yarn add antd gatsby-antd-plugin
 ```javascript
 plugins: [
   {
-    resolve: "gatsby-plugin-antd",
+    resolve: 'gatsby-plugin-antd',
     options: {
       style: true,
     },
@@ -127,7 +126,7 @@ showModal 함수는
 ```javascript
 const showModal = () => {
   Modal.info({
-    title: "Skill Info",
+    title: 'Skill Info',
     content: (
       <div>
         <div>
@@ -179,13 +178,13 @@ less-to-json은 사용에 다른 문제가 있어서 로컬파일에서 less를 
 ```javascript
 plugins: [
   {
-    resolve: "gatsby-plugin-antd",
+    resolve: 'gatsby-plugin-antd',
     options: {
       style: true,
     },
   },
   {
-    resolve: "gatsby-plugin-less",
+    resolve: 'gatsby-plugin-less',
     options: {
       lessOptions: {
         javascriptEnabled: true,
@@ -230,7 +229,7 @@ npm install less-to-json
 우선, 맨 위에 less-to-json을 require해야된다. 사용해야되서...
 
 ```javascript
-const lessToJson = require("less-to-json")
+const lessToJson = require('less-to-json')
 ```
 
 그러고 다시 앞에서 plugins에 추가시켰던 less부분에 사용해야 된다.
@@ -238,17 +237,17 @@ const lessToJson = require("less-to-json")
 ```javascript
 plugins: [
   {
-    resolve: "gatsby-plugin-antd",
+    resolve: 'gatsby-plugin-antd',
     options: {
       style: true,
     },
   },
   {
-    resolve: "gatsby-plugin-less",
+    resolve: 'gatsby-plugin-less',
     options: {
       lessOptions: {
         javascriptEnabled: true,
-        modifyVars: lessToJson("src/theme/vars.less"),
+        modifyVars: lessToJson('src/theme/vars.less'),
       },
     },
   },

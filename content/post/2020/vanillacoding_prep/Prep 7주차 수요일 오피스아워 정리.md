@@ -1,4 +1,9 @@
-# Prep 7주차 수요일 오피스아워 정리
+---
+title: "바닐라코딩 Prep 7주차 수요일 오피스아워 정리"
+draft: false
+date: "2020-11-18 21:20"
+category: "vanilla coding"
+---
 
 ## 클로저
 

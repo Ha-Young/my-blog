@@ -1,10 +1,9 @@
 ---
-title: "C++ Reference (참조)"
-date: "2020-08-05 21:27:00"
+title: 'C++ Reference (참조)'
+date: 2020-08-05 21:27:00
 draft: false
-path: "/cpp/Ref05"
-category: 'cpp'
-
+category: 'c++'
+tags: ['c++']
 ---
 
 ### C++ Reference (참조)
@@ -19,15 +18,13 @@ category: 'cpp'
 
 - 똑같이 C++에서 안정성을 보장해야 될 때 Reference를 쓰면 된다.
 
->  **하지만, 주소연산(포인터연산)이나 주소값 변경 등을 할 때에는 꼭 포인터를 써야 된다.**
+> **하지만, 주소연산(포인터연산)이나 주소값 변경 등을 할 때에는 꼭 포인터를 써야 된다.**
 >
-> Call by Reference  < - > Call by Value
+> Call by Reference < - > Call by Value
 
 - Java에서는 원시타입을 제외한 타입 (Object)은 모두 Reference.
 - C, C++은 모든 타입에 똑같이 동작한다.
   object도 참조에 의한 연산을 하려면 포인터로 받아야 한다.
-
-
 
 ### C++에서 사용
 
@@ -42,7 +39,7 @@ int& reference = number;
 
 다음과 같이 number를 참조로 reference변수명을 통해 접근가능하다.
 
--  NULL이 될 수 없다
+- NULL이 될 수 없다
 
 ```C++
 int& reference = NULL; // ERROR
@@ -67,8 +64,6 @@ reference = number2;
 
 그래서 number1, number2 모두 200의 값이 된다.
 
-
-
 ### Swap 함수를 통한 포인터과 Refence비교
 
 - Pointer
@@ -82,7 +77,7 @@ void swap(int *number1, int *number2)
 }
 ```
 
-* Reference
+- Reference
 
 ```C++
 void swap(int& number1, int& number2)
@@ -93,14 +88,10 @@ void swap(int& number1, int& number2)
 }
 ```
 
-
-
 ### 참조의 장점
 
 - null 값이 들어갈 수 없어서 안전하다.
 - 우리가 소유하지 않은 메모리에 접근 할 수 없어 안전.
-
-
 
 ### 컴퓨터는 참조가 뭔지 알까?
 
@@ -112,8 +103,6 @@ void swap(int& number1, int& number2)
 (실수도 막아준다)
 
 컴파일러가 참조를 포인터로 바꿔주는 것.(기계가 이해 할 수 있도록)
-
-
 
 ### 추천하는 코딩표준
 
@@ -132,8 +121,6 @@ int* result
 어쨋든, 둘 다 함수내에서 assert 함수를 통해 null 체크를 해야한다.
 
 C#에서는 out키워드를 이용하면된다.
-
-
 
 ### 정리
 
