@@ -4,7 +4,6 @@ import { Item } from './item'
 import './index.scss'
 
 export const Tags = ({ tags }) => {
-  console.log(tags)
   return (
     <ul className="tags">
       {tags.map((tag, idx) => (
