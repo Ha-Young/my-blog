@@ -14,6 +14,7 @@ import { PostNavigator } from '../components/post-navigator'
 import { Disqus } from '../components/disqus'
 import { Utterances } from '../components/utterances'
 import * as ScrollManager from '../utils/scroll'
+import { rhythm } from '../utils/typography'
 
 import '../styles/code.scss'
 import 'katex/dist/katex.min.css'
@@ -32,26 +33,37 @@ export default ({ data, pageContext, location }) => {
 
   return (
     <Layout location={location} title={title}>
-      <SEO title={postTitle} description={post.excerpt} />
-      <PostTitle title={postTitle} />
-      <PostDate date={date} />
-      <PostContainer html={post.html} />
-      <SocialShare title={postTitle} author={author} />
-      {!!sponsor.buyMeACoffeeId && (
-        <SponsorButton sponsorId={sponsor.buyMeACoffeeId} />
-      )}
-      <Elements.Hr />
-      <Bio />
-      <PostNavigator pageContext={pageContext} />
-      {!!disqusShortName && (
-        <Disqus
-          post={post}
-          shortName={disqusShortName}
-          siteUrl={siteUrl}
-          slug={pageContext.slug}
-        />
-      )}
-      {!!utterances && <Utterances repo={utterances} />}
+      <div
+        style={{
+          marginLeft: `auto`,
+          marginRight: `auto`,
+          maxWidth: rhythm(28),
+          padding: `${rhythm(1.5)} ${rhythm(3 / 4)} ${rhythm(1)} ${rhythm(
+            3 / 4
+          )}`,
+        }}
+      >
+        <SEO title={postTitle} description={post.excerpt} />
+        <PostTitle title={postTitle} />
+        <PostDate date={date} />
+        <PostContainer html={post.html} />
+        <SocialShare title={postTitle} author={author} />
+        {!!sponsor.buyMeACoffeeId && (
+          <SponsorButton sponsorId={sponsor.buyMeACoffeeId} />
+        )}
+        <Elements.Hr />
+        <Bio />
+        <PostNavigator pageContext={pageContext} />
+        {!!disqusShortName && (
+          <Disqus
+            post={post}
+            shortName={disqusShortName}
+            siteUrl={siteUrl}
+            slug={pageContext.slug}
+          />
+        )}
+        {!!utterances && <Utterances repo={utterances} />}
+      </div>
     </Layout>
   )
 }
