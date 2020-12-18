@@ -2,7 +2,7 @@
 
 .category-side-wrapper {
   position: fixed;
-  top: 186px;
+  top: 250px;
   left: 0;
   display: flex;
   justify-content: center;
@@ -11,7 +11,7 @@
   .category-side-container {
     margin: 0 64px;
     width: 100%;
-    max-width: 1342px;
+    max-width: 1442px;
 
     .category-side {
       width: 250px;
@@ -19,13 +19,18 @@
       h3 {
         font-size: 120%;
       }
-  
+
       .category-side-list {
         list-style-type: none;
         .item-side {
           font-size: 95%;
           font-weight: 600;
-          background: linear-gradient(to right, #806854, #806854 50%, #dbcdad 50%);
+          background: linear-gradient(
+            to right,
+            #806854,
+            #806854 50%,
+            #dbcdad 50%
+          );
           background-clip: text;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
@@ -34,17 +39,17 @@
           transition: background-position 0.5s ease;
           cursor: pointer;
           overflow: hidden;
-        
+
           &:hover {
             background-position: 0 100%;
           }
-        
+
           &[aria-selected='true'] {
             background: #806844;
             background-clip: text;
           }
         }
-      }    
+      }
     }
   }
 }
