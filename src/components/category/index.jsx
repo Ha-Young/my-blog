@@ -1,7 +1,9 @@
-import React, { useCallback, useRef } from 'react'
+import React, { useCallback, useRef, useEffect } from 'react'
 import { rhythm } from '../../utils/typography'
 import './index.scss'
 import { Item } from './item'
+
+const CATEGORY_CONTAINER_CLASSNAME = "category-container"
 
 export const Category = ({ categories, category, selectCategory }) => {
   const containerRef = useRef(null)
@@ -17,10 +19,26 @@ export const Category = ({ categories, category, selectCategory }) => {
     containerRef.current.scroll({ left: targetScollX, top: 0, behavior: 'smooth' })
   }, [containerRef])
 
+  const observer = new IntersectionObserver(
+    ([e]) => {
+      return e.target.classList.toggle('isTop', e.intersectionRatio < 1)
+    },
+    { threshold: [1] }
+  );
+
+  useEffect(() => {
+    observer.observe(containerRef.current)
+
+    return function () {
+      observer.unobserve(containerRef.current)
+    };
+  }, []);
+
+
   return (
     <ul
       ref={containerRef}
-      className="category-container"
+      className={CATEGORY_CONTAINER_CLASSNAME}
       role="tablist"
       id="category"
       style={{

@@ -3,7 +3,7 @@
 .category-container {
   position: sticky;
   position: -webkit-sticky;
-  top: 0;
+  top: -1px;
   line-height: 0;
   white-space: nowrap;
   overflow-x: scroll;
@@ -11,6 +11,7 @@
   overflow: -moz-scrollbars-none; // Firefox
   z-index: 1;
   padding: 6px 20px;
+  transition: 0.5s ease-in-out;
 
   .item {
     display: inline-block;
@@ -40,6 +41,12 @@
 .category-container {
   scroll-behavior: smooth;
 }
+
+.isTop {
+  color: red;
+  padding: 20px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .my-smooth-container {
     scroll-behavior: auto;
