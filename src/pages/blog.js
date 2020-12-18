@@ -14,6 +14,7 @@ import { useScrollEvent } from '../hooks/useScrollEvent'
 import { Layout } from '../layout'
 import * as Dom from '../utils/dom'
 import * as EventManager from '../utils/event-manager'
+import { rhythm } from '../utils/typography'
 
 const BASE_LINE = 80
 
@@ -50,23 +51,34 @@ export default ({ data, location }) => {
   return (
     <Layout location={location} title={siteMetadata.title}>
       <SEO title={HOME_TITLE} keywords={siteMetadata.keywords} />
-      <Bio />
-      <CategorySide
-        categories={categories}
-        category={category}
-        selectCategory={selectCategory}
-      />
-      <Category
-        categories={categories}
-        category={category}
-        selectCategory={selectCategory}
-      />
-      <Contents
-        posts={posts}
-        countOfInitialPost={countOfInitialPost}
-        count={count}
-        category={category}
-      />
+      <div
+        style={{
+          marginLeft: `auto`,
+          marginRight: `auto`,
+          maxWidth: rhythm(24),
+          padding: `${rhythm(1.5)} ${rhythm(3 / 4)} ${rhythm(1)} ${rhythm(
+            3 / 4
+          )}`,
+        }}
+      >
+        <Bio />
+        <CategorySide
+          categories={categories}
+          category={category}
+          selectCategory={selectCategory}
+        />
+        <Category
+          categories={categories}
+          category={category}
+          selectCategory={selectCategory}
+        />
+        <Contents
+          posts={posts}
+          countOfInitialPost={countOfInitialPost}
+          count={count}
+          category={category}
+        />
+      </div>
     </Layout>
   )
 }
