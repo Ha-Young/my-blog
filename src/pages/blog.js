@@ -56,22 +56,30 @@ export default ({ data, location }) => {
           marginLeft: `auto`,
           marginRight: `auto`,
           maxWidth: rhythm(24),
+        }}
+      >
+        <Bio />
+      </div>
+      <CategorySide
+        categories={categories}
+        category={category}
+        selectCategory={selectCategory}
+      />
+      <Category
+        categories={categories}
+        category={category}
+        selectCategory={selectCategory}
+      />
+      <div
+        style={{
+          marginLeft: `auto`,
+          marginRight: `auto`,
+          maxWidth: rhythm(24),
           padding: `${rhythm(1.5)} ${rhythm(3 / 4)} ${rhythm(1)} ${rhythm(
             3 / 4
           )}`,
         }}
       >
-        <Bio />
-        <CategorySide
-          categories={categories}
-          category={category}
-          selectCategory={selectCategory}
-        />
-        <Category
-          categories={categories}
-          category={category}
-          selectCategory={selectCategory}
-        />
         <Contents
           posts={posts}
           countOfInitialPost={countOfInitialPost}

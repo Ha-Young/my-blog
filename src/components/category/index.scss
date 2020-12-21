@@ -1,16 +1,22 @@
 @import '../../styles/variables.scss';
 
-.category-container {
+.category-wrapper {
   position: sticky;
   position: -webkit-sticky;
-  top: 0;
+  top: -1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.category-container {
   line-height: 0;
   white-space: nowrap;
   overflow-x: scroll;
   -ms-overflow-style: none; // IE 10+
   overflow: -moz-scrollbars-none; // Firefox
-  z-index: 1;
   padding: 6px 20px;
+  transition: width 0.4s linear;
 
   .item {
     display: inline-block;
@@ -40,6 +46,19 @@
 .category-container {
   scroll-behavior: smooth;
 }
+
+.isTop {
+  z-index: 1;
+}
+
+.isTop > .category-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .my-smooth-container {
     scroll-behavior: auto;

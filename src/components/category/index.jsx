@@ -1,10 +1,15 @@
-import React, { useCallback, useRef } from 'react'
+import React, { useCallback, useRef, useEffect } from 'react'
 import { rhythm } from '../../utils/typography'
 import './index.scss'
 import { Item } from './item'
 
+const CATEGORY_CONTAINER_CLASSNAME = "category-container"
+const CATEGORY_WRAPPER = "category-wrapper"
+
 export const Category = ({ categories, category, selectCategory }) => {
   const containerRef = useRef(null)
+  const wrapperRef = useRef(null)
+  let observer = useRef(null)
 
   const scrollToCenter = useCallback(tabRef => {
     const { offsetWidth: tabWidth } = tabRef.current
@@ -17,26 +22,51 @@ export const Category = ({ categories, category, selectCategory }) => {
     containerRef.current.scroll({ left: targetScollX, top: 0, behavior: 'smooth' })
   }, [containerRef])
 
+  useEffect(() => {
+    observer = new IntersectionObserver(
+      ([e]) => {
+        e.target.classList.toggle('isTop', e.intersectionRatio < 1)
+
+        if (e.target.classList.contains('isTop')) {
+          e.target.children[0] && (e.target.children[0].style.width = null)
+        } else {
+          e.target.children[0] && (e.target.children[0].style.width = rhythm(26))
+        }
+
+      },
+      { threshold: [1] }
+    );
+
+    observer.observe(wrapperRef.current)
+
+    return function () {
+      observer.unobserve(wrapperRef.current)
+    };
+  }, []);
+
   return (
-    <ul
-      ref={containerRef}
-      className="category-container"
-      role="tablist"
-      id="category"
-      style={{
-        margin: `0 -${rhythm(3 / 4)}`,
-      }}
-    >
-      <Item title={'All'} selectedCategory={category} onClick={selectCategory} scrollToCenter={scrollToCenter} />
-      {categories.map((title, idx) => (
-        <Item
-          key={idx}
-          title={title}
-          selectedCategory={category}
-          onClick={selectCategory}
-          scrollToCenter={scrollToCenter}
-        />
-      ))}
-    </ul>
+    <div className={CATEGORY_WRAPPER} ref={wrapperRef}>
+      <ul
+        ref={containerRef}
+        className={CATEGORY_CONTAINER_CLASSNAME}
+        role="tablist"
+        id="category"
+        style={{
+          margin: `0 -${rhythm(3 / 4)}`,
+          width: rhythm(26)
+        }}
+      >
+        <Item title={'All'} selectedCategory={category} onClick={selectCategory} scrollToCenter={scrollToCenter} />
+        {categories.map((title, idx) => (
+          <Item
+            key={idx}
+            title={title}
+            selectedCategory={category}
+            onClick={selectCategory}
+            scrollToCenter={scrollToCenter}
+          />
+        ))}
+      </ul>
+    </div>
   )
 }
