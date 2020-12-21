@@ -9,6 +9,7 @@ const CATEGORY_WRAPPER = "category-wrapper"
 export const Category = ({ categories, category, selectCategory }) => {
   const containerRef = useRef(null)
   const wrapperRef = useRef(null)
+  let observer = useRef(null)
 
   const scrollToCenter = useCallback(tabRef => {
     const { offsetWidth: tabWidth } = tabRef.current
@@ -21,21 +22,21 @@ export const Category = ({ categories, category, selectCategory }) => {
     containerRef.current.scroll({ left: targetScollX, top: 0, behavior: 'smooth' })
   }, [containerRef])
 
-  const observer = new IntersectionObserver(
-    ([e]) => {
-      e.target.classList.toggle('isTop', e.intersectionRatio < 1)
-
-      if (e.target.classList.contains('isTop')) {
-        e.target.children[0] && (e.target.children[0].style.width = null)
-      } else {
-        e.target.children[0] && (e.target.children[0].style.width = rhythm(26))
-      }
-
-    },
-    { threshold: [1] }
-  );
-
   useEffect(() => {
+    observer = new IntersectionObserver(
+      ([e]) => {
+        e.target.classList.toggle('isTop', e.intersectionRatio < 1)
+
+        if (e.target.classList.contains('isTop')) {
+          e.target.children[0] && (e.target.children[0].style.width = null)
+        } else {
+          e.target.children[0] && (e.target.children[0].style.width = rhythm(26))
+        }
+
+      },
+      { threshold: [1] }
+    );
+
     observer.observe(wrapperRef.current)
 
     return function () {

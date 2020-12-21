@@ -7,7 +7,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1;
 }
 
 .category-container {
@@ -17,7 +16,7 @@
   -ms-overflow-style: none; // IE 10+
   overflow: -moz-scrollbars-none; // Firefox
   padding: 6px 20px;
-  transition: 0.4s linear;
+  transition: width 0.4s linear;
 
   .item {
     display: inline-block;
