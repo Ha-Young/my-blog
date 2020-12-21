@@ -1,5 +1,5 @@
 ---
-title: '하옹의 자바스크립트 식사 - Closure'
+title: '하옹의 자바스크립트 식사 - Closure1'
 draft: false
 date: '2020-12-16'
 category: 'javascript'
@@ -52,6 +52,26 @@ tags: ['javascript', 'closure']
 '클로저는 함수 선언시 발생하는 렉시컬 환경을 기억하는 현상으로 현재 실행 Context 외부 Context를 참조할 수 있게 되는 함수이자 상황이다.'
 
 라고 정리해보았다.
+
+### 예제로 Closure 맛보기
+
+위에 아무리 설명을 해도 말로는 이해가 안될 것이다.
+
+소스를 보면서 클로저를 이해해보자.
+
+```js
+function makeClosure() {
+    var outerVariable = 'Closure';
+    
+    return function getClosure() {
+        console.log('hello' + outerVariable);
+    }
+}
+
+var func = makeClosure();
+
+func();
+```
 
 
 
@@ -154,29 +174,34 @@ Lexical Environment에서 정해진 스코프체인의 특성 및 식별자 결�
 
 ### 3. Garbage Collector(가비지 콜렉터)
 
-객체를 만들면 메모리 공간이 할당됩니다. 객체가 참조하지 않는 상태가 되었을 때 메모리 공간을 자동으로 없애주는 역할을 하는 것이 **가비지 컬렉터**입니다.
+C, C++와 같은 Unmanaged 언어를 제외하고서, 프로그래밍에서 기본적으로 객체를 만들면 자동적으로 메모리 공간이 할당되는데, 이 객체가 참조하지 않는 상태가 되었을 때, 더 이상 사용되지 않을 때 메모리 공간을 자동으로 없애주는 역할을 하는 것이 **가비지 컬렉터**이다.
 
-<iframe src="https://wooder2050.medium.com/media/ab1188dd959c3ff3a7ce4bff8890bd92" allowfullscreen="" frameborder="0" height="105" width="680" title="alone_js3.js" class="fy fo fl kq w" scrolling="auto" style="box-sizing: inherit; width: 680px; left: 0px; top: 0px; position: absolute; height: 105px;"></iframe>
+> 자동으로 사용하지 않는 객체들을 수거해 메모리를 청소하는 것.
 
-세 번째 줄에서 ‘p = null; ’을 실행하게 되면 변수 p는 더 이상 x,y를 참조하지 않게 되고 x와y를 참조하는 변수는 없게 됩니다. 이때 x와 y는 가비지 컬렉터에 의해서 메모리에서 해제됩니다.
+가비지 컬렉터는 브라우저마다 다르게 실행되는데, 가비지 콜렉터의 방식은 두가지가 있다.
+
+- Reference-Counting (참조 카운터 방식)
+- Mark-and-Sweep (표시하고 쓸기 방식)
+
+참조 카운터 방식은 순환참조 발생의 문제가 있는 반면, 표시하고 쓸기 방식은 순환참조의 문제는 없지만 수동 메모리 해제를 하지 못한다는 각각의 장단점이 있다.
+
+2012년을 기준으로 거의 모든 최신브라우저는 Mark-and-Sweep 방식의 가비지 콜렉션을 수행한다.
+
+#### 클로저를 자세히 이해하는데 가비지 콜렉터를 알아야 되는 이유
+
+클로저를 사용할 때에는 주의할 점이 있는데, 바로 **메모리 누수 문제**이다.
+
+내부함수에서 상위 스코프 외부함수의 객체들을 참조하는 클로저가 형성되면서 해당 객체를 계속해서 참조하고 있게 된다. 즉, **외부 함수의 객체를 더이상 사용하지 않아도 클로저가 형성되어 내부함수에서 참조**하고 있으므로 이 가비지 콜렉터가 제대로 작동하지 않을 수 있다는 점이 있는 것이다.
 
 
 
-참조되지 않는 객체는 가비지 컬렉터에 의해서 메모리 해제된다.
-
-가비지 컬렉터는 브라우저마다 다르게 실행됩니다. 예를 들어 IE 6 이전 버전에서는 **참조 카운터 방식**을 사용하는데 이 방식은 고립된 **순환 참조**가 발생했을 때 메모리 누수를 해결하지 못한다는 단점이 있습니다.
+## 참고
 
 https://wooder2050.medium.com/%EC%9D%B4%EB%A1%A0-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%8A%A4%EC%BD%94%ED%94%84%EC%99%80-%ED%81%B4%EB%A1%9C%EC%A0%80-%EC%A0%95%EB%A6%AC-331da8d8b00b
 
-https://www.slideshare.net/jisuyoun/javascript-closure-13832628
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Closures
 
+https://dmitripavlutin.com/simple-explanation-of-javascript-closures/
 
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Memory_Management
 
-## Closure의 특성
-
-1. 지역변수 x는 자신을 참조하는 함수가 소멸될 때까지 유지된다.
-2. 클로저에 존재하는 변수들은 값이 계속해서 유지된다.
-3. 전역 변수의 사용을 막을 수 있다.
-4. 
-
-[https://dmitripavlutin.com/simple-explanation-of-javascript-closures/]: 
