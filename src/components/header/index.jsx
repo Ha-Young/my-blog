@@ -32,8 +32,8 @@ export const Header = ({ title, location, rootPath }) => (
             <Link className="nav-item" to="/blog">
               Blog
             </Link>
-            <Link className="nav-item" to="/category">
-              Category
+            <Link className="nav-item" to="/tags">
+              Tags
             </Link>
             <Link className="nav-item" to="/resume_web">
               Resume

@@ -6,6 +6,7 @@
   overflow: hidden;
   padding: 0;
   font-size: 80%;
+  z-index: 1;
 }
 
 .tags li {
@@ -23,6 +24,10 @@
   border-radius: 3px 0 0 3px;
   text-decoration: none;
   -webkit-transition: color 0.2s;
+
+  &:hover {
+    animation: flutter 2s infinite linear;
+  }
 }
 
 .tag::before {
@@ -43,4 +48,46 @@
   border-bottom: 13px solid transparent;
   border-top: 13px solid transparent;
   transition: background 0.3s, color 0.3s;
+}
+
+@-webkit-keyframes flutter {
+  0% {
+    transform: rotate(0deg);
+  }
+  35% {
+    transform: rotate(0deg);
+  }
+  40% {
+    transform: rotate(-5deg);
+  }
+  60% {
+    transform: rotate(5deg);
+  }
+  65% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes flutter {
+  0% {
+    transform: rotate(0deg);
+  }
+  35% {
+    transform: rotate(0deg);
+  }
+  40% {
+    transform: rotate(-5deg);
+  }
+  60% {
+    transform: rotate(5deg);
+  }
+  65% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
