@@ -62,15 +62,19 @@ tags: ['javascript', 'closure']
 ```js
 function makeClosure(arg) {
     var outerVariable = 'Closure';
+    var count = 0;
     
     return function getClosure() {
         console.log('Hello' + outerVariable);
         console.log('arg : ', arg);
+        console.log('count' : count);
+        count++;
     }
 }
 
 var func = makeClosure(30);
 
+func(); // hello Closure / arg : 30
 func(); // hello Closure / arg : 30
 ```
 
@@ -78,7 +82,11 @@ func(); // hello Closure / arg : 30
 
 여기서 함수 `getClosure()`가 리턴되면서 `makeClosure()`  Context가 끝났기 때문에 해당 스코프가 사라진다고 볼 수 있으나, 반환된 `getClosure()` 함수 때문에 해당 스코프내의 변수는 여전히 존재하고 있다.
 
-https://swiftymind.tistory.com/47
+이처럼 사실은 반환된 함수 `getClosure()` 를 받은 `func()` 함수는 `outerVariable`, `arg` `count`  와 같은 변수를 가지고 있는 스코프가 아니지만 `getClosure` 함수가 선언 및 생성될 때에 당시의 외부스코프(상위스코프)의 변수(참조하는 값)를 기억하게 되어 이후에도 계속 사용할 수 있게 된다. 이를 클로저가 형성되었다 라고 한다.
+
+> 이를 간단히 함수가 선언될 때 함수의 주변의 환경을 기억하게 된다 고도 한다.
+
+
 
 ## Closure를 이해하기위한 사전 지식
 
@@ -198,17 +206,19 @@ C, C++와 같은 Unmanaged 언어를 제외하고서, 프로그래밍에서 기�
 
 ![Mark and sweep garbage collector](.\javascript-closure-2.png)
 
+클로저에 의해 캡처 된 상위 스코프의 지역 변수는 정의 된 함수가 완료되고 해당 범위 내에 정의 된 모든 함수가 GC 처리되면 가비지 수집됩니다.
+
+
+
 #### 🎇클로저를 자세히 이해하는데 가비지 콜렉터를 알아야 되는 이유
+
+바로 위에 설명한 클로저로 형성된 상위 스코프의 지역변수를 GC 처리되는 과정의 이해도 있지만,
 
 클로저를 사용할 때에는 주의할 점이 있는데, 바로 **메모리 누수 문제**이다.
 
-내부함수에서 상위 스코프 외부함수의 객체들을 참조하는 클로저가 형성되면서 해당 객체를 계속해서 참조하고 있게 된다. 즉, **외부 함수의 객체를 더이상 사용하지 않아도 클로저가 형성되어 내부함수에서 참조**하고 있으므로 이 가비지 콜렉터가 제대로 작동하지 않을 수 있다는 점이 있는 것이다.
+내부함수에서 상위 스코프 외부함수의 객체들을 참조하는 클로저가 형성되면서 해당 객체를 계속해서 참조하고 있게 된다. 즉, **외부 함수(상위스코프)의 객체를 더이상 사용하지 않아도 클로저가 형성되어 내부함수에서 참조**하고 있으므로 이 가비지 콜렉터가 제대로 작동하지 않을 수 있다는 점이 있는 것이다.
 
-```js
-
-```
-
-
+자세한 예시는 [이곳](https://blog.meteor.com/an-interesting-kind-of-javascript-memory-leak-8b47d2e7f156)을 참조하자.
 
 
 
