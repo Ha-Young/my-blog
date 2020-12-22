@@ -60,28 +60,37 @@ tags: ['javascript', 'closure']
 소스를 보면서 클로저를 이해해보자.
 
 ```js
-function makeClosure() {
+function makeClosure(arg) {
     var outerVariable = 'Closure';
     
     return function getClosure() {
-        console.log('hello' + outerVariable);
+        console.log('Hello' + outerVariable);
+        console.log('arg : ', arg);
     }
 }
 
-var func = makeClosure();
+var func = makeClosure(30);
 
-func();
+func(); // hello Closure / arg : 30
 ```
 
+`makeClosure()` 함수는 매개변수 하나를 받고, 호출되었을 때 주어진 매개변수 `arg`와 `makeClosure()` 내부 변수를 이용하는 새 함수 `getClosure()`를 생성한다.
 
+여기서 함수 `getClosure()`가 리턴되면서 `makeClosure()`  Context가 끝났기 때문에 해당 스코프가 사라진다고 볼 수 있으나, 반환된 `getClosure()` 함수 때문에 해당 스코프내의 변수는 여전히 존재하고 있다.
+
+https://swiftymind.tistory.com/47
 
 ## Closure를 이해하기위한 사전 지식
 
-클로저를 세부적으로 이해하기위해서는 사전지식이 필요했다.
+클로저를 세부적으로 이해하기위해서는 사전지식이 필요하다.
+
+바로 클로저가 생성되는 이유이자 원리를 담당하는 1급함수, 렉시컬 환경, 가비지 콜렉터이다.
+
+이 부분은 바로 이해하지 못하더라도 본문을 읽고 다시보거나 계속해서 본다면 더욱더 클로저와 친밀해질 것이다.
 
 ### 1. 1급 함수 (First class Citizen / First class Obejct / First class Function)
 
-#### 1급 시민 (First class Citizen)
+#### 🤵1급 시민 (First class Citizen)
 
 프로그래밍에 있어서 1급시민이라는 말은 다음과 같은 조건이 충족되는 것이다.
 
@@ -95,7 +104,7 @@ func();
 
 
 
-#### 1급 객체 (First class Obejct)
+#### 🦝1급 객체 (First class Obejct)
 
 당연히 1급 객체는 객체를 1급시민으로써 취급되는, 위 조건을 만족하는 객체를 말한다.
 
@@ -103,7 +112,7 @@ func();
 
 
 
-#### 1급 함수 (First class function)
+#### ⚙1급 함수 (First class function)
 
 1급 함수는 함수가 1급 객체로 취급된다는 말이며
 이말은 1급 함수 또한 마찬가지로 함수가 1급시민의 조건에 부합한다는 말이다.
@@ -119,7 +128,7 @@ func();
 
 
 
-#### 1급 함수가 중요한 이유
+#### 🎈1급 함수가 중요한 이유
 
 이 1급 함수가 함수형 프로그래밍의 근간이기도 하면서 상당히 중요한데, 왜 중요하냐면 바로 **고차함수(high order function)**가 가능하기 때문이다.
 
@@ -160,7 +169,7 @@ Lexical Environment는 **Lexical Scope**에 따라 정해지는 **Context**를 �
 
 Lexical Scope는 [이전 Scope 포스트의 Lexical Scope](https://ha-young.github.io/2020/javascript/%ED%95%98%EC%98%B9%EC%9D%98-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%8B%9D%EC%82%AC---Scope/#%EC%8A%A4%EC%BD%94%ED%94%84-%EA%B2%B0%EC%A0%95-%EB%B0%A9%EC%8B%9D--lexical-scope-%EB%A0%89%EC%8B%9C%EC%BB%AC-%EC%8A%A4%EC%BD%94%ED%94%84)에 적어두었다.
 
-<a href='https://dmitripavlutin.com/simple-explanation-of-javascript-closures/' ><img src=".\javascript-closure-1.png" alt="the closure captures variables from lexical scope" style="zoom:50%;" /></a>
+<img src=".\javascript-closure-1.png" alt="the closure captures variables from lexical scope" style="zoom: 33%;" />
 
 이 이미지를 보면 `innerFunc`이 생성되었을 때의 lexical scope 환경인 outerVar를 접근 할 수 있는데,
 이 `outerVar` 변수를 `innerFunc` 함수에서 조작할 수 있는 이 상황이 바로 클로저이다. `innerFunc`에서 계속해서 상위 스코프의 `outerVar` 변수를 계속해서 참조할 수 있고, `outerVar`변수에서의 값은 계속해서 유지된다. (다른 Context에 존재하지만)
@@ -187,11 +196,19 @@ C, C++와 같은 Unmanaged 언어를 제외하고서, 프로그래밍에서 기�
 
 2012년을 기준으로 거의 모든 최신브라우저는 Mark-and-Sweep 방식의 가비지 콜렉션을 수행한다.
 
-#### 클로저를 자세히 이해하는데 가비지 콜렉터를 알아야 되는 이유
+![Mark and sweep garbage collector](.\javascript-closure-2.png)
+
+#### 🎇클로저를 자세히 이해하는데 가비지 콜렉터를 알아야 되는 이유
 
 클로저를 사용할 때에는 주의할 점이 있는데, 바로 **메모리 누수 문제**이다.
 
 내부함수에서 상위 스코프 외부함수의 객체들을 참조하는 클로저가 형성되면서 해당 객체를 계속해서 참조하고 있게 된다. 즉, **외부 함수의 객체를 더이상 사용하지 않아도 클로저가 형성되어 내부함수에서 참조**하고 있으므로 이 가비지 콜렉터가 제대로 작동하지 않을 수 있다는 점이 있는 것이다.
+
+```js
+
+```
+
+
 
 
 
