@@ -16,6 +16,7 @@ const TagsPage = ({
       siteMetadata: { title, keywords },
     },
   },
+  location,
 }) => (
   <Layout location={location} title={title}>
     <SEO title="Tags" keywords={keywords} />
