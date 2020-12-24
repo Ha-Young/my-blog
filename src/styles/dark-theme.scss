@@ -83,32 +83,34 @@ body.dark {
     border-bottom: 1px solid #eee;
   }
 
-  // tags
-  .tags {
-    .tag {
-      background: $dark-tag-color;
-      a {
-        color: $dark-lightest-font-color;
-      }
+  // tag
+  .tag {
+    background: $dark-tag-color;
+    a {
+      color: $dark-lightest-font-color;
+    }
 
-      &::before {
-        background: $dark-lightest-font-color;
-        box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
-      }
+    &::before {
+      background: $dark-lightest-font-color;
+      box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
+    }
 
-      &::after {
-        background: $dark-background-color;
-        border-left: 10px solid $dark-tag-color;
-      }
+    &::after {
+      background: $dark-background-color;
+      border-left: 10px solid $dark-tag-color;
+    }
 
-      &:hover {
-        background-color: $dark-tag-complementary;
-        color: white;
-      }
+    &:hover {
+      background-color: $dark-tag-complementary;
+      color: white;
+    }
 
-      &:hover::after {
-        border-left-color: $dark-tag-complementary;
-      }
+    &:hover::after {
+      border-left-color: $dark-tag-complementary;
+    }
+
+    .totalCount {
+      background-color: $dark-tag-total-count;
     }
   }
 }

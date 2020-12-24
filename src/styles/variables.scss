@@ -37,8 +37,9 @@ $light-category-highlight-text-color: #636c6e;
 $light-category-item-color: #fff;
 
 // tags
-$light-tag-color: #00008065;
-$light-tag-complementary: crimson;
+$light-tag-color: #00008086;
+$light-tag-complementary: rgb(131, 5, 30);
+$light-tag-total-count: rgba(0, 0, 0, 0.2);
 
 /**
  * @dark theme
@@ -70,3 +71,4 @@ $breakpoint-desktop: 1280px;
 
 $dark-tag-color: rgba(178, 93, 235, 0.31);
 $dark-tag-complementary: rgb(95, 5, 23);
+$dark-tag-total-count: rgba(255, 255, 255, 0.2);

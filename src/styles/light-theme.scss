@@ -70,32 +70,34 @@ body.light {
     }
   }
 
-  // tags
-  .tags {
-    .tag {
-      background: $light-tag-color;
-      a {
-        color: $dimmed-color;
-      }
+  // tag
+  .tag {
+    background: $light-tag-color;
+    a {
+      color: $dimmed-color;
+    }
 
-      &::before {
-        background: $dimmed-color;
-        box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
-      }
+    &::before {
+      background: $dimmed-color;
+      box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
+    }
 
-      &::after {
-        background: $light-background-color;
-        border-left: 10px solid $light-tag-color;
-      }
+    &::after {
+      background: $light-background-color;
+      border-left: 10px solid $light-tag-color;
+    }
 
-      &:hover {
-        background-color: $light-tag-complementary;
-        color: white;
-      }
+    &:hover {
+      background-color: $light-tag-complementary;
+      color: white;
+    }
 
-      &:hover::after {
-        border-left-color: $light-tag-complementary;
-      }
+    &:hover::after {
+      border-left-color: $light-tag-complementary;
+    }
+
+    .totalCount {
+      background-color: $light-tag-total-count;
     }
   }
 }

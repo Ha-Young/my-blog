@@ -8,30 +8,50 @@
   border-radius: 3px 0 0 3px;
   text-decoration: none;
   -webkit-transition: color 0.2s;
+  text-align: center;
 
   &:hover {
     animation: tag-flutter 2s infinite linear;
   }
-}
 
-.tag::before {
-  content: '';
-  top: 10px;
-  left: 10px;
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  border-radius: 10px;
-}
+  &::before {
+    content: '';
+    top: 10px;
+    left: 10px;
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 10px;
+  }
 
-.tag::after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 0;
-  border-bottom: 13px solid transparent;
-  border-top: 13px solid transparent;
-  transition: background 0.3s, color 0.3s;
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-bottom: 13px solid transparent;
+    border-top: 13px solid transparent;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  .tag-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .totalCount {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      float: right;
+      margin-left: 0.7rem;
+      margin-right: 0;
+      font-size: 0.7rem;
+      border-radius: 10px;
+      width: 18px;
+      height: 18px;
+      text-align: center;
+    }
+  }
 }
 
 @-webkit-keyframes tag-flutter {

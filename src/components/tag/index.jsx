@@ -4,11 +4,14 @@ import kebabCase from 'lodash/kebabCase'
 
 import './index.scss'
 
-export const Tag = ({ tag, onClick }) => {
+export const Tag = ({ tag, onClick, totalCount }) => {
   return (
     <li className="tag">
       <Link to={`/tags/${kebabCase(tag)}/`}>
-        <div onClick={onClick}>{tag}</div>
+        <div className="tag-content" onClick={onClick}>
+          {tag}
+          {totalCount && <span class="totalCount">{totalCount}</span>}
+        </div>
       </Link>
     </li>
   )
