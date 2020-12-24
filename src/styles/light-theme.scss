@@ -74,7 +74,9 @@ body.light {
   .tags {
     .tag {
       background: $light-tag-color;
-      color: $dimmed-color;
+      a {
+        color: $dimmed-color;
+      }
 
       &::before {
         background: $dimmed-color;

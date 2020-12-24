@@ -87,7 +87,9 @@ body.dark {
   .tags {
     .tag {
       background: $dark-tag-color;
-      color: $dark-lightest-font-color;
+      a {
+        color: $dark-lightest-font-color;
+      }
 
       &::before {
         background: $dark-lightest-font-color;
