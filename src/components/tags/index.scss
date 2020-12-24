@@ -1,5 +1,3 @@
-@import '../../styles/variables.scss';
-
 .tags {
   list-style: none;
   margin: 0;
@@ -12,82 +10,4 @@
 .tags li {
   float: left;
   cursor: pointer;
-}
-
-.tag {
-  display: inline-block;
-  height: 26px;
-  line-height: 26px;
-  padding: 0 20px 0 23px;
-  position: relative;
-  margin: 0 10px 10px 0;
-  border-radius: 3px 0 0 3px;
-  text-decoration: none;
-  -webkit-transition: color 0.2s;
-
-  &:hover {
-    animation: flutter 2s infinite linear;
-  }
-}
-
-.tag::before {
-  content: '';
-  top: 10px;
-  left: 10px;
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  border-radius: 10px;
-}
-
-.tag::after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 0;
-  border-bottom: 13px solid transparent;
-  border-top: 13px solid transparent;
-  transition: background 0.3s, color 0.3s;
-}
-
-@-webkit-keyframes flutter {
-  0% {
-    transform: rotate(0deg);
-  }
-  35% {
-    transform: rotate(0deg);
-  }
-  40% {
-    transform: rotate(-5deg);
-  }
-  60% {
-    transform: rotate(5deg);
-  }
-  65% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-}
-
-@keyframes flutter {
-  0% {
-    transform: rotate(0deg);
-  }
-  35% {
-    transform: rotate(0deg);
-  }
-  40% {
-    transform: rotate(-5deg);
-  }
-  60% {
-    transform: rotate(5deg);
-  }
-  65% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
 }
