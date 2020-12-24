@@ -7,7 +7,10 @@ import { Layout } from '../layout'
 
 const Tags = ({ pageContext, data, location }) => {
   const { tag } = pageContext
-  const { edges, totalCount } = data.allMarkdownRemark
+  const filteredEdges = data.allMarkdownRemark.edges.filter(
+    ({ node }) => !node.frontmatter.draft && !!node.frontmatter.category
+  )
+  const totalCount = filteredEdges.length
 
   const tagHeader = `${totalCount} post${
     totalCount === 1 ? '' : 's'
@@ -18,7 +21,7 @@ const Tags = ({ pageContext, data, location }) => {
       <div>
         <h1>{tagHeader}</h1>
         <ul>
-          {edges.map(({ node }) => {
+          {filteredEdges.map(({ node }) => {
             const { slug } = node.fields
             const { title } = node.frontmatter
             return (
@@ -78,6 +81,8 @@ export const pageQuery = graphql`
           }
           frontmatter {
             title
+            category
+            draft
           }
         }
       }
