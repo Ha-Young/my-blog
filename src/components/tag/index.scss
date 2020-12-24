@@ -10,7 +10,7 @@
   -webkit-transition: color 0.2s;
 
   &:hover {
-    animation: flutter 2s infinite linear;
+    animation: tag-flutter 2s infinite linear;
   }
 }
 
@@ -34,20 +34,20 @@
   transition: background 0.3s, color 0.3s;
 }
 
-@-webkit-keyframes flutter {
+@-webkit-keyframes tag-flutter {
   0% {
     transform: rotate(0deg);
   }
-  35% {
+  10% {
     transform: rotate(0deg);
   }
-  40% {
+  15% {
     transform: rotate(-5deg);
   }
-  60% {
+  35% {
     transform: rotate(5deg);
   }
-  65% {
+  40% {
     transform: rotate(0deg);
   }
   100% {
@@ -55,20 +55,20 @@
   }
 }
 
-@keyframes flutter {
+@keyframes tag-flutter {
   0% {
     transform: rotate(0deg);
   }
-  35% {
+  10% {
     transform: rotate(0deg);
   }
-  40% {
+  15% {
     transform: rotate(-5deg);
   }
-  60% {
+  35% {
     transform: rotate(5deg);
   }
-  65% {
+  40% {
     transform: rotate(0deg);
   }
   100% {
