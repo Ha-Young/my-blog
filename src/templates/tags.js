@@ -4,6 +4,12 @@ import PropTypes from 'prop-types'
 // Components
 import { Link, graphql } from 'gatsby'
 import { Layout } from '../layout'
+import { ThumbnailContainer } from '../components/thumbnail-container'
+import { ThumbnailItem } from '../components/thumbnail-item'
+import { Hr } from '../components/elements/hr'
+
+import { rhythm } from '../utils/typography'
+import { useIntersectionObserver } from '../hooks/useIntersectionObserver'
 
 const Tags = ({ pageContext, data, location }) => {
   const { tag } = pageContext
@@ -16,25 +22,23 @@ const Tags = ({ pageContext, data, location }) => {
     totalCount === 1 ? '' : 's'
   } tagged with "${tag}"`
 
+  useIntersectionObserver()
+
   return (
     <Layout location={location} title={tag}>
-      <div>
+      <div
+        style={{
+          marginLeft: `auto`,
+          marginRight: `auto`,
+          maxWidth: rhythm(24),
+        }}
+      >
         <h1>{tagHeader}</h1>
-        <ul>
-          {filteredEdges.map(({ node }) => {
-            const { slug } = node.fields
-            const { title } = node.frontmatter
-            return (
-              <li key={slug}>
-                <Link to={slug}>{title}</Link>
-              </li>
-            )
-          })}
-        </ul>
-        {/*
-              This links to a page that does not yet exist.
-              You'll come back to it!
-            */}
+        <ThumbnailContainer>
+          {filteredEdges.map(({ node }, index) => (
+            <ThumbnailItem node={node} key={`item_${index}`} />
+          ))}
+        </ThumbnailContainer>
         <Link to="/tags">All tags</Link>
       </div>
     </Layout>
@@ -76,6 +80,7 @@ export const pageQuery = graphql`
       totalCount
       edges {
         node {
+          excerpt(pruneLength: 200, truncate: true)
           fields {
             slug
           }
@@ -83,6 +88,7 @@ export const pageQuery = graphql`
             title
             category
             draft
+            tags
           }
         }
       }
