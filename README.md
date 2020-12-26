@@ -1,3 +1,9 @@
+# 추가사항
+
+- [ ] 뒤로가기 버튼
+- [ ] about 페이지
+- [ ] 대문에 canvas로 꾸미기 (클릭시 이팩트로 유저경험증가시키기)
+
 <div align="center">
 
   <img src="./assets/gatsby-starter-bee.png" width="360px" />
