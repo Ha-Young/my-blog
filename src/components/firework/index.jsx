@@ -1,6 +1,6 @@
 import React from 'react';
 import * as Dom from '../../utils/dom'
-import { useFirework } from '../../hooks/useFirework'
+import { useFirework } from '../../hooks/useFirework/useFirework'
 
 import './index.scss'
 
