@@ -2,7 +2,9 @@
 
 - [ ] 뒤로가기 버튼
 - [ ] about 페이지
-- [ ] 대문에 canvas로 꾸미기 (클릭시 이팩트로 유저경험증가시키기)
+- [ ] canvas로 꾸미기 (클릭시 이팩트로 유저경험증가시키기)
+  - [ ] light dark 모드에 따라 firework 밝기 변경
+  - [ ] 아무 곳 클릭시에 firework 발생시키기
 
 <div align="center">
 
