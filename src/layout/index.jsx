@@ -6,12 +6,14 @@ import { Footer } from '../components/footer'
 import { rhythm } from '../utils/typography'
 
 import './index.scss'
+import { Firework } from '../components/firework'
 
 export const Layout = ({ location, title, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`
 
   return (
     <React.Fragment>
+      <Firework />
       <div className="layout-wrapper">
         <Header title={title} location={location} rootPath={rootPath} />
         <ThemeSwitch />
