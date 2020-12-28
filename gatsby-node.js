@@ -29,7 +29,7 @@ exports.createPages = ({ graphql, actions }) => {
             }
           }
         }
-        tagsGroup: allMarkdownRemark(limit: 2000) {
+        tagsGroup: allMarkdownRemark(limit: 1000) {
           group(field: frontmatter___tags) {
             fieldValue
           }

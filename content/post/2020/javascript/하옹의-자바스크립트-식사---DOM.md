@@ -628,3 +628,86 @@ buttonElement.addEventListener('click', function onButtonClick() {
 
 - event type : 이벤트의 종류 ([여기 참조](https://developer.mozilla.org/en-US/docs/Web/Events))
 - event listener : 이벤트 발생시 실행되는 함수
+
+
+
+## DOM의 메모리 누수 문제
+
+흔히 Javascript 메모리 누수문제로 나타나는 문제 중 하나가 바로 DOM을 다루면서 생기게 된다.
+
+설명하자면 DOM 요소에 대한 참조를 어느한곳에서라도 가지고 있다면 DOM 트리에서 해당 DOM을 제거하여도 참조값이 남아있기 때문에 Garbage Collector가 제대로 작동하지 않는다.
+
+무슨말인지 모르겠다면 아래 코드를 보자.
+
+```js
+var domElements = {
+    button: document.querySelector('.button');
+    image: document.querySelector('.image');
+	text: document.querySelector('.text');
+}
+
+function manipulateDOM (elements) {
+    elements.image.src = 'haha';
+    elements.button.style.backgroundColor = 'black';
+    elements.text.textContext = 'processing...';
+    // ...
+}
+
+function removeElements (elements) {
+    for (const element in elements) {
+        if (elements.hasOwnProperty(element) {
+            element.parrentNode.removeChild(element);
+    	}
+    }
+}
+
+manipulateDOM(domElements);
+// ...
+removeElements(domElements);
+```
+
+위 과정에서 `removeElements()`를 통해 얼핏보면 메모리 관리를 해주고 있는 것 처럼 보인다. 하지만 **제대로 처리되고 있지 않다.**
+
+그 이유는 `removeElements()` 함수의 역할은 **DOM 트리**에 **존재하는 요소들을 제거**하는 일을 할 뿐 해당 **DOM 요소를 메모리에서 제거하는 일은 하지 않는다**.
+
+즉, DOM 트리에서 해당 요소를 제거해 추후 Garbage Collector를 통해 메모리 해제가 된다는 말이다. 그럼 여기서 어느 한곳에서라도 해당 DOM요소를 참조하고 있다면 DOM 트리에서 삭제되더라도 그 참조값 때문에 Garbage Collector는 해당 DOM 요소를 수집하지 않게 된다.
+
+따라서 위의 코드는 `domElements`라는 객체에서 dom 요소들을 계속해서 참조하고 있으므로 이후 `removeElements()` 함수를 통해 DOM 트리에서 해당 요소들을 없애도 메모리에서는 해제가 되지 않는다.
+
+제대로 된 코드를 작성하려면 다음과 같이 작성을 해야 된다.
+
+```js
+const domElements = {
+    button: document.querySelector('button'),
+    image: document.querySelector('image'),
+	text: document.querySelector('text'),
+    div: document.querySelector('div')
+}
+
+function manipulateDOM (elements) {
+    elements.image && (elements.image.src = 'haha');
+    elements.button && (elements.button.style.backgroundColor = 'black');
+    elements.text && (elements.text.textContext = 'processing...');
+    elements.div && (elements.div.style.backgroundColor = 'green');
+    // ...
+}
+
+function removeElements (elements) {
+    for (const element in elements) {
+        if (elements.hasOwnProperty(element)) {
+            element.parrentNode?.removeChild(element);
+            console.log(element);
+        	delete elements[element]; // Dom 요소를 참조하는 domElements 내부 property 제거
+    	}
+    }
+}
+
+manipulateDOM(domElements);
+// ...
+removeElements(domElements);
+```
+
+다음과 같이 참조값들을 모두 제거해줘야 GC가 제대로 작동을 하게 되어 메모리가 성공적으로 해제될 수 있다.
+
+
+
