@@ -1,6 +1,8 @@
 import { useEffect, useCallback } from 'react'
 import * as Dom from '../../utils/dom'
+import * as Storage from '../../utils/storage'
 import { Firework, random } from './Firework'
+import { THEME } from '../../constants/enum'
 
 export function useFirework(className) {
   const init = () => {
@@ -19,6 +21,7 @@ export function useFirework(className) {
 
     // now we will setup our basic variables for the demo
     const canvas = Dom.getElement(`.${className}`),
+      body = Dom.getElement('body'),
       ctx = canvas.getContext('2d'),
       // full screen dimensions
       cw = window.innerWidth,
@@ -28,7 +31,7 @@ export function useFirework(className) {
       // particle collection
       particles = [],
       // when launching fireworks with a click, too many get launched at once without a limiter, one launch per 5 loop ticks
-      limiterTotal = 10,
+      limiterTotal = 5,
       // this will time the auto launches of fireworks, one launch per 80 loop ticks
       timerTotal = 80
 
@@ -49,6 +52,9 @@ export function useFirework(className) {
     function loop() {
       // this function will run endlessly with requestAnimationFrame
       requestAnimFrame(loop)
+
+      // get is dark mode
+      const isDarkMode = Storage.getTheme(Dom.hasClassOfBody(THEME.DARK))
 
       // increase the hue to get different colored fireworks over time
       hue += 0.5
@@ -88,7 +94,8 @@ export function useFirework(className) {
               ch,
               random(0, cw),
               random(0, ch / 2),
-              particles
+              particles,
+              isDarkMode
             )
           )
           timerTick = 0
@@ -101,7 +108,9 @@ export function useFirework(className) {
       if (limiterTick >= limiterTotal) {
         if (mousedown) {
           // start the firework at the bottom middle of the screen, then set the current mouse coordinates as the target
-          fireworks.push(new Firework(cw / 2, ch, mx, my, particles))
+          fireworks.push(
+            new Firework(cw / 2, ch, mx, my, particles, isDarkMode)
+          )
           limiterTick = 0
         }
       } else {
@@ -111,19 +120,20 @@ export function useFirework(className) {
 
     // mouse event bindings
     // update the mouse coordinates on mousemove
-    canvas.addEventListener('mousemove', function(e) {
-      mx = e.pageX - canvas.offsetLeft
-      my = e.pageY - canvas.offsetTop
+    body.addEventListener('mousemove', function(e) {
+      //console.log(e)
+      mx = e.clientX - canvas.offsetLeft
+      my = e.clientY - canvas.offsetTop
     })
 
     // toggle mousedown state and prevent canvas from being selected
-    canvas.addEventListener('mousedown', function(e) {
-      e.preventDefault()
+    body.addEventListener('mousedown', function(e) {
+      //e.preventDefault()
       mousedown = true
     })
 
-    canvas.addEventListener('mouseup', function(e) {
-      e.preventDefault()
+    body.addEventListener('mouseup', function(e) {
+      //e.preventDefault()
       mousedown = false
     })
 
