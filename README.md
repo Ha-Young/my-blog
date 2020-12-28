@@ -1,14 +1,16 @@
-# 추가사항
+# 추가사항 (TODO)
 
 - [ ] 뒤로가기 버튼
 - [ ] about 페이지
-- [ ] canvas로 꾸미기 (클릭시 이팩트로 유저경험증가시키기)
-  - [ ] light dark 모드에 따라 firework 밝기 변경
-  - [ ] 아무 곳 클릭시에 firework 발생시키기
+- [x] canvas로 꾸미기 (클릭시 이팩트로 유저경험증가시키기)
+  - [x] light dark 모드에 따라 firework 밝기 변경
+  - [x] 아무 곳 클릭시에 firework 발생시키기
+- [ ] 가독성 개선
+- [ ] SEO 강화
 
-<div align="center">
+  <div align="center">
 
-  <img src="./assets/gatsby-starter-bee.png" width="360px" />
+    <img src="./assets/gatsby-starter-bee.png" width="360px" />
 
 </div>
 
