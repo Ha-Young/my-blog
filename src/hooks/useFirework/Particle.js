@@ -1,5 +1,5 @@
 // create particle
-function Particle(x, y, hue) {
+function Particle(x, y, hue, isDarkMode) {
   this.x = x
   this.y = y
   // track the past coordinates of each particle to create a trail effect, increase the coordinate count to create more prominent trails
@@ -17,8 +17,8 @@ function Particle(x, y, hue) {
   this.gravity = 1
   // set the hue to a random number +-20 of the overall hue variable
   this.hue = random(hue - 20, hue + 20)
-  this.brightness = random(20, 50)
-  this.alpha = 0.5
+  this.brightness = isDarkMode ? random(60, 90) : random(10, 50)
+  this.alpha = isDarkMode ? 0.7 : 0.5
   // set how fast the particle fades out
   this.decay = random(0.015, 0.03)
 }

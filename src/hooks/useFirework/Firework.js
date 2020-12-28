@@ -1,7 +1,7 @@
 import { Particle, random } from './Particle'
 
 // create firework
-function Firework(sx, sy, tx, ty, particles) {
+function Firework(sx, sy, tx, ty, particles, isDarkMode = false) {
   // actual coordinates
   this.x = sx
   this.y = sy
@@ -13,6 +13,8 @@ function Firework(sx, sy, tx, ty, particles) {
   this.ty = ty
 
   this.particles = particles
+
+  this.isDarkMode = isDarkMode
 
   // distance from starting point to target
   this.distanceToTarget = calculateDistance(sx, sy, tx, ty)
@@ -27,7 +29,8 @@ function Firework(sx, sy, tx, ty, particles) {
   this.angle = Math.atan2(ty - sy, tx - sx)
   this.speed = 2
   this.acceleration = 1.05
-  this.brightness = random(20, 40)
+  this.brightness = this.isDarkMode ? random(50, 70) : random(10, 30)
+  this.alpha = this.isDarkMode ? 0.7 : 0.5
   // circle target indicator radius
   this.targetRadius = 1
 }
@@ -62,7 +65,7 @@ Firework.prototype.update = function(fireworks, index, hue) {
 
   // if the distance traveled, including velocities, is greater than the initial distance to the target, then the target has been reached
   if (this.distanceTraveled >= this.distanceToTarget) {
-    createParticles(this.particles, this.tx, this.ty, hue)
+    createParticles(this.particles, this.tx, this.ty, hue, this.isDarkMode)
     // remove the firework, use the index passed into the update function to determine which to remove
     fireworks.splice(index, 1)
   } else {
@@ -81,7 +84,8 @@ Firework.prototype.draw = function(ctx, hue) {
     this.coordinates[this.coordinates.length - 1][1]
   )
   ctx.lineTo(this.x, this.y)
-  ctx.strokeStyle = 'hsl(' + hue + ', 100%, ' + this.brightness + '%)'
+  ctx.strokeStyle =
+    'hsl(' + hue + ', 100%, ' + this.brightness + '%, ' + this.alpha + ')'
   ctx.stroke()
 
   ctx.beginPath()
@@ -91,11 +95,11 @@ Firework.prototype.draw = function(ctx, hue) {
 }
 
 // create particle group/explosion
-function createParticles(particles, x, y, hue) {
+function createParticles(particles, x, y, hue, isDarkMode) {
   // increase the particle count for a bigger explosion, beware of the canvas performance hit with the increased particles though
   var particleCount = 30
   while (particleCount--) {
-    particles.push(new Particle(x, y, hue))
+    particles.push(new Particle(x, y, hue, isDarkMode))
   }
 }
 
