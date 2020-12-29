@@ -105,7 +105,7 @@ module.exports = {
           {
             site {
               siteMetadata {
-                siteUrl: url
+                siteUrl
               }
             }
   
@@ -178,7 +178,6 @@ module.exports = {
               }
             `,
             output: '/rss.xml',
-            title: siteMetadata.title,
           },
         ],
       },
