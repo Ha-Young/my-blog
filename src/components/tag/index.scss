@@ -1,4 +1,4 @@
-.tag {
+.post-tag {
   display: inline-block;
   height: 26px;
   line-height: 26px;
@@ -34,7 +34,7 @@
     transition: background 0.3s, color 0.3s;
   }
 
-  .tag-content {
+  .post-tag-content {
     display: flex;
     justify-content: center;
     align-items: center;

@@ -5,7 +5,7 @@ import './index.scss'
 
 export const Tags = ({ tags }) => {
   return (
-    <ul className="tags">
+    <ul className="post-tags">
       {tags.map((tag, idx) => (
         <Tag
           key={idx}

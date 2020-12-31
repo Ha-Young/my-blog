@@ -6,9 +6,9 @@ import './index.scss'
 
 export const Tag = ({ tag, onClick, totalCount }) => {
   return (
-    <li className="tag">
+    <li className="post-tag">
       <Link to={`/tags/${kebabCase(tag)}/`}>
-        <div className="tag-content" onClick={onClick}>
+        <div className="post-tag-content" onClick={onClick}>
           {tag}
           {totalCount && <span class="totalCount">{totalCount}</span>}
         </div>
