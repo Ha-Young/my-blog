@@ -63,12 +63,12 @@ $dark-category-text-color: #d8d7d7;
 $dark-category-highlight-border-color: #666;
 $dark-category-highlight-text-color: #fff;
 
+$dark-tag-color: rgba(178, 93, 235, 0.31);
+$dark-tag-complementary: rgb(95, 5, 23);
+$dark-tag-total-count: rgba(255, 255, 255, 0.2);
+
 // Responsive Device Breakpoints
 $breakpoint-mobile: 480px;
 $breakpoint-tablet: 767px;
 $breakpoint-tablet-portrait: 1024px;
 $breakpoint-desktop: 1280px;
-
-$dark-tag-color: rgba(178, 93, 235, 0.31);
-$dark-tag-complementary: rgb(95, 5, 23);
-$dark-tag-total-count: rgba(255, 255, 255, 0.2);
