@@ -8,7 +8,7 @@ export const TableOfContents = ({ toc }) => {
   const onClickTOCOpen = e => {
     const tocContent = e.target.previousSibling
     if (tocContent) {
-      Dom.addClass(tocContent, 'open')
+      Dom.togleClass(tocContent, 'open')
     }
   }
   return (
