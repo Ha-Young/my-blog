@@ -3,7 +3,7 @@ title: '사이트를 Google 검색엔진에 노출시키기 (SEO 향상)'
 date: 2020-12-30 17:00
 draft: false
 category: 'frontend'
-tags: ['frontend', 'SEO', 'google search console', 'sitemap']
+tags: ['frontend', 'SEO', 'google search console', 'sitemap', 'gatsby', '내손내만블로그']
 ---
 
 
@@ -12,9 +12,10 @@ tags: ['frontend', 'SEO', 'google search console', 'sitemap']
 
 나는 우선 블로그를 만들면서 기본적인 SEO를 나름 블로그를 찾아서 맞춰주었는데,
 
+- \<title> 요소 alt 속성 작성 및 HTML 구조화
 - Sitemap.xml 생성
 - RSS feed 생성
-- robot.txt에 sitemap 데이터 추가
+- robot.txt에 크롤링 허용 및 sitemap 데이터 추가
 
 와 같은 작업을 해두었었다.
 
@@ -53,7 +54,7 @@ site:<자신의 사이트>
 구글 크롤링이 제대로 되지않은 이유는 여러가지가 있겠지만 내가 추측한 이유는 다음 두가지로 추측하고 있다.
 
 1. 아직 모든 페이지가 크롤링 되지 않은 상태
-2. 해당 페이지를 참조할 링크가 없는 상태
+2. 해당 페이지를 참조할 링크가 없는 상태 (링크 `href`를 통해 넘어가지 않는 페이지 존재)
 
 
 
@@ -166,7 +167,7 @@ https://www.google.com/ping?sitemap=https://ha-young.github.io/sitemap.xml
 
 자신의 사이트 URL을 치고 계속을 누르자.
 
-<img src="C:\blog\my-blog\content\post\2020\frontend\Google-site검색엔진에노출시키기\사이트소유권확인.png" alt="사이트 소유권 확인" style="zoom:67%;" />
+<img src=".\사이트소유권확인.png" alt="사이트 소유권 확인" style="zoom:67%;" />
 
 소유권을 확인이라는 메세지가 뜬다.
 
@@ -240,9 +241,11 @@ https://www.google.com/ping?sitemap=https://ha-young.github.io/sitemap.xml
 
 ## 마무리
 
-사이트맵을 등록한 직후 포스팅을 하는거라 결과는 어떻게 될지 모르겠다.
+이렇게 구글 크롤링을 유도한 후 다음날 아침 (약 15시간 이후)에 `site:<내 사이트>`를 검색해서 내 사이트의 구글 색인결과를 확인해보았다.
 
-결과로 크롤링이 잘 되었는지는 이후 포스팅 예정.
+<img src=".\성공적으로크롤링.jpg" alt="성공적으로크롤링" style="zoom:67%;" />
 
+보는 것 처럼 처음에 2페이지 밖에 없었는데 6페이지로 늘어나있는 걸 확인 할 수 있다.
 
+아직 모든 페이지들이 색인되지는 않았지만, 곧 시간문제 인 것 같다. 크롤러가 좀 더 열심히 일 해주기를 바랄 수 밖에.
 
