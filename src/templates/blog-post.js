@@ -29,7 +29,10 @@ export default ({ data, pageContext, location }) => {
   const metaData = data.site.siteMetadata
   const { title, comment, siteUrl, author, sponsor } = metaData
   const { disqusShortName, utterances } = comment
-  const { title: postTitle, date } = post.frontmatter
+  const { frontmatter, html, tableOfContents, excerpt } = post
+  const { title: postTitle, date } = frontmatter
+
+  const isExistTOC = tableOfContents && tableOfContents.length > 0
 
   return (
     <Layout location={location} title={title}>
@@ -43,10 +46,11 @@ export default ({ data, pageContext, location }) => {
           )}`,
         }}
       >
-        <SEO title={postTitle} description={post.excerpt} />
+        <SEO title={postTitle} description={excerpt} />
+        <div dangerouslySetInnerHTML={{ __html: tableOfContents }}></div>
         <PostTitle title={postTitle} />
         <PostDate date={date} />
-        <PostContainer html={post.html} />
+        <PostContainer html={html} />
         <SocialShare title={postTitle} author={author} />
         {!!sponsor.buyMeACoffeeId && (
           <SponsorButton sponsorId={sponsor.buyMeACoffeeId} />
@@ -87,6 +91,7 @@ export const pageQuery = graphql`
       id
       excerpt(pruneLength: 280)
       html
+      tableOfContents
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
