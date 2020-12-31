@@ -13,6 +13,7 @@ import { Bio } from '../components/bio'
 import { PostNavigator } from '../components/post-navigator'
 import { Disqus } from '../components/disqus'
 import { Utterances } from '../components/utterances'
+import { TableOfContents } from '../components/table-of-contents'
 import * as ScrollManager from '../utils/scroll'
 import { rhythm } from '../utils/typography'
 
@@ -47,7 +48,7 @@ export default ({ data, pageContext, location }) => {
         }}
       >
         <SEO title={postTitle} description={excerpt} />
-        <div dangerouslySetInnerHTML={{ __html: tableOfContents }}></div>
+        <TableOfContents toc={tableOfContents} />
         <PostTitle title={postTitle} />
         <PostDate date={date} />
         <PostContainer html={html} />
@@ -66,7 +67,7 @@ export default ({ data, pageContext, location }) => {
             slug={pageContext.slug}
           />
         )}
-        {!!utterances && <Utterances repo={utterances} />}
+        {/* {!!utterances && <Utterances repo={utterances} />} */}
       </div>
     </Layout>
   )

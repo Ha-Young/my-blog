@@ -1,0 +1,46 @@
+
+.toc-wrapper {
+    position: fixed;
+    left:0;
+    top: 10px;
+    z-index: 1;
+
+    .toc-open-btn {
+        position: fixed;
+        padding: 2px 14px;
+        background: #e96900;
+        border: 2px solid #34495e;
+        border-top: none;
+        border-right: none;
+        border-radius: 0 0 0 4px;
+        color: #fff;
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 2px;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        cursor: pointer;
+
+        &::before {
+            content: "TOC";
+        }
+    }
+
+    .toc-content {
+        width: 300px;
+        background: transparent;
+        height: 100vh;
+        position: fixed;
+        overflow-x:auto;
+        z-index: 2000;
+        padding: 100px 0;
+        top: 0px;
+        left: -300px;
+        transition: .3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        border: black 1px solid;
+        &.open {
+            left:0px;
+        }
+    }
+}

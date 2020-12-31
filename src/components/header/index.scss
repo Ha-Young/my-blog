@@ -8,6 +8,8 @@
   width: 100%;
   height: $top-header-height;
   background: $theme-gradient;
+  z-index: 3;
+  overflow: hidden;
 
   .link {
     display: inline-block;
