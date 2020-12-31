@@ -1,14 +1,42 @@
 @import '../../styles/variables.scss';
+@import '../../styles/responsive-device.scss';
 
 .switch-container {
-  position: absolute;
+  position: fixed;
   top: $top-header-height + 30px;
-  right: 30px;
+  right: 90px;
 
   .icon {
     text-align: center;
     color: #222;
     font-size: 14px;
     font-weight: 900;
+  }
+}
+
+@include desktop {
+  .switch-container {
+    right: 50px;
+  }
+}
+
+@include tablet-portrait {
+  .switch-container {
+    position: absolute;
+    right: 50px;
+  }
+}
+
+@include tablet {
+  .switch-container {
+    position: absolute;
+    right: 40px;
+  }
+}
+
+@include mobile {
+  .switch-container {
+    position: absolute;
+    right: 30px;
   }
 }
