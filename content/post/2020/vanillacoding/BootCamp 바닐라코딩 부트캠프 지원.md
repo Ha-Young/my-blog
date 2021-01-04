@@ -4,6 +4,8 @@ draft: false
 date: "2020-11-09 13:06"
 path: "/vanillacoding/bootcamp/apply"
 category: "vanilla coding"
+tags: ['vanilla coding', 'bootcamp']
+
 ---
 
 오늘 Prep 6주차 시작일자로 모든 Prep 과제를 완료하고 Vanilla Coding Bootcamp 9기 지원을 완료하였다.

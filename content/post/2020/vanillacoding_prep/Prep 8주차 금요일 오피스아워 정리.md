@@ -3,6 +3,7 @@ title: '바닐라코딩 Prep 8주차 금요일 오피스아워 정리'
 draft: false
 date: '2020-11-29 21:09'
 category: 'vanilla coding'
+tags: ['vanilla coding', 'prep']
 ---
 
 ## 이번주 과제 리뷰
@@ -53,7 +54,7 @@ export default function parallel(tasks, finalCallback) {
 
 2. 각 실행시킨 함수의 결과들을 배열에 각 순서대로 넣어줘야 한다.
 
-    -> 각 함수에 매개변수로 받는 `callback`함수 : tasks에 담겨있는 비동기 작업을 하는 함수들의 인자값으로 주어지는데, 이는 비동기 작업을 하는 함수가 인자로 받아서 작업을 완료했을 때 호출하여 작업이 끝났다는 것을 알려주는 함수.
+   -> 각 함수에 매개변수로 받는 `callback`함수 : tasks에 담겨있는 비동기 작업을 하는 함수들의 인자값으로 주어지는데, 이는 비동기 작업을 하는 함수가 인자로 받아서 작업을 완료했을 때 호출하여 작업이 끝났다는 것을 알려주는 함수.
 
    즉, 이 `callback` 인자를 이용해야 한다.
 

@@ -1,11 +1,10 @@
 ---
-title: "바닐라코딩 Prep 8주차 수요일 오피스아워 정리"
+title: '바닐라코딩 Prep 8주차 수요일 오피스아워 정리'
 draft: false
-date: "2020-11-25 21:09"
-category: "vanilla coding"
+date: '2020-11-25 21:09'
+category: 'vanilla coding'
+tags: ['vanilla coding', 'prep']
 ---
-
-
 
 ## 비동기
 
@@ -16,8 +15,6 @@ category: "vanilla coding"
 Javascript를 쓰면 비동기에 대해 자주 접하게 될것이다.
 
 **Javascript를 쓰려면 비동기에 대한 이해는 필수!**
-
-
 
 ### 동기
 
@@ -31,23 +28,21 @@ Synchronous. 비동기가 아닌 것.
 
 Asynchronous. 동기가 아닌 것.
 
-작업을 동시에 실시 (다음작업이 들어오면 함께  실시)
+작업을 동시에 실시 (다음작업이 들어오면 함께 실시)
 
 비동기 구현을 하려면 비동기적으로 작동하는 함수를 사용하면 된다.
 
 setTimeout이 대표적.
 
 ```js
-console.log("start");
+console.log('start')
 
 setTimeout(() => {
-    console.log("async");
-}, 1000);
+  console.log('async')
+}, 1000)
 
-console.log("end");
+console.log('end')
 ```
-
-
 
 비동기적으로 작동하는 함수들
 
@@ -57,25 +52,21 @@ console.log("end");
 - XMLHttpRequest
 - ...
 
-
-
 fetch와 같은 다른 곳에 값을 받아오는 비동기 작업은 완료가 언제 될지 모른다.
 
 ```js
-console.log('start');
+console.log('start')
 
 for (let id = 100; id <= 120; id++) {
-    fetch(`https://vanillacoding.surge.sh/quiz/${id}.json`).then((res) => {
-        console.log(`${id} 완료!`);
-    });
+  fetch(`https://vanillacoding.surge.sh/quiz/${id}.json`).then(res => {
+    console.log(`${id} 완료!`)
+  })
 }
 
-console.log("end");
+console.log('end')
 ```
 
 위 코드를 보면 우리가 fetch 요청을 보낸 것은 id 100에서 120까지 순서대로 요청을 하였지만, 작업완료시에 동작 `then`은 어떤 id의 순서로 작동될지는 모른다.
-
-
 
 ## Event Loop
 
@@ -86,20 +77,20 @@ console.log("end");
 하지만, 지금 `Event Loop`은 아래 코드가 어떻게 작동하는지 정도는 알아야 한다.
 
 ```js
-console.log("start");
+console.log('start')
 
-setTimeout(function foo () {
-    console.log("after 0 sec");
-}, 0);
+setTimeout(function foo() {
+  console.log('after 0 sec')
+}, 0)
 
-console.log("end");
+console.log('end')
 
 //start
 //end
 //after 0 sec
 ```
 
-`foo` 함수가 0초뒤에 실행되서 
+`foo` 함수가 0초뒤에 실행되서
 
 start
 after 0 sec
@@ -111,7 +102,7 @@ start
 end
 after 0 sec
 
-의 순서로 실행된다. 
+의 순서로 실행된다.
 
 #### 왜?
 
@@ -119,24 +110,18 @@ after 0 sec
 
 `setTimeout`의 작업은 `callback queue`에 들어가고,
 
-이 `callback queue`에 들어간 작업은 `call stack`이 비워져야만  `callback queue`에서 꺼내져 사용되기 때문.
+이 `callback queue`에 들어간 작업은 `call stack`이 비워져야만 `callback queue`에서 꺼내져 사용되기 때문.
 
 `Event Loop`의 시각자료는 **바닐라코딩 강의자료에 있는 [Event Loop Visualizer](http://latentflip.com/loupe/) 에서 꼭 확인해보자. (강추)**
 
 영상도 꼭 보자.
 
-
-
 ## Q. 싱글스레드 자바스크립트 비동기 가능 이유?
 
 **싱글스레드 언어인 자바스크립트에서 비동기 구현이 가능한 이유**는 비동기 함수가 자바스크립트가 아니기 때문?
 
--> 맞다. 비동기 함수는 자바스크립트가 아니라, **WEB API** 
+-> 맞다. 비동기 함수는 자바스크립트가 아니라, **WEB API**
 또, callback queue 등의 존재들(`Event Loop 형성`) 때문에 비동기 구현이 가능한 것.
-
-
-
-
 
 ## ETC
 

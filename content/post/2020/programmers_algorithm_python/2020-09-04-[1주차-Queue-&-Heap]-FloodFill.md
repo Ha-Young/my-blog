@@ -1,10 +1,10 @@
 ---
-title: "[1주차 Queue & Heap] Flood Fill - Lv3"
+title: '[1주차 Queue & Heap] Flood Fill - Lv3'
 draft: false
-date: "2020-09-08 08:13"
-path: "/algorithm/programmers/study_week1_4"
+date: '2020-09-08 08:13'
+path: '/algorithm/programmers/study_week1_4'
 category: 'algorithm'
-
+tags: ['python', 'algorithm']
 ---
 
 ## 문제 설명
@@ -19,14 +19,10 @@ n x m 크기 도화지에 그려진 그림의 색깔이 2차원 리스트로 주
 
 도화지의 크기 n과 m, 도화지에 칠한 색깔 image가 주어질 때, 그림에서 영역이 몇 개 있는지 리턴하는 solution 함수를 작성해주세요.
 
-
-
 ## 제한 사항
 
 - n과 m은 1 이상 250 이하인 정수입니다.
 - 그림의 색깔은 1 이상 30000 미만인 정수로만 주어집니다.
-
-
 
 ## 입출력 예
 
@@ -46,8 +42,6 @@ n x m 크기 도화지에 그려진 그림의 색깔이 2차원 리스트로 주
 ![22.png](./2020-09-04-FloodFill_2.png)
 
 따라서 이 이미지에는 4개 영역이 있습니다.
-
-
 
 ## 나의 풀이
 
@@ -106,11 +100,11 @@ def solution(n, m, image):
         for col in range(m):
             same_area_check.append(count)
             count += 1
-    
+
     for row in range(n):
         for col in range(m):
             union_area(row, col, image, same_area_check)
-    
+
     return len(Counter(same_area_check).keys())
 ```
 
@@ -119,7 +113,7 @@ def solution(n, m, image):
 이 문제는 처음 봤을 때 어떻게 해결해야 될지 감이 잘 안왔다.
 
 그렇게 한 2시간 빈둥대며 고민하다가 예전에 한번 봤던 Union-Find 알고리즘이 생각났는데, 이를 적용하면 되겠다 싶어서
-image에 각 픽셀에 대해 for문으로 돌면서 위, 왼쪽, 오른쪽, 아래쪽을 보면서 값이 같으면 same_area_check List에 Union 하는 방식이다. 
+image에 각 픽셀에 대해 for문으로 돌면서 위, 왼쪽, 오른쪽, 아래쪽을 보면서 값이 같으면 same_area_check List에 Union 하는 방식이다.
 
 union은 서로 해당 픽셀에 대해 same_area_check List에 getParent()해서 부모값을 가져오고, 그 부모 값중 작은 값으로 모두 설정해주는 방식. 그냥 Union-Find의 Union방식과도 같다.
 
@@ -142,8 +136,6 @@ union은 서로 해당 픽셀에 대해 same_area_check List에 getParent()해�
 >
 > 이 문제의 경우 색상별로 BFS를 이용해 **전부 채워나간다**라고 생각하시면 조금 더 이해가 쉽습니다. 한 번 도전해보세요!
 
-
-
 그리고 위 `5, 5, [[1, 2, 1, 1, 1], [1, 2, 1, 2, 1], [1, 2, 1, 2, 1], [1, 2, 1, 2, 1], [1, 1, 1, 2, 1]]` 대로 구불구불한 영역에 대해 노트필기로 알고리즘을 따라가 결과를 봤는데 아래 왼쪽과 같이 2개의 영역이 나와야 되는데,
 오른쪽 처럼 마지막에 이어지지 못하고 끊겨버리는 현상이 있었다.
 
@@ -151,11 +143,7 @@ union은 서로 해당 픽셀에 대해 same_area_check List에 getParent()해�
 
 <img src="./2020-09-04-FloodFill_3.png" alt="image-20200908161856779" style="zoom: 25%;" />
 
-
-
 다음에 BFS, DFS로 적용해봐야겠다.
-
-
 
 ### 두번째 풀이
 

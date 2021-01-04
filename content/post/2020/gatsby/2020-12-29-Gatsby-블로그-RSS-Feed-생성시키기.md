@@ -14,8 +14,6 @@ tags: ['google search console', 'gatsby', '내손내만블로그']
 
 그리고 이 RSS 피드를 통해 구독자들이 웹 사이트를 구독하게끔하여 새로운 컨텐츠 소식을 알릴 수 있고, 검색엔진에 이 RSS 피드를 통해 컨텐츠를 지속 노출시킬 수 있다.
 
-
-
 ## Gatsby 블로그에 RSS 피드 생성시키기
 
 Gatsby 블로그에 RSS 피드를 생성시키는 방법은 다음과 같다.
@@ -40,8 +38,6 @@ npm install gatsby-plugin-feed
 yarn add gatsby-plugin-feed
 ```
 
-
-
 ### gatsby-config.js에 적용시키기
 
 `gatsby-plugin-feed`를 설치하였다면, `gatsby-config.js`에 적용시켜야 한다.
@@ -52,14 +48,12 @@ module.exports = {
     siteUrl: `https://www.example.com`,
   },
   plugins: [
-	// ...
+    // ...
     `gatsby-plugin-feed`,
-  	// ...
+    // ...
   ],
 }
 ```
-
-
 
 ### gatsby-node.js에서 Markdown파일(포스팅)에 적용시키기
 
@@ -82,8 +76,6 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 `gatsby-node.js` 맨 아래에 다음과 같이 추가해준다.
 
 여기서 `createNodeField()`를 할 때 `name`은 반드시 unique 해야 한다. 따라서 경로를 나타내는 `slug`를 사용하는 것이 일반적이다.
-
-
 
 ### RSS피드 커스터마이징
 
@@ -151,8 +143,6 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
 다음과 같이 `graph 쿼리문`을 통해 원하는 데이터를 가져오고 RSS 피드에 들어갈 XML 키 밸류를 커스터마이징 할 수 있다.
 
-
-
 ### gatsby 빌드로 RSS 피드 생성
 
 ```bash
@@ -163,15 +153,9 @@ gatsby build
 
 `https://localhost:8000/rss.xml` 로컬로 실행한뒤 해당 url로 접근하여 잘 생성되었는지 확인해보자.
 
-
-
 ## RSS피드 Google Search Console에 적용시키기
 
-[링크 참조](https://ha-young.github.io/2020/frontend/Google-site%EA%B2%80%EC%83%89%EC%97%94%EC%A7%84%EC%97%90%EB%85%B8%EC%B6%9C%EC%8B%9C%ED%82%A4%EA%B8%B0/2020-12-30-%EC%82%AC%EC%9D%B4%ED%8A%B8%EB%A5%BC-Google-%EA%B2%80%EC%83%89%EC%97%94%EC%A7%84%EC%97%90-%EB%85%B8%EC%B6%9C%EC%8B%9C%ED%82%A4%EA%B8%B0-(SEO-%ED%96%A5%EC%83%81)/#%EC%B6%94%EA%B0%80-:-RSS%EB%A5%BC-Google-Search-Console%EC%97%90-%EB%93%B1%EB%A1%9D%ED%95%98%EA%B8%B0)
-
-
-
-
+[링크 참조](<https://ha-young.github.io/2020/frontend/Google-site%EA%B2%80%EC%83%89%EC%97%94%EC%A7%84%EC%97%90%EB%85%B8%EC%B6%9C%EC%8B%9C%ED%82%A4%EA%B8%B0/2020-12-30-%EC%82%AC%EC%9D%B4%ED%8A%B8%EB%A5%BC-Google-%EA%B2%80%EC%83%89%EC%97%94%EC%A7%84%EC%97%90-%EB%85%B8%EC%B6%9C%EC%8B%9C%ED%82%A4%EA%B8%B0-(SEO-%ED%96%A5%EC%83%81)/#%EC%B6%94%EA%B0%80-:-RSS%EB%A5%BC-Google-Search-Console%EC%97%90-%EB%93%B1%EB%A1%9D%ED%95%98%EA%B8%B0>)
 
 ## 참조한 곳
 
