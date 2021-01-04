@@ -1,9 +1,17 @@
 ---
-;title: '블로그를 Google Analytics에 추가'
+title: '블로그를 Google Analytics에 추가'
 date: 2020-12-31 19:30
 draft: false
 category: 'gatsby'
-tags: ['frontend', 'SEO', 'google search console', 'sitemap', 'gatsby', '내손내만블로그']
+tags:
+  [
+    'frontend',
+    'SEO',
+    'google search console',
+    'sitemap',
+    'gatsby',
+    '내손내만블로그',
+  ]
 ---
 
 ![구글 애널리틱스 - 구글 프리미엄 파트너사 골든플래닛](https://lh3.googleusercontent.com/proxy/Dm_VI_MkGACBmckIaJ1ScwYPnUGFxD4aaoFMYok_kTro7hicyM0fN1wG6Xx-_wb9DZQmS1sUSm69H1NkuW_uBthTFi3Q-9heMvUpgEB4qNW6KQRJA_Hr-gCK98HUYMghIXVJlQpKPE8GslwMRMs1hSzycSyfAs6MCeB2Lgz_8Kle)
@@ -27,16 +35,12 @@ Google Analytics로 할 수 있는 일
 - ads를 사용한다면 광고 최적화
 - 이러한 기능이 월 1000만건 까지는 무료
 
-등등 블로그로 한정한다면, 
+등등 블로그로 한정한다면,
 방문자 수, 방문 경로등의 정보를 토대로 포스팅 계획을 세우거나 최적화에 대한 측정을 통해 보다 나은 웹사이트 개선을 시도할 수 있겠다.
 
 > Google 에드센스로 광고수익을 노릴거라면 Google Analytics와 연계하면 더더욱 좋다. [참조](https://rankro.tistory.com/222)
 
-
-
 보다 자세한 사항은 [공식사이트](https://marketingplatform.google.com/intl/ko/about/analytics/)를 참조하자
-
-
 
 ## 그럼 Gatsby 블로그에도 적용가능?
 
@@ -47,8 +51,6 @@ Google Analytics로 할 수 있는 일
 > 예전에 만들어진 gatsby-plugin-google-analytics도 있는데 더이상 지원하지 않는 듯 하다.
 >
 > 대신, gatsby-plugin-google-gtag는 Google Analytics와 더불어 Ads, Marketing까지 한번에 적용가능해보인다.
-
-
 
 ## Gatsby 사이트에 Google Analytics 적용시키기
 
@@ -76,8 +78,6 @@ Google Analytics로 할 수 있는 일
 
 > 고급옵션에 유니버설 애널리틱스라고 있는데 이건 옛날버전이므로 특별한 이유가 아니라면 패스하자.
 
-
-
 ### 3. 비즈니스 정보 설정
 
 <img src=".\비즈니스정보설정.png" alt="비즈니스정보설정" style="zoom:67%;" />
@@ -86,15 +86,11 @@ Google Analytics로 할 수 있는 일
 
 약관동의는 대한민국으로, 이메일 커뮤니케이션은 희망하는대로 체크 하면 된다. (나는 모두 체크)
 
-
-
 ### 4. 데이터 스트림 추가
 
 다음으로 데이터 스트림을 추가해줘야되는데, 데이터 스트림은 고객 터치포인트로 앱이냐 웹이냐 등 데이터 흐름을 설정하는 것이라고 보면 된다.
 
 마찬가지로 한개의 속성에 여러개의 데이터스트림을 등록할 수 있으며(최대 50개), 데이터스트림이 추가되면 분석결과는 최대 24시간 소요될 수 있다. (등록한다고 결과가 바로 나오지 않는다)
-
-
 
 <img src=".\데이터스트림설정.png" alt="데이터스트림설정" style="zoom:67%;" />
 
@@ -104,8 +100,6 @@ Google Analytics로 할 수 있는 일
 
 향상된 측정부분에 측정 옵셔닝을 할 수 있는데, 다 해두면 좋을 것 같아서 나는 다 해뒀다.
 
-
-
 ### 5. 측정 ID 획득
 
 <img src=".\측정ID.png" alt="측정 ID" style="zoom:67%;" />
@@ -113,8 +107,6 @@ Google Analytics로 할 수 있는 일
 웹 스트림을 생성하면 **측정 ID**라고 나오는데 이 측정 ID가 **우리 Gatsby 블로그에서 설정**해야되므로 따로 복사를 해두자.
 
 이 측정 ID는 `G-`혹은 `UA-`로 시작해야되고, 이 <u>측정 ID를 통해 사이트 트래픽을 체킹하고 트래픽으로 데이터를 식별</u>하게 된다.
-
-
 
 ### 6. gatsby-plugin-google-gtag 설치
 
@@ -126,20 +118,18 @@ npm install gatsby-plugin-google-gtag
 
 yarn을 이용했다면 `yarn add`
 
-
-
 ### 7. gatsby-config.js에 설정
 
 ```js{8-9}
 module.exports = {
   plugins: [
     // ...
-    {  
+    {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
         // You can add multiple tracking ids and a pageview event will be fired for all of them.
         trackingIds: [
-          "G-XXXXXXXXXX", // 설정 Google Analytics / GA
+          'G-XXXXXXXXXX', // 설정 Google Analytics / GA
           // "AW-CONVERSION_ID", // Google Ads / Adwords / AW
           // "DC-FLOODIGHT_ID", // Marketing Platform advertising products (Display & Video 360, Search Ads 360, and Campaign Manager)
         ],
@@ -149,11 +139,9 @@ module.exports = {
 }
 ```
 
-
-
 ### 8. 내 Google Anayltics에서 결과 확인하기
 
-보고서에 대한 결과는 우리가 설정했던 [애널리틱스 페이지](https://analytics.google.com/analytics/web)에서 확인할 수 있다. 
+보고서에 대한 결과는 우리가 설정했던 [애널리틱스 페이지](https://analytics.google.com/analytics/web)에서 확인할 수 있다.
 
 막상 다음과 같은 설정을 끝내면 바로 결과는 나오지 않는다.
 
@@ -162,8 +150,6 @@ module.exports = {
 ![dashboard-examples](.\dashboard-examples.png)
 
 > 만약 위의 코드를 `gatsby-config.js`에 추가했는데도 전혀 추적이 되지 않고 있다면 gatsby-plugin-gtag를 플러그인 최상단에 배치하면 된다고 한다. ([참조](https://janeljs.github.io/blog/google-analytics/))
-
-
 
 ## 참조
 
