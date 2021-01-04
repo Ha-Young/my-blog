@@ -37,6 +37,7 @@ export default ({ data, pageContext, location }) => {
 
   return (
     <Layout location={location} title={title}>
+      <TableOfContents toc={tableOfContents} />
       <div
         style={{
           marginLeft: `auto`,
@@ -48,7 +49,6 @@ export default ({ data, pageContext, location }) => {
         }}
       >
         <SEO title={postTitle} description={excerpt} />
-        <TableOfContents toc={tableOfContents} />
         <PostTitle title={postTitle} />
         <PostDate date={date} />
         <PostContainer html={html} />

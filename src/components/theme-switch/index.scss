@@ -1,10 +1,10 @@
-@import '../../styles/variables.scss';
 @import '../../styles/responsive-device.scss';
 
 .switch-container {
   position: fixed;
-  top: $top-header-height + 30px;
-  right: 90px;
+  bottom: 50px;
+  right: 50px;
+  z-index: 3;
 
   .icon {
     text-align: center;
@@ -14,29 +14,23 @@
   }
 }
 
-@include desktop {
-  .switch-container {
-    right: 50px;
-  }
-}
-
 @include tablet-portrait {
   .switch-container {
-    position: absolute;
-    right: 50px;
+    right: 30px;
+    bottom: 30px;
   }
 }
 
 @include tablet {
   .switch-container {
-    position: absolute;
-    right: 40px;
+    right: 10px;
+    bottom: 10px;
   }
 }
 
 @include mobile {
   .switch-container {
-    position: absolute;
-    right: 30px;
+    right: 5px;
+    bottom: 5px;
   }
 }

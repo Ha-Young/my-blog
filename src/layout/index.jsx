@@ -18,13 +18,10 @@ export const Layout = ({ location, title, children }) => {
         <Header title={title} location={location} rootPath={rootPath} />
         <ThemeSwitch />
         <div
+          className='content'
           style={{
             marginLeft: `auto`,
-            marginRight: `auto`,
-            maxWidth: rhythm(54),
-            padding: `${rhythm(1.5)} ${rhythm(3 / 4)} ${rhythm(1)} ${rhythm(
-              3 / 4
-            )}`,
+            marginRight: `auto`
           }}
         >
           {children}

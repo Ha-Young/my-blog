@@ -56,6 +56,7 @@ export default ({ data, location }) => {
           marginLeft: `auto`,
           marginRight: `auto`,
           maxWidth: rhythm(24),
+          paddingTop: rhythm(3 / 4),
         }}
       >
         <Bio />
