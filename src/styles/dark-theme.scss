@@ -113,4 +113,12 @@ body.dark {
       background-color: $dark-tag-total-count;
     }
   }
+
+  .toc-container {
+    .toc-open-btn {
+      background: $dark-toc-btn-background;
+      border: 2px solid $dark-toc-btn-border;
+      color: $dark-toc-btn-color;
+    }
+  }
 }

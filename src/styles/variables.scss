@@ -41,6 +41,11 @@ $light-tag-color: #00008086;
 $light-tag-complementary: rgb(131, 5, 30);
 $light-tag-total-count: rgba(0, 0, 0, 0.2);
 
+// toc
+$light-toc-btn-background: white;
+$light-toc-btn-border: #34495e;
+$light-toc-btn-color: #34495e;
+
 /**
  * @dark theme
  */
@@ -66,6 +71,10 @@ $dark-category-highlight-text-color: #fff;
 $dark-tag-color: rgba(178, 93, 235, 0.31);
 $dark-tag-complementary: rgb(95, 5, 23);
 $dark-tag-total-count: rgba(255, 255, 255, 0.2);
+
+$dark-toc-btn-background: white;
+$dark-toc-btn-border: #34495e;
+$dark-toc-btn-color: #34495e;
 
 // Responsive Device Breakpoints
 $breakpoint-mobile: 480px;

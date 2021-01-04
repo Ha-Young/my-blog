@@ -100,4 +100,12 @@ body.light {
       background-color: $light-tag-total-count;
     }
   }
+
+  .toc-container {
+    .toc-open-btn {
+      background: $light-toc-btn-background;
+      border: 2px solid $light-toc-btn-border;
+      color: $light-toc-btn-color;
+    }
+  }
 }
