@@ -3,4 +3,5 @@ export const className = {
     post_img: 'gatsby-resp-image-wrapper',
   },
   post_content: 'post-content',
+  theme_switch: 'switch-container',
 }

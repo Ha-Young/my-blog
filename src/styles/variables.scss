@@ -46,6 +46,16 @@ $light-toc-btn-background: white;
 $light-toc-btn-border: #34495e;
 $light-toc-btn-color: #34495e;
 
+$light-toc-btn-background: white;
+$light-toc-btn-border: #34495e;
+$light-toc-btn-color: #34495e;
+$light-toc-content-border: #ebebeb;
+$light-toc-content-background: #fff;
+$light-toc-content-color: #34495e;
+$light-toc-content-box-shadow: rgba(0, 0, 0, 0.045);
+$light-toc-a-color: #34495e;
+$light-toc-before-after-color: #ebebeb;
+
 /**
  * @dark theme
  */
@@ -75,6 +85,12 @@ $dark-tag-total-count: rgba(255, 255, 255, 0.2);
 $dark-toc-btn-background: white;
 $dark-toc-btn-border: #34495e;
 $dark-toc-btn-color: #34495e;
+$dark-toc-content-border: #ebebeb;
+$dark-toc-content-background: #fff;
+$dark-toc-content-color: #34495e;
+$dark-toc-content-box-shadow: rgba(0, 0, 0, 0.045);
+$dark-toc-a-color: #34495e;
+$dark-toc-before-after-color: #ebebeb;
 
 // Responsive Device Breakpoints
 $breakpoint-mobile: 480px;
