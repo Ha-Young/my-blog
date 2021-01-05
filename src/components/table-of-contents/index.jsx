@@ -13,14 +13,22 @@ export const TableOfContents = ({ toc }) => {
     const tocContent = e.target.previousSibling
     if (tocContent) {
       const isOpen = Dom.togleClass(tocContent, 'open')
-      // TOC를 최상단에 오게하기위해 gatsby-remark-img가 적용된 img에 대해 z-index를 낮춰야 함.
-      const postImgElements = Dom.getElements(className.gatsby_plugin.post_img)
-      const postImgZIndex = isOpen ? -1 : 1
+      // TOC를 최상단에 오게하기위해 최상단에 위치해져있는 Element들의 z-index를 낮춰야 함.
+      const postTopestElementsList = [
+        Dom.getElements('.' + className.gatsby_plugin.post_img),
+        Dom.getElements(`.${className.post_content} h2`),
+        Dom.getElements(`.${className.post_content} h3`),
+        Dom.getElements(`.${className.post_content} h4`),
+        Dom.getElements(`.${className.post_content} h5`),
+        Dom.getElements(`.${className.post_content} h6`),
+      ]
 
-      console.log(postImgElements)
+      const guidedZIndex = isOpen ? -1 : 'auto'
 
-      postImgElements.forEach(postImgElement => {
-        postImgElement.style.zIndex = postImgZIndex
+      postTopestElementsList.forEach(postTopestElements => {
+        postTopestElements.forEach(postImgElement => {
+          postImgElement.style.zIndex = guidedZIndex
+        })
       })
     }
   }
