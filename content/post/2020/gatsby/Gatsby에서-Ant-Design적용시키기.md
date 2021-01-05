@@ -3,7 +3,7 @@ title: 'Gatsby에서 Ant Design적용시키기'
 date: 2020-08-17 22:10:13
 draft: false
 category: 'gatsby'
-tags: ['gatsby']
+tags: ['gatsby', '내손내만블로그']
 ---
 
 ### Gatsby에서 Ant Design 적용시키기
