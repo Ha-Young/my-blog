@@ -9,6 +9,7 @@ import { Link, graphql } from 'gatsby'
 import { Layout } from '../layout'
 import { SEO } from '../components/seo'
 import { Tag } from '../components/tag'
+import { TAGS_TITLE } from '../constants/meta'
 
 const TagsPage = ({
   data: {
@@ -20,7 +21,7 @@ const TagsPage = ({
   location,
 }) => (
   <Layout location={location} title={title}>
-    <SEO title="Tags" keywords={keywords} />
+    <SEO title={TAGS_TITLE} keywords={keywords} />
     <div>
       <h1>Tags</h1>
       <ul>
