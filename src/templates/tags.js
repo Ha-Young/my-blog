@@ -6,26 +6,26 @@ import { Link, graphql } from 'gatsby'
 import { Layout } from '../layout'
 import { ThumbnailContainer } from '../components/thumbnail-container'
 import { ThumbnailItem } from '../components/thumbnail-item'
-import { Hr } from '../components/elements/hr'
 
 import { rhythm } from '../utils/typography'
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver'
+import { SEO } from '../components/seo'
 
 const Tags = ({ pageContext, data, location }) => {
   const { tag } = pageContext
   const filteredEdges = data.allMarkdownRemark.edges.filter(
     ({ node }) => !node.frontmatter.draft && !!node.frontmatter.category
   )
+
   const totalCount = filteredEdges.length
 
-  const tagHeader = `${totalCount} post${
-    totalCount === 1 ? '' : 's'
-  } tagged with "${tag}"`
+  const tagStatement = ' tagged with '
+  const tagHeader = `${tagStatement}"${tag}"`
 
   useIntersectionObserver()
-
   return (
-    <Layout location={location} title={tag}>
+    <Layout location={location} title={tagHeader}>
+      <SEO title={tagHeader} description={tagHeader} />
       <div
         style={{
           marginLeft: `auto`,
@@ -33,7 +33,11 @@ const Tags = ({ pageContext, data, location }) => {
           maxWidth: rhythm(24),
         }}
       >
-        <h1>{tagHeader}</h1>
+        <h1>
+          <span className="tag-header-count">{totalCount}</span>
+          {totalCount === 1 ? '' : 's'}
+          {tagStatement}"<span className="tag-header-tag">{tag}</span>"{' '}
+        </h1>
         <ThumbnailContainer>
           {filteredEdges.map(({ node }, index) => (
             <ThumbnailItem node={node} key={`item_${index}`} />
