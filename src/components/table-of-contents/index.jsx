@@ -7,6 +7,8 @@ import './index.scss'
 
 // TOC 읽은 주제 표시
 // @copyright https://codepen.io/Radiergummi/pen/bjEZMO
+// https://blueshw.github.io/2020/05/30/table-of-contents/
+//
 
 export const TableOfContents = ({ toc }) => {
   const onClickTOCOpen = e => {
@@ -30,6 +32,11 @@ export const TableOfContents = ({ toc }) => {
           postImgElement.style.zIndex = guidedZIndex
         })
       })
+
+      const themeSwitch = Dom.getElement(`.${className.theme_switch}`)
+      const guidedOpacity = isOpen ? 0 : 1
+
+      themeSwitch.style.opacity = guidedOpacity
     }
   }
 

@@ -5,6 +5,8 @@
   bottom: 50px;
   right: 50px;
   z-index: 3;
+  opacity: 1;
+  transition: opacity 0.4s linear;
 
   .icon {
     text-align: center;
