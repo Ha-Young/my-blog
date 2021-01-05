@@ -93,6 +93,40 @@
   }
 }
 
+.toc-active {
+  color: crimson !important;
+}
+
+.toc-header {
+  // color: crimson;
+  position: relative;
+  display: inline-block;
+  padding: 5px 5px 0px 5px;
+  z-index: 2;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 0;
+    left: -100%;
+    width: 0%;
+    height: 100%;
+    background: rgba(220, 20, 60, 0.25);
+    border-radius: 5%;
+    opacity: 1;
+    transition: all 0.35s;
+    z-index: 1;
+  }
+}
+
+.toc-header-active::before {
+  left: 0;
+  width: 100%;
+  opacity: 1;
+}
+
 @include tablet-portrait {
   .toc-container {
     .toc-content {
