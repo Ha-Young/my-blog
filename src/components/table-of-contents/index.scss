@@ -93,17 +93,30 @@
   }
 }
 
+.anchor.before {
+  z-index: 2;
+}
+
+.toc-readed {
+  color: orange !important;
+}
+
 .toc-active {
-  color: crimson !important;
+  &::before {
+    content: '{ ';
+  }
+
+  *::after {
+    content: ' }';
+  }
 }
 
 .toc-header {
-  // color: crimson;
   position: relative;
   display: inline-block;
   padding: 5px 5px 0px 5px;
   z-index: 2;
-  overflow: hidden;
+  transition: all 1s;
 
   &::before {
     content: '';
@@ -121,10 +134,14 @@
   }
 }
 
-.toc-header-active::before {
-  left: 0;
-  width: 100%;
-  opacity: 1;
+.toc-header-active {
+  color: crimson;
+
+  &::before {
+    left: 0;
+    width: 100%;
+    opacity: 1;
+  }
 }
 
 @include tablet-portrait {

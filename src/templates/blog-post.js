@@ -33,8 +33,6 @@ export default ({ data, pageContext, location }) => {
   const { frontmatter, html, tableOfContents, excerpt } = post
   const { title: postTitle, date } = frontmatter
 
-  const isExistTOC = tableOfContents && tableOfContents.length > 0
-
   return (
     <Layout location={location} title={title}>
       <TableOfContents toc={tableOfContents} />
