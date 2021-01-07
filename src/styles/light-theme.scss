@@ -129,4 +129,15 @@ body.light {
       }
     }
   }
+  .toc-active {
+    color: $light-toc-active-color !important;
+  }
+  .toc-header {
+    &::before {
+      background: $light-toc-header-before-backgroundcolor;
+    }
+  }
+  .toc-header-active {
+    color: $light-toc-header-active-color;
+  }
 }

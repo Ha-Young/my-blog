@@ -98,7 +98,6 @@
 }
 
 .toc-active {
-  color: crimson !important;
   // &::before {
   //   content: '{ ';
   // }
@@ -123,7 +122,6 @@
     left: -100%;
     width: 0%;
     height: 100%;
-    background: rgba(220, 20, 60, 0.25);
     border-radius: 5%;
     opacity: 1;
     transition: all 0.35s;
@@ -132,8 +130,6 @@
 }
 
 .toc-header-active {
-  color: crimson;
-
   &::before {
     left: 0;
     width: 100%;

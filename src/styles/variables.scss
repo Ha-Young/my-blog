@@ -56,6 +56,10 @@ $light-toc-content-box-shadow: rgba(0, 0, 0, 0.045);
 $light-toc-a-color: #34495e;
 $light-toc-before-after-color: #ebebeb;
 
+$light-toc-active-color: crimson;
+$light-toc-header-active-color: crimson;
+$light-toc-header-before-backgroundcolor: rgba(220, 20, 60, 0.25);
+
 /**
  * @dark theme
  */
@@ -91,6 +95,10 @@ $dark-toc-content-color: #34495e;
 $dark-toc-content-box-shadow: rgba(0, 0, 0, 0.045);
 $dark-toc-a-color: #34495e;
 $dark-toc-before-after-color: #ebebeb;
+
+$dark-toc-active-color: orange;
+$dark-toc-header-active-color: orange;
+$dark-toc-header-before-backgroundcolor: rgba(255, 166, 0, 0.26);
 
 // Responsive Device Breakpoints
 $breakpoint-mobile: 480px;

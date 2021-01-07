@@ -142,4 +142,15 @@ body.dark {
       }
     }
   }
+  .toc-active {
+    color: $dark-toc-active-color !important;
+  }
+  .toc-header {
+    &::before {
+      background: $dark-toc-header-before-backgroundcolor;
+    }
+  }
+  .toc-header-active {
+    color: $dark-toc-header-active-color;
+  }
 }
