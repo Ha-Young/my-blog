@@ -6,7 +6,7 @@ category: 'vanilla coding'
 tags: ['vanilla coding', 'prep', 'review', 'bootCamp']
 ---
 
-[![바닐라코딩](https://www.vanillacoding.co/images/vanillacoding-logo_black.png)](https://www.vanillacoding.co/)
+[![바닐라코딩](./바닐라코딩_logo.png)](https://www.vanillacoding.co/)
 
 <br>
 

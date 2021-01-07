@@ -11,14 +11,11 @@ import './index.scss'
 // @copyright https://codepen.io/Radiergummi/pen/bjEZMO
 // https://blueshw.github.io/2020/05/30/table-of-contents/
 // https://whywhyy.me/blog/2020/06/10/%EA%B3%A0%EC%98%A4%EA%B8%89%20%EB%AA%A9%EC%B0%A8(Table%20of%20Contents)%EC%9D%84%20%EB%A7%8C%EB%93%A4%EC%96%B4%EB%B3%B4%EC%9E%90#%EB%AA%A9%ED%91%9C
-const HEADER_OFFSET_Y = 80
+const HEADER_OFFSET_Y = 180
 
 function getHeaderElements() {
-  const headerSelectors = [`.${className.post_content} h2, h3, h4, h5, h6`]
-
-  const headerElements = Array.from(Dom.getElements(headerSelectors))
-
-  return headerElements
+  const headerSelectors = `.${className.post_content} > h2, h3, h4, h5, h6`
+  return Array.from(Dom.getElements(headerSelectors))
 }
 
 function onClickTOCOpen(e) {
@@ -49,6 +46,7 @@ export const TableOfContents = ({ toc }) => {
     const currentoffsetY = window.pageYOffset
     const headerElements = getHeaderElements()
     for (const headerElement of headerElements) {
+      if (!headerElement.id) continue // id가 없으면 패스(markdown에서 잘못 적은 것)
       const { top } = headerElement.getBoundingClientRect()
       const elementTop = top + currentoffsetY
       const tocLinkElement = Dom.getElement(

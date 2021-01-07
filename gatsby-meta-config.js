@@ -8,8 +8,8 @@ module.exports = {
   social: {
     github: `hayeong28@naver.com`, // Your GitHub account
     medium: ``, // Your Medium account
-    facebook: `https://www.facebook.com/hayoung28/`, // Your Facebook account
-    linkedin: `https://www.linkedin.com/in/%ED%95%98%EC%98%81-%EC%B5%9C-6832781b6/`, // Your LinkedIn account
+    facebook: `hayoung28`, // Your Facebook account
+    linkedin: `ha-young-choi-1ba15b1b7`, // Your LinkedIn account
     instagram: `https://www.instagram.com/niceha0/`,
   },
   icon: `content/assets/logo-haong.png`, // Add your favicon
