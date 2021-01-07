@@ -133,50 +133,43 @@ export const TableOfContents = ({toc}) => {
 
 이 방법을 실현하려면 두 가지 방법이 있는 것 같다.
 
-- scrollEvent에서 Header가 윗부분으로 오는지 체크
-- IntersectionObserver를 이용해 체크
+- `scrollEvent`에서 Header가 윗부분으로 오는지 체크
+- `IntersectionObserver`를 `rootMargin`을 위쪽영역으로 하여 가시성이 보이는 순간(`isIntersecting`) 체크
 
-개인적인 판단으로는 scrollEvent에서 스크롤의 매 순간으로 header의 영역과 window offsetY를 체크하기보다는 IntersectionObserver로 Header들의 가시성이 변환 될 때만 체크를 하는 것이 더 효율적으로 생각되었다.
+개인적인 판단으로는 `scrollEvent`에서 스크롤의 매 순간 header의 영역과 window `offsetY`를 체크하여 계산하기보다는 `IntersectionObserver`로 Header들의 가시성이 변환 될 때만 체크를 하는 것이 더 효율적으로 생각되었다.
 
-따라서 IntersectionObserver를 이용해 체크하기로 결정.
+따라서 `IntersectionObserver`를 이용해 체크하기로 결정.
 
 > IntersectionObserver에 대해서 잘 모른다면 [HEROPY님의 포스팅](https://heropy.blog/2019/10/27/intersection-observer/)을 참고하자.
 >
-> 정리가 매우 잘 되어 있다.
+> 정리가 매우 잘 되어 있다. 👍
 
-```js{7,12}
+```js{7,15}
 useEffect(() => {
     observer = new IntersectionObserver(
       entries => {
         entries.forEach(entry => {
-          const header = entry.target
-          const tocLink = Dom.getElement(`a[href*="${encodeURI(header.id)}"]`)
+          const headerElement = entry.target
+          const tocLinkElement = Dom.getElement(`a[href*="${encodeURI(header.id)}"]`)
 
           if (entry.isIntersecting) {
-            header.classList.add('toc-header-active')
-            tocLink.classList.add('toc-active')
-          } else if (currentYPos < targetStaticYPos) {
-            header.classList.remove('toc-header-active')
-            tocLink.classList.remove('toc-active')
+            headerElement.classList.add('toc-header-active')
+            tocLinkElement.classList.add('toc-active')
+          } 
+          else if (currentYPos < targetStaticYPos) // 스크롤을 위로 올려서 헤더 주제를 벗어난 경우
+          {
+            headerElement.classList.remove('toc-header-active')
+            tocLinkElement.classList.remove('toc-active')
           }
         })
       },
       { rootMargin: `0% 0% -85% 0%` }
     )
 
-    headerElementsList = [
-      Dom.getElements(`.${className.post_content} h2`),
-      Dom.getElements(`.${className.post_content} h3`),
-      Dom.getElements(`.${className.post_content} h4`),
-      Dom.getElements(`.${className.post_content} h5`),
-      Dom.getElements(`.${className.post_content} h6`),
-    ]
+    headerElements = getHeaderElements()
 
-    headerElementsList.forEach(headerElements => {
-      headerElements.forEach(headerElement => {
-        headerElement.classList.add('toc-header')
-        observer.observe(headerElement)
-      })
+    headerElements.forEach(headerElement => {
+      observer.observe(headerElement)
     })
   })
 ```
@@ -195,19 +188,109 @@ observing하는 root는 `0% 0% -85% 0%`로 설정해서 Header가 root로 설정
 
 ### 5. 문제점 발견
 
-나는 `entry.isIntersection`으로 체크가 되었을 때 하이라이팅처리, IntersectionObserver를 통한 계산값으로 스크롤을 헤더 위로 올렸을때 하이라이팅을 제거하도록해서 css class를 toggle시키는 방법을 선택했었다.
+이 다음단계로 `Intersectioning` 하는 부분을 따로 hooks로 분리시키는 등의 리팩토링을 진행하려고 하였으나,
+문제점을 발견하였다.
+
+나는 `entry.isIntersection`으로 체크가 되었을 때 하이라이팅처리, `IntersectionObserver`를 통한 계산값으로 스크롤을 헤더 위로 올렸을때 하이라이팅을 제거하도록해서 css class를 toggle시키는 방법을 선택했었다.
 
 스크롤 하면서 처음 보여질 때 css classname을 추가해서 하이라이트 처리가 되도록하고, 
 스크롤을 위로올리면서 두번째로 보여질 때 cssclassname을 제거하면서 하이라이트를 제거하려고 하였다.
 
 > HEROPHY님 Tech blog 처럼 읽은 주제에 대해서는 하이라이트, 다시 위로 올리면 하이라이트제거
 
-하지만, header #경로로 이동할 때 스크롤의 속도가 너무 빨라 `isIntersection` `true`가 발생하지않아 toggle이 꼬이는 상황이 발생하였다.
+하지만, **header #경로로 이동할 때 스크롤의 속도가 너무 빨라 `isIntersection` `true`가 발생하지않아 toggle이 꼬이는 상황이 발생**하였다.
 
-그래서 이래저래 로그도 찍어보면서 방법을 강구한 결과, scroll Event로 각 Header들의 위치판단으로 적용시키기로 하였다.
+그래서 이래저래 로그도 찍어보면서 방법을 강구한 결과, `scroll Event`로 각 Header들의 위치판단으로 적용시키기로 하였다.
+
+#### 해결책
+
+- `Scroll Event` 사용하기로 결정
+- 낮아진 효율성은 `Scroll Event`에 Task Queue(Event Queue)대신 Animation frames(`rAF`)으로 처리되도록 하기 - [Jbee님의 스크롤이벤트 최적화 포스트 참조](https://jbee.io/web/optimize-scroll-event/)
 
 
 
-이에 따라 `isIntersection` `true` 발생가 발생한 header는 현재 보고있는 주제로 판단하고,
-읽은 주제를 하이라이팅 처리하고 
+### 6. 해결책 (Scroll event) 적용
+
+위 해결책을 적용하기 위해 기존에 [gatsby-starter-bee](https://github.com/JaeYeopHan/gatsby-starter-bee) 에 존재하는 `onScroll`과 `toFit`을 적용시키고 scroll Event로 잘 수행되는지 확인해보았다.
+
+```js
+// TableOfContents
+const onScroll = () => {
+    const currentoffsetY = window.pageYOffset
+    const headerElements = getHeaderElements()
+    for (const headerElement of headerElements) {
+        const { top } = headerElement.getBoundingClientRect()
+        const elementTop = top + currentoffsetY
+		const tocLinkElement = Dom.getElement(
+        	`a[href*="${encodeURI(headerElement.id)}"]`
+        )
+        if (currentoffsetY >= elementTop - HEADER_OFFSET_Y) {
+             headerElement.classList.add('toc-header-active')
+             tocLinkElement.classList.add('toc-active')
+        } else {
+             headerElement.classList.remove('toc-header-active')
+             tocLinkElement.classList.remove('toc-active')
+        }
+    }
+}
+
+useScrollEvent(() => {
+    return EventManager.toFit(onScroll, {})()
+})
+```
+
+잘 작동하는 것을 확인하였다.
+
+
+
+적용된 `useScrollEvent`와 `toFit` 함수는 아래와 같다.
+
+```js
+// useScrollEvent
+import { useEffect } from 'react'
+
+export function useScrollEvent(onScroll) {
+  useEffect(() => {
+    window.addEventListener(`scroll`, onScroll, { passive: false })
+    return () => {
+      window.removeEventListener(`scroll`, onScroll, { passive: false })
+    }
+  }, [])
+}
+```
+
+```js
+// toFit
+export function toFit(
+  cb,
+  { dismissCondition = () => false, triggerCondition = () => true }
+) {
+  if (!cb) {
+    throw Error('Invalid required arguments')
+  }
+
+  let tick = false
+
+  return function() {
+    if (tick) {
+      return
+    }
+
+    tick = true
+    return requestAnimationFrame(() => {
+      if (dismissCondition()) {
+        tick = false
+        return
+      }
+
+      if (triggerCondition()) {
+        tick = false
+        return cb()
+      }
+    })
+  }
+}
+```
+
+
 
