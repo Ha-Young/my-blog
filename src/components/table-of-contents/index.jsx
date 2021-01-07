@@ -18,6 +18,13 @@ function getHeaderElements() {
   return Array.from(Dom.getElements(headerSelectors))
 }
 
+function getElementTopPos(element) {
+  const currentoffsetY = window.pageYOffset
+  const { top } = element.getBoundingClientRect()
+
+  return top + currentoffsetY
+}
+
 function onClickTOCOpen(e) {
   const tocContent = e.target.previousSibling
   if (tocContent) {
@@ -47,13 +54,12 @@ export const TableOfContents = ({ toc }) => {
     const headerElements = getHeaderElements()
     for (const headerElement of headerElements) {
       if (!headerElement.id) continue // id가 없으면 패스(markdown에서 잘못 적은 것)
-      const { top } = headerElement.getBoundingClientRect()
-      const elementTop = top + currentoffsetY
+      const headerElementTop = getElementTopPos(headerElement)
       const tocLinkElement = Dom.getElement(
         `a[href*="${encodeURI(headerElement.id)}"]`
       )
 
-      if (currentoffsetY >= elementTop - HEADER_OFFSET_Y) {
+      if (currentoffsetY >= headerElementTop - HEADER_OFFSET_Y) {
         headerElement.classList.add('toc-header-active')
         tocLinkElement.classList.add('toc-active')
       } else {
@@ -71,7 +77,17 @@ export const TableOfContents = ({ toc }) => {
     const headerElements = getHeaderElements()
 
     headerElements.forEach(headerElement => {
-      headerElement.classList.add('toc-header')
+      headerElement.classList.add('toc-header') // active 애니메이션 효과를 위해 사전에 클래스 추가
+
+      const headerElementTop = getElementTopPos(headerElement)
+      const tocLinkElement = Dom.getElement(
+        `a[href*="${encodeURI(headerElement.id)}"]`
+      )
+
+      tocLinkElement.addEventListener('click', e => {
+        e.preventDefault()
+        window.scroll({ top: headerElementTop, behavior: 'smooth' })
+      })
     })
   })
 

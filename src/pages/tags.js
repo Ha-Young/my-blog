@@ -10,6 +10,7 @@ import { Layout } from '../layout'
 import { SEO } from '../components/seo'
 import { Tag } from '../components/tag'
 import { TAGS_TITLE } from '../constants/meta'
+import { rhythm } from '../utils/typography'
 
 const TagsPage = ({
   data: {
@@ -22,7 +23,13 @@ const TagsPage = ({
 }) => (
   <Layout location={location} title={title}>
     <SEO title={TAGS_TITLE} keywords={keywords} />
-    <div>
+    <div
+      style={{
+        marginLeft: `auto`,
+        marginRight: `auto`,
+        maxWidth: rhythm(32),
+      }}
+    >
       <h1>Tags</h1>
       <ul>
         {group.map(tag => (
