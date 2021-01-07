@@ -13,6 +13,7 @@ import { Bio } from '../components/bio'
 import { PostNavigator } from '../components/post-navigator'
 import { Disqus } from '../components/disqus'
 import { Utterances } from '../components/utterances'
+import { TableOfContents } from '../components/table-of-contents'
 import * as ScrollManager from '../utils/scroll'
 import { rhythm } from '../utils/typography'
 
@@ -29,10 +30,12 @@ export default ({ data, pageContext, location }) => {
   const metaData = data.site.siteMetadata
   const { title, comment, siteUrl, author, sponsor } = metaData
   const { disqusShortName, utterances } = comment
-  const { title: postTitle, date } = post.frontmatter
+  const { frontmatter, html, tableOfContents, excerpt } = post
+  const { title: postTitle, date } = frontmatter
 
   return (
     <Layout location={location} title={title}>
+      <TableOfContents toc={tableOfContents} />
       <div
         style={{
           marginLeft: `auto`,
@@ -43,10 +46,10 @@ export default ({ data, pageContext, location }) => {
           )}`,
         }}
       >
-        <SEO title={postTitle} description={post.excerpt} />
+        <SEO title={postTitle} description={excerpt} />
         <PostTitle title={postTitle} />
         <PostDate date={date} />
-        <PostContainer html={post.html} />
+        <PostContainer html={html} />
         <SocialShare title={postTitle} author={author} />
         {!!sponsor.buyMeACoffeeId && (
           <SponsorButton sponsorId={sponsor.buyMeACoffeeId} />
@@ -62,7 +65,7 @@ export default ({ data, pageContext, location }) => {
             slug={pageContext.slug}
           />
         )}
-        {!!utterances && <Utterances repo={utterances} />}
+        {/* {!!utterances && <Utterances repo={utterances} />} */}
       </div>
     </Layout>
   )
@@ -87,6 +90,7 @@ export const pageQuery = graphql`
       id
       excerpt(pruneLength: 280)
       html
+      tableOfContents
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")

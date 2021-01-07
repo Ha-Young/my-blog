@@ -100,4 +100,44 @@ body.light {
       background-color: $light-tag-total-count;
     }
   }
+
+  .toc-container {
+    .toc-open-btn {
+      background: $light-toc-btn-background;
+      border: 2px solid $light-toc-btn-border;
+      color: $light-toc-btn-color;
+    }
+
+    .toc-content {
+      border: 2px solid $dark-toc-content-border;
+      background: $dark-toc-content-background;
+      color: $dark-toc-content-color;
+      box-shadow: -4px 4px 0 0 $dark-toc-content-box-shadow;
+
+      .toc {
+        a {
+          color: $dark-toc-a-color;
+        }
+
+        &::before {
+          color: $dark-toc-before-after-color;
+        }
+
+        &::after {
+          color: $dark-toc-before-after-color;
+        }
+      }
+    }
+  }
+  .toc-active {
+    color: $light-toc-active-color !important;
+  }
+  .toc-header {
+    &::before {
+      background: $light-toc-header-before-backgroundcolor;
+    }
+  }
+  .toc-header-active {
+    color: $light-toc-header-active-color;
+  }
 }

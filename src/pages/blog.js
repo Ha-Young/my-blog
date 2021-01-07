@@ -6,7 +6,7 @@ import { Category } from '../components/category'
 import { CategorySide } from '../components/category-side'
 import { Contents } from '../components/contents'
 import { SEO } from '../components/seo'
-import { HOME_TITLE } from '../constants'
+import { BLOG_TITLE } from '../constants/meta'
 import { useCategory } from '../hooks/useCategory'
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver'
 import { useRenderedCount } from '../hooks/useRenderedCount'
@@ -50,12 +50,13 @@ export default ({ data, location }) => {
 
   return (
     <Layout location={location} title={siteMetadata.title}>
-      <SEO title={HOME_TITLE} keywords={siteMetadata.keywords} />
+      <SEO title={BLOG_TITLE} keywords={siteMetadata.keywords} />
       <div
         style={{
           marginLeft: `auto`,
           marginRight: `auto`,
           maxWidth: rhythm(24),
+          paddingTop: rhythm(2),
         }}
       >
         <Bio />

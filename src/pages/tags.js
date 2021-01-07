@@ -9,6 +9,8 @@ import { Link, graphql } from 'gatsby'
 import { Layout } from '../layout'
 import { SEO } from '../components/seo'
 import { Tag } from '../components/tag'
+import { TAGS_TITLE } from '../constants/meta'
+import { rhythm } from '../utils/typography'
 
 const TagsPage = ({
   data: {
@@ -20,8 +22,14 @@ const TagsPage = ({
   location,
 }) => (
   <Layout location={location} title={title}>
-    <SEO title="Tags" keywords={keywords} />
-    <div>
+    <SEO title={TAGS_TITLE} keywords={keywords} />
+    <div
+      style={{
+        marginLeft: `auto`,
+        marginRight: `auto`,
+        maxWidth: rhythm(32),
+      }}
+    >
       <h1>Tags</h1>
       <ul>
         {group.map(tag => (
