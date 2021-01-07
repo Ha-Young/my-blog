@@ -1,22 +1,35 @@
+---
+title: 'Gatsby 블로그 TOC 만들기'
+date: 2021-01-07 23:10:13
+draft: false
+category: 'gatsby'
+tags: ['gatsby', '내손내만블로그']
+---
+
 ## TOC 청사진 고르기
 
-### HEROPHY님의 Tech 블로그
+블로그를 만들면서 TOC를 추가해야겠다고 결정하였다.
 
-### Gatsby 공식사이트
+이래저래 다른블로그들은 TOC를 어떻게 구성하였나 둘러보던참에,
+예전에 [HEROPHY님의 블로그](https://heropy.blog/)의 TOC가 생각났다.
 
-### Regyu님의 블로그
+안그래도 HEROPHY님의 블로그가 깔끔하고 예뻐서 참고하려는 기능들이 있었는데,
+이참에 HEROPHY님에게 클론을 해도되는지 물어보기로했다.
+
+### 클론코딩 허락
+
+HEROPHY님에게 블로그 몇가지 기능에대해서 클론코딩을 해도 괜찮은지 조심스럽게 메일을 통해 물어보았고 답변을 받았다.
+
+![클론코딩허락](C:\blog\my-blog\content\post\2020\gatsby\Gatsby-블로그-TOC만들기-클론허락.png)
+
+> 예쁜 블로그만큼이나 마음씨도 예쁘신 것 같다.
 
 
 
-## 기획
+이렇게 대략적인 모델이 정해졌으므로 클론코딩을 시작하면 되는데,
+나는 여기서 <u>TOC Link에만 하이라이팅을 하는 것 대신 포스트의 Header에도 하이라이팅 처리</u>를 하기로 하였다.
 
-### Header에 맞춰서 읽은부분 TOC 하이라이트처리
-
-### 읽고있는 부분 본문 Header 형광팬처리
-
-### 현재 읽는 부분 별도 처리
-
-### 
+그럼 시작.
 
 ## TOC 만들기
 
@@ -293,4 +306,50 @@ export function toFit(
 ```
 
 
+
+### 7. # url 불편함 제거
+
+다 완성하고 난 후에 이래저래 테스트를 해보다보니 불편함 점을 발견했다.
+TOC 컴포넌트의 Link를 클릭하면 `originURL/#header` 처럼 url이 바뀌기 때문에 나중에 뒤로가기를 수행하였을 경우 이전에 클릭했던 TOC Link(URL)로 이동하게 되는 것.
+
+그래서 번거롭지만 각 TOC Link에 <u>Click EventListener</u>를 추가하였다.
+
+```js{11,14}
+useEffect(() => {
+    const headerElements = getHeaderElements()
+
+    headerElements.forEach(headerElement => {
+        headerElement.classList.add('toc-header') // active 애니메이션 효과를 위해 사전에 클래스 추가
+
+        const headerElementTop = getElementTopPos(headerElement)
+        const tocLinkElement = Dom.getElement(
+            `a[href*="${encodeURI(headerElement.id)}"]`
+        )
+
+        tocLinkElement.addEventListener('click', e => {
+            e.preventDefault()
+            window.scroll({ top: headerElementTop, behavior: 'smooth' })
+        })
+    })
+})
+```
+
+
+
+## 마무리
+
+어찌보면 간단한 기능처럼 보이는데, 생각보다 오래작업하게 되었고 배운것도 정말 많다.
+
+- IntersectionObserver
+- scroll event 최적화
+- window.scroll
+- 미리 작성된 양질의 코드 재사용 (`Jbee` 님의 소스를 보면서 많이 배웠다.)
+
+
+
+## 참조
+
+- [HEROPHY님의 IntersectionObserver](https://heropy.blog/2019/10/27/intersection-observer/)
+- [보노님의 TOC만들기 포스트](https://blueshw.github.io/2020/05/30/table-of-contents/)
+- [Jbee님의 스크롤이벤트 최적화](https://jbee.io/web/optimize-scroll-event/)
 
