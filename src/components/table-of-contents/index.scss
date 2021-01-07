@@ -97,18 +97,15 @@
   z-index: 2;
 }
 
-.toc-readed {
-  color: orange !important;
-}
-
 .toc-active {
-  &::before {
-    content: '{ ';
-  }
+  color: crimson !important;
+  // &::before {
+  //   content: '{ ';
+  // }
 
-  *::after {
-    content: ' }';
-  }
+  // &::after {
+  //   content: ' }';
+  // }
 }
 
 .toc-header {
