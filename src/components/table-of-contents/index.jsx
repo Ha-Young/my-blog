@@ -30,7 +30,7 @@ function onClickTOCOpen(e) {
     const postTopestElementList = headerElementList.concat(
       Array.from(Dom.getElements('.' + className.gatsby_plugin.post_img))
     )
-    console.log(postTopestElementList)
+
     const guidedZIndex = isOpen ? -1 : 'auto'
 
     postTopestElementList.forEach(postTopestElement => {
