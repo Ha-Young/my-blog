@@ -214,3 +214,21 @@ https://www.google.com/ping?sitemap=https://ha-young.github.io/sitemap.xml
 보는 것 처럼 처음에 2페이지 밖에 없었는데 6페이지로 늘어나있는 걸 확인 할 수 있다.
 
 아직 모든 페이지들이 색인되지는 않았지만, 곧 시간문제 인 것 같다. 크롤러가 좀 더 열심히 일 해주기를 바랄 수 밖에.
+
+## 추가 : RSS를 Google Search Console에 등록하기
+
+RSS또한 Sitemap처럼 등록할 수 있다.
+
+> 등록하면 당연히 좋겠지?
+
+<img src=".\rss가져올수없음.jpg" alt="RSS가져올수없음" style="zoom:80%;" />
+
+위 처럼 rss.xml을 등록해도 **가져올 수 없음**이 뜨는데, 이는 우리 rss.xml에 대한 색인이 없어서라고 추측된다.
+
+이 부분은 **직접 URL 검사를 통한 색인성성을** 하니 해결되었다.
+
+<img src=".\rss.xml_Search.jpg" alt="RSS URL 검사" style="zoom: 50%;" />
+
+![rss색인생성요청](.\rss색인생성요청.PNG)
+
+색인이 생성되려면 마찬가지로 크롤링 되어야 하기 때문에 크롤링 될 때 까지 기다렸다가 사이트맵으로 rss.xml을 제출하면 된다!

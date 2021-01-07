@@ -4,6 +4,7 @@ draft: false
 date: "2020-09-21 20:11"
 path: "/algorithm/programmers/study_week3_3"
 category: 'algorithm'
+tags: ['python', 'algorithm']
 
 ---
 

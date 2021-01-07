@@ -3,6 +3,7 @@ title: '바닐라코딩 Prep 8주차 월요일 오피스아워 정리'
 draft: false
 date: '2020-11-23 21:09'
 category: 'vanilla coding'
+tags: ['vanilla coding', 'prep']
 ---
 
 ## 지난주 과제(Underdash) 코드리뷰 정리
