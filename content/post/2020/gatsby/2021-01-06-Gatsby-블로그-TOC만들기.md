@@ -20,11 +20,9 @@ tags: ['gatsby', '내손내만블로그']
 
 HEROPHY님에게 블로그 몇가지 기능에대해서 클론코딩을 해도 괜찮은지 조심스럽게 메일을 통해 물어보았고 답변을 받았다.
 
-![클론코딩허락](C:\blog\my-blog\content\post\2020\gatsby\Gatsby-블로그-TOC만들기-클론허락.png)
+![클론코딩허락](.\Gatsby-블로그-TOC만들기-클론허락.png)
 
 > 예쁜 블로그만큼이나 마음씨도 예쁘신 것 같다.
-
-
 
 이렇게 대략적인 모델이 정해졌으므로 클론코딩을 시작하면 되는데,
 나는 여기서 <u>TOC Link에만 하이라이팅을 하는 것 대신 포스트의 Header에도 하이라이팅 처리</u>를 하기로 하였다.
@@ -82,7 +80,7 @@ module.exports = {
 
 TOC를 가져오는 방법은 GraphQL Query로 가져올 수 있다. (remark로 markdown 빌드를 했을시에)
 
-```js{5}
+```js{6}
 export const pageQuery = graphql`
   query getTableOfContentsExample($slug: String!) {
     markdownRemark() {
@@ -102,13 +100,11 @@ export const pageQuery = graphql`
 
 해당 GraphQL Query는 markdown파일에 적용되는 template에 적용시키면 되겠다. (`blog-post.js` template)
 
-
-
 ### 3. TOC 컴포넌트 생성
 
 위 쿼리로 가져온 tableOfContents의 데이터가 text값으로 다음과같이 가져오기 때문에,
 
-```json{3}
+```json{4}
 {
   "data": {
     "markdownRemark": {
@@ -120,27 +116,23 @@ export const pageQuery = graphql`
 
 html tag에 `dangerouslySetInnerHTML`로 적용시키면 별도 핸들링 없이 그대로 구현할 수 있다.
 
-
-
-```js{6}
-export const TableOfContents = ({toc}) => {
-    // ...
-    return (
-        <div className="toc-container">
-          <div className="toc-wrapper">
-            <div className="toc-content">
-              <div className="toc" dangerouslySetInnerHTML={{ __html: toc }} />
-            </div>
-            <div className="toc-open-btn" onClick={onClickTOCOpen}></div>
-          </div>
+```js{7}
+export const TableOfContents = ({ toc }) => {
+  // ...
+  return (
+    <div className="toc-container">
+      <div className="toc-wrapper">
+        <div className="toc-content">
+          <div className="toc" dangerouslySetInnerHTML={{ __html: toc }} />
         </div>
-	)
+        <div className="toc-open-btn" onClick={onClickTOCOpen}></div>
+      </div>
+    </div>
+  )
 }
 ```
 
 다음과 같은 형식을 취해주면 된다.
-
-
 
 ### 4. TOC에 하이라이트효과 부여
 
@@ -157,34 +149,35 @@ export const TableOfContents = ({toc}) => {
 >
 > 정리가 매우 잘 되어 있다. 👍
 
-```js{7,15}
+```js{7-15}{numberLines: true}
 useEffect(() => {
-    observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          const headerElement = entry.target
-          const tocLinkElement = Dom.getElement(`a[href*="${encodeURI(header.id)}"]`)
+  observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        const headerElement = entry.target
+        const tocLinkElement = Dom.getElement(
+          `a[href*="${encodeURI(header.id)}"]`
+        )
 
-          if (entry.isIntersecting) {
-            headerElement.classList.add('toc-header-active')
-            tocLinkElement.classList.add('toc-active')
-          } 
-          else if (currentYPos < targetStaticYPos) // 스크롤을 위로 올려서 헤더 주제를 벗어난 경우
-          {
-            headerElement.classList.remove('toc-header-active')
-            tocLinkElement.classList.remove('toc-active')
-          }
-        })
-      },
-      { rootMargin: `0% 0% -85% 0%` }
-    )
+        if (entry.isIntersecting) {
+          headerElement.classList.add('toc-header-active')
+          tocLinkElement.classList.add('toc-active')
+        } else if (currentYPos < targetStaticYPos) {
+          // 스크롤을 위로 올려서 헤더 주제를 벗어난 경우
+          headerElement.classList.remove('toc-header-active')
+          tocLinkElement.classList.remove('toc-active')
+        }
+      })
+    },
+    { rootMargin: `0% 0% -85% 0%` }
+  )
 
-    headerElements = getHeaderElements()
+  headerElements = getHeaderElements()
 
-    headerElements.forEach(headerElement => {
-      observer.observe(headerElement)
-    })
+  headerElements.forEach(headerElement => {
+    observer.observe(headerElement)
   })
+})
 ```
 
 다음과 같이 `TableOfContents` 컴포넌트 내부에서 `IntersectionObserver`를 이용해 현재 보고있는 Content의 Header를 체크하고 효과를 주기위해 css class를 toggle하였다.
@@ -197,8 +190,6 @@ observing하는 root는 `0% 0% -85% 0%`로 설정해서 Header가 root로 설정
 
 <img src=".\Gatsby-블로그-TOC만들기-rootMargin.png" alt="rootMargin" style="zoom:67%;" />
 
-
-
 ### 5. 문제점 발견
 
 이 다음단계로 `Intersectioning` 하는 부분을 따로 hooks로 분리시키는 등의 리팩토링을 진행하려고 하였으나,
@@ -206,7 +197,7 @@ observing하는 root는 `0% 0% -85% 0%`로 설정해서 Header가 root로 설정
 
 나는 `entry.isIntersection`으로 체크가 되었을 때 하이라이팅처리, `IntersectionObserver`를 통한 계산값으로 스크롤을 헤더 위로 올렸을때 하이라이팅을 제거하도록해서 css class를 toggle시키는 방법을 선택했었다.
 
-스크롤 하면서 처음 보여질 때 css classname을 추가해서 하이라이트 처리가 되도록하고, 
+스크롤 하면서 처음 보여질 때 css classname을 추가해서 하이라이트 처리가 되도록하고,
 스크롤을 위로올리면서 두번째로 보여질 때 cssclassname을 제거하면서 하이라이트를 제거하려고 하였다.
 
 > HEROPHY님 Tech blog 처럼 읽은 주제에 대해서는 하이라이트, 다시 위로 올리면 하이라이트제거
@@ -220,41 +211,37 @@ observing하는 root는 `0% 0% -85% 0%`로 설정해서 Header가 root로 설정
 - `Scroll Event` 사용하기로 결정
 - 낮아진 효율성은 `Scroll Event`에 Task Queue(Event Queue)대신 Animation frames(`rAF`)으로 처리되도록 하기 - [Jbee님의 스크롤이벤트 최적화 포스트 참조](https://jbee.io/web/optimize-scroll-event/)
 
-
-
 ### 6. 해결책 (Scroll event) 적용
 
 위 해결책을 적용하기 위해 기존에 [gatsby-starter-bee](https://github.com/JaeYeopHan/gatsby-starter-bee) 에 존재하는 `onScroll`과 `toFit`을 적용시키고 scroll Event로 잘 수행되는지 확인해보았다.
 
-```js
+```js{21-23}{numberLines: true}
 // TableOfContents
 const onScroll = () => {
-    const currentoffsetY = window.pageYOffset
-    const headerElements = getHeaderElements()
-    for (const headerElement of headerElements) {
-        const { top } = headerElement.getBoundingClientRect()
-        const elementTop = top + currentoffsetY
-		const tocLinkElement = Dom.getElement(
-        	`a[href*="${encodeURI(headerElement.id)}"]`
-        )
-        if (currentoffsetY >= elementTop - HEADER_OFFSET_Y) {
-             headerElement.classList.add('toc-header-active')
-             tocLinkElement.classList.add('toc-active')
-        } else {
-             headerElement.classList.remove('toc-header-active')
-             tocLinkElement.classList.remove('toc-active')
-        }
+  const currentoffsetY = window.pageYOffset
+  const headerElements = getHeaderElements()
+  for (const headerElement of headerElements) {
+    const { top } = headerElement.getBoundingClientRect()
+    const elementTop = top + currentoffsetY
+    const tocLinkElement = Dom.getElement(
+      `a[href*="${encodeURI(headerElement.id)}"]`
+    )
+    if (currentoffsetY >= elementTop - HEADER_OFFSET_Y) {
+      headerElement.classList.add('toc-header-active')
+      tocLinkElement.classList.add('toc-active')
+    } else {
+      headerElement.classList.remove('toc-header-active')
+      tocLinkElement.classList.remove('toc-active')
     }
+  }
 }
 
 useScrollEvent(() => {
-    return EventManager.toFit(onScroll, {})()
+  return EventManager.toFit(onScroll, {})()
 })
 ```
 
 잘 작동하는 것을 확인하였다.
-
-
 
 적용된 `useScrollEvent`와 `toFit` 함수는 아래와 같다.
 
@@ -305,8 +292,6 @@ export function toFit(
 }
 ```
 
-
-
 ### 7. # url 불편함 제거
 
 다 완성하고 난 후에 이래저래 테스트를 해보다보니 불편함 점을 발견했다.
@@ -314,42 +299,38 @@ TOC 컴포넌트의 Link를 클릭하면 `originURL/#header` 처럼 url이 바�
 
 그래서 번거롭지만 각 TOC Link에 <u>Click EventListener</u>를 추가하였다.
 
-```js{11,14}
+```js{12-15}
 useEffect(() => {
-    const headerElements = getHeaderElements()
+  const headerElements = getHeaderElements()
 
-    headerElements.forEach(headerElement => {
-        headerElement.classList.add('toc-header') // active 애니메이션 효과를 위해 사전에 클래스 추가
+  headerElements.forEach(headerElement => {
+    headerElement.classList.add('toc-header') // active 애니메이션 효과를 위해 사전에 클래스 추가
 
-        const headerElementTop = getElementTopPos(headerElement)
-        const tocLinkElement = Dom.getElement(
-            `a[href*="${encodeURI(headerElement.id)}"]`
-        )
+    const headerElementTop = getElementTopPos(headerElement)
+    const tocLinkElement = Dom.getElement(
+      `a[href*="${encodeURI(headerElement.id)}"]`
+    )
 
-        tocLinkElement.addEventListener('click', e => {
-            e.preventDefault()
-            window.scroll({ top: headerElementTop, behavior: 'smooth' })
-        })
+    tocLinkElement.addEventListener('click', e => {
+      e.preventDefault()
+      window.scroll({ top: headerElementTop, behavior: 'smooth' })
     })
+  })
 })
 ```
-
-
 
 ## 마무리
 
 어찌보면 간단한 기능처럼 보이는데, 생각보다 오래작업하게 되었고 배운것도 정말 많다.
 
 - IntersectionObserver
+- CSS `className[propertyName*="likeSearch"]` 선택자
 - scroll event 최적화
 - window.scroll
 - 미리 작성된 양질의 코드 재사용 (`Jbee` 님의 소스를 보면서 많이 배웠다.)
-
-
 
 ## 참조
 
 - [HEROPHY님의 IntersectionObserver](https://heropy.blog/2019/10/27/intersection-observer/)
 - [보노님의 TOC만들기 포스트](https://blueshw.github.io/2020/05/30/table-of-contents/)
 - [Jbee님의 스크롤이벤트 최적화](https://jbee.io/web/optimize-scroll-event/)
-
