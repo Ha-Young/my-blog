@@ -4,7 +4,7 @@ body.light {
 
   // home
   .home-header {
-    color: $dark-gray;
+    color: $light-gray;
   }
 
   .bio {
@@ -109,22 +109,22 @@ body.light {
     }
 
     .toc-content {
-      border: 2px solid $dark-toc-content-border;
-      background: $dark-toc-content-background;
-      color: $dark-toc-content-color;
-      box-shadow: -4px 4px 0 0 $dark-toc-content-box-shadow;
+      border: 2px solid $light-toc-content-border;
+      background: $light-toc-content-background;
+      color: $light-toc-content-color;
+      box-shadow: -4px 4px 0 0 $light-toc-content-box-shadow;
 
       .toc {
         a {
-          color: $dark-toc-a-color;
+          color: $light-toc-a-color;
         }
 
         &::before {
-          color: $dark-toc-before-after-color;
+          color: $light-toc-before-after-color;
         }
 
         &::after {
-          color: $dark-toc-before-after-color;
+          color: $light-toc-before-after-color;
         }
       }
     }

@@ -145,11 +145,13 @@ export const TableOfContents = ({ toc }) => {
 
 따라서 `IntersectionObserver`를 이용해 체크하기로 결정.
 
+그리고 header의 id가 toc linke의 id에 포함되어 있으므로 css property `\*=`를 이용한 선택자를 사용하였다.
+
 > IntersectionObserver에 대해서 잘 모른다면 [HEROPY님의 포스팅](https://heropy.blog/2019/10/27/intersection-observer/)을 참고하자.
 >
 > 정리가 매우 잘 되어 있다. 👍
 
-```js{7-15}{numberLines: true}
+```js{2,7,20}
 useEffect(() => {
   observer = new IntersectionObserver(
     entries => {
