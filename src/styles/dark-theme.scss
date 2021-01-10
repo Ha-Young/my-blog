@@ -2,6 +2,8 @@ body.dark {
   background-color: $dark-background-color;
   text-shadow: $dark-text-shadow;
   color: $dark-light-font-color;
+  background-image: url('https://free4kwallpapers.com/uploads/wallpaper/clear-night-sky-wallpaper-1920x1080-wallpaper.jpg');
+  background-attachment: fixed;
 
   // home
   .home-header {
@@ -96,8 +98,8 @@ body.dark {
     }
 
     &::after {
-      background: $dark-background-color;
-      border-left: 10px solid $dark-tag-color;
+      // background: $dark-background-color;
+      // border-left: 10px solid $dark-tag-color;
     }
 
     &:hover {
