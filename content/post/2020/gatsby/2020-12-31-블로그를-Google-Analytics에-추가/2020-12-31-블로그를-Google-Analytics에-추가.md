@@ -14,7 +14,7 @@ tags:
   ]
 ---
 
-![구글 애널리틱스 - 구글 프리미엄 파트너사 골든플래닛](https://lh3.googleusercontent.com/proxy/Dm_VI_MkGACBmckIaJ1ScwYPnUGFxD4aaoFMYok_kTro7hicyM0fN1wG6Xx-_wb9DZQmS1sUSm69H1NkuW_uBthTFi3Q-9heMvUpgEB4qNW6KQRJA_Hr-gCK98HUYMghIXVJlQpKPE8GslwMRMs1hSzycSyfAs6MCeB2Lgz_8Kle)
+![5 Important Google Analytics Metrics You Should Track - KB Works](https://kbworks.org/wp-content/uploads/2019/07/google-analytics-visual.png)
 
 ## 블로그에 Google Analytics 를 사용해야 되는 이유?
 

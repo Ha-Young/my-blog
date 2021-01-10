@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 
 import * as Dom from '../../utils/dom'
 import { className } from '../../constants/className'
@@ -8,7 +8,7 @@ import * as EventManager from '../../utils/event-manager'
 import './index.scss'
 
 // TOC 읽은 주제 표시
-// @copyright https://codepen.io/Radiergummi/pen/bjEZMO
+// @copyright
 // https://blueshw.github.io/2020/05/30/table-of-contents/
 // https://whywhyy.me/blog/2020/06/10/%EA%B3%A0%EC%98%A4%EA%B8%89%20%EB%AA%A9%EC%B0%A8(Table%20of%20Contents)%EC%9D%84%20%EB%A7%8C%EB%93%A4%EC%96%B4%EB%B3%B4%EC%9E%90#%EB%AA%A9%ED%91%9C
 const HEADER_OFFSET_Y = 180

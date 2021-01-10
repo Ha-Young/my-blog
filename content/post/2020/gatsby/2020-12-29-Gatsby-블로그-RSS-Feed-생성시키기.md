@@ -155,7 +155,7 @@ gatsby build
 
 ## RSS피드 Google Search Console에 적용시키기
 
-[링크 참조](<https://ha-young.github.io/2020/frontend/Google-site%EA%B2%80%EC%83%89%EC%97%94%EC%A7%84%EC%97%90%EB%85%B8%EC%B6%9C%EC%8B%9C%ED%82%A4%EA%B8%B0/2020-12-30-%EC%82%AC%EC%9D%B4%ED%8A%B8%EB%A5%BC-Google-%EA%B2%80%EC%83%89%EC%97%94%EC%A7%84%EC%97%90-%EB%85%B8%EC%B6%9C%EC%8B%9C%ED%82%A4%EA%B8%B0-(SEO-%ED%96%A5%EC%83%81)/#%EC%B6%94%EA%B0%80-:-RSS%EB%A5%BC-Google-Search-Console%EC%97%90-%EB%93%B1%EB%A1%9D%ED%95%98%EA%B8%B0>)
+[링크 참조](https://ha-young.github.io/2020/frontend/Google-site%EA%B2%80%EC%83%89%EC%97%94%EC%A7%84%EC%97%90%EB%85%B8%EC%B6%9C%EC%8B%9C%ED%82%A4%EA%B8%B0/2020-12-30-%EC%82%AC%EC%9D%B4%ED%8A%B8%EB%A5%BC-Google-%EA%B2%80%EC%83%89%EC%97%94%EC%A7%84%EC%97%90-%EB%85%B8%EC%B6%9C%EC%8B%9C%ED%82%A4%EA%B8%B0-(SEO-%ED%96%A5%EC%83%81)/#%EC%B6%94%EA%B0%80--rss%EB%A5%BC-google-search-console%EC%97%90-%EB%93%B1%EB%A1%9D%ED%95%98%EA%B8%B0)
 
 ## 참조한 곳
 
