@@ -3,6 +3,21 @@ body.light {
   text-shadow: $light-text-shadow;
   // background-image: url('https://i.pinimg.com/originals/12/cf/dc/12cfdcbb2320824919f1f1b119591d39.jpg');
   // background-attachment: fixed;
+
+  &::after {
+    content: '';
+    background: url('https://wallpaperaccess.com/full/1862305.jpg');
+    // background: url('../../assets/backgrounds.jpg');
+    background-attachment: fixed;
+    opacity: 0.25;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    z-index: -1;
+  }
+
   // home
   .home-header {
     color: $light-gray;
