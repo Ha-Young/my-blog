@@ -8,15 +8,15 @@ $top-header-height: 60px;
  */
 
 // body
-$light-background-color: #e6e0d1;
+$light-background-color: #ebe6d9;
 $light-text-shadow: 0 0 0.1px rgba(0, 0, 0, 0.3);
 $light-hover-text-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
 
 // index
 $dimmed-color: #eef5db;
 $light-link-color: #000080;
-$dark-gray: #333;
-$middle-gray: #7d7d7d;
+$dark-gray: rgb(29, 29, 29);
+$middle-gray: #525050;
 $light-gray: #aaa;
 
 // blog-templates
@@ -56,8 +56,8 @@ $light-toc-content-box-shadow: rgba(0, 0, 0, 0.045);
 $light-toc-a-color: #34495e;
 $light-toc-before-after-color: #ebebeb;
 
-$light-toc-active-color: crimson;
-$light-toc-header-active-color: crimson;
+$light-toc-active-color: #e84855;
+$light-toc-header-active-color: #e84855;
 $light-toc-header-before-backgroundcolor: rgba(220, 20, 60, 0.25);
 
 /**
@@ -86,17 +86,17 @@ $dark-tag-color: rgba(178, 93, 235, 0.31);
 $dark-tag-complementary: rgb(95, 5, 23);
 $dark-tag-total-count: rgba(255, 255, 255, 0.2);
 
-$dark-toc-btn-background: white;
-$dark-toc-btn-border: #34495e;
-$dark-toc-btn-color: #34495e;
-$dark-toc-content-border: #ebebeb;
-$dark-toc-content-background: rgb(0, 2, 37);
-$dark-toc-content-color: #ebebeb;
+$dark-toc-btn-background: #fff5cf;
+$dark-toc-btn-border: #b4711a;
+$dark-toc-btn-color: #b4711a;
+$dark-toc-content-border: #6b645f;
+$dark-toc-content-background: #887362;
+$dark-toc-content-color: #eeeeee;
 $dark-toc-content-box-shadow: rgba(0, 0, 0, 0.045);
-$dark-toc-a-color: #ebebeb;
-$dark-toc-before-after-color: rgb(35, 40, 145);
+$dark-toc-a-color: #eeeeee;
+$dark-toc-before-after-color: #726158;
 
-$dark-toc-active-color: orange;
+$dark-toc-active-color: orange; // rgb(200, 100, 0);
 $dark-toc-header-active-color: orange;
 $dark-toc-header-before-backgroundcolor: rgba(255, 166, 0, 0.26);
 

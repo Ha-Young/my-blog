@@ -29,7 +29,7 @@ function Firework(sx, sy, tx, ty, particles, isDarkMode = false) {
   this.angle = Math.atan2(ty - sy, tx - sx)
   this.speed = 2
   this.acceleration = 1.05
-  this.brightness = this.isDarkMode ? random(50, 70) : random(10, 30)
+  this.brightness = this.isDarkMode ? random(60, 100) : random(10, 30)
   this.alpha = this.isDarkMode ? 0.7 : 0.5
   // circle target indicator radius
   this.targetRadius = 1

@@ -6,11 +6,13 @@ export const Item = ({ title, selectedCategory, onClick }) => {
   }, [])
 
   return (
-    <li
-      className="item-side"
-      aria-selected={selectedCategory === title ? 'true' : 'false'}
-    >
-      <span onClick={handleClick}>{title}</span>
+    <li className="item-side">
+      <span
+        onClick={handleClick}
+        aria-selected={selectedCategory === title ? 'true' : 'false'}
+      >
+        {title}
+      </span>
     </li>
   )
 }

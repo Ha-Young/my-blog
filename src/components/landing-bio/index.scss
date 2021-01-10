@@ -5,7 +5,8 @@
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  height: 82vh;
+  margin-top: $top-header-height;
+  height: 78vh;
   overflow: hidden;
   box-sizing: border-box;
   -webkit-touch-callout: none; /* iOS Safari */

@@ -18,7 +18,7 @@ function Particle(x, y, hue, isDarkMode) {
   // set the hue to a random number +-20 of the overall hue variable
   this.hue = random(hue - 20, hue + 20)
   this.brightness = isDarkMode ? random(60, 90) : random(10, 50)
-  this.alpha = isDarkMode ? 0.7 : 0.5
+  this.alpha = isDarkMode ? 0.9 : 0.5
   // set how fast the particle fades out
   this.decay = random(0.015, 0.03)
 }

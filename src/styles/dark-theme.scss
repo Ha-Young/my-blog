@@ -2,8 +2,20 @@ body.dark {
   background-color: $dark-background-color;
   text-shadow: $dark-text-shadow;
   color: $dark-light-font-color;
-  background-image: url('https://free4kwallpapers.com/uploads/wallpaper/clear-night-sky-wallpaper-1920x1080-wallpaper.jpg');
-  background-attachment: fixed;
+
+  &::after {
+    content: '';
+    // background: url('https://wallpaper-house.com/data/out/7/wallpaper2you_199352.jpg');
+    background: url('../../assets/backgrounds.jpg');
+    background-attachment: fixed;
+    opacity: 0.15;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    z-index: -1;
+  }
 
   // home
   .home-header {
@@ -98,8 +110,8 @@ body.dark {
     }
 
     &::after {
-      // background: $dark-background-color;
-      // border-left: 10px solid $dark-tag-color;
+      background: $dark-background-color;
+      border-left: 10px solid $dark-tag-color;
     }
 
     &:hover {

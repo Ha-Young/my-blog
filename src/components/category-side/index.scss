@@ -25,28 +25,30 @@
         .item-side {
           font-size: 95%;
           font-weight: 600;
-          background: linear-gradient(
-            to right,
-            #806854,
-            #806854 50%,
-            #dbcdad 50%
-          );
-          background-clip: text;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-size: 200% 100%;
-          background-position: 100%;
-          transition: background-position 0.5s ease;
-          cursor: pointer;
-          overflow: hidden;
-
-          &:hover {
-            background-position: 0 100%;
-          }
-
-          &[aria-selected='true'] {
-            background: #806844;
+          span {
+            background: linear-gradient(
+              to right,
+              #806854,
+              #806854 50%,
+              #dbcdad 50%
+            );
             background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 100%;
+            background-position: 100%;
+            transition: background-position 0.3s ease;
+            cursor: pointer;
+            overflow: hidden;
+
+            &:hover {
+              background-position: 0 100%;
+            }
+
+            &[aria-selected='true'] {
+              background: #806844;
+              background-clip: text;
+            }
           }
         }
       }
