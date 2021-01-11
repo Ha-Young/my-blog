@@ -6,10 +6,10 @@ body.light {
 
   &::after {
     content: '';
-    background: url('https://wallpaperaccess.com/full/1862305.jpg');
-    // background: url('../../assets/backgrounds.jpg');
+    // background: url('https://wallpaperaccess.com/full/1862305.jpg');
+    background: url('../../assets/backgrounds-light.jpg');
     background-attachment: fixed;
-    opacity: 0.25;
+    opacity: 0.3;
     top: 0;
     left: 0;
     bottom: 0;
@@ -99,7 +99,7 @@ body.light {
     }
 
     &::after {
-      background: $light-background-color;
+      background: #e3cfb9;
       border-left: 10px solid $light-tag-color;
     }
 
