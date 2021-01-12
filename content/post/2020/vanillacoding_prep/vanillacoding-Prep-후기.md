@@ -3,7 +3,7 @@ title: '전공자의 바닐라코딩 Prep 후기 - 바닐라코딩 Prep 9기'
 date: 2020-12-12
 draft: false
 category: 'vanilla coding'
-tags: ['vanilla coding', 'prep', 'review', 'bootCamp']
+tags: ['vanilla coding', 'prep', 'review', 'bootcamp']
 ---
 
 [![바닐라코딩](./바닐라코딩_logo.png)](https://www.vanillacoding.co/)

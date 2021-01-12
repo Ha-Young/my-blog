@@ -232,3 +232,10 @@ RSS또한 Sitemap처럼 등록할 수 있다.
 ![rss색인생성요청](.\rss색인생성요청.PNG)
 
 색인이 생성되려면 마찬가지로 크롤링 되어야 하기 때문에 크롤링 될 때 까지 기다렸다가 사이트맵으로 rss.xml을 제출하면 된다!
+
+## 추가 : 타 사이트에도 검색 노출 시키기
+
+- Naver : [Search Advisor](https://searchadvisor.naver.com/)
+  - Naver의 경우는 Google과 마찬가지로 사이트 소유 인증을 통해 등록할 수 있다.
+- Daum : [다음 검색 등록](https://register.search.daum.net/index.daum)
+  - Daum은 간단하게 사이트 URL만 등록시키면 등록할 수 있다.

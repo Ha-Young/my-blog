@@ -1,11 +1,10 @@
 ---
-title: "Vanilla Coding 부트캠프 지원"
+title: 'Vanilla Coding 부트캠프 지원'
 draft: false
-date: "2020-11-09 13:06"
-path: "/vanillacoding/bootcamp/apply"
-category: "vanilla coding"
-tags: ['vanilla coding', 'bootcamp']
-
+date: '2020-11-09 13:06'
+path: '/vanillacoding/bootcamp/apply'
+category: 'vanilla coding'
+tags: ['vanilla coding', 'bootcamp', 'daily']
 ---
 
 오늘 Prep 6주차 시작일자로 모든 Prep 과제를 완료하고 Vanilla Coding Bootcamp 9기 지원을 완료하였다.
@@ -24,8 +23,6 @@ BAT (Bootcamp Addmission Test)가 조금 걱정되긴하지만, 켄님이 Prep�
 아래는 내가 부트캠프 신청을 하면서 세부내용에 대한 질의 응답내용이다.
 이러한 질의응답에 대한 내용이 앞으로 필요하지않을까? 해서 기록해놓았다.
 
-
-
 ## 부트캠프 신청서 세부내용 작성
 
 ### Q. 자바스크립트의 프로토타입 기반 상속에 대해 최대한 자세히 설명해주세요.
@@ -33,51 +30,50 @@ BAT (Bootcamp Addmission Test)가 조금 걱정되긴하지만, 켄님이 Prep�
 자바스크립트는 타 객체지향 언어들과 달리 프로토타입의 개념을 기반으로 객체지향프로그래밍을 할 수 있습니다.
 프로토타입 개념이란, 객체를 생성하는 생성자 함수를 설계할 때, 해당 인스턴스에만 적용되는 필드, 메서드가 아닌 생성자함수를 통해서 생성되는 모든 인스턴스들에게 공통되는 필드, 메서드를 적용시키고 싶을때 사용합니다. 함수선언과 동시에 생성되는 프로토타입이라는 객체에 공통되는 필드, 메서드를 할당함으로써 생성자 함수를 통해 생성되는 모든 인스턴스들에게 공통 필드, 메서드를 적용 및 사용 할 수 있습니다.
 
-자바스크립트는 이러한 프로토타입의 개념을 기반으로 상속또한 가능합니다.  프로토타입개념에서의 상속은 일반적으로 상속이라는 개념을 적용시키지만, 엄밀히 말하면 확장에 가깝습니다. 
-자바스크립트에서 상속을 하는 방법은 
+자바스크립트는 이러한 프로토타입의 개념을 기반으로 상속또한 가능합니다. 프로토타입개념에서의 상속은 일반적으로 상속이라는 개념을 적용시키지만, 엄밀히 말하면 확장에 가깝습니다.
+자바스크립트에서 상속을 하는 방법은
 
-1. 현재 생성자함수(자식)에서의 생성자 함수 내부에서 인스턴스인 this를 상속 받고자 하는 객체(부모)의 생성자함수에 바인딩시켜 실행함으로써 현재 인스턴스(자식)에 상속받고자하는 객체(부모)의 생성자 함수 내부의 필드와 메서드를 확장시키고, 
+1. 현재 생성자함수(자식)에서의 생성자 함수 내부에서 인스턴스인 this를 상속 받고자 하는 객체(부모)의 생성자함수에 바인딩시켜 실행함으로써 현재 인스턴스(자식)에 상속받고자하는 객체(부모)의 생성자 함수 내부의 필드와 메서드를 확장시키고,
 2. 현재 객체(자식)생성자 함수의 프로토타입에 상속받고자하는 객체(부모) 생성자 함수의 프로토타입을 프로토타입 체인으로 연결시키면 됩니다.
 
 코드로 나타내자면(일반적인 방법)
+
 ```js
 function BootCamp(location, teacher) {
-  this.location = location;
-  this.teacher = teacher;
+  this.location = location
+  this.teacher = teacher
 }
 
-BootCamp.prototype.teach = function () {
-  console.log(`${this.teacher} teachs in ${this.location}`);
+BootCamp.prototype.teach = function() {
+  console.log(`${this.teacher} teachs in ${this.location}`)
 }
 
-BootCamp.prototype.isGood = function () {
-  console.log("i don't know");
+BootCamp.prototype.isGood = function() {
+  console.log("i don't know")
 }
 
 function VanillaCoding(course, ...rest) {
-  BootCamp.apply(this, rest);      // 1. 부모 생성자 함수에 현재 인스턴스 바인딩시켜 확장.
+  // 1. 부모 생성자 함수에 현재 인스턴스 바인딩시켜 확장.
+  BootCamp.apply(this, rest)
   this.course = course
 }
 
 // 2. 자식 프로토타입에 부모 프로토타입 체이닝
-VanillaCoding.prototype = Object.create(BootCamp.prototype);
-VanillaCoding.prototype.constructure = VanillaCoding;
+VanillaCoding.prototype = Object.create(BootCamp.prototype)
+VanillaCoding.prototype.constructor = VanillaCoding
 
 // 2번 이후로 프로토타입 필드, 메서드 할당
-VanillaCoding.prototype.isGood = function () {
-  console.log("yes, vanilla coding is good");
+VanillaCoding.prototype.isGood = function() {
+  console.log('yes, vanilla coding is good')
 }
 
-
 // 실행
-const prep = new VanillaCoding("prep9기", "Samsungdong Seoul", "Ken");
-prep.teach();  // 프로토타입 체인으로 부모의 teach 사용
-prep.isGood(); // 자식 프로토타입의 isGood 사용
+const prep = new VanillaCoding('prep9기', 'Samsungdong Seoul', 'Ken')
+prep.teach() // 프로토타입 체인으로 부모의 teach 사용
+prep.isGood() // 자식 프로토타입의 isGood 사용
 ```
 
 다음과 같습니다.
-
-
 
 ### 본인에 대한 소개
 
@@ -94,8 +90,6 @@ prep.isGood(); // 자식 프로토타입의 isGood 사용
 
 부트캠프를 임하는 저의 각오로는 저는 대충하지않는 성격입니다. 거기에 더해서 저는 목표설정이 명확하기때문에 이제 뒤가 없습니다. 부트캠프동안 대충하지않고 성실히 임하여서 완벽하진 않더라도 완벽에 가깝게 부트캠프 커리큘럼을 모두 학습하겠습니다.
 
-
-
 ### 현재까지 프로그래밍을 공부했던 방법이나 수강했던 수업
 
 제가 프로그래밍을 공부했던 방법은 강의를 통해 이론 습득 후에 과제로 결과물을 만들어보고 수료등의 학습목표가 있는 방법을 선호하는 편입니다.
@@ -105,10 +99,12 @@ prep.isGood(); // 자식 프로토타입의 isGood 사용
 웹개발 공부를 시작한 이후로는 프론트엔드, 백엔드 모두 다양하게 들어왔습니다.
 
 과제, 수료조건이 있었던 강의 수강은 다음과 같습니다.
+
 1. 포큐아카데미
    - Comp 3200 (C++, 언매니지드, OOP)
    - Comp 1000 (소프트웨어 공학용 수학)
 2. 노마드코더
+
    - 코코아 클론 2주 완성반 (HTML, CSS)
    - 바닐라JS 2주 완성반 (JavaScript)
    - 유튜브 클론 2주 완성반 (ES6, NodeJS, Express, Pug, MongoDB)
@@ -120,8 +116,6 @@ prep.isGood(); // 자식 프로토타입의 isGood 사용
    - 바이트디그리 : React Programming
 
 위 수강 강의 모두 수료완료하였습니다.
-
-
 
 ### 바닐라코딩을 선택한 이유
 
@@ -137,10 +131,9 @@ prep.isGood(); // 자식 프로토타입의 isGood 사용
      부트캠프를 진행하면서 열심히 하고자 하는 좋은사람들과 같이 학습할수있다는 기대감이 있고
      서로 좋은 영향을 주고받아 부트캠프 이후에도 좋은 인연으로 함께 남고싶습니다.
 4. 검증된 인재
-   - 선별조건, 수료조건이 까다로우면서 현재 기업들의 원하는 니즈에 맞게 수업을 진행하는 바닐라코딩 부트캠프를 거치면 기업 입장에서 볼때 실력적으로나 성격적으로나 어느정도 검증된 인재라는점을 보다 쉽게 증명할 수 있을 것 같았습니다. 
+   - 선별조건, 수료조건이 까다로우면서 현재 기업들의 원하는 니즈에 맞게 수업을 진행하는 바닐라코딩 부트캠프를 거치면 기업 입장에서 볼때 실력적으로나 성격적으로나 어느정도 검증된 인재라는점을 보다 쉽게 증명할 수 있을 것 같았습니다.
      또한 저 자신의 앞으로의 웹개발 경력에 있어서 바닐라코딩 수료라는 프라이드를 계속해서 가져가고 싶습니다.
 5. 웹개발 네트워크
    - 개발자 생활을 하면서 개발자 네트워크가 무시하지못할 상당히 중요한 부분이라는 것을 깨달았습니다.
      웹개발에 대한 인적 네트워크가 전무한 저의 입장에서 바닐라코딩 수료후의 네트워크는 앞으로 웹개발자로의 행보에 있어 크게 도움이 될 것 같습니다.
-     일반적인 네트워크가 아닌 소수 정예로 운영된다는 점과 부트캠프라는 공동체 의식이 있기 때문에 더 단단한 네트워크일 것 같으며 수료 후에도 네트워크에 도움이되고  자주 커뮤니케이션 하는 훌륭한 구성원이 되고 싶습니다.
-
+     일반적인 네트워크가 아닌 소수 정예로 운영된다는 점과 부트캠프라는 공동체 의식이 있기 때문에 더 단단한 네트워크일 것 같으며 수료 후에도 네트워크에 도움이되고 자주 커뮤니케이션 하는 훌륭한 구성원이 되고 싶습니다.
