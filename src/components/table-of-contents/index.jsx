@@ -55,13 +55,13 @@ export const TableOfContents = ({ toc }) => {
     for (const headerElement of headerElements) {
       if (!headerElement.id) continue // id가 없으면 패스(markdown에서 잘못 적은 것)
       const headerElementTop = getElementTopPos(headerElement)
-      const tocLinkElement = Dom.getElement(
-        `a[href*="${encodeURI(headerElement.id)}"]`
-      )
+      const href = `${window.location.pathname}#${encodeURI(headerElement.id)}`
+      const tocLinkElement = Dom.getElement(`a[href="${href}"]`)
 
       if (currentoffsetY >= headerElementTop - HEADER_OFFSET_Y) {
         headerElement.classList.add('toc-header-active')
         tocLinkElement.classList.add('toc-active')
+        // console.log(href)
       } else {
         headerElement.classList.remove('toc-header-active')
         tocLinkElement.classList.remove('toc-active')
