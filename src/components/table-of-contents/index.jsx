@@ -25,10 +25,10 @@ function getElementTopPos(element) {
   return top + currentoffsetY
 }
 
-function onClickTOCOpen(e) {
-  const tocContent = e.target.previousSibling
+function toggleTOCContent(tocContent) {
   if (tocContent) {
     const isOpen = Dom.togleClass(tocContent, 'open')
+
     // TOC를 최상단에 오게하기위해 최상단에 위치해져있는 Element들의 z-index를 낮춰야 함.
     const headerElementList = getHeaderElements()
     const postTopestElementList = headerElementList.concat(
@@ -41,11 +41,33 @@ function onClickTOCOpen(e) {
       postTopestElement.style.zIndex = guidedZIndex
     })
 
+    const isDisplay = isOpen ? 'none' : 'block'
     const themeSwitch = Dom.getElement(`.${className.theme_switch}`)
-    const guidedOpacity = isOpen ? 0 : 1
+    themeSwitch.style.display = isDisplay
+    const authorContent = Dom.getElement(`.${className.author_name_content}`)
+    const postNavigator = Dom.getElement(`.${className.post_navigator}`)
 
-    themeSwitch.style.opacity = guidedOpacity
+    console.log(window.innerWidth)
+    const footerElements = [authorContent, postNavigator]
+
+    for (const footerElement of footerElements) {
+      // footerElement.style.display = isDisplay
+    }
   }
+}
+
+function onClickTOCOpen(e) {
+  const tocContent = e.target.nextSibling
+  toggleTOCContent(tocContent)
+}
+
+function onClickTOCClose(e) {
+  const tocContent = e.currentTarget.parentNode
+  toggleTOCContent(tocContent)
+}
+
+function getTOCHrefPullPath(headerID) {
+  return `${window.location.pathname}#${encodeURI(headerID)}`
 }
 
 export const TableOfContents = ({ toc }) => {
@@ -53,9 +75,9 @@ export const TableOfContents = ({ toc }) => {
     const currentoffsetY = window.pageYOffset
     const headerElements = getHeaderElements()
     for (const headerElement of headerElements) {
-      if (!headerElement.id) continue // id가 없으면 패스(markdown에서 잘못 적은 것)
+      if (!!headerElement.id === false) continue // id가 없으면 패스(markdown에서 잘못 적은 것)
       const headerElementTop = getElementTopPos(headerElement)
-      const href = `${window.location.pathname}#${encodeURI(headerElement.id)}`
+      const href = getTOCHrefPullPath(headerElement.id)
       const tocLinkElement = Dom.getElement(`a[href="${href}"]`)
 
       if (currentoffsetY >= headerElementTop - HEADER_OFFSET_Y) {
@@ -81,23 +103,27 @@ export const TableOfContents = ({ toc }) => {
 
       const headerElementTop = getElementTopPos(headerElement)
       const tocLinkElement = Dom.getElement(
-        `a[href*="${encodeURI(headerElement.id)}"]`
+        `a[href="${getTOCHrefPullPath(headerElement.id)}"]`
       )
 
-      tocLinkElement.addEventListener('click', e => {
-        e.preventDefault()
-        window.scroll({ top: headerElementTop, behavior: 'smooth' })
-      })
+      if (tocLinkElement)
+        tocLinkElement.addEventListener('click', e => {
+          e.preventDefault()
+          window.scroll({ top: headerElementTop, behavior: 'smooth' })
+        })
     })
   })
 
   return (
     <div className="toc-container">
       <div className="toc-wrapper">
+        <div className="toc-open-btn" onClick={onClickTOCOpen}></div>
         <div className="toc-content">
+          <div className="toc-close-btn" onClick={onClickTOCClose}>
+            <span className="toc-close-icon"></span>
+          </div>
           <div className="toc" dangerouslySetInnerHTML={{ __html: toc }} />
         </div>
-        <div className="toc-open-btn" onClick={onClickTOCOpen}></div>
       </div>
     </div>
   )

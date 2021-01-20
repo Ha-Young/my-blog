@@ -4,4 +4,6 @@ export const className = {
   },
   post_content: 'post-content',
   theme_switch: 'switch-container',
+  author_name_content: 'author-name-content',
+  post_navigator: 'post-navigator',
 }

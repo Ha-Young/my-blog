@@ -1,9 +1,9 @@
 ---
-title: "하옹의 자바스크립트 식사 - Hoisting"
+title: '하옹의 자바스크립트 식사 - Hoisting'
 draft: false
-date: "2020-12-15"
-category: "javascript"
-tags: ['javascript', 'hoisting']
+date: '2020-12-15'
+category: 'javascript'
+tags: ['javascript', 'hoisting', '하옹의 자바스크립트 식사']
 ---
 
 \* 이 글은 [MDN](https://developer.mozilla.org/es/), [Vanilla Coding Prep 강의자료](https://www.vanillacoding.co/), [PoiemaWeb](https://poiemaweb.com/)등 공신력있는 곳들을 참조한 글입니다.
@@ -26,12 +26,12 @@ Javascript에서 이런 끌어올리다 라는 개념이 어디에 적용될 수
 예를 한번 들어보자.
 
 ```js
-function func () {
-    console.log(hoist);
-    var hoist = 'Is true?';
+function func() {
+  console.log(hoist)
+  var hoist = 'Is true?'
 }
 
-func();
+func()
 ```
 
 위의 결과는 어떻게 될까?
@@ -41,13 +41,13 @@ func();
 따라서 내부적으로 아래와 같이 동작하게 된다고 보면 된다.
 
 ```js
-function func () {
-    var hoist;
-    console.log(hoist);
-    hoist = 'Is true?';
+function func() {
+  var hoist
+  console.log(hoist)
+  hoist = 'Is true?'
 }
 
-func();
+func()
 ```
 
 이 처럼 **변수의 선언문만 분리되어서 스코프내 최상단으로 올라가는 현상**을 `Hoisting`이라고 한다.
@@ -55,8 +55,6 @@ func();
 > 사실, 실제로 이러한 식별자(변수, 함수)들이 끌어올려지는건 아니지만 편의상 이와같이 해석해도 무리는 없다.
 >
 > 호이스팅을 제대로 이해하려면 실행컨텍스트, 자바스크립트 엔진, 컴파일 과정, 스코프, 자바스크립트의 메모리 관리 등을 모두 이해해야 한다고 한다.
-
-
 
 ## 함수선언식, 함수표현식에서의 호이스팅
 
@@ -67,10 +65,10 @@ func();
 ### 함수표현식 (Function Expression)
 
 ```js
-sayHi();
+sayHi()
 
-var sayHi = function () {
-    console.log('hi');
+var sayHi = function() {
+  console.log('hi')
 }
 ```
 
@@ -78,18 +76,18 @@ var sayHi = function () {
 
 함수표현식은 변수가 선언되고 함수가 이 변수에 할당된다고 보면 된다.
 
-1. `sayHi`변수 선언 후 
+1. `sayHi`변수 선언 후
 2. `function () { }`의 익명함수를 할당
 
 그래서 호이스팅으로 선언문과 할당문이 분리가 되고, 선언문이 유효 스코프내 최상단으로 끌어올려지게 된다.
 
 ```js
-var sayHi;
+var sayHi
 
-sayHi();
+sayHi()
 
-sayHi = function () {
-    console.log('hi');
+sayHi = function() {
+  console.log('hi')
 }
 ```
 
@@ -100,55 +98,51 @@ sayHi = function () {
 함수 선언식은 선언문과 할당문이 있는게 아닌, 그 자체로 선언문이기 때문에 호이스팅이 일어나도 선언문 그 자체로 끌어올려지기 된다.
 
 ```js
-sayHi(); 
+sayHi()
 
-function sayHi () {
-    console.log('hi');
+function sayHi() {
+  console.log('hi')
 }
 ```
 
 함수표현식과 다르게 `sayHi()` 함수가 정상 작동하게되고, 이는 `sayHi()` 함수가 호이스팅 되었다는걸 의미한다.
 
 ```js
-function sayHi () {
-    console.log('hi');
+function sayHi() {
+  console.log('hi')
 }
 
-sayHi();
+sayHi()
 ```
 
 와 같다.
 
-
-
 ### var VS 함수선언식 VS 함수표현식
 
 ```js
-function func () {
-    hello(); // 'hello'
-    console.log(hoist); // undefined
-    console.log(typeof hi); // 'undefined'
-    
-    // hois 변수
-    hoist = 'Is true?';
-    
-    // hi 함수표현식
-    hi = function hi () {
-        console.log('hi');
-    }
-    
-    // hello 함수선언식
-    function hello () {
-        console.log('hello');
-    }
-    
-    hello(); // 'hello'
-    console.log(hoist); // 'Is true?'
-	console.log(typeof hi); // 'function'
+function func() {
+  hello() // 'hello'
+  console.log(hoist) // undefined
+  console.log(typeof hi) // 'undefined'
+
+  // hois 변수
+  hoist = 'Is true?'
+
+  // hi 함수표현식
+  hi = function hi() {
+    console.log('hi')
+  }
+
+  // hello 함수선언식
+  function hello() {
+    console.log('hello')
+  }
+
+  hello() // 'hello'
+  console.log(hoist) // 'Is true?'
+  console.log(typeof hi) // 'function'
 }
 ```
-
-
 
 ## let, const의 등장
 
@@ -156,13 +150,13 @@ function func () {
 
 ```js
 // var count; 로 호이스팅되어 undefined로 초기화된 상태
-// ... 
-count = 10; // count에 10할당
+// ...
+count = 10 // count에 10할당
 
 //...
 
-console.log(count);
-var count = 0;
+console.log(count)
+var count = 0
 ```
 
 이와 같이 <u>순서가 꼬였을 경우나 중복된 이름의 변수명을 사용할 때</u>에 호이스팅으로 변수 선언문이 자동적으로 올라가게되어 <u>원래 의도했던 동작대로 작동이 안되거나 애러가 날 상황인데 그대로 진행되는 현상</u>이 발생한다.
@@ -173,22 +167,18 @@ var count = 0;
 
 > let과 const는 호이스팅뿐만 아니라 중복선언을 해결하고 블록스코프를 적용시키기위해 도입되었다.
 
-
-
 위의 코드를 let으로 선언하게될경우 어떻게 되는지 확인해보자.
 
 ```js
-count = 10; // Error
+count = 10 // Error
 
 //...
 
-console.log(count);
-let count = 0;
+console.log(count)
+let count = 0
 ```
 
 이처럼 let 키워드는 호이스팅되지 않기 때문에 개발자들이 호이스팅에 신경을 끄고 온전히 코드 흐름에 집중할 수 있게 되었다.
-
-
 
 ## TDZ (Temporal Dead Zone)
 
@@ -207,18 +197,18 @@ TDZ란 Temporal Dead Zone으로 직역하면 '임시적으로 죽어있는 공�
 우리는 선언된 변수가 호이스팅이 일어났지만 TDZ로 사용할 수 없다는 걸 `typeof` 연산자를 통해 확인해볼 수 있다.
 
 ```js
-typeof notDefined; // 'undefined'
+typeof notDefined // 'undefined'
 ```
 
 ```js
-typeof varKeyword; // 'undefined'
-var varKeyword;
+typeof varKeyword // 'undefined'
+var varKeyword
 ```
 
 ```js
 {
-	typeof letKeyword; // ReferenceError : Cannot access 'letKeyword' before initialization
-    let letKeyword;
+  typeof letKeyword // ReferenceError : Cannot access 'letKeyword' before initialization
+  let letKeyword
 }
 ```
 
@@ -226,8 +216,6 @@ var varKeyword;
 
 다음과 같이 선언되지 않거나 `var`로 선언한 변수는 `'undefined'` type이지만,
 `let`으로 선언한 TDZ가 생성되어 TDZ영역안에 있는 변수는 `ReferenceError`가 발생하고 있다.
-
-
 
 ## 호이스팅을 피하기 위한 방법
 
@@ -244,8 +232,6 @@ var varKeyword;
 
 그 외 `var`키워드는 사용하지 않는다.
 
-
-
 ### 함수 : 함수표현식보다는 함수선언식
 
 함수는 변수와 다르게 함수 구문 전부가 호이스팅되는 것이 편리하다.
@@ -255,14 +241,12 @@ var varKeyword;
 그래서 함수 선언식을 통해 자연스럽게 코드에 집중 할 수 있도록 하는 편이 바람직하다.
 
 ```js
-sayHi();
+sayHi()
 
-function sayHi () {
-    console.log('hi');
+function sayHi() {
+  console.log('hi')
 }
 ```
-
-
 
 ## Hoisting의 숨겨진 사실
 
@@ -274,4 +258,3 @@ function sayHi () {
 컴파일 단계에서 메모리의 저장된 변수들을 보면, 코드에서 입력한 위치와 정확히 일치한 곳에 있다고 한다.
 
 호이스팅이란 단어는 **Javascript 엔진 동작을 쉽게 이해하기위한 개념으로 알아두자.**
-

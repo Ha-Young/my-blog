@@ -3,7 +3,7 @@ title: '하옹의 자바스크립트 식사 - Closure'
 draft: false
 date: '2020-12-16'
 category: 'javascript'
-tags: ['javascript', 'closure']
+tags: ['javascript', 'closure', '하옹의 자바스크립트 식사']
 ---
 
 \* 이 글은 [MDN](https://developer.mozilla.org/es/), [Vanilla Coding Prep 강의자료](https://www.vanillacoding.co/), [PoiemaWeb](https://poiemaweb.com/)등 공신력있는 곳들을 참조한 글입니다.

@@ -3,7 +3,8 @@ title: '하옹의 자바스크립트 식사 - Prototype'
 draft: false
 date: '2021-01-11'
 category: 'javascript'
-tags: ['javascript', 'prototype', '객체지향프로그래밍']
+tags:
+  ['javascript', 'prototype', '객체지향프로그래밍', '하옹의 자바스크립트 식사']
 ---
 
 \* 이 글은 [MDN](https://developer.mozilla.org/es/), [Vanilla Coding Prep 강의자료](https://www.vanillacoding.co/), [PoiemaWeb](https://poiemaweb.com/)등 공신력있는 곳들을 참조한 글입니다.
@@ -114,8 +115,6 @@ console.log(hosam) // Human {name: "hosam", age: 28}
 - 생성자 함수는 별다른 `object`리턴이 없으면 `return this`로 자동반환한다.
 - 반환된 객체는 **인스턴스** 라 불린다.
 
-
-
 #### 🎭리터럴에 내부적으로 작동하는 생성자 함수
 
 또 우리가 흔히 리터럴로 생성한 객체들은 모두 <u>내부적으로</u> 생성자 함수로 만들어진다.
@@ -184,8 +183,6 @@ console.log(person2.prop1) // 'haha'
 
 당연히 같은 값이 나오게 된다.
 
-
-
 ## 어떨 때 생성자함수, 어떨 때 프로토타입?
 
 그럼 어떨 때 생성자 함수를 쓰고 어떨 때 프로토타입을 써야할까?
@@ -199,41 +196,39 @@ console.log(person2.prop1) // 'haha'
 - 프로토타입 : 메서드
 
 ```js
-function MyArray (name) {
-    this.arr_ = []; // 배열 초기화
-    this.length = 0; // 각 배열마다 가지고있어야하는 변동사항 - 필드
-    this.name = name; // 필드
+function MyArray(name) {
+  this.arr_ = [] // 배열 초기화
+  this.length = 0 // 각 배열마다 가지고있어야하는 변동사항 - 필드
+  this.name = name // 필드
 }
 
 // 메서드
-MyArray.prototype.push = function (item) {
-    this.arr_[length] = item;
-    this.length++;
+MyArray.prototype.push = function(item) {
+  this.arr_[length] = item
+  this.length++
 }
 
 // 메서드
-MyArray.prototype.pop = function () {
-    const result = this.arr_[length - 1];
-    this.length--;
-    this.arr_.length = this.length; // arr_ 배열의 마지막데이터를 없앤다.
-    return result;
+MyArray.prototype.pop = function() {
+  const result = this.arr_[length - 1]
+  this.length--
+  this.arr_.length = this.length // arr_ 배열의 마지막데이터를 없앤다.
+  return result
 }
 
 //메서드
-MyArray.prototype.printName = function () {
-    console.log(this.name);
+MyArray.prototype.printName = function() {
+  console.log(this.name)
 }
 
-const myarr1 = new MyArray('myarr1');
-const myarr2 = new MyArray('myarr2');
+const myarr1 = new MyArray('myarr1')
+const myarr2 = new MyArray('myarr2')
 
 // 두 객체 모두 똑같은 MyArray.prototype의 printName()이 호출된다.
-myarr1.printName(); // myarr1
-myarr2.printName(); // myarr2
-console.log(myarr1.printName === myarr2.printName); // true
+myarr1.printName() // myarr1
+myarr2.printName() // myarr2
+console.log(myarr1.printName === myarr2.printName) // true
 ```
-
-
 
 ## 프로토타입 체인
 
@@ -241,18 +236,18 @@ console.log(myarr1.printName === myarr2.printName); // true
 
 모든 객체 (function, array 포함)는 `Object.prototype`의 메서드를 가지고 있다.
 
->  hasOwnProperty(), keys(), values() 등등
+> hasOwnProperty(), keys(), values() 등등
 
-`Object.prototype`은 **마스터 프로토타입**으로써 프로토타입 체인의 끝에는 항상  `Obejct.prototype`이 있기 때문이다.
+`Object.prototype`은 **마스터 프로토타입**으로써 프로토타입 체인의 끝에는 항상 `Obejct.prototype`이 있기 때문이다.
 
 ```js
-Object.prototype.hi_chain = function () {
-    console.log('hi, this is prototype chain');
+Object.prototype.hi_chain = function() {
+  console.log('hi, this is prototype chain')
 }
 
-const arr = [1, 2, 3];
+const arr = [1, 2, 3]
 
-arr.hi_chain(); // hi, this is prototype chain
+arr.hi_chain() // hi, this is prototype chain
 ```
 
 ![prototype chain](.\하옹의-자바스크립트-식사---Prototype-prototype-chain.jpg)
@@ -260,8 +255,6 @@ arr.hi_chain(); // hi, this is prototype chain
 위 사진처럼 `hi_chain()`을 찾아가는 과정처럼 **속성을 찾아 프로토타입을 계속해서 참조해서 나가는 것이 바로 프로토타입 체인**이다.
 
 위 사진은 `객체` - `Array.prototype` - `Object.prototype` 이렇게 프로토타입 체인이 형성되었다고 볼 수 있다.
-
-
 
 ## prototype VS \_\_proto\_\_
 
@@ -274,11 +267,11 @@ arr.hi_chain(); // hi, this is prototype chain
 `prototype`속성은 **오직 함수에만 자동적으로 생성되어 존재하며 값은 프로토타입 객체이다.**
 
 ```js
-function nonConstructor () {
-    console.log("I'm not constructor function");
+function nonConstructor() {
+  console.log("I'm not constructor function")
 }
 
-console.log(nonConstructor.prototype);
+console.log(nonConstructor.prototype)
 ```
 
 ![prototype property](.\하옹의-자바스크립트-식사---Prototype-prototype-property.jpg)
@@ -288,32 +281,28 @@ console.log(nonConstructor.prototype);
 
 ```js
 const arrowFunc = () => {
-    console.log('arrow Func');
+  console.log('arrow Func')
 }
 
-const expressionFunc = function () {
-   	console.log('expression function');
+const expressionFunc = function() {
+  console.log('expression function')
 }
 
-function ConstructorFunc () {
-    this.isConstructor = true;
+function ConstructorFunc() {
+  this.isConstructor = true
 }
 
-console.log(arrowFunc.prototype); // undefined
-console.log(expressionFunc.prototype); // {constructor: f}
-console.log(ConstructorFunc.prototype); // {constructor: f}
+console.log(arrowFunc.prototype) // undefined
+console.log(expressionFunc.prototype) // {constructor: f}
+console.log(ConstructorFunc.prototype) // {constructor: f}
 ```
 
 그리고 보는바와 같이 **화살표함수는 prototype 속성이 자동으로 생성되지 않는다.**
-
-
 
 #### 프로토타입 객체의 default 속성
 
 - constructor : 해당 프로토타입객체를 생성시킨 함수 (생성자함수)
 - \_\_proto\_\_ : 생성된 프로토타입 객체의 프로토타입
-
-
 
 #### 함수 prototype 속성의 역할
 
@@ -325,28 +314,26 @@ console.log(ConstructorFunc.prototype); // {constructor: f}
 즉, **생성된 인스턴스의 `__proto__` 가 생성자 함수 prototype 속성의 객체가 된다.**
 
 ```js
-function Human (name) {
-    this.name = name;
+function Human(name) {
+  this.name = name
 }
 
-Human.prototype.canSpeak = true;
-Human.prototype.func1 = function () {
-    console.log("prototype's function");
+Human.prototype.canSpeak = true
+Human.prototype.func1 = function() {
+  console.log("prototype's function")
 }
 
-const hayoung = new Human('hayoung');
+const hayoung = new Human('hayoung')
 
 // 생성된 인스턴스의 프로토타입은 생성자함수의 프로토타입 속성의 객체값이다.
-console.log(hayoung.__proto__ === Human.prototype);
+console.log(hayoung.__proto__ === Human.prototype)
 ```
 
-
-
-###  \_\_proto\_\_ 속성
+### \_\_proto\_\_ 속성
 
 앞선 수많은 예제들로 `__proto__`가 무엇인지는 잘 알고 있을 것 같다.
 
-이와 같은 \_\_proto\_\_를  dunder-proto(던더프로토)라고 부르는데,
+이와 같은 \_\_proto\_\_를 dunder-proto(던더프로토)라고 부르는데,
 이 던더프로토는 객체에 존재하는 속성으로 **해당 객체의 프로토타입**을 가리킨다.
 
 사실 이 `__proto__`는 사용을 지양해야하고 `Object.prototype`의
@@ -356,21 +343,17 @@ console.log(hayoung.__proto__ === Human.prototype);
 
 를 사용해야 한다.
 
-> `__proto__` 속성을 통해 [[Prototype]] 을 가져오고 설정하면 내부적으로 
+> `__proto__` 속성을 통해 [[Prototype]] 을 가져오고 설정하면 내부적으로
 > getPrototypeOf()와 setPrototypeOf()가 작동된다.
 >
-> * [[Prototype]] : Prototype 객체를 뜻함
-
-
+> - [[Prototype]] : Prototype 객체를 뜻함
 
 ### 정리
 
-그렇다면 `prototype` 속성과 `__proto__` 속성의 차이는 
+그렇다면 `prototype` 속성과 `__proto__` 속성의 차이는
 
 - `prototype`은 함수에 자동적으로 생성되고 `new`키워드와 연계해서 인스턴스의 `__proto__`로 만들어진다. (인스턴스의 프로토타입)
-- `__proto__`는 단순히 객체의 프로토타입객체 [[Prototype]]  를 나타낸다.
-
-
+- `__proto__`는 단순히 객체의 프로토타입객체 [[Prototype]] 를 나타낸다.
 
 ## 상속 구현하기
 
@@ -385,26 +368,24 @@ console.log(hayoung.__proto__ === Human.prototype);
 
 <br>
 
-우선 다음과 같이 부모를 만들었다고 가정하자. 
+우선 다음과 같이 부모를 만들었다고 가정하자.
 
 > (예제는 예전에 작성했던 [여기](https://ha-young.github.io/2020/vanillacoding/BootCamp%20%EB%B0%94%EB%8B%90%EB%9D%BC%EC%BD%94%EB%94%A9%20%EB%B6%80%ED%8A%B8%EC%BA%A0%ED%94%84%20%EC%A7%80%EC%9B%90/)에서 가져왔다)
 
 ```js
 function BootCamp(location, teacher) {
-  this.location = location;
-  this.teacher = teacher;
+  this.location = location
+  this.teacher = teacher
 }
 
-BootCamp.prototype.teach = function () {
-  console.log(`${this.teacher} teachs in ${this.location}`);
+BootCamp.prototype.teach = function() {
+  console.log(`${this.teacher} teachs in ${this.location}`)
 }
 
-BootCamp.prototype.isGood = function () {
-  console.log("i don't know");
+BootCamp.prototype.isGood = function() {
+  console.log("i don't know")
 }
 ```
-
-
 
 ### 1. 자식 생성자 함수에서 부모 생성자 함수로 필드확장
 
@@ -413,18 +394,16 @@ BootCamp.prototype.isGood = function () {
 ```js{3}
 function VanillaCoding(course, ...rest) {
   // 1. 부모 생성자 함수에 현재 인스턴스 바인딩시켜 확장.
-  BootCamp.apply(this, rest);    
+  BootCamp.apply(this, rest)
   // 자식객체에 확장할 필드
   this.course = course
 }
 ```
 
-보통 다음과 같이 생성자 함수 내부에서 부모 생성자 함수를 호출시키는데, 
+보통 다음과 같이 생성자 함수 내부에서 부모 생성자 함수를 호출시키는데,
 `부모생성자.apply(this, rest)`와 같이 자식 생성자 함수에서 생성된 빈 객체를 **binding** 시켜준다. `apply`로 호출하지않고 `call`을 사용해도 무방하다.
 
 > call, apply와 같은 this binding 함수를 모른다면 [하옹의 자바스크립트 식사 - this 포스팅]()을 참조하자.
-
-
 
 ### 2. 자식 프로토타입에 부모 프로토타입 체이닝
 
@@ -436,22 +415,20 @@ function VanillaCoding(course, ...rest) {
 
 ```js{2-3}
 // 2. 자식 프로토타입에 부모 프로토타입 체이닝
-VanillaCoding.prototype = Object.create(BootCamp.prototype);
-VanillaCoding.prototype.constructor = VanillaCoding;
+VanillaCoding.prototype = Object.create(BootCamp.prototype)
+VanillaCoding.prototype.constructor = VanillaCoding
 
 // 2번 이후로 프로토타입 필드, 메서드 할당
-VanillaCoding.prototype.isGood = function () {
-    console.log("yes, vanilla coding is good");
+VanillaCoding.prototype.isGood = function() {
+  console.log('yes, vanilla coding is good')
 }
 ```
 
-아래의 `constructor`를 새로 설정하는 것은 
+아래의 `constructor`를 새로 설정하는 것은
 
 `Object.create()`로 만들어진 객체의 `constructor`속성이 없기 때문.
 
 > [[Prototype]]은 constructor속성을 가지고 있어야 한다.
-
-
 
 ### 전체 소스
 
@@ -493,8 +470,6 @@ const prep = new VanillaCoding('prep9기', 'Samsungdong Seoul', 'Ken')
 prep.teach() // 프로토타입 체인으로 부모의 teach 사용
 prep.isGood() // 자식 프로토타입의 isGood 사용
 ```
-
-
 
 ## 왜 객체지향?
 
@@ -668,8 +643,6 @@ rect.printInformation() // width: 30 height: 50
 square.printInformation() // this is square, length : 30
 ```
 
-
-
 ## 클래스 기반언어와의 차이
 
 Javascript는 Prototype 객체지향 언어로,
@@ -686,35 +659,35 @@ Prototype 기반의 객체지향언어와 Class 기반의 객체지향언어와�
 
 ```js
 const proto1 = {
-    proto_name: 'proto1'
+  proto_name: 'proto1',
 }
 
 const proto2 = {
-    proto_name: 'proto2',
-    extend: 'is extended'
+  proto_name: 'proto2',
+  extend: 'is extended',
 }
 
 function Human(name) {
-    this.name = name;
+  this.name = name
 }
 
 // proto1로 설정
-Human.prototype = proto1;
-Human.prototype.constructor = Human;
+Human.prototype = proto1
+Human.prototype.constructor = Human
 
 // prototype이 proto1 객체로 설정된 인스턴스 생성
-const hayoung = new Human('hayoung');
-console.log(hayoung.proto_name); // proto1
-console.log(hayoung.extend); // undefined <- proto1객체에는 extend 속성이 없다.
+const hayoung = new Human('hayoung')
+console.log(hayoung.proto_name) // proto1
+console.log(hayoung.extend) // undefined <- proto1객체에는 extend 속성이 없다.
 
 // proto2로 설정
-Human.prototype = proto2;
-Human.prototype.constructor = Human;
+Human.prototype = proto2
+Human.prototype.constructor = Human
 
 // Human의 프로토타입이 런타임중에 변경
-const hosam = new Human('hosam');
-console.log(hosam.proto_name); // proto2
-console.log(hosam.extend); // is extended
+const hosam = new Human('hosam')
+console.log(hosam.proto_name) // proto2
+console.log(hosam.extend) // is extended
 ```
 
 이 처럼 코드가 실행되는 중에 객체원형인 Prototype을 변경할 수가 있다.
@@ -723,15 +696,11 @@ console.log(hosam.extend); // is extended
 
 > 클래스기반에서는 클래스가 객체원형이다.
 
-
-
 ### 계속해서 재생성되지 않는다
 
 Prototype기반 객체지향에서 [[Prototype]]은 한번 생성되면 계속해서 공유되는 객체일 뿐 인스턴스가 생성될 때마다 새로 생성되거나 그러지 않는다.
 
 하지만 클래스기반언어에서는 `static`으로 선언되지 않은 필드, 메서드에 대해서는 모두 인스턴스를 생성할 때 새롭게 생성되어진다.
-
-
 
 ## 참조
 
@@ -746,4 +715,3 @@ Prototype기반 객체지향에서 [[Prototype]]은 한번 생성되면 계속�
 [위키백과](https://ko.wikipedia.org/wiki/%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85_%EA%B8%B0%EB%B0%98_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D)
 
 [즐거운인생님의 생성자함수와 프로토타입](https://doitnow-man.tistory.com/132)
-

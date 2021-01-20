@@ -3,7 +3,7 @@ title: '하옹의 자바스크립트 식사 - DOM'
 draft: false
 date: 2020-11-15
 category: 'javascript'
-tags: ['javascript', 'dom']
+tags: ['javascript', 'dom', '하옹의 자바스크립트 식사']
 ---
 
 \* 이 글은 [MDN](https://developer.mozilla.org/es/), [Vanilla Coding Prep 강의자료](https://www.vanillacoding.co/), [PoiemaWeb](https://poiemaweb.com/)등 공신력있는 곳들을 참조한 글입니다.
@@ -629,8 +629,6 @@ buttonElement.addEventListener('click', function onButtonClick() {
 - event type : 이벤트의 종류 ([여기 참조](https://developer.mozilla.org/en-US/docs/Web/Events))
 - event listener : 이벤트 발생시 실행되는 함수
 
-
-
 ## DOM의 메모리 누수 문제
 
 흔히 Javascript 메모리 누수문제로 나타나는 문제 중 하나가 바로 DOM을 다루면서 생기게 된다.
@@ -678,36 +676,33 @@ removeElements(domElements);
 
 ```js
 const domElements = {
-    button: document.querySelector('button'),
-    image: document.querySelector('image'),
-	text: document.querySelector('text'),
-    div: document.querySelector('div')
+  button: document.querySelector('button'),
+  image: document.querySelector('image'),
+  text: document.querySelector('text'),
+  div: document.querySelector('div'),
 }
 
-function manipulateDOM (elements) {
-    elements.image && (elements.image.src = 'haha');
-    elements.button && (elements.button.style.backgroundColor = 'black');
-    elements.text && (elements.text.textContext = 'processing...');
-    elements.div && (elements.div.style.backgroundColor = 'green');
-    // ...
+function manipulateDOM(elements) {
+  elements.image && (elements.image.src = 'haha')
+  elements.button && (elements.button.style.backgroundColor = 'black')
+  elements.text && (elements.text.textContext = 'processing...')
+  elements.div && (elements.div.style.backgroundColor = 'green')
+  // ...
 }
 
-function removeElements (elements) {
-    for (const element in elements) {
-        if (elements.hasOwnProperty(element)) {
-            element.parrentNode?.removeChild(element);
-            console.log(element);
-        	delete elements[element]; // Dom 요소를 참조하는 domElements 내부 property 제거
-    	}
+function removeElements(elements) {
+  for (const element in elements) {
+    if (elements.hasOwnProperty(element)) {
+      element.parrentNode?.removeChild(element)
+      console.log(element)
+      delete elements[element] // Dom 요소를 참조하는 domElements 내부 property 제거
     }
+  }
 }
 
-manipulateDOM(domElements);
+manipulateDOM(domElements)
 // ...
-removeElements(domElements);
+removeElements(domElements)
 ```
 
 다음과 같이 참조값들을 모두 제거해줘야 GC가 제대로 작동을 하게 되어 메모리가 성공적으로 해제될 수 있다.
-
-
-

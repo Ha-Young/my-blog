@@ -16,7 +16,7 @@
     font-weight: 900;
     letter-spacing: 2px;
     cursor: pointer;
-    z-index: 1000;
+    animation: 1.5s infinite alternate emphasize-btn;
 
     &::before {
       content: 'TOC';
@@ -33,8 +33,35 @@
     border-radius: 4px 0 0 4px;
     box-sizing: border-box;
     overflow-x: auto;
-    z-index: 1000;
+    z-index: 10;
     transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+    .toc-close-btn {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 2px;
+      border: 2px solid #34495e;
+      border-radius: 4px;
+      background: #e96900;
+      color: #fff;
+      cursor: pointer;
+
+      .toc-close-icon {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        width: 16px;
+        height: 16px;
+        background: url('../../../assets/right-arrow.png') 0 0 / contain;
+      }
+    }
 
     .toc {
       height: 100%;
@@ -93,20 +120,6 @@
   }
 }
 
-.anchor.before {
-  z-index: 2;
-}
-
-.toc-active {
-  // &::before {
-  //   content: '{ ';
-  // }
-
-  // &::after {
-  //   content: ' }';
-  // }
-}
-
 .toc-header {
   position: relative;
   display: block;
@@ -139,6 +152,10 @@
 
 @include tablet-portrait {
   .toc-container {
+    .toc-open-btn {
+      animation: 1.5s infinite alternate emphasize-btn-mobile;
+    }
+
     .toc-content {
       right: -340px;
       width: 340px;
@@ -160,6 +177,10 @@
 
 @include tablet {
   .toc-container {
+    .toc-open-btn {
+      animation: 1.5s infinite alternate emphasize-btn-mobile;
+    }
+
     .toc-content {
       right: -320px;
       width: 320px;
@@ -181,6 +202,10 @@
 
 @include mobile {
   .toc-container {
+    .toc-open-btn {
+      animation: 1.5s infinite alternate emphasize-btn-mobile;
+    }
+
     .toc-content {
       right: -300px;
       width: 300px;
@@ -197,5 +222,50 @@
         }
       }
     }
+  }
+}
+
+// container가 sticky라서 layout에 overflow:hidden 적용시 sticky가 먹히지 않음. (참고한 heropy블로그에서는 fixed) 따라서 애니메이션 변경함.
+@-webkit-keyframes emphasize-btn {
+  0% {
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px);
+  }
+  100% {
+    -webkit-transform: translateX(-10px);
+    transform: translateX(-10px);
+  }
+}
+
+@keyframes emphasize-btn {
+  0% {
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px);
+  }
+  100% {
+    -webkit-transform: translateX(-10px);
+    transform: translateX(-10px);
+  }
+}
+
+@-webkit-keyframes emphasize-btn-mobile {
+  0% {
+    -webkit-transform: translateX(15px);
+    transform: translateX(15px);
+  }
+  100% {
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px);
+  }
+}
+
+@keyframes emphasize-btn-mobile {
+  0% {
+    -webkit-transform: translateX(15px);
+    transform: translateX(15px);
+  }
+  100% {
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px);
   }
 }
