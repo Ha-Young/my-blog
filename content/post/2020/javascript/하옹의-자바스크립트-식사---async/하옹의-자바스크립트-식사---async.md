@@ -442,7 +442,7 @@ new Promise(function(resolve, reject){
 
 
 
-![Promise 처리 흐름](./promise처리흐름.svg)
+![Promise 처리 흐름](./promise처리흐름.svg)
 
 이미지 출처 : [MDN - Promise](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 

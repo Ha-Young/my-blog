@@ -6,7 +6,7 @@ module.exports = {
   introduction: `안녕하세요. 타고난 대기만성 성장러 하영의 로그입니다.`,
   siteUrl: `https://ha-young.github.io/`, // Your blog site url
   social: {
-    github: `hayeong28@naver.com`, // Your GitHub account
+    github: `Ha-Young`, // Your GitHub account
     medium: ``, // Your Medium account
     facebook: `hayoung28`, // Your Facebook account
     linkedin: `ha-young-choi-1ba15b1b7`, // Your LinkedIn account
