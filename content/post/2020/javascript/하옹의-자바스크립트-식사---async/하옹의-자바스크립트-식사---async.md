@@ -3,7 +3,7 @@ title: '하옹의 자바스크립트 식사 - Asynchronous Programming'
 draft: false
 date: '2021-01-21'
 category: 'javascript'
-tags: ['javascript', 'asynchronous', 'promise', 'async-await']
+tags: ['javascript', '비동기', 'asynchronous', 'promise', 'async/await', 'callback hell']
 ---
 
 \* 이 글은 [Vanilla Coding](https://www.vanillacoding.co/) - BootCamp 9기 1주차 강의 수강 후 적은 글입니다.

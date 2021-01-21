@@ -89,6 +89,7 @@
     "lh": "lighthousebot",
     "fix-semi": "eslint --quiet --ignore-pattern node_modules --ignore-pattern public --parser babel-eslint --no-eslintrc --rule '{\"semi\": [2, \"never\"], \"no-extra-semi\": [2]}' --fix gatsby-node.js",
     "clean": "gatsby clean",
-    "deploy": "npm run clean && gatsby build && gh-pages -d public -b master -r https://github.com/Ha-Young/Ha-Young.github.io.git"
+    "deploy": "npm run clean && gatsby build && gh-pages -d public -b master -r https://github.com/Ha-Young/Ha-Young.github.io.git",
+    "deploy2": "gh-pages -d public -b master -r https://github.com/Ha-Young/Ha-Young.github.io.git"
   }
 }
