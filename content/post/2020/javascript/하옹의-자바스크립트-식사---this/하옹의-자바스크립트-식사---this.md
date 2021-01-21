@@ -651,3 +651,12 @@ strict mode를 쓰는이유는 간단하다.
 ## 풀어볼만한 좋은 문제
 
 [take this quiz](https://dev.to/liaowow/take-this-quiz-understand-how-this-works-in-javascript-44dj) 를 참조해서 풀어보자.
+
+
+
+## 참조
+
+[VanillaCoding - Prep 강의 - this](https://www.vanillacoding.co/)
+
+[MDN - this](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/this)
+
