@@ -146,7 +146,7 @@ infinityFunc();
 
 극단적으로 위의 예제처럼 `infinity()`함수의 무한루프로인해 `Call Stack` 이 비워지지않아서 3초뒤에 우리가 원하는 출력값을 얻을 수 없는걸 확인 할 수 있다.
 
-![event loop](./하옹의-자바스크립트-식사---Asynchronous-Programming_eventloop.png)
+![event loop](./eventloop.png)
 
 이미지 출처 : [VanillaCoding - Prep강의](https://www.vanillacoding.co/)
 
