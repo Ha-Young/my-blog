@@ -573,7 +573,7 @@ const rectangle2 = new Rectangle(30, 50)
 
 만약 위 코드에서 `printInformation`의 출력 포멧을 수정해야 되는 상황이 발생했다고 치자 그럼 맨 처음 코드에서는 각각 객체 리터럴을 찾아다니며 `printInformation`을 수정해야 된다.
 
-우리는 객체지향의 생성자함수를 만들어놨으므로 생성자 함수만 수정하면 번거로움없이 `printInformation`을 일괄적용시킬 수 있다.
+우리는 객체지향의 생성자함수와 프로토타입에 메서드를 만들어놨으므로 이 한 부분만 수정하면 번거로움없이 모든 객체에 대한 `printInformation`메서드 수정을 일괄적용시킬 수 있다.
 
 ```js{11}
 function Rectangle(width, height) {
@@ -596,7 +596,7 @@ rectangle1.printInformation() // width: 10 height: 20
 rectangle2.printInformation() // width: 30 height: 50
 ```
 
-위 처럼 생성자 함수만 수정해줬는데도, 우리가 생성하는 모든 rectangle에 수정사항을 적용시킬 수 있다.
+위 처럼 프로토타입에 있는 메서드만 수정해줬는데도, 우리가 생성하는 모든 rectangle에 수정사항을 적용시킬 수 있다.
 
 마찬가지로 그럴리는 없겠지만 넓이를 구하는 공식이 바뀌면 생성자 함수의 `getArea` 메서드만 수정해주면 된다.
 
