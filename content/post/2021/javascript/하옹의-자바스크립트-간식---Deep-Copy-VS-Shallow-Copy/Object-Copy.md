@@ -47,6 +47,8 @@ console.log(copyObj); // {name: "hayoung", job: "full stack"}
 
 
 
+### 참조값의 함정
+
 아래 그림을 보자.
 
 ![참조값 복사](./Object-Copy_reference.png)
@@ -59,7 +61,23 @@ console.log(copyObj); // {name: "hayoung", job: "full stack"}
 
 `const copyObj = originObj` 이런 단순 할당만으로는 위와 같은 그림처럼 `originObj`가 가지고 있던 참조값 `0x10` 만이 복사되어 들어가게 된다.
 
-따라서 `originObj` 와 `copyObj` 는 같은 참조값을 가지게 되어서 
+따라서 `originObj` 와 `copyObj` 는 같은 참조값을 가지게 되어서 `Dot Notation`이나 `Bracket Notation` 을 이용한 속성값 접근을 할 때 결국 같은 곳에 있는 같은 값에 접근하게 된다.
+
+즉, 이 
+
+```js
+const copyObj = originObj;
+```
+
+구문은 **<u>참조값을 복사</u>한 것이지 진정한 객체복사라 볼 수 없다**.
+
+
+
+**진정한 객체복사란**
+
+
+
+와 같이 `originObj`와 `copyObj`가 
 
 
 
@@ -145,8 +163,6 @@ console.log(updateItem); // {type: "sword", attack: 40, isUpdated: true}
 
 Javascript에서 
 
-### 참조값의 함정
-
 ### ‼️객체 불변성
 
 ### 객체 가변성에 따른 문제
@@ -160,6 +176,12 @@ Javascript에서
 
 
 ### 깊은 복사의 필요성
+
+```js
+const 
+```
+
+
 
 ## 깊은 복사
 
@@ -192,6 +214,12 @@ function deepCopy(origin) {
 ```
 
 이 방법은 method나 getter/setter에 대해서 제대로 작동하지 않고 null값으로 들어가게 되니 주의해야한다.
+
+enumarable한 것도 안됨.
+
+JSON객체로 가능한 데이터 타입이 정해져있다.
+
+
 
 ```js
 
