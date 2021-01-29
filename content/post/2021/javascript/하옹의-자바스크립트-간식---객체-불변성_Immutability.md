@@ -3,7 +3,14 @@ title: '하옹의 자바스크립트 간식 - 객체 불변성(Immutability)'
 draft: false
 date: '2021-01-29'
 category: 'javascript'
-tags: ['javascript', '불변성', '객체 불변성', 'immutability', '하옹의 자바스크립트 간식']
+tags:
+  [
+    'javascript',
+    '불변성',
+    '객체 불변성',
+    'immutability',
+    '하옹의 자바스크립트 간식',
+  ]
 ---
 
 ## ❗️ 객체 불변성
@@ -31,8 +38,6 @@ tags: ['javascript', '불변성', '객체 불변성', 'immutability', '하옹의
 >
 > 힙 영역은 object 타입 값 생성시 메모리 할당이 일어나는 공간으로 주로 크기가 정형화 되지 않는 Object 타입의 실제 값을 담는 공간이다.
 
-
-
 ### Immutable value (primitives)
 
 우리가 자바스크립트에서 불변성을 유지하려면 데이터 타입부터 확인해봐야 한다.
@@ -44,42 +49,34 @@ tags: ['javascript', '불변성', '객체 불변성', 'immutability', '하옹의
 이러한 태생적인 Immutable한 특징 덕분에 앞서 설명했던 메모리에 값이 직접적으로 들어가지고, 수정할 경우 새로운 값으로 대체되어 들어가고 다른 변수에 할당을 하더라도 값을 공유하는 것이 아닌, 값 그 자체로 복사가 되어 들어가지기 때문이다.
 
 ```js
-const name = 'hayoung';
-const copyName = name;
+const name = 'hayoung'
+const copyName = name
 ```
 
 위 처럼 `name` 변수에 'hayoung' 값을 저장하고, `copyName`에 복사를 진행하였다.
 
 그렇다면 아래 그림처럼 진행이 된다.
 
-<img src="./하옹의-자바스크립트-간식---Deep-Copy-VS-Shallow-Copy/PrimitiveCopy.png" alt="Primitive Value Copy" style="zoom:67%;" />
+<img src="./Object-Copy/PrimitiveCopy.png" alt="Primitive Value Copy" style="zoom:67%;" />
 
 위 처럼 Primitive Value는 값 그 자체로 메모리에 저장되고, 복사를 할 경우 값 그 자체가 복사되어서 새로운 변수에 할당이 된다.
 
 절대로 아래 그림의 왼쪽 처럼 되지 않는다.
 
+<img src="./Object-Copy/PrimitiveValueNot.png" alt="잘못된 Primitive Value" style="zoom:67%;" />
 
-
-<img src="./하옹의-자바스크립트-간식---Deep-Copy-VS-Shallow-Copy/PrimitiveValueNot.png" alt="잘못된 Primitive Value" style="zoom:67%;" />
-
-이 말은 각각 변수는 값이 같지만 메모리상에서는 각각 다른곳에 저장되어 있다는 말이고 어느 한 변수를 수정해도 다른 변수는 불변하다. 
-
-
+이 말은 각각 변수는 값이 같지만 메모리상에서는 각각 다른곳에 저장되어 있다는 말이고 어느 한 변수를 수정해도 다른 변수는 불변하다.
 
 그렇다면, 위에서 얘기했던 메모리에 저장되어 있는 값을 직접적으로 수정하려면 해당 변수 `copyName` 이나 `name`에 새로운 값을 재할당 하는 방법 밖에 없다.
-
-
 
 이 재할당은 우리가 익히 아는 `const` 키워드로 막을 수 있다.
 
 ```js
-const name = 'hayoung';
-const copyName = name;
+const name = 'hayoung'
+const copyName = name
 ```
 
 그럼 이제 위 두 Primitive Value 값은 불변성을 가지고있다고 말 할 수 있을 것 같다.
-
-
 
 ### Mutable value
 
@@ -88,19 +85,19 @@ const copyName = name;
 다시말하면 객체타입의 값은 원시타입 값과 다르게 기존 값을 새로운 값으로 만들지 않고 변경이 가능하다.
 
 ```js
-const primitiveValue = 'hayoung';
-primitiveValue = 'haong'; //err
+const primitiveValue = 'hayoung'
+primitiveValue = 'haong' //err
 
 const objectValue = {
   name: 'hayoung',
   job: 'frontend',
 }
-objectValue.name = 'haong'; // possible
+objectValue.name = 'haong' // possible
 
-const arr = [];
-arr.push('value');
+const arr = []
+arr.push('value')
 
-console.log(arr); // ['value']
+console.log(arr) // ['value']
 ```
 
 이런점을 통해 우리는 객체타입을 Mutable value라 할 수 있다.
@@ -109,19 +106,13 @@ console.log(arr); // ['value']
 >
 > 객체 타입의 값은 Mutable.
 
-
-
-<img src="./하옹의-자바스크립트-간식---Deep-Copy-VS-Shallow-Copy/diffInMemory.png" alt="메모리상에 참조값과 원시값차이" style="zoom:67%;" />
-
-
+<img src="./Object-Copy/diffInMemory.png" alt="메모리상에 참조값과 원시값차이" style="zoom:67%;" />
 
 그림으로 확인해보면 명확하다.
 
 우리는 `objectValue` 에 접근할 때 메모리에 직접적으로 있는 값에 접근하는 것이 아닌 참조값이라는 주소값을 통해 실제 있는 값에 접근을 할 수가 있다.
 
 이 때문에 각각 다른 변수다 하더라도 동일한 값을 바라볼수도 있고 이 참조값을 통해 접근을 하여 수정을 할 수 있다.
-
-
 
 ### Mutable 값의 문제점
 
@@ -139,8 +130,6 @@ console.log(arr); // ['value']
 
 그렇기 때문에 **예측가능한 코드를 위해서는 객체 불변성을 유지하는 것이 좋다**.
 
-
-
 ### 왜 immutable?
 
 #### 함수형 프로그래밍 순수함수의 필수조건!
@@ -156,16 +145,12 @@ console.log(arr); // ['value']
 
 리액트 Virtual DOM 엔진의 작동 원리를 따져보면 객체 불변성을 유지해야 한다고 한다.
 
-
-
 ## 자바스크립트에서 객체 불변성을 유지하기 위한 방법
 
 자바스크립트에서 객체 불변성을 유지하기 위해서는 두가지 방법이 있다.
 
 - 객체 동결시키기 - Object Freeze
 - 객체 사본만들기 - Object Copy
-
-
 
 ### 객체 동결시키기 - Object.freeze()
 
@@ -189,12 +174,12 @@ const originObj = {
   job: 'frontend',
 }
 
-originObj.job = 'backend';
+originObj.job = 'backend'
 
-console.log(originObj); // {name: 'hayoung', job: 'backend'}
+console.log(originObj) // {name: 'hayoung', job: 'backend'}
 ```
 
-다음 코드는 원본객체인 `originObj` 에  대해서 변경작업이 이루어지고 있다.
+다음 코드는 원본객체인 `originObj` 에 대해서 변경작업이 이루어지고 있다.
 
 여기 `originObj` 를 동결시켜보자.
 
@@ -204,13 +189,13 @@ const originObj = {
   job: 'frontend',
 }
 
-Object.freeze(originObj);
+Object.freeze(originObj)
 
-originObj.job = 'backend';
-originObj.phone = '010-xxxx-xxxx';
-delete originObj.name;
+originObj.job = 'backend'
+originObj.phone = '010-xxxx-xxxx'
+delete originObj.name
 
-console.log(originObj); // {name: 'hayoung', job: 'frontend'}
+console.log(originObj) // {name: 'hayoung', job: 'frontend'}
 ```
 
 위 처럼 `Object.freeze(객체)` 로 객체를 동결 시킬 수 있다.
@@ -221,28 +206,26 @@ console.log(originObj); // {name: 'hayoung', job: 'frontend'}
 >
 > strictmode에서 동결된 객체를 변경시키면 TypeError가 발생한다.
 
-
-
 #### 배열 동결
 
 배열 또한 자바스크립트에서 객체타입이기 때문에 동결시킬 수 있다.
 
 ```js{7}
-const arr = [1, 2, 3, 4];
+const arr = [1, 2, 3, 4]
 
-arr.push(5);
+arr.push(5)
 
-console.log(arr); // [1, 2, 3, 4, 5]
+console.log(arr) // [1, 2, 3, 4, 5]
 
-Object.freeze(arr);
+Object.freeze(arr)
 
-arr.push(6); // Error
+arr.push(6) // Error
 arr.pop() // Error
 ```
 
 7번라인에서 `Object.freeze()`로 동결후에 값을 변경하려고 하면 아래와 같은 애러가 난다.
 
-![배열 불변성 애러](./하옹의-자바스크립트-간식---객체-불변성-(Immutability)/배열-Freeze-Error.png)
+![배열 불변성 애러](<./하옹의-자바스크립트-간식---객체-불변성-(Immutability)/배열-Freeze-Error.png>)
 
 #### 얕은 동결
 
@@ -257,34 +240,32 @@ const hayoung = {
   friends: [
     {
       name: 'youngwoo',
-      job: 'firefighter'
+      job: 'firefighter',
     },
     {
       name: 'hyungbin',
-      job: 'doctor'
+      job: 'doctor',
     },
   ],
-};
+}
 ```
 
 위 처럼 **nested object type**의 값인 `friends` 속성에 대해서는 `Object.freeze()`가 인자로받은 객체의 **직속 속성**(1 depth) 에 대해서만 동결이 적용되어서 **얕은 동결**이 일어난다.
 
 ```js
-Object.freeze(hayoung);
+Object.freeze(hayoung)
 
-hayoung.name = 'unknown';
+hayoung.name = 'unknown'
 
-console.log(hayoung.name); // 'hayoung'
+console.log(hayoung.name) // 'hayoung'
 
-hayoung.friends[0].job = 'jobless';
-hayoung.friends.pop();
+hayoung.friends[0].job = 'jobless'
+hayoung.friends.pop()
 
-console.log(hayoung.friends); // [ {name: "youngwoo", job: "jobless"}]
+console.log(hayoung.friends) // [ {name: "youngwoo", job: "jobless"}]
 ```
 
 때문에 2 depth이상의 nested object type의 값들에 대해서는 동결을 적용시킬수가 없다.
-
-
 
 #### 깊은 동결
 
@@ -294,45 +275,43 @@ console.log(hayoung.friends); // [ {name: "youngwoo", job: "jobless"}]
 
 ```js
 function deepFreeze(object) {
-  
-  const propNames = Object.getOwnPropertyNames(object);
-  
+  const propNames = Object.getOwnPropertyNames(object)
+
   // nested object에만 적용
   for (const name of propNames) {
-    const value = object[name];
-    object[name] = value && typeof value === "object" ? deepFreeze(value) : value;
+    const value = object[name]
+    object[name] =
+      value && typeof value === 'object' ? deepFreeze(value) : value
   }
-  
-  return Object.freeze(object);
+
+  return Object.freeze(object)
 }
 ```
 
 이제 적용시켜 보자.
 
 ```js{1}
-deepFreeze(hayoung);
+deepFreeze(hayoung)
 
-hayoung.friends[0].job = 'jobless';
+hayoung.friends[0].job = 'jobless'
 
-console.log(hayoung.friends[0]); // [ {name: "youngwoo", job: "firefighter"}]
+console.log(hayoung.friends[0]) // [ {name: "youngwoo", job: "firefighter"}]
 
-hayoung.friends.push({name: 'heungmin', job: 'football player'}); // error 추가 불가
-hayoung.friends.pop(); // error 제거 불가
+hayoung.friends.push({ name: 'heungmin', job: 'football player' }) // error 추가 불가
+hayoung.friends.pop() // error 제거 불가
 ```
 
- 변경사항 또한 적용되지 않고 배열에 대한 추가 제거작업도 애러가 나는걸 확인 할 수 있다.
-
-
+변경사항 또한 적용되지 않고 배열에 대한 추가 제거작업도 애러가 나는걸 확인 할 수 있다.
 
 #### 동결 확인
 
 객체가 동결이 되었는지 확인하려면 `Object.isFrozen()` 을 사용하면 된다.
 
 ```js
-Object.isFrozen(hayoung); // true
+Object.isFrozen(hayoung) // true
 ```
 
-그리고 굳이 `Object.freeze()`를 하지 않더라도 
+그리고 굳이 `Object.freeze()`를 하지 않더라도
 
 확장이 불가하고, 모든 속성에 대해 쓰기 불가, 설정 불가라면 동결이 되었다고 판단한다.
 
@@ -342,18 +321,16 @@ const hayoung = {
   job: 'frontend',
 }
 
-Object.preventExtensions(hayoung); // 객체 확장 불가 설정
-Object.defineProperty(hayoung, 'name', {writable: false, configurable: false}); // 쓰기 불가, 설정 불가
-Object.defineProperty(hayoung, 'job', {writable: false, configurable: false}); // 쓰기 불가, 설정 불가
+Object.preventExtensions(hayoung) // 객체 확장 불가 설정
+Object.defineProperty(hayoung, 'name', { writable: false, configurable: false }) // 쓰기 불가, 설정 불가
+Object.defineProperty(hayoung, 'job', { writable: false, configurable: false }) // 쓰기 불가, 설정 불가
 
-console.log(Object.isFrozen(hayoung)); // true
+console.log(Object.isFrozen(hayoung)) // true
 ```
 
 > [Object.defineProperty()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) 는 속성에 대해 서술자를 설정할 수 있다. (접근가능한지, 할당가능한지 등에 대한 설정 )
 
-
-
-### 객체 사본 만들기 
+### 객체 사본 만들기
 
 위 처럼 객체 동결에는 수정을 가해서도 안되거니와 수정을 가할 수가 없다.
 
@@ -363,45 +340,38 @@ console.log(Object.isFrozen(hayoung)); // true
 
 객체 복사에대해서 디테일한 사항은 이전 포스팅에 있으니 해당 포스팅을 참조하고, 현재 이 글에는 간단하게 표기하도록 하겠다.
 
-
-
 #### 얕은 복사
 
 객체의 얕은 복사는 `Object.assign()`으로 해결할 수 있다.
 
 ```js
-const returnedTarget = Object.assign(target, source);
+const returnedTarget = Object.assign(target, source)
 ```
-
-
 
 #### 깊은 복사
 
 ```js
-function deepCopy(origin, copy = {}) {  
+function deepCopy(origin, copy = {}) {
   for (const key in origin) {
     if (origin.hasOwnProperty(key)) {
       if (typeof origin[key] === 'object') {
-        copy[key] = Array.isArray(origin[key]) ? [] : {};
-        deepCopy(origin[key], copy[key]);
+        copy[key] = Array.isArray(origin[key]) ? [] : {}
+        deepCopy(origin[key], copy[key])
       } else {
-        copy[key] = origin[key];
+        copy[key] = origin[key]
       }
     }
   }
-  return copy;
+  return copy
 }
 ```
 
 깊은 복사는 깊은 동결과 같이 재귀를 통하여 해결 할 수 있다.
 
-
-
 ## 참조
 
-[나의 자료형에 대한 이전 포스팅]([https://ha-young.github.io/2020/javascript/%ED%95%98%EC%98%B9%EC%9D%98-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%8B%9D%EC%82%AC---Type/](https://ha-young.github.io/2020/javascript/하옹의-자바스크립트-식사---Type/))
+[나의 자료형에 대한 이전 포스팅](<[https://ha-young.github.io/2020/javascript/%ED%95%98%EC%98%B9%EC%9D%98-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%8B%9D%EC%82%AC---Type/](https://ha-young.github.io/2020/javascript/하옹의-자바스크립트-식사---Type/)>)
 
 [MDN - Object.freeze](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze)
 
 [Evans님의 불변성 포스팅](https://evan-moon.github.io/2020/01/05/what-is-immutable/)
-
