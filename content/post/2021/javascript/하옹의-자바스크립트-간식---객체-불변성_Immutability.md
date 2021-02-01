@@ -57,13 +57,13 @@ const copyName = name
 
 그렇다면 아래 그림처럼 진행이 된다.
 
-<img src="./Object-Copy/PrimitiveCopy.png" alt="Primitive Value Copy" style="zoom:67%;" />
+<img src="./하옹의-자바스크립트-간식---객체-불변성-Immutability/PrimitiveCopy.png" alt="Primitive Value Copy" style="zoom:67%;" />
 
 위 처럼 Primitive Value는 값 그 자체로 메모리에 저장되고, 복사를 할 경우 값 그 자체가 복사되어서 새로운 변수에 할당이 된다.
 
 절대로 아래 그림의 왼쪽 처럼 되지 않는다.
 
-<img src="./Object-Copy/PrimitiveValueNot.png" alt="잘못된 Primitive Value" style="zoom:67%;" />
+<img src="./하옹의-자바스크립트-간식---객체-불변성-Immutability/PrimitiveValueNot.png" alt="잘못된 Primitive Value" style="zoom:67%;" />
 
 이 말은 각각 변수는 값이 같지만 메모리상에서는 각각 다른곳에 저장되어 있다는 말이고 어느 한 변수를 수정해도 다른 변수는 불변하다.
 
@@ -106,7 +106,7 @@ console.log(arr) // ['value']
 >
 > 객체 타입의 값은 Mutable.
 
-<img src="./Object-Copy/diffInMemory.png" alt="메모리상에 참조값과 원시값차이" style="zoom:67%;" />
+<img src="./하옹의-자바스크립트-간식---객체-불변성-Immutability/diffInMemory.png" alt="메모리상에 참조값과 원시값차이" style="zoom:67%;" />
 
 그림으로 확인해보면 명확하다.
 
@@ -225,7 +225,7 @@ arr.pop() // Error
 
 7번라인에서 `Object.freeze()`로 동결후에 값을 변경하려고 하면 아래와 같은 애러가 난다.
 
-![배열 불변성 애러](<./하옹의-자바스크립트-간식---객체-불변성-(Immutability)/배열-Freeze-Error.png>)
+![배열 불변성 애러](<./하옹의-자바스크립트-간식---객체-불변성-Immutability/배열-Freeze-Error.png>)
 
 #### 얕은 동결
 

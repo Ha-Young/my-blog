@@ -51,7 +51,7 @@ console.log(copyObj); // {name: "hayoung", job: "full stack"}
 
 아래 그림을 보자.
 
-![참조값 복사](./Object-Copy_reference.png)
+<img src="./하옹의-자바스크립트-식사---Object-Copy/Object-Copy_reference.png" alt="참조값 복사" style="zoom:67%;" />
 
 [참조](../../../../2020/javascript/하옹의-자바스크립트-식사---Type/#7-object)에 대해서 공부를 했다면 위와같은 그림은 익숙하리라 생각한다. 
 
@@ -75,7 +75,7 @@ const copyObj = originObj;
 
 ### 진정한 객체복사란
 
-![진정한 객체복사](./Object-Copy_real.png)
+<img src="./하옹의-자바스크립트-식사---Object-Copy/Object-Copy_real.png" alt="진정한 객체복사" style="zoom:67%;" />
 
 
 
