@@ -2,6 +2,7 @@ import React from 'react'
 
 import { Header } from '../components/header'
 import { ThemeSwitch } from '../components/theme-switch'
+import { EffectSwitch } from '../components/effect-switch'
 import { Footer } from '../components/footer'
 import { rhythm } from '../utils/typography'
 
@@ -17,6 +18,7 @@ export const Layout = ({ location, title, children }) => {
       <div className="layout-wrapper">
         <Header title={title} location={location} rootPath={rootPath} />
         <ThemeSwitch />
+        <EffectSwitch />
         <div
           className='content'
           style={{

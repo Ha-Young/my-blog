@@ -35,3 +35,11 @@ export function getTheme(defaultValue) {
 export function setTheme(val) {
   return setValueToLocalStorage(`${LOCAL_STORAGE_KEY}/theme`, val)
 }
+
+export function getEffect(defaultValue) {
+  return getValueFromLocalStorage(`${LOCAL_STORAGE_KEY}/effect`) || defaultValue
+}
+
+export function setEffect(val) {
+  return setValueToLocalStorage(`${LOCAL_STORAGE_KEY}/effect`, val)
+}

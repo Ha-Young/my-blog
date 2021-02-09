@@ -1,0 +1,38 @@
+@import '../../styles/responsive-device.scss';
+
+.effect-switch-container {
+  position: fixed;
+  bottom: 80px;
+  right: 50px;
+  z-index: 3;
+  opacity: 1;
+  transition: opacity 0.4s linear;
+
+  .icon {
+    text-align: center;
+    color: #222;
+    font-size: 14px;
+    font-weight: 900;
+  }
+}
+
+@include tablet-portrait {
+  .effect-switch-container {
+    right: 30px;
+    bottom: 60px;
+  }
+}
+
+@include tablet {
+  .effect-switch-container {
+    right: 10px;
+    bottom: 40px;
+  }
+}
+
+@include mobile {
+  .effect-switch-container {
+    right: 5px;
+    bottom: 35px;
+  }
+}
