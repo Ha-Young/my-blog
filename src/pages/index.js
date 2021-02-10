@@ -4,12 +4,9 @@ import { Layout } from '../layout'
 import { SEO } from '../components/seo'
 import LandingBio from '../components/landing-bio'
 import { HOME_TITLE } from '../constants/meta'
-import { useIntersectionObserver } from '../hooks/useIntersectionObserver'
 
 const IndexPage = ({ data, location }) => {
   const { siteMetadata } = data.site
-
-  useIntersectionObserver()
 
   return (
     <Layout location={location} title={siteMetadata.title}>
