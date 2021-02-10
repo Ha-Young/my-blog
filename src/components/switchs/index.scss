@@ -2,8 +2,8 @@
 
 .switch-container {
   position: fixed;
-  bottom: 50px;
-  right: 50px;
+  bottom: 80px;
+  right: 80px;
   z-index: 3;
   opacity: 1;
   transition: opacity 0.4s linear;
@@ -13,6 +13,13 @@
     color: #222;
     font-size: 14px;
     font-weight: 900;
+  }
+}
+
+@include desktop {
+  .switch-container {
+    right: 50px;
+    bottom: 50px;
   }
 }
 

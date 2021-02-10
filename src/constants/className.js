@@ -6,4 +6,6 @@ export const className = {
   theme_switch: 'switch-container',
   author_name_content: 'author-name-content',
   post_navigator: 'post-navigator',
+
+  canvas_name: 'canvas_fireworks',
 }

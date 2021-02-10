@@ -18,7 +18,7 @@ exports.onInitialClientRender = () => {
       })
       FB.AppEvents.logPageView()
     }
-    ;(function(d, s, id) {
+    (function(d, s, id) {
       var js,
         fjs = d.getElementsByTagName(s)[0]
       if (d.getElementById(id)) {

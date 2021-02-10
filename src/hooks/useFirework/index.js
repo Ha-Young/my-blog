@@ -1,62 +1,88 @@
-import { useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import * as Dom from '../../utils/dom'
 import * as Storage from '../../utils/storage'
 import { Firework, random } from './Firework'
 import { THEME } from '../../constants/enum'
+import { useRef } from 'react'
 
-export function useFirework(className) {
-  const init = () => {
-    // when animating on canvas, it is best to use requestAnimationFrame instead of setTimeout or setInterval
-    // not supported in all browsers though and sometimes needs a prefix, so we need a shim
-    window.requestAnimFrame = (function() {
-      return (
-        window.requestAnimationFrame ||
-        window.webkitRequestAnimationFrame ||
-        window.mozRequestAnimationFrame ||
-        function(callback) {
-          window.setTimeout(callback, 1000 / 60)
-        }
-      )
-    })()
+const MOUSE_MOVE = 'mousemove'
+const MOUSE_DOWN = 'mousedown'
+const MOUSE_UP = 'mouseup'
 
-    // now we will setup our basic variables for the demo
-    const canvas = Dom.getElement(`.${className}`),
-      body = Dom.getElement('body'),
-      ctx = canvas.getContext('2d'),
-      // full screen dimensions
-      cw = window.innerWidth,
-      ch = window.innerHeight,
-      // firework collection
-      fireworks = [],
-      // particle collection
-      particles = [],
-      // when launching fireworks with a click, too many get launched at once without a limiter, one launch per 5 loop ticks
-      limiterTotal = 5,
-      // this will time the auto launches of fireworks, one launch per 80 loop ticks
-      timerTotal = 80
+export function useFirework(className, initActive) {
+  const [active, setActive] = useState(initActive);
 
-    // mouse x, y coordinate,
-    let mx,
-      my,
-      // starting hue
-      hue = 120,
-      limiterTick = 0,
-      timerTick = 0,
-      mousedown = false
+  window.requestAnimFrame = (function() {
+    return (
+      window.requestAnimationFrame ||
+      window.webkitRequestAnimationFrame ||
+      window.mozRequestAnimationFrame ||
+      function(callback) {
+        window.setTimeout(callback, 1000 / 60)
+      }
+    )
+  })()
 
-    // set canvas dimensions
+  // now we will setup our basic variables for the demo
+  const body = Dom.getElement('body')
+  // full screen dimensions
+  const cw = window.innerWidth
+  const ch = window.innerHeight
+  // firework collection
+  const fireworks = []
+  // particle collection
+  const particles = []
+  // when launching fireworks with a click, too many get launched at once without a limiter, one launch per 5 loop ticks
+  const limiterTotal = 5
+  // this will time the auto launches of fireworks, one launch per 80 loop ticks
+  const timerTotal = 80
+
+  let canvas
+  let mx
+  let my
+  let mousedown = false
+
+  function mouseMoveHandler(e) {
+    console.log('mouseMove', active)
+    if (!active) return;
+    mx = e.clientX - canvas.offsetLeft
+    my = e.clientY - canvas.offsetTop
+  }
+
+  function mouseDownHandler(e) {
+    console.log('mouseDown', active)
+    if (!active) return;
+    mousedown = true
+  }
+
+  function mouseUpHandler(e) {
+    console.log('mouseUp', active)
+    if (!active) return;
+    mousedown = false
+  }
+
+  const start = () => {
+    const ctx = canvas.getContext('2d')
+
+    let hue = 120
+    let limiterTick = 0
+    let timerTick = 0
+
     canvas.width = cw
     canvas.height = ch
 
-    // main demo loop
     function loop() {
-      // this function will run endlessly with requestAnimationFrame
+      // console.log(active)
+
+      if (!active) {
+        console.log('active fallse. stopped loop')
+        return
+      }
+
       requestAnimFrame(loop)
 
-      // get is dark mode
       const isDarkMode = Storage.getTheme(Dom.hasClassOfBody(THEME.DARK))
 
-      // increase the hue to get different colored fireworks over time
       hue += 0.5
 
       // normally, clearRect() would be used to clear the canvas
@@ -117,32 +143,36 @@ export function useFirework(className) {
         limiterTick++
       }
     }
-
-    // mouse event bindings
-    // update the mouse coordinates on mousemove
-    body.addEventListener('mousemove', function(e) {
-      //console.log(e)
-      mx = e.clientX - canvas.offsetLeft
-      my = e.clientY - canvas.offsetTop
-    })
-
-    // toggle mousedown state and prevent canvas from being selected
-    body.addEventListener('mousedown', function(e) {
-      //e.preventDefault()
-      mousedown = true
-    })
-
-    body.addEventListener('mouseup', function(e) {
-      //e.preventDefault()
-      mousedown = false
-    })
-
     // once the window loads, we are ready for some fireworks!
     loop()
   }
 
+  const stop = () => {
+    // debugger
+    body.removeEventListener(MOUSE_MOVE, mouseMoveHandler)
+    body.removeEventListener(MOUSE_DOWN, mouseDownHandler)
+    body.removeEventListener(MOUSE_UP, mouseUpHandler)
+  }
+
   useEffect(() => {
-    init()
-    return () => {}
-  })
+    canvas = Dom.getElement(`.${className}`)
+
+    // debugger
+    if (active){
+      body.addEventListener(MOUSE_MOVE, mouseMoveHandler)
+      body.addEventListener(MOUSE_DOWN, mouseDownHandler)
+      body.addEventListener(MOUSE_UP, mouseUpHandler)
+      start()
+    }
+    else {
+      stop()
+    }
+
+    return function() {
+      // debugger
+      stop()
+    }
+  }, [active])
+
+  return [active, setActive]
 }

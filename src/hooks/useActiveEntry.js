@@ -2,8 +2,6 @@
 import { useEffect, useState } from 'react'
 
 export function useActiveEntry(observedElements, rootMargin = undefined) {
-  console.log('useActiveEntry', observedElements)
-
   const [activeEntry, setActiveEntry] = useState(null)
 
   useEffect(() => {

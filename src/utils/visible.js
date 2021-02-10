@@ -15,6 +15,7 @@ function observeCallback(entries) {
 }
 
 function observerTargeting() {
+  console.log('targeting', observer)
   return Dom.getElements(`.${TARGET_CLASS}`).forEach(el => observer.observe(el))
 }
 
@@ -26,11 +27,13 @@ function disconnect() {
 }
 
 export function init() {
+  console.log('init observation')
   observer = new IntersectionObserver(observeCallback, {
     root: Dom.getElement(ROOT_ID),
     rootMargin: INTERSECTION_OBSERVER_ROOT_MARGIN,
     threshold: INTERSECTION_OBSERVER_THRESHOLD,
   })
+  console.log('init', observer)
 
   return observerTargeting()
 }

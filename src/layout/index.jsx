@@ -1,13 +1,14 @@
 import React from 'react'
 
 import { Header } from '../components/header'
-import { ThemeSwitch } from '../components/theme-switch'
-import { EffectSwitch } from '../components/effect-switch'
+import { ThemeSwitch } from '../components/switchs/theme-switch'
+import { EffectSwitch } from '../components/switchs/effect-switch'
 import { Footer } from '../components/footer'
 import { rhythm } from '../utils/typography'
 
 import './index.scss'
 import { Firework } from '../components/firework'
+import { Switchs } from '../components/switchs'
 
 export const Layout = ({ location, title, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`
@@ -17,8 +18,7 @@ export const Layout = ({ location, title, children }) => {
       <Firework />
       <div className="layout-wrapper">
         <Header title={title} location={location} rootPath={rootPath} />
-        <ThemeSwitch />
-        <EffectSwitch />
+        <Switchs />
         <div
           className='content'
           style={{

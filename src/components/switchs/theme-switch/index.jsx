@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import Switch from 'react-switch'
 
-import * as Dom from '../../utils/dom'
-import * as Storage from '../../utils/storage'
-import { THEME } from '../../constants'
-
-import './index.scss'
+import * as Dom from '../../../utils/dom'
+import * as Storage from '../../../utils/storage'
+import { THEME } from '../../../constants'
 
 const MoonIcon = () => {
   return (
@@ -69,30 +67,28 @@ export const ThemeSwitch = () => {
   }, [])
 
   return (
-    <div className="switch-container">
-      <label htmlFor="normal-switch">
-        <Switch
-          onChange={handleChange}
-          checked={checked}
-          id="normal-switch"
-          height={24}
-          width={48}
-          checkedIcon={
-            <div className="icon checkedIcon">
-              <MoonIcon />
-            </div>
-          }
-          uncheckedIcon={
-            <div className="icon uncheckedIcon">
-              <SunIcon />
-            </div>
-          }
-          offColor={'#A8BAA9'}
-          offHandleColor={'#fff'}
-          onColor={'#A8BAA9'}
-          onHandleColor={'#282c35'}
-        />
-      </label>
+    <div htmlFor="theme-switch">
+      <Switch
+        onChange={handleChange}
+        checked={checked}
+        id="theme-switch"
+        height={24}
+        width={48}
+        checkedIcon={
+          <div className="icon checkedIcon">
+            <MoonIcon />
+          </div>
+        }
+        uncheckedIcon={
+          <div className="icon uncheckedIcon">
+            <SunIcon />
+          </div>
+        }
+        offColor={'#A8BAA9'}
+        offHandleColor={'#fff'}
+        onColor={'#A8BAA9'}
+        onHandleColor={'#282c35'}
+      />
     </div>
   )
 }
