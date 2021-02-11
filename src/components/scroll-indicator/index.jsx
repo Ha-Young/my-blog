@@ -5,7 +5,7 @@ import * as EventManager from '../../utils/event-manager'
 
 import './index.scss'
 
-export const ScrollerIndicator = () => {
+export const ScrollerIndicator = ({ isFixed }) => {
   const onScroll = () => {
     let bodyScrollTop =
       document.body.scrollTop || document.documentElement.scrollTop
@@ -24,7 +24,11 @@ export const ScrollerIndicator = () => {
 
   return (
     <div className="scroll-indicator-wrapper">
-      <div className="scroll-indicator-display">0%</div>
+      {isFixed ? (
+        <div className="scroll-indicator-display fixed">0%</div>
+      ) : (
+        <div className="scroll-indicator-display">0%</div>
+      )}
     </div>
   )
 }
