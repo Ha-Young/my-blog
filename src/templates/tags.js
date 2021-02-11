@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 // Components
@@ -23,6 +23,7 @@ const Tags = ({ pageContext, data, location }) => {
   const tagHeader = `${tagStatement}"${tag}"`
 
   useIntersectionObserver()
+
   return (
     <Layout location={location} title={tagHeader}>
       <SEO title={tagHeader} description={tagHeader} />

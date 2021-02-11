@@ -32,8 +32,8 @@ const TagsPage = ({
     >
       <h1>Tags</h1>
       <ul>
-        {group.map(tag => (
-          <Tag tag={tag.fieldValue} totalCount={tag.totalCount} />
+        {group.map((tag, index) => (
+          <Tag key={index} tag={tag.fieldValue} totalCount={tag.totalCount} />
         ))}
       </ul>
     </div>

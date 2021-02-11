@@ -1,10 +1,9 @@
 import * as Dom from './dom'
 
-const ROOT_ID = '#___gatsby'
 export const TARGET_CLASS = 'observed'
 const VISIBLE_RECOGNIZE_CLASS = 'visible'
 const INTERSECTION_OBSERVER_ROOT_MARGIN = '20px'
-const INTERSECTION_OBSERVER_THRESHOLD = 0.8
+const INTERSECTION_OBSERVER_THRESHOLD = 0.2
 
 let observer
 
@@ -15,7 +14,6 @@ function observeCallback(entries) {
 }
 
 function observerTargeting() {
-  console.log('targeting', observer)
   return Dom.getElements(`.${TARGET_CLASS}`).forEach(el => observer.observe(el))
 }
 
@@ -27,19 +25,17 @@ function disconnect() {
 }
 
 export function init() {
-  console.log('init observation')
   observer = new IntersectionObserver(observeCallback, {
-    root: Dom.getElement(ROOT_ID),
     rootMargin: INTERSECTION_OBSERVER_ROOT_MARGIN,
     threshold: INTERSECTION_OBSERVER_THRESHOLD,
   })
-  console.log('init', observer)
 
   return observerTargeting()
 }
 
 export function destroy() {
-  return disconnect().then(() => (observer = null))
+  disconnect()
+  observer = null
 }
 
 export function refreshObserver() {

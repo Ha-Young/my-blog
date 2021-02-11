@@ -1,14 +1,11 @@
 import React from 'react'
 
 import { Header } from '../components/header'
-import { ThemeSwitch } from '../components/switchs/theme-switch'
-import { EffectSwitch } from '../components/switchs/effect-switch'
 import { Footer } from '../components/footer'
-import { rhythm } from '../utils/typography'
-
-import './index.scss'
 import { Firework } from '../components/firework'
 import { Switchs } from '../components/switchs'
+
+import './index.scss'
 
 export const Layout = ({ location, title, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`
@@ -20,10 +17,10 @@ export const Layout = ({ location, title, children }) => {
         <Header title={title} location={location} rootPath={rootPath} />
         <Switchs />
         <div
-          className='content'
+          className="content"
           style={{
             marginLeft: `auto`,
-            marginRight: `auto`
+            marginRight: `auto`,
           }}
         >
           {children}

@@ -10,7 +10,7 @@ export const Tag = ({ tag, onClick, totalCount }) => {
       <Link to={`/tags/${kebabCase(tag)}/`}>
         <div className="post-tag-content" onClick={onClick}>
           {tag}
-          {totalCount && <span class="totalCount">{totalCount}</span>}
+          {totalCount && <span className="totalCount">{totalCount}</span>}
         </div>
       </Link>
     </li>
