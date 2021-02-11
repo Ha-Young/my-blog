@@ -7,13 +7,7 @@ export const Tags = ({ tags }) => {
   return (
     <ul className="post-tags">
       {tags.map((tag, idx) => (
-        <Tag
-          key={idx}
-          tag={tag}
-          onClick={() => {
-            console.log(tag, 'clicked')
-          }}
-        />
+        <Tag key={idx} tag={tag} />
       ))}
     </ul>
   )

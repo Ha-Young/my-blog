@@ -1,16 +1,16 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import * as Dom from '../../utils/dom'
 import * as Storage from '../../utils/storage'
 import { Firework, random } from './Firework'
 import { THEME } from '../../constants/enum'
-import { useRef } from 'react'
 
 const MOUSE_MOVE = 'mousemove'
 const MOUSE_DOWN = 'mousedown'
 const MOUSE_UP = 'mouseup'
 
 export function useFirework(className, initActive) {
-  const [active, setActive] = useState(initActive);
+  const [active, setActive] = useState(initActive)
+  const activeRef = useRef(active)
 
   window.requestAnimFrame = (function() {
     return (
@@ -38,32 +38,28 @@ export function useFirework(className, initActive) {
   const timerTotal = 80
 
   let canvas
+  let ctx
   let mx
   let my
   let mousedown = false
 
-  function mouseMoveHandler(e) {
-    console.log('mouseMove', active)
-    if (!active) return;
+  const mouseMoveHandler = useCallback(function(e) {
+    if (!active) return
     mx = e.clientX - canvas.offsetLeft
     my = e.clientY - canvas.offsetTop
-  }
+  })
 
-  function mouseDownHandler(e) {
-    console.log('mouseDown', active)
-    if (!active) return;
+  const mouseDownHandler = useCallback(function(e) {
+    if (!active) return
     mousedown = true
-  }
+  })
 
-  function mouseUpHandler(e) {
-    console.log('mouseUp', active)
-    if (!active) return;
+  const mouseUpHandler = useCallback(function(e) {
+    if (!active) return
     mousedown = false
-  }
+  })
 
-  const start = () => {
-    const ctx = canvas.getContext('2d')
-
+  const start = useCallback(() => {
     let hue = 120
     let limiterTick = 0
     let timerTick = 0
@@ -71,15 +67,15 @@ export function useFirework(className, initActive) {
     canvas.width = cw
     canvas.height = ch
 
-    function loop() {
-      // console.log(active)
+    body.addEventListener(MOUSE_MOVE, mouseMoveHandler)
+    body.addEventListener(MOUSE_DOWN, mouseDownHandler)
+    body.addEventListener(MOUSE_UP, mouseUpHandler)
 
-      if (!active) {
-        console.log('active fallse. stopped loop')
+    const animation = () => {
+      if (!activeRef.current) {
+        ctx.clearRect(0, 0, cw, ch)
         return
       }
-
-      requestAnimFrame(loop)
 
       const isDarkMode = Storage.getTheme(Dom.hasClassOfBody(THEME.DARK))
 
@@ -142,34 +138,32 @@ export function useFirework(className, initActive) {
       } else {
         limiterTick++
       }
+
+      requestAnimFrame(animation)
     }
     // once the window loads, we are ready for some fireworks!
-    loop()
-  }
+    animation()
+  })
 
-  const stop = () => {
-    // debugger
+  const stop = useCallback(() => {
     body.removeEventListener(MOUSE_MOVE, mouseMoveHandler)
     body.removeEventListener(MOUSE_DOWN, mouseDownHandler)
     body.removeEventListener(MOUSE_UP, mouseUpHandler)
-  }
+  })
 
   useEffect(() => {
     canvas = Dom.getElement(`.${className}`)
+    ctx = canvas.getContext('2d')
 
-    // debugger
-    if (active){
-      body.addEventListener(MOUSE_MOVE, mouseMoveHandler)
-      body.addEventListener(MOUSE_DOWN, mouseDownHandler)
-      body.addEventListener(MOUSE_UP, mouseUpHandler)
+    activeRef.current = active
+
+    if (active) {
       start()
-    }
-    else {
+    } else {
       stop()
     }
 
     return function() {
-      // debugger
       stop()
     }
   }, [active])

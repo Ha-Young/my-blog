@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import Switch from 'react-switch'
 import * as Storage from '../../../utils/storage'
 import { EFFECT, className } from '../../../constants'
@@ -15,20 +15,16 @@ function getEffect(checked) {
 }
 
 export const EffectSwitch = () => {
-  const [checked, setChecked] = useFirework(className.canvas_name, true);
+  const effect = Storage.getEffect(EFFECT.FIREWORK)
+  const storedActive = getChecked(effect)
 
-  const handleChange = checked => {
+  const [checked, setChecked] = useFirework(className.canvas_name, storedActive)
+
+  const handleChange = useCallback(checked => {
     const effect = getEffect(checked)
     Storage.setEffect(effect)
-    // debugger
     setChecked(checked)
-  }
-
-  useEffect(() => {
-    const effect = Storage.getEffect(EFFECT.FIREWORK)
-
-    handleChange(getChecked(effect))
-  }, [checked])
+  })
 
   return (
     <div htmlFor="effect-switch">
@@ -38,12 +34,8 @@ export const EffectSwitch = () => {
         id="effect-switch"
         height={24}
         width={48}
-        checkedIcon={
-          <div className="icon nomalIcon"/>
-        }
-        uncheckedIcon={
-          <div className="icon fireworkIcon"/>
-        }
+        checkedIcon={<div className="icon nomalIcon" />}
+        uncheckedIcon={<div className="icon fireworkIcon" />}
         offColor={'#A8BAA9'}
         offHandleColor={'#fff'}
         onColor={'#A8BAA9'}

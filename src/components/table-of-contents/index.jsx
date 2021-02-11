@@ -47,7 +47,6 @@ function toggleTOCContent(tocContent) {
     const authorContent = Dom.getElement(`.${className.author_name_content}`)
     const postNavigator = Dom.getElement(`.${className.post_navigator}`)
 
-    console.log(window.innerWidth)
     const footerElements = [authorContent, postNavigator]
 
     for (const footerElement of footerElements) {
@@ -83,7 +82,6 @@ export const TableOfContents = ({ toc }) => {
       if (currentoffsetY >= headerElementTop - HEADER_OFFSET_Y) {
         headerElement.classList.add('toc-header-active')
         tocLinkElement.classList.add('toc-active')
-        // console.log(href)
       } else {
         headerElement.classList.remove('toc-header-active')
         tocLinkElement.classList.remove('toc-active')
