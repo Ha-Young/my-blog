@@ -14,6 +14,7 @@ import { PostNavigator } from '../components/post-navigator'
 import { Disqus } from '../components/disqus'
 import { Utterances } from '../components/utterances'
 import { TableOfContents } from '../components/table-of-contents'
+import { ScrollerIndicator } from '../components/scroll-indicator'
 import * as ScrollManager from '../utils/scroll'
 import { rhythm } from '../utils/typography'
 
@@ -37,8 +38,10 @@ export default ({ data, pageContext, location }) => {
   return (
     <Layout location={location} title={title}>
       <TopStickyContainer>
+        <ScrollerIndicator />
         <TableOfContents toc={tableOfContents} />
       </TopStickyContainer>
+
       <div
         style={{
           marginLeft: `auto`,

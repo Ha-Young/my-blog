@@ -113,15 +113,13 @@ export const TableOfContents = ({ toc }) => {
   })
 
   return (
-    <div className="toc-container">
-      <div className="toc-wrapper">
-        <div className="toc-open-btn" onClick={onClickTOCOpen}></div>
-        <div className="toc-content">
-          <div className="toc-close-btn" onClick={onClickTOCClose}>
-            <span className="toc-close-icon"></span>
-          </div>
-          <div className="toc" dangerouslySetInnerHTML={{ __html: toc }} />
+    <div className="toc-wrapper">
+      <div className="toc-open-btn" onClick={onClickTOCOpen}></div>
+      <div className="toc-content">
+        <div className="toc-close-btn" onClick={onClickTOCClose}>
+          <span className="toc-close-icon"></span>
         </div>
+        <div className="toc" dangerouslySetInnerHTML={{ __html: toc }} />
       </div>
     </div>
   )
