@@ -7,8 +7,9 @@
 - [x] canvas로 꾸미기 (클릭시 이팩트로 유저경험증가시키기)
   - [x] light dark 모드에 따라 firework 밝기 변경
   - [x] 아무 곳 클릭시에 firework 발생시키기
+- [x] 이팩트 스위치 버튼 만들기 (Fireworks 키고 끌 수 있게)
 - [x] SEO 강화
-- [ ] Scroll Percent 알려주기
+- [x] Scroll Percent 알려주기
 - [ ] 왼쪽 하단 추가기능 컴포넌트 만들기
 - [ ] 가독성 개선
 - [ ] 뒤로가기 버튼
