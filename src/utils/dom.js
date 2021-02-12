@@ -24,3 +24,19 @@ export const getDocumentHeight = () =>
 
 export const createElement = tagName =>
   typeof document != `undefined` ? document.createElement(tagName) : null
+
+export const getBodyScrollTop = () =>
+  typeof document != `undefined`
+    ? document.body.scrollTop || document.documentElement.scrollTop
+    : null
+
+export const getScrollArea = () =>
+  typeof window !== `undefined`
+    ? document.body.clientHeight - window.innerHeight
+    : null
+
+export const getScrollPercent = () => {
+  const bodyScrollTop = getBodyScrollTop()
+  const scrollArea = getScrollArea()
+  return Math.round((bodyScrollTop / scrollArea) * 100)
+}

@@ -2,17 +2,6 @@
 
 $ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
 
-.scroll-indicator-mini {
-  display: none;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  padding: 2px 11px;
-  border-radius: 0 0 4px 0;
-  font-size: 13px;
-  font-weight: 900;
-}
-
 .scroll-indicator {
   position: absolute;
   top: 70px;
@@ -109,16 +98,6 @@ $ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
   }
 }
 
-.fixed-mini {
-  position: fixed;
-  left: 0px;
-  top: 63px;
-  padding: 2px 11px;
-  border-radius: 0 0 4px 0;
-  font-size: 13px;
-  font-weight: 900;
-}
-
 .fixed {
   position: fixed;
   top: 120px;
@@ -126,7 +105,7 @@ $ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 
 @include mobile {
-  .scroll-indicator-mini {
+  .scroll-indicator-mini.on-content {
     display: block;
   }
 
@@ -136,7 +115,7 @@ $ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 
 @include tablet {
-  .scroll-indicator-mini {
+  .scroll-indicator-mini.on-content {
     display: block;
   }
 
@@ -146,7 +125,7 @@ $ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 
 @include tablet-portrait {
-  .scroll-indicator-mini {
+  .scroll-indicator-mini.on-content {
     display: block;
   }
 

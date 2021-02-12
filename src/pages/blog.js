@@ -5,7 +5,7 @@ import { Bio } from '../components/bio'
 import { Category } from '../components/category'
 import { CategorySide } from '../components/category-side'
 import { Contents } from '../components/contents'
-import { ScrollerIndicator } from '../components/scroll-indicator'
+import { ScrollIndicatorMini } from '../components/scroll-indicator/scroll-indicator-mini'
 import { SEO } from '../components/seo'
 import { BLOG_TITLE } from '../constants/meta'
 import { useCategory } from '../hooks/useCategory'
@@ -52,7 +52,7 @@ export default ({ data, location }) => {
   return (
     <Layout location={location} title={siteMetadata.title}>
       <SEO title={BLOG_TITLE} keywords={siteMetadata.keywords} />
-      <ScrollerIndicator isFixed />
+      <ScrollIndicatorMini isOnPage />
       <div
         style={{
           marginLeft: `auto`,

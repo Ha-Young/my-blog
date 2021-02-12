@@ -1,6 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useScrollEvent } from '../../hooks/useScrollEvent'
+import { ScrollIndicatorMini } from './scroll-indicator-mini'
 import * as Dom from '../../utils/dom'
 import * as EventManager from '../../utils/event-manager'
 
@@ -8,30 +9,12 @@ import './index.scss'
 
 const INDICATOR_CLSNAME = 'data-indicator'
 
-function getBodyScrollTop() {
-  return document.body.scrollTop || document.documentElement.scrollTop
-}
-
-function getScrollArea() {
-  const viewportHeight = window.innerHeight
-  const totalBodyHeight = document.body.clientHeight
-  return totalBodyHeight - viewportHeight
-}
-
-function getScrollPercent() {
-  const bodyScrollTop = getBodyScrollTop()
-  const scrollArea = getScrollArea()
-  return Math.round((bodyScrollTop / scrollArea) * 100)
-}
-
 function viewScrollPercent() {
-  const scrollPercentage = getScrollPercent()
-
-  const displayElement = Dom.getElement('.scroll-indicator-mini')
-  displayElement.textContent = `${scrollPercentage}%`
-
+  const scrollPercentage = Dom.getScrollPercent()
   const scrollNumber = Math.floor(scrollPercentage / 10)
+
   const indicatorElements = Dom.getElements(`li[data-indicator]`)
+
   for (let i = 0; i < indicatorElements.length; i++) {
     const indicatorElement = indicatorElements[i]
     if (i === scrollNumber) {
@@ -56,7 +39,7 @@ export const ScrollerIndicator = ({ isFixed }) => {
   function onClickScrollIndicator(e) {
     e.preventDefault()
     const scrollPercentage = e.target.parentNode.getAttribute(INDICATOR_CLSNAME)
-    const scrollArea = getScrollArea()
+    const scrollArea = Dom.getScrollArea()
     const destScrollTop = (scrollArea * scrollPercentage) / 100
 
     window.scroll({ top: destScrollTop, behavior: 'smooth' })
@@ -91,17 +74,8 @@ export const ScrollerIndicator = ({ isFixed }) => {
 
   return (
     <div className="scroll-indicator-wrapper">
-      {isFixed ? (
-        <>
-          <div className="scroll-indicator-mini fixed">0%</div>
-          <div className="scroll-indicator fixed"></div>
-        </>
-      ) : (
-        <>
-          <div className="scroll-indicator-mini">0%</div>
-          <div className="scroll-indicator"></div>
-        </>
-      )}
+      <ScrollIndicatorMini />
+      <div className="scroll-indicator"></div>
     </div>
   )
 }
