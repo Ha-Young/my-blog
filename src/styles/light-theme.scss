@@ -117,34 +117,33 @@ body.light {
     }
   }
 
-  .toc-container {
-    .toc-open-btn {
-      background: $light-toc-btn-background;
-      border: 2px solid $light-toc-btn-border;
-      color: $light-toc-btn-color;
-    }
+  .toc-open-btn {
+    background: $light-toc-btn-background;
+    border: 2px solid $light-toc-btn-border;
+    color: $light-toc-btn-color;
+  }
 
-    .toc-content {
-      border: 2px solid $light-toc-content-border;
-      background: $light-toc-content-background;
-      color: $light-toc-content-color;
-      box-shadow: -4px 4px 0 0 $light-toc-content-box-shadow;
+  .toc-content {
+    border: 2px solid $light-toc-content-border;
+    background: $light-toc-content-background;
+    color: $light-toc-content-color;
+    box-shadow: -4px 4px 0 0 $light-toc-content-box-shadow;
 
-      .toc {
-        a {
-          color: $light-toc-a-color;
-        }
+    .toc {
+      a {
+        color: $light-toc-a-color;
+      }
 
-        &::before {
-          color: $light-toc-before-after-color;
-        }
+      &::before {
+        color: $light-toc-before-after-color;
+      }
 
-        &::after {
-          color: $light-toc-before-after-color;
-        }
+      &::after {
+        color: $light-toc-before-after-color;
       }
     }
   }
+
   .toc-active {
     color: $light-toc-active-color !important;
   }
@@ -155,5 +154,22 @@ body.light {
   }
   .toc-header-active {
     color: $light-toc-header-active-color;
+  }
+
+  .scroll-indicator-mini {
+    background: $light-toc-btn-background;
+    border: 2px solid $light-toc-btn-border;
+    color: $light-toc-btn-color;
+  }
+
+  .scroll-indicator {
+    li {
+      a {
+        color: black;
+      }
+      &:after {
+        background: black;
+      }
+    }
   }
 }

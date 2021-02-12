@@ -14,11 +14,13 @@ import { PostNavigator } from '../components/post-navigator'
 import { Disqus } from '../components/disqus'
 import { Utterances } from '../components/utterances'
 import { TableOfContents } from '../components/table-of-contents'
+import { ScrollerIndicator } from '../components/scroll-indicator'
 import * as ScrollManager from '../utils/scroll'
 import { rhythm } from '../utils/typography'
 
 import '../styles/code.scss'
 import 'katex/dist/katex.min.css'
+import { TopStickyContainer } from '../components/top-sticky-container'
 
 export default ({ data, pageContext, location }) => {
   useEffect(() => {
@@ -35,7 +37,11 @@ export default ({ data, pageContext, location }) => {
 
   return (
     <Layout location={location} title={title}>
-      <TableOfContents toc={tableOfContents} />
+      <TopStickyContainer>
+        <ScrollerIndicator />
+        <TableOfContents toc={tableOfContents} />
+      </TopStickyContainer>
+
       <div
         style={{
           marginLeft: `auto`,

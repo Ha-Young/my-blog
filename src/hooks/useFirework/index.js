@@ -12,22 +12,24 @@ export function useFirework(className, initActive) {
   const [active, setActive] = useState(initActive)
   const activeRef = useRef(active)
 
-  window.requestAnimFrame = (function() {
-    return (
-      window.requestAnimationFrame ||
-      window.webkitRequestAnimationFrame ||
-      window.mozRequestAnimationFrame ||
-      function(callback) {
-        window.setTimeout(callback, 1000 / 60)
-      }
-    )
-  })()
+  if (typeof window !== `undefined`) {
+    window.requestAnimFrame = (function() {
+      return (
+        window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        function(callback) {
+          window.setTimeout(callback, 1000 / 60)
+        }
+      )
+    })()
+  }
 
   // now we will setup our basic variables for the demo
   const body = Dom.getElement('body')
   // full screen dimensions
-  const cw = window.innerWidth
-  const ch = window.innerHeight
+  const cw = typeof window !== `undefined` ? window.innerWidth : null
+  const ch = typeof window !== `undefined` ? window.innerHeight : null
   // firework collection
   const fireworks = []
   // particle collection
