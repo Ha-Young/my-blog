@@ -1,7 +1,9 @@
 const BODY = 'body'
 
-export const getElements = selector => document.querySelectorAll(selector)
-export const getElement = selector => document.querySelector(selector)
+export const getElements = selector =>
+  typeof document !== `undefined` ? document.querySelectorAll(selector) : null
+export const getElement = selector =>
+  typeof document !== `undefined` ? document.querySelector(selector) : null
 export const addClass = (element, className) => element.classList.add(className)
 export const removeClass = (element, className) =>
   element.classList.remove(className)
@@ -17,4 +19,8 @@ export const getRect = className =>
   getElement(className).getBoundingClientRect()
 export const getPosY = className => getRect(className).y
 
-export const getDocumentHeight = () => document.documentElement.offsetHeight
+export const getDocumentHeight = () =>
+  typeof document !== `undefined` ? document.documentElement.offsetHeight : null
+
+export const createElement = tagName =>
+  typeof document != `undefined` ? document.createElement(tagName) : null
