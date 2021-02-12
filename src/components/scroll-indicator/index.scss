@@ -29,7 +29,6 @@ $ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
       line-height: 26px;
       // font-family: 'Open Sans', sans-serif;
       text-decoration: none;
-      color: black;
       overflow: hidden;
       cursor: pointer;
       transition: height 0.25s $ease-in-out-quad;
@@ -71,7 +70,6 @@ $ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
       left: 2px;
       height: 2px;
       width: calc(100% - 4px);
-      background: black;
       pointer-events: none;
       transition: width 0.25s $ease-in-out-quad 0.1s,
         height 0.25s $ease-in-out-quad 0.1s, left 0.25s $ease-in-out-quad 0.1s,

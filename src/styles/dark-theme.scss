@@ -166,4 +166,21 @@ body.dark {
   .toc-header-active {
     color: $dark-toc-header-active-color;
   }
+
+  .scroll-indicator-mini {
+    background: $dark-toc-btn-background;
+    border: 2px solid $dark-toc-btn-border;
+    color: $dark-toc-btn-color;
+  }
+
+  .scroll-indicator {
+    li {
+      a {
+        color: white;
+      }
+      &:after {
+        background: white;
+      }
+    }
+  }
 }
