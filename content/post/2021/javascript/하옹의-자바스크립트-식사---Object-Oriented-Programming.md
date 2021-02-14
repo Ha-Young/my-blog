@@ -1,7 +1,7 @@
 ---
 title: '하옹의 자바스크립트 식사 - Object Oriented Programming(OOP)'
 draft: false
-date: '2021-02-14'
+date: '2021-02-15 03:00'
 category: 'javascript'
 tags: ['javascript', 'OOP', 'Object Oriented', '객체지향', '하옹의 자바스크립트 식사']
 ---
