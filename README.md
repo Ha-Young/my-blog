@@ -15,3 +15,9 @@
 - [ ] 뒤로가기 버튼
 - [ ] about 페이지
 - [ ] blog 페이지 우측에 추천글 or 최신글 or 인기글 컴포넌트 만들기
+
+# 포스트 할 거리
+
+- [ ] JavaScript - Functional Oriented Programming
+- [ ] Reflow, Repaint, Composition Layer
+- [ ] 바닐라코딩 3주차 후기
