@@ -446,7 +446,7 @@ someValue = null // 객체 사용 후 더이상 하용하지 않아 null 처리
 
 Javascript에서는 객체에 자동으로 메모리가 할당되고, [가비지 컬렉션](<https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)>)을 이용해 **자동으로 메모리 해제**를 한다.
 
-가비지 컬렉션 중에서도 [Mark-and-sweep](https://en.wikipedia.org/wiki/Tracing_garbage_collection) 라는 방식을 사용하는데, 이는 일정 주기로 사용하지 않는 메모리들을 한꺼번에 해제하는 방식이다.
+가비지 컬렉션 중에서도 [Mark-and-sweep](https://developer.mozilla.org/ko/docs/Web/JavaScript/Memory_Management#%ED%91%9C%EC%8B%9C%ED%95%98%EA%B3%A0-%EC%93%B8%EA%B8%B0mark-and-sweep_%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98) 라는 방식을 사용하는데, 이는 일정 주기로 사용하지 않는 메모리들을 한꺼번에 해제하는 방식이다.
 
 문제는 우리가 사용하지 않는 객체를 수동으로 해제할 수 없다는 점과 사용하지 않는 메모리를 파악하는데 있다.
 

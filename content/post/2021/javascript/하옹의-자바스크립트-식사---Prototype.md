@@ -42,7 +42,7 @@ human 객체에서 `toString()` 과 `hasOwnProperty()`메서드를 선언한 적
 
 어떻게 사용이 되는 것일까? 이 메서드들은 Object.prototype에 있는 메서드들이다.
 
-![proto-Object](.\하옹의-자바스크립트-식사---Prototype_proto1.jpg)
+![proto-Object](.\하옹의-자바스크립트-식사---Prototype\하옹의-자바스크립트-식사---Prototype_proto1.jpg)
 
 human 객체를 콘솔에 출력해보면 `__proto__`속성으로 내장객체인 `Object` 를 가지고 있다.
 
@@ -63,13 +63,13 @@ const arr2 = [10, 11, 12]
 
 위 처럼 생성된 Array들을 각각 콘솔에 찍어보면 아래와 같다.
 
-![Array 인스턴스 출력](.\하옹의-자바스크립트-식사---Prototype_proto2_array.jpg)
+![Array 인스턴스 출력](.\하옹의-자바스크립트-식사---Prototype\하옹의-자바스크립트-식사---Prototype_proto2_array.jpg)
 
 그럼 보는바와 같이 각각 `Array`객체 모두 우리가 사용하던 `from()`, `splice()`, `push()` 등과 같은 메서드들을 가지고 있지 않다.
 
 당연히 이 메서드들은 `Array`의 프로토타입인 `Array.prototype` 이 가지고 있는 것이고, `__proto__`을 통해 확인할 수 있다.
 
-<img src=".\하옹의-자바스크립트-식사---Prototype_proto2_array_prototype.jpg" alt="Array Prototype" style="zoom:80%;" />
+<img src=".\하옹의-자바스크립트-식사---Prototype\하옹의-자바스크립트-식사---Prototype_proto2_array_prototype.jpg" alt="Array Prototype" style="zoom:80%;" />
 
 ```js
 console.log(arr1.__proto__ === arr2.__proto__) // true
@@ -77,7 +77,7 @@ console.log(arr1.__proto__ === arr2.__proto__) // true
 
 이를 통해 우리가 알 수 있는건, **`Array.prototype` 프로토타입 객체는 딱 하나만 존재**하고 있고, 새롭게 생성되는 `Array`객체들은 이 `Array.prototype` 프로토타입 객체안의 메서드들을 공유하는 개념이다.
 
-![프로토타입은 공유](.\하옹의-자바스크립트-식사---Prototype_proto2_array_prototype공유.jpg)
+![프로토타입은 공유](.\하옹의-자바스크립트-식사---Prototype\하옹의-자바스크립트-식사---Prototype_proto2_array_prototype공유.jpg)
 
 ### 생성자 함수
 
@@ -148,7 +148,7 @@ function Person() {}
 dir(Person)
 ```
 
-![prototype속성](.\하옹의-자바스크립트-식사---Prototype_prototype_property.jpg)
+![prototype속성](.\하옹의-자바스크립트-식사---Prototype\하옹의-자바스크립트-식사---Prototype_prototype_property.jpg)
 
 이 **`prototype`속성의 값은 객체로써 오직 함수에만 자동생성되어 존재**하는데,
 
@@ -250,7 +250,7 @@ const arr = [1, 2, 3]
 arr.hi_chain() // hi, this is prototype chain
 ```
 
-![prototype chain](.\하옹의-자바스크립트-식사---Prototype-prototype-chain.jpg)
+![prototype chain](.\하옹의-자바스크립트-식사---Prototype\하옹의-자바스크립트-식사---Prototype-prototype-chain.jpg)
 
 위 사진처럼 `hi_chain()`을 찾아가는 과정처럼 **속성을 찾아 프로토타입을 계속해서 참조해서 나가는 것이 바로 프로토타입 체인**이다.
 
@@ -274,7 +274,7 @@ function nonConstructor() {
 console.log(nonConstructor.prototype)
 ```
 
-![prototype property](.\하옹의-자바스크립트-식사---Prototype-prototype-property.jpg)
+![prototype property](.\하옹의-자바스크립트-식사---Prototype\하옹의-자바스크립트-식사---Prototype-prototype-property.jpg)
 
 생성자 함수가 아니라도 **함수라면 무조건적으로 자동으로 생성**되며,
 자동으로 생성된 `prototype` 객체에 별다른 추가작업을 하지 않는다면 위 처럼 `constructor`와 `__proto__` 두 개의 속성만 존재하게 된다.
@@ -370,7 +370,7 @@ console.log(hayoung.__proto__ === Human.prototype)
 
 우선 다음과 같이 부모를 만들었다고 가정하자.
 
-> (예제는 예전에 작성했던 [여기](https://ha-young.github.io/2020/vanillacoding/BootCamp%20%EB%B0%94%EB%8B%90%EB%9D%BC%EC%BD%94%EB%94%A9%20%EB%B6%80%ED%8A%B8%EC%BA%A0%ED%94%84%20%EC%A7%80%EC%9B%90/)에서 가져왔다)
+> (예제는 예전에 작성했던 [여기](../../../2020/vanillacoding/BootCamp%20%EB%B0%94%EB%8B%90%EB%9D%BC%EC%BD%94%EB%94%A9%20%EB%B6%80%ED%8A%B8%EC%BA%A0%ED%94%84%20%EC%A7%80%EC%9B%90/)에서 가져왔다)
 
 ```js
 function BootCamp(location, teacher) {
@@ -403,7 +403,7 @@ function VanillaCoding(course, ...rest) {
 보통 다음과 같이 생성자 함수 내부에서 부모 생성자 함수를 호출시키는데,
 `부모생성자.apply(this, rest)`와 같이 자식 생성자 함수에서 생성된 빈 객체를 **binding** 시켜준다. `apply`로 호출하지않고 `call`을 사용해도 무방하다.
 
-> call, apply와 같은 this binding 함수를 모른다면 [하옹의 자바스크립트 식사 - this 포스팅]()을 참조하자.
+> call, apply와 같은 this binding 함수를 모른다면 [하옹의 자바스크립트 식사 - this 포스팅](../../../2021/javascript/하옹의-자바스크립트-식사---this/#3-call-apply-bind-explicit-binding-this)을 참조하자.
 
 ### 2. 자식 프로토타입에 부모 프로토타입 체이닝
 

@@ -18,15 +18,15 @@ const originObj = {
   job: 'frontend',
 }
 
-const copyObj = originObj;
+const copyObj = originObj
 
-console.log(originObj); // {name: "hayoung", job: "frontend"}
-console.log(copyObj); // {name: "hayoung", job: "frontend"}
+console.log(originObj) // {name: "hayoung", job: "frontend"}
+console.log(copyObj) // {name: "hayoung", job: "frontend"}
 
-console.log(copyObj === originObj); // true
+console.log(copyObj === originObj) // true
 ```
 
-마지막줄을 보면 `copyObj` 와 `originObj` 가 같기 때문에 얼핏봐서는 복사가 된 것 처럼 보이지만, 
+마지막줄을 보면 `copyObj` 와 `originObj` 가 같기 때문에 얼핏봐서는 복사가 된 것 처럼 보이지만,
 
 이는 **참조값만 복사**된 것으로 복사가 되었다고 볼 수 없다.
 
@@ -35,17 +35,15 @@ console.log(copyObj === originObj); // true
 만일 `copyObj`의 값을 바꾼다면 어떻게 될까?
 
 ```js
-copyObj.job = 'full stack';
+copyObj.job = 'full stack'
 
-console.log(originObj); // {name: "hayoung", job: "full stack"}
-console.log(copyObj); // {name: "hayoung", job: "full stack"}
+console.log(originObj) // {name: "hayoung", job: "full stack"}
+console.log(copyObj) // {name: "hayoung", job: "full stack"}
 ```
 
 `copyObj` 만이 바뀐 것이 아니라 `originObj` 의 `job` 속성도 함께 변하였다.
 
 이는 계속해서 말했던 **참조값만 복사**되었기 때문에 발생한 일이다.
-
-
 
 ### 참조값의 함정
 
@@ -53,7 +51,7 @@ console.log(copyObj); // {name: "hayoung", job: "full stack"}
 
 <img src="./하옹의-자바스크립트-식사---Object-Copy/Object-Copy_reference.png" alt="참조값 복사" style="zoom:67%;" />
 
-[참조](../../../../2020/javascript/하옹의-자바스크립트-식사---Type/#7-object)에 대해서 공부를 했다면 위와같은 그림은 익숙하리라 생각한다. 
+[참조](../../../../2020/javascript/하옹의-자바스크립트-식사---Type/#7-object)에 대해서 공부를 했다면 위와같은 그림은 익숙하리라 생각한다.
 
 > 원래라면 변수명 대신에 주소값으로 표현해야되지만 쉬운 식별을 위해 변수명만 적었다.
 
@@ -66,7 +64,7 @@ console.log(copyObj); // {name: "hayoung", job: "full stack"}
 즉, 이 구문은
 
 ```js
-const copyObj = originObj;
+const copyObj = originObj
 ```
 
 ❗️**<u>참조값을 복사</u>한 것이지 진정한 객체복사라 볼 수 없다**.
@@ -77,17 +75,11 @@ const copyObj = originObj;
 
 <img src="./하옹의-자바스크립트-식사---Object-Copy/Object-Copy_real.png" alt="진정한 객체복사" style="zoom:67%;" />
 
-
-
-
-
 와 같이 `originObj`와 `copyObj` 의 참조값이 서로 다르지만 이 참조값이 위치하는 곳에는 서로 동일한 값들로 채워진 객체값이 있어야 한다.
 
 서로 똑같은 객체를 바라보고있는 것이 아닌, **원본 객체 / 사본객체 각각의 참조값**을 가지고 있도록 해야 한다.
 
 따라서 객체복사는 단순 할당이 아닌 다른 참조값을 갖는 새로운 객체 사본을 만들어야 하는게 핵심이다.
-
-
 
 ## 객체 복사의 필요성
 
@@ -102,10 +94,10 @@ const copyObj = originObj;
 
 우리는 이 경우에 기존에 있던 객체에서 복사를 한 후 특정 속성값을 바꾸는 방법을 사용 할 수 있다.
 
-예를 한 번 들어보자. 
+예를 한 번 들어보자.
 
 ```js
-const imageObject  = {
+const imageObject = {
   src: './images/image1.png',
   width: 100,
   height: 100,
@@ -119,20 +111,18 @@ const imageObject  = {
 그럼 객체를 복사해서 `src` 값만 바꿔주는게 좋은 방법일 수 있다.
 
 ```js
-const imageObject2 = copyObject(imageObject);
-imageObject2.src = './images/image2.png';
+const imageObject2 = copyObject(imageObject)
+imageObject2.src = './images/image2.png'
 ```
 
 아니면 `border` 속성이 없는 이미지를 만들고싶을 때도 있다.
 
 ```js
-const imageObjectNonBorder = copyObject(imageObject);
-delete imageObjectNonBorder.border;
+const imageObjectNonBorder = copyObject(imageObject)
+delete imageObjectNonBorder.border
 ```
 
 이 처럼 객체에서 몇몇개의 특성만 바뀐 또 다른 객체가 필요할 경우에 객체 복사는 좋은 방법이 될 수 있다.
-
-
 
 ### 객체의 불변성을 유지하고싶을 때
 
@@ -147,23 +137,21 @@ const originItem = {
 }
 
 function updateItem(item, atack) {
-  const updatedItem = copyObject(item);
-  
-  updatedItem.isUpdated = true;
-  updatedItem.attack += atack;
-  
-  return updatedItem;
+  const updatedItem = copyObject(item)
+
+  updatedItem.isUpdated = true
+  updatedItem.attack += atack
+
+  return updatedItem
 }
 
-const updatedItem = updateItem(originItem, 30); // 새로운 객체 리턴
+const updatedItem = updateItem(originItem, 30) // 새로운 객체 리턴
 
-console.log(originItem); // {type: "sword", attack: 10}
-console.log(updateItem); // {type: "sword", attack: 40, isUpdated: true}
+console.log(originItem) // {type: "sword", attack: 10}
+console.log(updateItem) // {type: "sword", attack: 40, isUpdated: true}
 ```
 
 이와 같이 기존의 객체에 대해 조작을 가하지 않는 객체 불변성을 유지하려면 기존의 객체를 복사하고 사본에 조작을 가한 후 사본을 리턴해야되기 때문에 객체 복사는 필수적인 요소이다.
-
-
 
 ## Javascript에서 객체 복사
 
@@ -177,17 +165,15 @@ Object.assign은 첫번째 요소로 들어온 객체에 다음인자로 들어�
 const originObj = {
   name: 'hayoung',
   job: 'frontend',
-};
+}
 
-const copiedObj = Object.assign({}, obj);
+const copiedObj = Object.assign({}, obj)
 
 copiedObj.b.c = 3
 
 obj === copiedObj // false
 obj.b.c === copiedObj.b.c // true
 ```
-
-
 
 ### 깊은 복사의 필요성
 
@@ -198,14 +184,14 @@ const hayoung = {
   friends: [
     {
       name: 'youngwoo',
-      job: 'firefighter'
+      job: 'firefighter',
     },
     {
       name: 'hyungbin',
-      job: 'doctor'
+      job: 'doctor',
     },
   ],
-};
+}
 ```
 
 위와 같은 object 타입의 값이 중첩된 객체라면 `Object.assign()`을 적용시켜도 제대로 복사되지 않는다.
@@ -225,28 +211,26 @@ const hayoung = {
 #### 직접 구현
 
 ```js
-function deepCopy(origin, copy = {}) {  
+function deepCopy(origin, copy = {}) {
   for (const key in origin) {
     if (origin.hasOwnProperty(key)) {
       if (typeof origin[key] === 'object') {
-        copy[key] = Array.isArray(origin[key]) ? [] : {};
-        deepCopy(origin[key], copy[key]);
+        copy[key] = Array.isArray(origin[key]) ? [] : {}
+        deepCopy(origin[key], copy[key])
       } else {
-        copy[key] = origin[key];
+        copy[key] = origin[key]
       }
     }
   }
-  return copy;
+  return copy
 }
 ```
-
-
 
 #### JSON Serialize를 활용한 Copy
 
 ```js
 function deepCopy(origin) {
-  return JSON.parse(JSON.stringify(origin));
+  return JSON.parse(JSON.stringify(origin))
 }
 ```
 
@@ -256,15 +240,11 @@ function deepCopy(origin) {
 
 JSON객체로 변환하는 것이기 때문에 JSON에서 처리 가능한 데이터 타입만 가능.
 
-
-
 #### 라이브러리 이용
 
 lodash의 `cloneDeep(obj)`을 이용하면 깊은복사를 할 수 있다.
 
 [링크](https://www.npmjs.com/package/lodash.clonedeep)
-
-
 
 ## 참조
 
@@ -273,4 +253,3 @@ lodash의 `cloneDeep(obj)`을 이용하면 깊은복사를 할 수 있다.
 [바닐라코딩 부트캠프 2주차 수업](https://www.vanillacoding.co/)
 
 [코어자바스크립트](http://m.yes24.com/goods/detail/78586788)
-

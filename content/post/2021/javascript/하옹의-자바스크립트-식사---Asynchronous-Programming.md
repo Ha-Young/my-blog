@@ -17,7 +17,7 @@ tags: ['javascript', '비동기', 'asynchronous', 'promise', 'async/await', 'cal
 Asynchronous(비동기)는 어떤 작업 한번에 하나씩 해결이 될때까지 기다리며 순차적(Synchronous)으로 진행되는 일반적인 프로그램의 코드와는 다르게,
 어떤 작업을 별도로 진행시키고 작업이 끝날때까지 기다리지 않고 다음작업을 이어나가면서 비동기적으로 진행시킨 작업 별도로 결과가 나오면 그제서야 처리해주는 방식이다.
 
-![동기와 비동기방식](./sync-async.png)
+![동기와 비동기방식](./하옹의-자바스크립트-식사---Asynchronous-Programming/sync-async.png)
 
 위 이미지는 [Poiemaweb-async](https://poiemaweb.com/js-async) 글에서 참조한 그림인데,
 동기(Synchronous)와 비동기(Asynchronous)의 개념을 그림하나로 잘 설명하고 있다.
@@ -50,7 +50,7 @@ Asynchronous(비동기)는 어떤 작업 한번에 하나씩 해결이 될때까
 > - 비동기와 멀티스레딩은 엄연한 차이가 있다.
 >   아래 그림을 참조하자. ([링크](https://stackoverflow.com/questions/748175/asynchronous-vs-synchronous-execution-what-does-it-really-mean/748235#748235)에 있는 이미지를 직접 그렸다)
 
-![Synchronous,Asynchronous별 스레드 차이](./sync-async-single-multi-thread-difference.jpg)
+![Synchronous,Asynchronous별 스레드 차이](./하옹의-자바스크립트-식사---Asynchronous-Programming/sync-async-single-multi-thread-difference.jpg)
 
 ## Javascript에서는 비동기 프로그래밍을 어떻게 하는가?
 
@@ -146,7 +146,7 @@ infinityFunc();
 
 극단적으로 위의 예제처럼 `infinity()`함수의 무한루프로인해 `Call Stack` 이 비워지지않아서 3초뒤에 우리가 원하는 출력값을 얻을 수 없는걸 확인 할 수 있다.
 
-![event loop](./eventloop.png)
+![event loop](./하옹의-자바스크립트-식사---Asynchronous-Programming/eventloop.png)
 
 이미지 출처 : [VanillaCoding - Prep강의](https://www.vanillacoding.co/)
 
@@ -442,7 +442,7 @@ new Promise(function(resolve, reject){
 
 
 
-![Promise 처리 흐름](./promise처리흐름.svg)
+![Promise 처리 흐름](./하옹의-자바스크립트-식사---Asynchronous-Programming/promise처리흐름.svg)
 
 이미지 출처 : [MDN - Promise](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
@@ -583,7 +583,7 @@ console.log(asyncFunc());
 
 
 
-![async function return1](./asyncFuncionReturnUndefined.png)
+![async function return1](./하옹의-자바스크립트-식사---Asynchronous-Programming/asyncFuncionReturnUndefined.png)
 
 아무것도 리턴하지 않았지만 자동적으로 Promise객체가 리턴되었으며 **fulfilled**상태의 `undefined`값을 담고있는 것을 확인할 수 있다.
 
@@ -601,7 +601,7 @@ console.log(asyncFunc());
 
 결과는 아래와 같다.
 
-![async function return 2](./asyncFunctionReturnValue.png)
+![async function return 2](./하옹의-자바스크립트-식사---Asynchronous-Programming/asyncFunctionReturnValue.png)
 
 바로 Promise 객체의 결과값으로 받아오는 것을 알 수 있다.
 

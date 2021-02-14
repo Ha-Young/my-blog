@@ -88,7 +88,7 @@ HTML 문서 그 자체를 가리킨다고 보면 된다.
 dir(document)
 ```
 
-<img src=".\하옹의-자바스크립트-간편식---DOM_img1.jpg" alt="image-20201115233754845" style="zoom:67%;" />
+<img src=".\하옹의-자바스크립트-식사---DOM\하옹의-자바스크립트-간편식---DOM_img1.jpg" alt="image-20201115233754845" style="zoom:67%;" />
 
 ### 2. Element Node
 

@@ -80,11 +80,11 @@ export const TableOfContents = ({ toc }) => {
       const tocLinkElement = Dom.getElement(`a[href="${href}"]`)
 
       if (currentoffsetY >= headerElementTop - HEADER_OFFSET_Y) {
-        headerElement.classList.add('toc-header-active')
-        tocLinkElement.classList.add('toc-active')
+        headerElement && headerElement.classList.add('toc-header-active')
+        tocLinkElement && tocLinkElement.classList.add('toc-active')
       } else {
-        headerElement.classList.remove('toc-header-active')
-        tocLinkElement.classList.remove('toc-active')
+        headerElement && headerElement.classList.remove('toc-header-active')
+        tocLinkElement && tocLinkElement.classList.remove('toc-active')
       }
     }
   }

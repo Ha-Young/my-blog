@@ -238,7 +238,7 @@ hayoung.hello() // hello 30
 
 > 즉, 모든 함수가 `.call()` `.apply()`, `.bind()`를 사용 할 수 있다.
 
-![Function.prototype 메서드](.\하옹의-자바스크립트-식사---this_function_prototype.jpg)
+![Function.prototype 메서드](.\하옹의-자바스크립트-식사---this\하옹의-자바스크립트-식사---this_function_prototype.jpg)
 
 `apply()` `bind()` `call()` 이 함수들의 역할은 무엇일까?
 
@@ -332,7 +332,7 @@ argCheck.apply(hayoung, [1, 2, 3, 4]) // hello HaYoung, arg sum : 10
 
 그럼 `bind()`함수는 뭘까?
 
-`bind()`함수는 **인자값으로 받은 객체가 바인딩된 새로운 함수를 반환하는 [고차함수](../../하옹의-자바스크립트-식사---Closure/하옹의-자바스크립트-식사---Closure/#1급-함수가-중요한-이유)이다.**
+`bind()`함수는 **인자값으로 받은 객체가 바인딩된 새로운 함수를 반환하는 [고차함수](../../../2020/javascript/하옹의-자바스크립트-식사---Closure/하옹의-자바스크립트-식사---Closure/#1급-함수가-중요한-이유)이다.**
 
 ```js{9,11}
 function hello () {
@@ -384,7 +384,7 @@ bindedFunc(1, 2, 3, 4) // hello HaYoung, arg sum : 10
 
 #### 4. `new` keyword
 
-[Prototype 글](../../하옹의-자바스크립트-간편식---Prototype/하옹의-자바스크립트-식사---Prototype/) 에서 알 수 있듯이, 함수를 `new`키워드로 실행시키면 **생성자함수**로 사용되어진다.
+[Prototype 글](../../../2020/javascript/하옹의-자바스크립트-간편식---Prototype/하옹의-자바스크립트-식사---Prototype/) 에서 알 수 있듯이, 함수를 `new`키워드로 실행시키면 **생성자함수**로 사용되어진다.
 이 생성자 함수로 실행될 때 `new`키워드로 인해 **빈 객체**가 생성되고 이 **빈 객체**는 생성자 함수 내부에서 `this`로 접근 할 수 있었다.
 
 바로 이 상황이 4번째인 `new`키워드로 생성자 함수로 함수를 실행시켜 사용하게되는 `this`이다.
@@ -399,7 +399,7 @@ function HYComponent() {
 new HYComponent()
 ```
 
-![new 키워드 결과](.\하옹의-자바스크립트-식사---this_new.jpg)
+![new 키워드 결과](.\하옹의-자바스크립트-식사---this\하옹의-자바스크립트-식사---this_new.jpg)
 
 이 처럼 빈 객체가 생성된다는 것을 확인 할 수 있다.
 
@@ -462,7 +462,7 @@ const hyComponent = new HYComponent(h1Element, 'First h1 Tag')
 
 이후 `h1Element`를 클릭해보면 아래와 같은 결과가 나온다.
 
-![this eventListener](.\하옹의-자바스크립트-식사---this_eventListener.jpg)
+![this eventListener](.\하옹의-자바스크립트-식사---this\하옹의-자바스크립트-식사---this_eventListener.jpg)
 
 이를 통해 **EventListener**내부에서의 `this`값은 `event.target`이라는 것을 알 수 있다.
 
@@ -521,7 +521,7 @@ const hyComponent = new HYComponent(h1Element, 'First h1 Tag')
 
 이후 `HYComponent`생성자로 넘겨줬던 `h1Element`를 클릭하면 아래와 같은 결과가 나온다.
 
-![arrow function in constructor](.\하옹의-자바스크립트-식사---this_arrowFunc.jpg)
+![arrow function in constructor](하옹의-자바스크립트-식사---this\하옹의-자바스크립트-식사---this_arrowFunc.jpg)
 
 원래 우리가 배웠던 대로라면 **EventListener**에 있는 `this`값은 `event.target`을 가리키는 것이지만 **arrow Function** 이기 때문에 적용되지 않고 **Lexical Scope**가 적용되어 `onTargetClickListener` 가 선언된 시점에서의 `this`로 적용되는 것.
 
@@ -549,7 +549,7 @@ const h1Element = document.querySelector('h1')
 const hyComponent = new HYComponent(h1Element, 'First h1 Tag')
 ```
 
-![arrow function outer](.\하옹의-자바스크립트-식사---this_arrowFunc_global.jpg)
+![arrow function outer](.\하옹의-자바스크립트-식사---this\하옹의-자바스크립트-식사---this_arrowFunc_global.jpg)
 
 #### 화살표 함수는 메서드로 사용하면 안된다.
 

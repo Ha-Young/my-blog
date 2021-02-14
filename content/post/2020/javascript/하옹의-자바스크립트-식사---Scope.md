@@ -258,7 +258,7 @@ print() // hello, world
 
 ## Scope Chain
 
-![javascript _Scope](.\하옹의-자바스크립트-식사---Scope_ScopeChain.png)
+![javascript _Scope](.\하옹의-자바스크립트-식사---Scope\하옹의-자바스크립트-식사---Scope_ScopeChain.png)
 
 위 사진을 보면, Scope가 어떻게 형성되는지 알 수 있다. 결과는 `'Hello!Hi!Hey!'`
 

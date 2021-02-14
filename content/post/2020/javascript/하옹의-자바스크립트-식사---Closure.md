@@ -159,16 +159,16 @@ function memoization(func) {
 
 Lexical Environment는 **Lexical Scope**에 따라 정해지는 **Context**를 의미한다.
 
-Lexical Scope는 [이전 Scope 포스트의 Lexical Scope](https://ha-young.github.io/2020/javascript/%ED%95%98%EC%98%B9%EC%9D%98-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%8B%9D%EC%82%AC---Scope/#%EC%8A%A4%EC%BD%94%ED%94%84-%EA%B2%B0%EC%A0%95-%EB%B0%A9%EC%8B%9D--lexical-scope-%EB%A0%89%EC%8B%9C%EC%BB%AC-%EC%8A%A4%EC%BD%94%ED%94%84)에 적어두었다.
+Lexical Scope는 [이전 Scope 포스트의 Lexical Scope](../../../2020/javascript/하옹의-자바스크립트-식사---Scope/#스코프-결정-방식--lexical-scope-렉시컬-스코프)에 적어두었다.
 
-<img src=".\javascript-closure-1.png" alt="the closure captures variables from lexical scope" style="zoom: 33%;" />
+<img src=".\하옹의-자바스크립트-식사---Closure\javascript-closure-1.png" alt="the closure captures variables from lexical scope" style="zoom: 33%;" />
 
 이 이미지를 보면 `innerFunc`이 생성되었을 때의 lexical scope 환경인 outerVar를 접근 할 수 있는데,
 이 `outerVar` 변수를 `innerFunc` 함수에서 조작할 수 있는 이 상황이 바로 클로저이다. `innerFunc`에서 계속해서 상위 스코프의 `outerVar` 변수를 계속해서 참조할 수 있고, `outerVar`변수에서의 값은 계속해서 유지된다. (다른 Context에 존재하지만)
 
 #### Scope Chain (유효범위 체인)
 
-클로저는 [Scope 포스팅의 스코프체인](https://ha-young.github.io/2020/javascript/%ED%95%98%EC%98%B9%EC%9D%98-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%8B%9D%EC%82%AC---Scope/#scope-chain)에서 설명한 것 그대로 캡처 할 변수를 선택하게 된다.
+클로저는 [Scope 포스팅의 스코프체인](../../../2020/javascript/하옹의-자바스크립트-식사---Scope/#scope-chain)에서 설명한 것 그대로 캡처 할 변수를 선택하게 된다.
 Lexical Environment에서 정해진 스코프체인의 특성 및 식별자 결정 순서대로 변수가 캡처되면서 클로저가 형성된다고 보면 된다.
 
 ### 3. Garbage Collector(가비지 콜렉터)
@@ -186,7 +186,7 @@ C, C++와 같은 Unmanaged 언어를 제외하고서, 프로그래밍에서 기�
 
 2012년을 기준으로 거의 모든 최신브라우저는 Mark-and-Sweep 방식의 가비지 콜렉션을 수행한다.
 
-![Mark and sweep garbage collector](.\javascript-closure-2.png)
+![Mark and sweep garbage collector](.\하옹의-자바스크립트-식사---Closure\javascript-closure-2.png)
 
 클로저에 의해 캡처 된 상위 스코프의 지역 변수는 정의 된 함수가 완료되고 해당 범위 내에 정의 된 모든 함수가 GC 처리되면 가비지 수집됩니다.
 
@@ -393,7 +393,7 @@ closureFunc3() // 3
 
 문제는, **이렇게 형성된 클로저 함수들에 참조를 제거하지 않으면 환경을 기억하기 위해 소모된 메모리들이 해제되지 않는다는 점**이다.
 
-이는 **[앞선 설명](https://ha-young.github.io/2020/javascript/%ED%95%98%EC%98%B9%EC%9D%98-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%8B%9D%EC%82%AC---Closure/#%ED%81%B4%EB%A1%9C%EC%A0%80%EB%A5%BC-%EC%9E%90%EC%84%B8%ED%9E%88-%EC%9D%B4%ED%95%B4%ED%95%98%EB%8A%94%EB%8D%B0-%EA%B0%80%EB%B9%84%EC%A7%80-%EC%BD%9C%EB%A0%89%ED%84%B0%EB%A5%BC-%EC%95%8C%EC%95%84%EC%95%BC-%EB%90%98%EB%8A%94-%EC%9D%B4%EC%9C%A0)**에서 확인한 바 있다.
+이는 **[앞선 설명](./#%ED%81%B4%EB%A1%9C%EC%A0%80%EB%A5%BC-%EC%9E%90%EC%84%B8%ED%9E%88-%EC%9D%B4%ED%95%B4%ED%95%98%EB%8A%94%EB%8D%B0-%EA%B0%80%EB%B9%84%EC%A7%80-%EC%BD%9C%EB%A0%89%ED%84%B0%EB%A5%BC-%EC%95%8C%EC%95%84%EC%95%BC-%EB%90%98%EB%8A%94-%EC%9D%B4%EC%9C%A0)**에서 확인한 바 있다.
 
 그리고 이것은 `C`, `C++`에서 `malloc`, `new` 로 메모리 동적할당을 해놓고 `free`, `delete`하지 않는 것과 비슷하다.
 
