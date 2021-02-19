@@ -19,5 +19,8 @@
 # 포스트 할 거리
 
 - [ ] JavaScript - Functional Oriented Programming
-- [ ] Reflow, Repaint, Composition Layer
+- [ ] JavaScript - Design Pattern
 - [ ] 바닐라코딩 3주차 후기
+- [ ] React useState, useEffect(라이프사이클, useEffect dependency)
+- [ ] React Class Component VS Functional Component
+- [ ] 
