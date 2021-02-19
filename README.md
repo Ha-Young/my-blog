@@ -24,4 +24,5 @@
 - [ ] 바닐라코딩 3주차 후기
 - [ ] React - useState, useEffect(라이프사이클, useEffect dependency)
 - [ ] React - Class Component VS Functional Component
-- [ ] React - Controlled Component VS UnControlled Component
+- [ ] React - [Controlled Component](https://ko.reactjs.org/docs/forms.html#controlled-components) VS [UnControlled Component](https://ko.reactjs.org/docs/uncontrolled-components.html)
+- [ ] React - [Reconciliation](https://ko.reactjs.org/docs/reconciliation.html)
