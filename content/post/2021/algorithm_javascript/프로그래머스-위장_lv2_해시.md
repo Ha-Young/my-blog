@@ -165,3 +165,4 @@ _그럼 경우의 수는 어떻게 계산해야 할까요?_
 \3. 두 수는 각각 독립적이기 때문에 1번 2번의 수를 곱하고 - 1 (모두 안입는 경우는 존재하지 않으므로)
 
 [출처](<[https://velog.io/@giraffelim/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4-%EC%9C%84%EC%9E%A5](https://velog.io/@giraffelim/프로그래머스-위장)>)
+
