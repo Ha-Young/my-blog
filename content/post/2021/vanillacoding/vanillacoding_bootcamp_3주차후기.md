@@ -1,9 +1,9 @@
 ---
-title: "전공자의 바닐라코딩 부트캠프 4주차까지의 후기 - 바닐라코딩 BootCamp 9기"
-draft: false
+title: '전공자의 바닐라코딩 부트캠프 4주차까지의 후기 - 바닐라코딩 BootCamp 9기'
+draft: true
 date: 2021-02-20
-category: "vanilla coding"
-tag: ["vanilla coding", "review", "bootcamp", ""]
+category: 'vanilla coding'
+tag: ['vanilla coding', 'review', 'bootcamp', '']
 ---
 
 바닐라코딩 부트캠프를 시작하고 벌써 5주간의 시간이 흘렀다.
@@ -20,8 +20,6 @@ tag: ["vanilla coding", "review", "bootcamp", ""]
 > - 프로젝트
 
 특히 이번 리뷰는 부트캠프 첫 리뷰이기 때문에 진행상황에 대한 리뷰가 주된 리뷰일 것 같다.
-
-
 
 ## 부트캠프 시작
 
@@ -101,8 +99,6 @@ Prep때와 다른것이 있다면 이 멘토링일 것인데, 오후시간에 �
 
 > 이런 점 때문에 나도 더 자극받을 수 있었다.
 
-
-
 ## 테스트
 
 테스트는 4주차 휴식주 월요일에 치뤄졌는데,
@@ -110,4 +106,3 @@ Prep때와 다른것이 있다면 이 멘토링일 것인데, 오후시간에 �
 1~3주를 열심히 했다면 쉬워보일 법한 문제가 나왔다.
 
 만약, 1~3주 진행없이 풀었다면 어려운 문제일테지만 다들 열심히 했기 때문인지 쉽게 풀어 냈던 것 같다.
-
