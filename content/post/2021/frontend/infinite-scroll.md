@@ -2,13 +2,11 @@
 title: "하옹의 프론트앤드 이야기 - Infinite Scroll(무한 스크롤)"
 draft: false
 date: 2021-02-23
-category: frontend
-tag: ['frontend', 'react', 'useIntersectionObserver', 'infinite scroll', 'throttle', 'requestAnimationFrame']
+category: 'frontend'
+tags: ['frontend', 'react', 'useIntersectionObserver', 'infinite scroll', 'throttle', 'requestAnimationFrame']
 ---
 
 ## 무한 스크롤?
-
-[바닐라코딩](https://www.vanillacoding.co/) 부트캠프의 프론트앤드 챕터의 2주차 과제를 수행하다가 무한스크롤을 구현해야하는 기능이 있었다.
 
 일반적으로 무한스크롤 기능이 필요할 때에는 **정보를 한꺼번에 가져와서 보여주기엔 정보량이 많거나 무거워서 api fetch로 받는 결과가 느릴 때**, 스크롤을 통해 아주 작은 일부분만 가져와 추가로 보여주면서 사용자 경험을 높이는 기술이자 인터페이스라 할 수 있다.
 
@@ -33,9 +31,10 @@ tag: ['frontend', 'react', 'useIntersectionObserver', 'infinite scroll', 'thrott
 
 
 
-전체적인 Scroll에 반응하는 `Scroll Event` 대신 `IntersectionObserver`를 이용하는 것이 성능상 더 효율적이긴 하겠지만,
+전체적인 Scroll에 반응하는 `Scroll Event` 대신 `IntersectionObserver`를 이용하는 것이 성능상 더 효율적이긴 하겠지만, 상황에 맞게 구현하는 것이 훨씬 중요하다고 생각한다.
 
-나는 `useIntersectionObserver` 는 블로그를 만들면서 써 본 기억이 있어서, 과제 구현에는 `scroll event`를 이용해서 무한스크롤을 구현하되 `throttle`과 `rAF`를 이용해서 **Scroll Event** 최적화를 경험해보기로 하였다.
+> Scroll Event에서 쓰이는 `documentElement.scrollTop` 과 `documentElement.offsetHeight`는 reflow를 일으켜서 성능상 좋지 않다.
+
 
 ## Scroll Event
 
@@ -86,14 +85,18 @@ export default function useInfiniteScroll(fetchCallback) {
 
 다음과 같이 구현할 경우 컴포넌트에서 아래와 같이 사용 할 수 있다.
 
-```js{1,7}
+```js
 const [isFetching, setIsFetching] = useInfiniteScroll(updateVideos);
 
 function updateVideos() {
-  getMostPopularVideos(YOUTUBE_API_ONCE_GET_SIZE, videos.nextPageToken).then(result => {
-    setVideos(generateNewVideo(videos, result));
+  getMostPopularVideos(YOUTUBE_API_ONCE_GET_SIZE, videos.nextPageToken)
+    .then(result => {
+    setVideos(addNewVideo(videos, result));
+  }).catch(error => {
+    setError(error.message);
+  }).finally(() => {
+    setIsFetching(false);
   });
-  setIsFetching(false);
 }
 
 useEffect(() => {
@@ -177,8 +180,7 @@ Bertalan Miklos의 [Javascript 비동기 작동방법](https://blog.risingstack.
 아래는 jbee님이 만든 [toFit](https://github.com/JaeYeopHan/gatsby-starter-bee/blob/master/src/utils/event-manager.js) 함수를 참조해서 만든 `throttleOnRendering` 함수이다.
 
 ```js
-export default function throttleOnRendering(
-  cb) {
+export default function throttleOnRendering(cb) {
   if (!cb) {
     throw Error('Invalid required arguments');
   }
