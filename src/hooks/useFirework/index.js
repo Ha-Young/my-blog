@@ -37,7 +37,7 @@ export function useFirework(className, initActive) {
   // when launching fireworks with a click, too many get launched at once without a limiter, one launch per 5 loop ticks
   const limiterTotal = 5
   // this will time the auto launches of fireworks, one launch per 80 loop ticks
-  const timerTotal = 80
+  const timerTotal = 150
 
   let canvas
   let ctx
