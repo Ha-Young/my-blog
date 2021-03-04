@@ -35,9 +35,9 @@ export const Header = ({ title, location, rootPath }) => (
             <Link className="nav-item" to="/tags">
               Tags
             </Link>
-            <Link className="nav-item" to="/resume_web">
+            {/* <Link className="nav-item" to="/resume_web">
               Resume
-            </Link>
+            </Link> */}
             <div className="socials">
               <GitHubIcon />
             </div>
