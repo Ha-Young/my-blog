@@ -73,7 +73,7 @@ gatsby new my-gatsby-project https://github.com/JaeYeopHan/gatsby-starter-bee
 ## 폴더구조
 
 설치후에는
-![image-20201119142435191](C:\blog\my-blog-OLD\content\gatsby\2020-11-19-내손내만-Gatsby.js로-블로그-만들기---2-gatsby설치,-starter-고르기_img1.jpg)
+![image-20201119142435191](./install-gatsby-select-start-folderStructure.jpg)
 
 다음과 같이 폴더 구성이 되어 있다.
 

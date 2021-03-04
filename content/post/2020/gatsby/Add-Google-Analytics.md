@@ -58,7 +58,7 @@ Google Analytics로 할 수 있는 일
 
 구글 Analytics 계정이 없다면 새로 생성해야하고, 로그인 후에 [애널리틱스 사이트](https://marketingplatform.google.com/about/analytics/)에서 **무료사용 시작하기**로 시작하면 된다.
 
-<img src=".\Analytics계정생성.png" alt="Analytics계정생성" style="zoom:67%;" />
+<img src="./Add-Google-Analytics-imgs/make-account.png" alt="Analytics계정생성" style="zoom:67%;" />
 
 나는 모든 권장항목에대해서 체크진행하였다.
 
@@ -72,7 +72,7 @@ Google Analytics로 할 수 있는 일
 
 즉, **우리 블로그를 Analytics 속성으로 설정**하면 된다.
 
-<img src=".\속성설정.png" alt=".\속성설정" style="zoom:80%;" />
+<img src="./Add-Google-Analytics-imgs/set-property.png" alt="속성설정" style="zoom:80%;" />
 
 보고시간대는 해당 시간을 기준으로 Anaytics 보고서가 작성되고, 아래 통화 설정으로 보고서에서 사용되는 통화를 설정할 수 있다.
 
@@ -80,7 +80,7 @@ Google Analytics로 할 수 있는 일
 
 ### 3. 비즈니스 정보 설정
 
-<img src=".\비즈니스정보설정.png" alt="비즈니스정보설정" style="zoom:67%;" />
+<img src="./Add-Google-Analytics-imgs/set-business-info.png" alt="비즈니스정보설정" style="zoom:67%;" />
 
 다음으로 비즈니스 설정을 하고 만들기 클릭.
 
@@ -92,17 +92,17 @@ Google Analytics로 할 수 있는 일
 
 마찬가지로 한개의 속성에 여러개의 데이터스트림을 등록할 수 있으며(최대 50개), 데이터스트림이 추가되면 분석결과는 최대 24시간 소요될 수 있다. (등록한다고 결과가 바로 나오지 않는다)
 
-<img src=".\데이터스트림설정.png" alt="데이터스트림설정" style="zoom:67%;" />
+<img src="./Add-Google-Analytics-imgs/set-dataStream.png" alt="데이터스트림설정" style="zoom:67%;" />
 
 등록방법은 **애널리틱스 관리자**에서 우리가 앞서 만든 속성에 대해 **데이터 스트림을 설정**하면되는데 웹사이트이므로 **웹**으로 만들면 된다.
 
-![웹스트림 설정](.\웹스트림설정.png)
+![웹스트림 설정](./Add-Google-Analytics-imgs/set-webstream.png)
 
 향상된 측정부분에 측정 옵셔닝을 할 수 있는데, 다 해두면 좋을 것 같아서 나는 다 해뒀다.
 
 ### 5. 측정 ID 획득
 
-<img src=".\측정ID.png" alt="측정 ID" style="zoom:67%;" />
+<img src="./Add-Google-Analytics-imgs/check-id.png" alt="측정 ID" style="zoom:67%;" />
 
 웹 스트림을 생성하면 **측정 ID**라고 나오는데 이 측정 ID가 **우리 Gatsby 블로그에서 설정**해야되므로 따로 복사를 해두자.
 
@@ -147,7 +147,7 @@ module.exports = {
 
 최대 48시간이 지나면 보고서가 작성되어서 대시보드에 표시되니 확인하도록 하자.
 
-![dashboard-examples](.\dashboard-examples.png)
+![dashboard-examples](./Add-Google-Analytics-imgs/dashboard-examples.png)
 
 > 만약 위의 코드를 `gatsby-config.js`에 추가했는데도 전혀 추적이 되지 않고 있다면 gatsby-plugin-gtag를 플러그인 최상단에 배치하면 된다고 한다. ([참조](https://janeljs.github.io/blog/google-analytics/))
 

@@ -238,7 +238,7 @@ hayoung.hello() // hello 30
 
 > 즉, 모든 함수가 `.call()` `.apply()`, `.bind()`를 사용 할 수 있다.
 
-![Function.prototype 메서드](.\하옹의-자바스크립트-식사---this\하옹의-자바스크립트-식사---this_function_prototype.jpg)
+![Function.prototype 메서드](./Eat_Javascript_this/Eat_Javascript_this_function_prototype.jpg)
 
 `apply()` `bind()` `call()` 이 함수들의 역할은 무엇일까?
 
@@ -399,7 +399,7 @@ function HYComponent() {
 new HYComponent()
 ```
 
-![new 키워드 결과](.\하옹의-자바스크립트-식사---this\하옹의-자바스크립트-식사---this_new.jpg)
+![new 키워드 결과](./Eat_Javascript_this/Eat_Javascript_this_new.jpg)
 
 이 처럼 빈 객체가 생성된다는 것을 확인 할 수 있다.
 
@@ -462,7 +462,7 @@ const hyComponent = new HYComponent(h1Element, 'First h1 Tag')
 
 이후 `h1Element`를 클릭해보면 아래와 같은 결과가 나온다.
 
-![this eventListener](.\하옹의-자바스크립트-식사---this\하옹의-자바스크립트-식사---this_eventListener.jpg)
+![this eventListener](./Eat_Javascript_this/Eat_Javascript_this_eventListener.jpg)
 
 이를 통해 **EventListener**내부에서의 `this`값은 `event.target`이라는 것을 알 수 있다.
 
@@ -521,7 +521,7 @@ const hyComponent = new HYComponent(h1Element, 'First h1 Tag')
 
 이후 `HYComponent`생성자로 넘겨줬던 `h1Element`를 클릭하면 아래와 같은 결과가 나온다.
 
-![arrow function in constructor](하옹의-자바스크립트-식사---this\하옹의-자바스크립트-식사---this_arrowFunc.jpg)
+![arrow function in constructor](Eat_Javascript_this\Eat_Javascript_this_arrowFunc.jpg)
 
 원래 우리가 배웠던 대로라면 **EventListener**에 있는 `this`값은 `event.target`을 가리키는 것이지만 **arrow Function** 이기 때문에 적용되지 않고 **Lexical Scope**가 적용되어 `onTargetClickListener` 가 선언된 시점에서의 `this`로 적용되는 것.
 
@@ -549,7 +549,7 @@ const h1Element = document.querySelector('h1')
 const hyComponent = new HYComponent(h1Element, 'First h1 Tag')
 ```
 
-![arrow function outer](.\하옹의-자바스크립트-식사---this\하옹의-자바스크립트-식사---this_arrowFunc_global.jpg)
+![arrow function outer](./Eat_Javascript_this/Eat_Javascript_this_arrowFunc_global.jpg)
 
 #### 화살표 함수는 메서드로 사용하면 안된다.
 
@@ -652,11 +652,8 @@ strict mode를 쓰는이유는 간단하다.
 
 [take this quiz](https://dev.to/liaowow/take-this-quiz-understand-how-this-works-in-javascript-44dj) 를 참조해서 풀어보자.
 
-
-
 ## 참조
 
 [VanillaCoding - Prep 강의 - this](https://www.vanillacoding.co/)
 
 [MDN - this](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/this)
-

@@ -31,7 +31,7 @@ tags:
 
 아래와 같이 google 검색창에 `site:<자신의 사이트`로 검색을 하면 우리 사이트들이 크롤링 되어서 구글 검색엔진에 색인이 되어있는지 확인할 수 있다.
 
-<img src=".\Google-site검색화면.png" alt="구글 site: 검색" style="zoom: 67%;" />
+<img src="./Google-Search-Reveal/Google-site-search-view.png" alt="구글 site: 검색" style="zoom: 67%;" />
 
 ```google-search
 site:<자신의 사이트>
@@ -41,7 +41,7 @@ site:<자신의 사이트>
 
 검색을 해보면 사이트 목록이 나오는데,
 
-<img src=".\Google-site검색결과.png" alt="구글 site: 검색결과" style="zoom:67%;" />
+<img src="./Google-Search-Reveal/Google-site-search_result.png" alt="구글 site: 검색결과" style="zoom:67%;" />
 
 나는 분명 20개 이상의 포스팅을 올렸지만 보시다시피 1페이지에 약 10개의 게시글인데 반해 페이지 수는 2개밖에 없다.
 
@@ -67,7 +67,7 @@ site:<자신의 사이트>
 2번 항목에 대해서는 대표적으로 모바일 기기에 친화적이어야 하는데,
 [이 사이트](https://search.google.com/test/mobile-friendly?hl=ko)에서 구글 크롤러가 인정하는 모바일 친화적인 사이트인지 확인할 수 있다.
 
-<img src=".\모바일친화확인.jpg" alt="모바일 친화적 확인" style="zoom: 40%;" />
+<img src="./Google-Search-Reveal/check-mobile.jpg" alt="모바일 친화적 확인" style="zoom: 40%;" />
 
 그 외에 [구글 친화적인 가이드라인](https://developers.google.com/search/docs/advanced/guidelines/webmaster-guidelines?hl=ko)이 따로 있는데, 대부분 기본적인 내용이거나 우리가 하지않을 내용들로 이루어져있다.
 한번 확인해봐도 괜찮을 것 같다.
@@ -100,7 +100,7 @@ site:<자신의 사이트>
 
 해당 글에 Sitemap이 왜 필요한지에 대해서도 나와있는데,
 
-<img src=".\sitemap이필요한이유.png" alt="사이트맵이 필요한 이유"/>
+<img src="./Google-Search-Reveal/reason-need-sitemap.png" alt="사이트맵이 필요한 이유"/>
 
 하이라이트 처리 해놓은 것 처럼 **`연결되는 외부 링크가 많지 않은 새로운 사이트`**가 바로 내 블로그이지 않나 싶다.
 
@@ -111,7 +111,7 @@ site:<자신의 사이트>
 하지만 이 Sitemap을 만들어 두어도 구글 크롤러가 이 Sitemap을 참조해야 의미가 있는 것인데,
 이는 구글 크롤러가 Sitemap을 참조하기를 기다려도 되지만 페이지를 새로 만들었거나 수정이 있었다면 Google에 수동으로 사이트맵을 제출하는 방법이 있다.
 
-![사이트맵 제출](.\Google에사이트맵제출방법.jpg)
+![사이트맵 제출](./Google-Search-Reveal/method-submit-sitemap-to-google.jpg)
 
 1. **Search Console 사이트맵 도구를 사용해 Google에 사이트맵 제출**
 2. robots.txt에 `Sitemap:<내 사이트 sitemap.xml경로>` 입력
@@ -126,7 +126,7 @@ https://www.google.com/ping?sitemap=https://ha-young.github.io/sitemap.xml
 
 과 같이 입력을 하니 아래와 같은 결과가 나왔다.
 
-<img src=".\ping결과.jpg" alt="sitemap ping 결과" style="zoom: 80%;" />
+<img src="./Google-Search-Reveal/ping-result.jpg" alt="sitemap ping 결과" style="zoom: 80%;" />
 
 주목할만한 부분이 **Sitemap을 처음 제출하는 경우 http://www.google.com/webmasters/tools/를 통해 Sitemap을 추가**하라는 내용이 있는데,
 
@@ -140,14 +140,14 @@ https://www.google.com/ping?sitemap=https://ha-young.github.io/sitemap.xml
 
 위 http://www.google.com/webmasters/tools/에 들어가고 로그인을 진행하면 다음과 같은 화면이 나타난다.
 
-![Google Search Console](.\GoogleSearchConsole.jpg)
+![Google Search Console](./Google-Search-Reveal/GoogleSearchConsole.jpg)
 
 왼쪽은 중복사이트 존재(모바일사이트, pc사이트)일 경우에 쓰이는 것 같고,
 나는 모든 URL을 입력하는 우측으로 진행을 하였다.
 
 자신의 사이트 URL을 치고 계속을 누르자.
 
-<img src=".\사이트소유권확인.png" alt="사이트 소유권 확인" style="zoom:67%;" />
+<img src="./Google-Search-Reveal/check-site-ownership.png" alt="사이트 소유권 확인" style="zoom:67%;" />
 
 소유권을 확인이라는 메세지가 뜬다.
 
@@ -175,7 +175,7 @@ https://www.google.com/ping?sitemap=https://ha-young.github.io/sitemap.xml
 나는 가장 권장 사용방법인 HTML 파일 추가를 진행해보았다.
 
 우선,
-<img src=".\소유권확인HTML파일업로드.jpg" alt="소유권확인 HTML파일 업로드" style="zoom:80%;" />
+<img src="./Google-Search-Reveal/check-site-ownership-upload-html.jpg" alt="소유권확인 HTML파일 업로드" style="zoom:80%;" />
 
 해당 html파일을 받아서 내 블로그 빌드시에 사이트에 추가되도록 하였고
 
@@ -185,31 +185,31 @@ https://www.google.com/ping?sitemap=https://ha-young.github.io/sitemap.xml
 
 사이트에 다운받은 HTML파일을 업로드 한 뒤에 확인버튼을 누르면
 
-<img src=".\사이트소유권확인_HTML파일확인.png" alt="image-20201230190513860" style="zoom: 50%;" />
+<img src="./Google-Search-Reveal/check-site-ownership-check-html.png" alt="image-20201230190513860" style="zoom: 50%;" />
 
 다음과 같은 이미지로 확인 할 수 있다.
 
-<img src=".\소유권확인메세지.png" alt="소유권확인메세지" style="zoom: 67%;" />
+<img src="./Google-Search-Reveal/check-site-ownership-check-msg.png" alt="소유권확인메세지" style="zoom: 67%;" />
 
 다음과 같은 화면이 뜨면 소유권이 확인되었다는 것.
 
 ### 3.Sitemap 등록
 
-<img src=".\절차마무리.jpg" alt="절차마무리" style="zoom: 67%;" />
+<img src="./Google-Search-Reveal/sitemap-finally.jpg" alt="절차마무리" style="zoom: 67%;" />
 
 이제 아래 `속성으로 이동`버튼을 클릭해서 Sitemap을 등록해주면 된다.
 
-<img src=".\Sitemap제출.jpg" alt="Sitemap제출" style="zoom: 50%;" />
+<img src="./Google-Search-Reveal/Sitemap-submit.jpg" alt="Sitemap제출" style="zoom: 50%;" />
 
 제출 하고 아래와 같이 제출된 사이트맵에 상태가 성공이면 작업은 끝난 것.
 
-<img src=".\Sitemap제출성공.jpg" alt="Sitemap 제출성공" />
+<img src="./Google-Search-Reveal/Sitemap-submit-success.jpg" alt="Sitemap 제출성공" />
 
 ## 마무리
 
 이렇게 구글 크롤링을 유도한 후 다음날 아침 (약 15시간 이후)에 `site:<내 사이트>`를 검색해서 내 사이트의 구글 색인결과를 확인해보았다.
 
-<img src=".\성공적으로크롤링.jpg" alt="성공적으로크롤링" style="zoom:67%;" />
+<img src="./Google-Search-Reveal/crolling-success.jpg" alt="성공적으로크롤링" style="zoom:67%;" />
 
 보는 것 처럼 처음에 2페이지 밖에 없었는데 6페이지로 늘어나있는 걸 확인 할 수 있다.
 
@@ -221,15 +221,15 @@ RSS또한 Sitemap처럼 등록할 수 있다.
 
 > 등록하면 당연히 좋겠지?
 
-<img src=".\rss가져올수없음.jpg" alt="RSS가져올수없음" style="zoom:80%;" />
+<img src="./Google-Search-Reveal/do-net-get-rss.jpg" alt="RSS가져올수없음" style="zoom:80%;" />
 
 위 처럼 rss.xml을 등록해도 **가져올 수 없음**이 뜨는데, 이는 우리 rss.xml에 대한 색인이 없어서라고 추측된다.
 
 이 부분은 **직접 URL 검사를 통한 색인성성을** 하니 해결되었다.
 
-<img src=".\rss.xml_Search.jpg" alt="RSS URL 검사" style="zoom: 50%;" />
+<img src="./Google-Search-Reveal/rss.xml_Search.jpg" alt="RSS URL 검사" style="zoom: 50%;" />
 
-![rss색인생성요청](.\rss색인생성요청.PNG)
+![rss색인생성요청](./Google-Search-Reveal/request-rss-index.PNG)
 
 색인이 생성되려면 마찬가지로 크롤링 되어야 하기 때문에 크롤링 될 때 까지 기다렸다가 사이트맵으로 rss.xml을 제출하면 된다!
 

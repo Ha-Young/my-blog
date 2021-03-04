@@ -6,7 +6,7 @@ category: 'gatsby'
 tags: ['gatsby', '내손내만블로그']
 ---
 
-![canvas를 이용한 웹사이트에 fireworks 효과를 준 모습](.\2020-12-29-내손내만-Gatsby.js로-블로그-만들기---canvas를-이용한-animation으로-재밌는-사용자경험-주기-fireworks.gif)
+![canvas를 이용한 웹사이트에 fireworks 효과를 준 모습](./canvas-example.gif)
 
 canvas를 이용한 웹사이트에 fireworks 효과를 준 모습
 

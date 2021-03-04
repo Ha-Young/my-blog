@@ -20,7 +20,7 @@ tags: ['gatsby', '내손내만블로그']
 
 HEROPHY님에게 블로그 몇가지 기능에대해서 클론코딩을 해도 괜찮은지 조심스럽게 메일을 통해 물어보았고 답변을 받았다.
 
-![클론코딩허락](.\Gatsby-블로그-TOC만들기-클론허락.png)
+![클론코딩허락](./check-answer.png)
 
 > 예쁜 블로그만큼이나 마음씨도 예쁘신 것 같다.
 
@@ -190,7 +190,7 @@ observing하는 root는 `0% 0% -85% 0%`로 설정해서 Header가 root로 설정
 여기서 이것저것 해보다가 발견한 사실이 또 있는데
 `entry.boundingClientRect.top + window.pageYOffset`의 결과가 Element의 static한 top 좌표라는 사실을 알게되었다.
 
-<img src=".\Gatsby-블로그-TOC만들기-rootMargin.png" alt="rootMargin" style="zoom:67%;" />
+<img src="./rootMargin.png" alt="rootMargin" style="zoom:67%;" />
 
 ### 5. 문제점 발견
 

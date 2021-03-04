@@ -49,7 +49,7 @@ console.log(copyObj) // {name: "hayoung", job: "full stack"}
 
 아래 그림을 보자.
 
-<img src="./하옹의-자바스크립트-식사---Object-Copy/Object-Copy_reference.png" alt="참조값 복사" style="zoom:67%;" />
+<img src="./Eat_Javascript_Object-Copy/Object-Copy_reference.png" alt="참조값 복사" style="zoom:67%;" />
 
 [참조](../../../../2020/javascript/하옹의-자바스크립트-식사---Type/#7-object)에 대해서 공부를 했다면 위와같은 그림은 익숙하리라 생각한다.
 
@@ -73,7 +73,7 @@ const copyObj = originObj
 
 ### 진정한 객체복사란
 
-<img src="./하옹의-자바스크립트-식사---Object-Copy/Object-Copy_real.png" alt="진정한 객체복사" style="zoom:67%;" />
+<img src="./Eat_Javascript_Object-Copy/Object-Copy_real.png" alt="진정한 객체복사" style="zoom:67%;" />
 
 와 같이 `originObj`와 `copyObj` 의 참조값이 서로 다르지만 이 참조값이 위치하는 곳에는 서로 동일한 값들로 채워진 객체값이 있어야 한다.
 

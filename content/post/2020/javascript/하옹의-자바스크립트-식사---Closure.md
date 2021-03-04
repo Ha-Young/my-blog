@@ -161,7 +161,7 @@ Lexical Environment는 **Lexical Scope**에 따라 정해지는 **Context**를 �
 
 Lexical Scope는 [이전 Scope 포스트의 Lexical Scope](../../../2020/javascript/하옹의-자바스크립트-식사---Scope/#스코프-결정-방식--lexical-scope-렉시컬-스코프)에 적어두었다.
 
-<img src=".\하옹의-자바스크립트-식사---Closure\javascript-closure-1.png" alt="the closure captures variables from lexical scope" style="zoom: 33%;" />
+<img src="./Eat_Javascript_Closure/javascript-closure-1.png" alt="the closure captures variables from lexical scope" style="zoom: 33%;" />
 
 이 이미지를 보면 `innerFunc`이 생성되었을 때의 lexical scope 환경인 outerVar를 접근 할 수 있는데,
 이 `outerVar` 변수를 `innerFunc` 함수에서 조작할 수 있는 이 상황이 바로 클로저이다. `innerFunc`에서 계속해서 상위 스코프의 `outerVar` 변수를 계속해서 참조할 수 있고, `outerVar`변수에서의 값은 계속해서 유지된다. (다른 Context에 존재하지만)
@@ -186,7 +186,7 @@ C, C++와 같은 Unmanaged 언어를 제외하고서, 프로그래밍에서 기�
 
 2012년을 기준으로 거의 모든 최신브라우저는 Mark-and-Sweep 방식의 가비지 콜렉션을 수행한다.
 
-![Mark and sweep garbage collector](.\하옹의-자바스크립트-식사---Closure\javascript-closure-2.png)
+![Mark and sweep garbage collector](./Eat_Javascript_Closure/javascript-closure-2.png)
 
 클로저에 의해 캡처 된 상위 스코프의 지역 변수는 정의 된 함수가 완료되고 해당 범위 내에 정의 된 모든 함수가 GC 처리되면 가비지 수집됩니다.
 

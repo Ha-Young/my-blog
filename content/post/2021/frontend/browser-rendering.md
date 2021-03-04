@@ -3,7 +3,15 @@ title: '하옹의 프론트앤드 이야기 - 브라우저의 랜더링, 랜더�
 draft: false
 date: '2021-02-15'
 category: 'frontend'
-tags: ['frontend', 'rendering', 'reflow', 'repaint', 'rendering optimization', '하옹의 프론트앤드 이야기']
+tags:
+  [
+    'frontend',
+    'rendering',
+    'reflow',
+    'repaint',
+    'rendering optimization',
+    '하옹의 프론트앤드 이야기',
+  ]
 ---
 
 ## 브라우저 성능
@@ -28,15 +36,11 @@ tags: ['frontend', 'rendering', 'reflow', 'repaint', 'rendering optimization', '
 
 그 중에서 우리가 이번에 알아볼 부분이 바로 Rendering이다.
 
-
-
 ## Rendering이란?
 
 일반적으로 렌더링(Rendering)이란 영상을 만들어내는 과정을 말한다.
 
-> 컴퓨터에서는 [영상]([https://ko.wikipedia.org/wiki/%EC%98%81%EC%83%81](https://ko.wikipedia.org/wiki/영상))이란 주로 2차원 이미지를 뜻한다.
-
-
+> 컴퓨터에서는 [영상](<[https://ko.wikipedia.org/wiki/%EC%98%81%EC%83%81](https://ko.wikipedia.org/wiki/영상)>)이란 주로 2차원 이미지를 뜻한다.
 
 ### 웹 브라우저상의 렌더링
 
@@ -53,15 +57,11 @@ tags: ['frontend', 'rendering', 'reflow', 'repaint', 'rendering optimization', '
 
 이미지 출처: [logrocket blog](https://blog.logrocket.com/how-browser-rendering-works-behind-the-scenes-6782b0e8fb10/)
 
-
-
 ## 브라우저의 렌더링 엔진
 
 이 브라우저에서 화면을 구성하는 렌더링을 담당하는 부분이 바로 렌더링 엔진으로 각 브라우저마다 상이하게 존재하지만 작동과정은 비슷하다.
 
 그리고 각 브라우저마다 렌더링 엔진은 CSS 속성별로 브라우저 엔진의 작동이 조금씩 다를 수가 있으므로 이를 구분하기위해 어떤 브라우저에서 어떤 렌더링 엔진을 사용하는지 알아두면 좋다.
-
-
 
 - **크롬** : 블링크 (Blink)
   ![chrome - blink](https://www.chromium.org/_/rsrc/1438879449147/config/customLogo.gif?revision=3)
@@ -69,7 +69,7 @@ tags: ['frontend', 'rendering', 'reflow', 'repaint', 'rendering optimization', '
 <br>
 
 - **오페라** : 블링크 (Blink)
-   ![Opera - blink](https://www.chromium.org/_/rsrc/1438879449147/config/customLogo.gif?revision=3)
+  ![Opera - blink](https://www.chromium.org/_/rsrc/1438879449147/config/customLogo.gif?revision=3)
 
 <br>
 
@@ -91,13 +91,11 @@ tags: ['frontend', 'rendering', 'reflow', 'repaint', 'rendering optimization', '
 여기서 크롬, 오페라, 엣지의 블링크는 웹키트의 Fork 버전으로,
 블링크와 웹키트의 동작방식은 거의 유사하다고 볼 수 있다.
 
-
-
 ## 브라우저의 렌더링 과정 (Critical Rendering Path)
 
 자 그럼 이제 브라우저의 랜더링 즉, CRP의 과정을 살펴보자.
 
-가장 대표적인 블링크를 기준으로 설명을 하도록 하겠다. 
+가장 대표적인 블링크를 기준으로 설명을 하도록 하겠다.
 
 > 그 외 렌더링 엔진도 비슷한 작업을 통해 렌더링을 하게 된다.
 
@@ -120,8 +118,6 @@ tags: ['frontend', 'rendering', 'reflow', 'repaint', 'rendering optimization', '
 
 그리고 DOM Tree는 마크업 속성, 관계를 나타낼 뿐 요소가 어떻게 표시될지에 대해서는 서술되어 있지 않다. 이 부분은 아래의 CSSOM이 담당하게 된다.
 
-
-
 ### 2. Recalculate Style
 
 <u>Recalculate Style은 DevTools에서 나타내는 명칭</u>이고 실제로 렌더링과정에서는 **CSSOM 생성**과 **Render Tree 생성**을 하게 된다.
@@ -131,8 +127,6 @@ tags: ['frontend', 'rendering', 'reflow', 'repaint', 'rendering optimization', '
 CSSOM은 CSS 스타일 시트를 참조해서 위 DOM Tree를 만드는 과정과 비슷하게 CSS 파싱을 하고 CSS Object Model을 만들게 된다.
 
 ![CSSOM 트리](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/images/cssom-construction.png?hl=ko)
-
-
 
 그리고 이를 통한 결과는 다음과 같이 DOM Tree와 비슷하지만 다른 트리구조의 형태로 나타나게 된다.
 
@@ -160,8 +154,6 @@ CSS Selector도 잘 작성해야 이 작업에 대한 복잡성을 줄일 수 �
 
 즉, 뒤에 있을 작업인 3번 Layout과 4번 Paint의 기본이 되는 작업으로 Layout(Reflow) Paint(Repaint)에 대한 작업을 결정한다.
 
-
-
 ![DOM 및 CSSOM은 결합되어 렌더링 트리를 생성합니다.](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/images/render-tree-construction.png?hl=ko)
 
 이미지 참조: [Google Developer 문서](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction?hl=ko)
@@ -170,10 +162,10 @@ CSS Selector도 잘 작성해야 이 작업에 대한 복잡성을 줄일 수 �
 
 여기서 특이사항이라면 CSSOM에 존재했던 `display: none;` 는 레이아웃에서 제외시키는 것이기 때문에 렌더트리에 미포함된다. 즉 `display: none` 는 Layout과 Paint 작업을 하지 않는다.
 
-그리고 위와 같이 **CSSOM, Render Tree 모두 Style에 대한 정보**를 담고 있기 때문에 
+그리고 위와 같이 **CSSOM, Render Tree 모두 Style에 대한 정보**를 담고 있기 때문에
 DevTools에서 이 과정을 합쳐 **Recalculate Style**이라 부른다.
 
-### 3. Layout  (Reflow)
+### 3. Layout (Reflow)
 
 앞선 과정에서 CSSOM과 Render Tree는 스타일을 계산하는 과정이었고, 기기의 뷰포트 내에서 노드들이 어디에 위치하고 어떠한 크기를 가지는지에 대해 계산을 진행하지는 않았다.
 
@@ -191,10 +183,8 @@ DevTools에서 이 과정을 합쳐 **Recalculate Style**이라 부른다.
 
 ### 4. Update Layer Tree
 
-이 부분은 **Blink에서 매번 발생**하는 작업으로 
+이 부분은 **Blink에서 매번 발생**하는 작업으로
 Layout 계산이후 Render Tree를 변경하고, paint 작업을 위한 텍스처를 예약하는 작업을 담당하게 된다.
-
-
 
 ### 5. Paint (Repaint)
 
@@ -247,10 +237,6 @@ GPU로 작업을 하는 CSS 속성은 주로 `transform`, `opacity`속성이니 
 - opacity 속성 혹은 transform요소를 이용한 에니메이팅시
 - Accelerated css filter를 사용한 element
 
-
-
-
-
 ## 랜더링 성능 측정은 어떻게?
 
 Chrome DevTools의 Performance 패널을 이용하면 된다.
@@ -259,9 +245,7 @@ Chrome DevTools의 Performance 패널을 이용하면 된다.
 
 녹화 버튼을 클릭하고 측정하고싶은 구간이나 시간동안 측정 후 성능 측정을 할 수 있다.
 
-![성능측정 결과](./browser-rendering/성능측정결과.png)
-
-
+![성능측정 결과](./browser-rendering/check-result.png)
 
 ## 성능 개선 포인트?
 
@@ -272,7 +256,7 @@ Chrome DevTools의 Performance 패널을 이용하면 된다.
 
 따라서 Layout 작업과 Paint 작업을 최대한 피하고 시간을 줄일 수 있도록 하는 것이 성능개선의 주 포인트.
 
-![rendering성능개선포인트](./browser-rendering/rendering성능개선포인트.png)
+![성능개선포인트](./browser-rendering/check-point.png)
 
 이미지 출처: [손찬욱님의 브라우저 개선 작업](https://sculove.github.io/slides/improveBrowserRendering/#/7)
 
@@ -300,11 +284,9 @@ Layout과 Paint 비용을 줄이기 위해서는 Layout과 Paint를 유발하는
 
 <br>
 
-![애니메이션 방법](./browser-rendering/에니메이션방법.png)
+![애니메이션 방법](./browser-rendering/animation-method.png)
 
 또 위와 같은 성능표를 참조해서 상황에 맞게 애니메이션 구현을 해야 되겠다.
-
-
 
 ## 관련 용어
 
@@ -322,8 +304,6 @@ Layout과 Paint 비용을 줄이기 위해서는 Layout과 Paint를 유발하는
 - FCP
 - TTI
 
-
-
 ## 참고 할만한 좋은 사이트
 
 [CSS Trigger]()
@@ -332,15 +312,12 @@ Layout과 Paint 비용을 줄이기 위해서는 Layout과 Paint를 유발하는
 
 [이선영님의 위 글 번역 게시글](https://wit.nts-corp.com/2020/06/05/6134)
 
-
-
 ## 참조
 
-[Bhooncoding님의 브라우저 렌더링 과정]([https://velog.io/@st2702/%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%EC%9D%98-%EB%A0%8C%EB%8D%94%EB%A7%81-%EA%B3%BC%EC%A0%95](https://velog.io/@st2702/브라우저의-렌더링-과정))
+[Bhooncoding님의 브라우저 렌더링 과정](<[https://velog.io/@st2702/%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%EC%9D%98-%EB%A0%8C%EB%8D%94%EB%A7%81-%EA%B3%BC%EC%A0%95](https://velog.io/@st2702/브라우저의-렌더링-과정)>)
 
 [hongkiat blog - writing better css](https://www.hongkiat.com/blog/writing-better-css/)
 
 [Website Performance Optimization](https://gist.github.com/kkas/919fcf835a58ef610495)
 
 [손찬욱님의 브라우저 성능개선작업](https://sculove.github.io/slides/improveBrowserRendering/)
-

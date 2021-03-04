@@ -3,7 +3,14 @@ title: '하옹의 자바스크립트 식사 - Object Oriented Programming(OOP)'
 draft: false
 date: '2021-02-15 03:00'
 category: 'javascript'
-tags: ['javascript', 'OOP', 'Object Oriented', '객체지향', '하옹의 자바스크립트 식사']
+tags:
+  [
+    'javascript',
+    'OOP',
+    'Object Oriented',
+    '객체지향',
+    '하옹의 자바스크립트 식사',
+  ]
 ---
 
 \* 이 글은 [Vanilla Coding](https://www.vanillacoding.co/) - BootCamp 9기 1주차 강의 수강 후 적은 글입니다.
@@ -14,33 +21,25 @@ tags: ['javascript', 'OOP', 'Object Oriented', '객체지향', '하옹의 자바
 
 우리가 프로그래밍을 하는 것은 결국 본질적으로 컴퓨터, 즉 프로그램에게 어떻게 작동해야되는가에 대한 서술이라고 볼 수 있는데, 기존에 순차적으로 명령하던 방식이던 절차지향 프로그래밍 방법론에서 새로운 패러다임을 가져온 프로그래밍 설계 방식이다.
 
-
-
 ### 절차지향 VS 객체지향
 
-![procedural programming VS object oriented programming](.\하옹의-자바스크립트-식사---Object-Oriented-Programming\proceduralVSobjectOriented.png)
+![procedural programming VS object oriented programming](./Eat_Javascript_Object-Oriented-Programming/proceduralVSobjectOriented.png)
 
 이미지 출처 : [DEVOPEDIA](https://devopedia.org/object-oriented-programming-concepts)
-
-
 
 위 사진을 보면, 절차지향 언어는 오직 데이터와 함수만이 존재하고, 함수를 이용해서 전역데이터, 로컬데이터들을 절차적으로 함수가 데이터에 전역 데이터 상에 의존되어 진행되게 되는 반면에,
 
 > 더 간단히, 절차 지향은 전역구간에 의존된 함수들의 순차적인 진행으로 프로그래밍 된다.
 
-
-
 객체 지향은 객체 자체가 자체 데이터에서 작동하고 데이터를 다른 객체에서 허용되는 것들만 받아서 쓰거나 원하는 데이터들만 전달하는 방식이다.
 
 > 주로 시작점인 시작 클래스 (메인클래스)를 통해 다른 클래스(객체)들을 이용하면서 프로그래밍 된다.
-
-
 
 ### 프로그래밍에서 추상화의 시작
 
 객체지향 프로그래밍은 기본적으로 독립된 단위인 추상화 된 객체(클래스)들을 만들고 이 객체들을 레고블럭과 같이 조립을 해서 프로그래밍을 하는 방식으로, 실제 생활에 존재하는 사물들을 객체로 만들어서 객체들의 상태와 동작을 구현하고 이를 동작시킴으로써 실 생활을 컴퓨터 적으로 해석하면서 프로그래밍을 할 수 있는 패러다임을 가져다주었다.
 
-![Object Oriented Programming](.\하옹의-자바스크립트-식사---Object-Oriented-Programming\oop.png)
+![Object Oriented Programming](./Eat_Javascript_Object-Oriented-Programming/oop.png)
 
 이미지 출처 : [TechTarget.com](https://searchapparchitecture.techtarget.com/definition/object-oriented-programming-OOP)
 
@@ -48,21 +47,21 @@ tags: ['javascript', 'OOP', 'Object Oriented', '객체지향', '하옹의 자바
 
 #### 추상화란?
 
-[추상화](https://ko.wikipedia.org/wiki/%EC%B6%94%EC%83%81%ED%99%94_(%EC%BB%B4%ED%93%A8%ED%84%B0_%EA%B3%BC%ED%95%99))란, 어떤 한 물체를 그 자체로 나타내는 것이 아니라 특정 개념이자 상위 개념으로 추출하는 것을 뜻한다.
+[추상화](<https://ko.wikipedia.org/wiki/%EC%B6%94%EC%83%81%ED%99%94_(%EC%BB%B4%ED%93%A8%ED%84%B0_%EA%B3%BC%ED%95%99)>)란, 어떤 한 물체를 그 자체로 나타내는 것이 아니라 특정 개념이자 상위 개념으로 추출하는 것을 뜻한다.
 추상화(Abstraction)의 동사는 추출하다(Abstract)이다. 말 그대로 **`특징`, `개념`만을 추출**한 것으로 받아들이면 된다.
 
 그리고 추상적이다 라는 말은 일상속에서도 대체적으로 우리가 **구체적이다 라는 표현에 반대**되는 표현으로 대상을 뭉퉁그려서 구체적이지 않고 뭔가 희미하게 표현한 것이다.
 
-#####  추상에 대한 이해
+##### 추상에 대한 이해
 
 더 자세히 예를 통해서 한번 말해보자.
 
-우리가 흔히 미술쪽에서 추상화가, [추상](https://ko.wikipedia.org/wiki/%EC%B6%94%EC%83%81_(%EC%98%88%EC%88%A0))화 등의 말을 들어본 적이 있을 것이다.
+우리가 흔히 미술쪽에서 추상화가, [추상](<https://ko.wikipedia.org/wiki/%EC%B6%94%EC%83%81_(%EC%98%88%EC%88%A0)>)화 등의 말을 들어본 적이 있을 것이다.
 
 이는 그림을 그릴 때 특징이나 속성등을 캐치하고, 그 부분을 추려내서 순수한 조형요소로만 표현하는 것을 의미한다.
 때문에 <u>사실적, 구체적이지 않고</u> **일정한 형태와 성질없이 `특징`과 `속성`만이 부각**되어져 있다.
 
-![picasso bull](.\하옹의-자바스크립트-식사---Object-Oriented-Programming\추상화과정.png)
+![picasso bull](./Eat_Javascript_Object-Oriented-Programming/추상화과정.png)
 
 위 이미지는 [Evans님의 객체지향 포스팅](https://evan-moon.github.io/2019/08/24/what-is-object-oriented-programming/#%EC%B6%94%EC%83%81%ED%99%94%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C-%EC%A1%B0%EA%B8%88-%EB%8D%94-%EA%B9%8A%EC%9D%B4-%EC%83%9D%EA%B0%81%ED%95%B4%EB%B3%B4%EC%9E%90)에서 참조한 자료로, 피카소가 소를 추상화 하는 과정을 그린 그림이라고 한다. 소의 특징과 속성만을 선과 점만을 이용해 그렸다.
 
@@ -82,8 +81,6 @@ tags: ['javascript', 'OOP', 'Object Oriented', '객체지향', '하옹의 자바
 - 속성 : 이름, 이메일, 주소
 - 동작 : 확인하기, 이메일 보내기
 
-
-
 그리고 이 동작을 주로 함수로 나타내는데, 이런 객체들의 동작을 담당하는 함수들을 `메서드` 라고 부른다.
 
 따라서 객체에는 데이터의 상태를 나타내는 `속성`과 동작을 나타내는 `메서드` 두가지로 이루어진다.
@@ -96,11 +93,9 @@ tags: ['javascript', 'OOP', 'Object Oriented', '객체지향', '하옹의 자바
 
 이 때문에 객체지향 프로그래밍에서는 클래스간 계층구조가 나타난다.
 
-![class hierarchy](.\하옹의-자바스크립트-식사---Object-Oriented-Programming\class-hierarchy.png)
+![class hierarchy](./Eat_Javascript_Object-Oriented-Programming/class-hierarchy.png)
 
 > 때에 따라서는 이 클래스에 더 추상화를 한 추상클래스를 만들 수도 있다.
-
-
 
 ## 왜 객체지향 프로그래밍을 알아야 하나?
 
@@ -110,7 +105,7 @@ tags: ['javascript', 'OOP', 'Object Oriented', '객체지향', '하옹의 자바
 
 당장 언어를 보더라도 객체지향 언어는 사람들이 가장 많이 쓴다는 C++, JAVA, Python, JavaScript 등이 있다.
 
-![Tiobe 2021 02](.\하옹의-자바스크립트-식사---Object-Oriented-Programming\Tiobe2021.png)
+![Tiobe 2021 02](./Eat_Javascript_Object-Oriented-Programming/Tiobe2021.png)
 
 위 이미지는 [Tiobe Index](https://www.tiobe.com/tiobe-index/) 2021 2월 기준 프로그래밍 언어 순위이다.
 
@@ -128,7 +123,7 @@ C를 제외하고 2~8위까지 모두 OOP를 지원 및 제공해준다.
 - **추상화 (Abstraction)**
 - **상속 (Inheritance)**
 
-가 있고, 그 외로 중요한 장점인 
+가 있고, 그 외로 중요한 장점인
 
 - **다형성 (Polymorphism)**
 
@@ -142,7 +137,7 @@ C를 제외하고 2~8위까지 모두 OOP를 지원 및 제공해준다.
 
 #### 추상화 (Abstraction)
 
-앞서 이미  [추상화](#프로그래밍에서의-추상화)를 설명했듯이, 클래스를 통해 객체의 속성과 행위와 관련 메커니즘만을 표시하여 불필요한 코드를 생성하지 않을 수 있고 이는 유지보수를 하는데 큰 이점을 가져다 준다.
+앞서 이미 [추상화](#프로그래밍에서의-추상화)를 설명했듯이, 클래스를 통해 객체의 속성과 행위와 관련 메커니즘만을 표시하여 불필요한 코드를 생성하지 않을 수 있고 이는 유지보수를 하는데 큰 이점을 가져다 준다.
 
 #### 상속 (Inheritance)
 
@@ -182,8 +177,6 @@ for (const animal of animals) {
 
 > 이는 Javascript의 자유분방함을 이용한 장점이라 할 수 있겠다.
 
-
-
 ## 객체지향의 단점
 
 ### 프로그램의 볼륨이 커진다.
@@ -208,8 +201,6 @@ for (const animal of animals) {
 
 이에 대한 대표적인 문제가 바로 얕은 복사로 일어나는 문제이며 해결방법은 [해당 포스팅](../../../2021/javascript/하옹의-자바스크립트-간식---Object-Copy/)을 참조하자.
 
-
-
 ## 자바스크립트에서 객체지향 프로그래밍?
 
 ### 멀티패러다임 언어인 자바스크립트
@@ -220,13 +211,11 @@ for (const animal of animals) {
 
 자바스크립트가 기본적으로 **멀티패러다임 언어이기 때문**에 가능하다.
 
-![What is JavaScript](.\하옹의-자바스크립트-식사---Object-Oriented-Programming\What-is-JavaScript-MDN.png)
+![What is JavaScript](./Eat_Javascript_Object-Oriented-Programming/What-is-JavaScript-MDN.png)
 
 위 캡처 이미지는 [MDN의 About JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/About_JavaScript)의 일부를 캡처한 것으로, 공식문서인 MDN에서 당당히 JavaScript는 `multi-paradigm` 언어라 표현하고 있다.
 
 > JavaScirpt는 원하는 옷을 입고싶으면 입을 수 있는 아주 자유로운 언어이고, 원하면 섞어서 프로그래밍을 할 수도 있지만 대부분 프레임워크를 통해 어떤 패러다임을 지향할 것인지 정해지는 것 같다.
-
-
 
 어찌되었든, JavaScript는 객체지향 프로그래밍을 지원하는 언어로 **객체지향 프로그래밍을 할 수 있다**.
 
@@ -240,8 +229,6 @@ for (const animal of animals) {
 
 > 아래 내용을 이해하려면 필독을 권장한다.
 
-
-
 ### 자바스크립트에서 클래스
 
 앞선 [자바스크립트의 프로토타입 기반 객체지향 기법](../../../2021/javascript/하옹의-자바스크립트-식사---Prototype/)에서 알 수 있듯이
@@ -253,13 +240,11 @@ for (const animal of animals) {
 
 #### 자바스크립트에서 Class는 Syntactic Sugar
 
-![문법적 설탕](.\하옹의-자바스크립트-식사---Object-Oriented-Programming\syntactic-sugar.png)
+![문법적 설탕](./Eat_Javascript_Object-Oriented-Programming/syntactic-sugar.png)
 
 사실 자바스크립트에서 Class 키워드가 생겼다고 해서 클래스 기반 객체지향을 하게 된 것은 아니다.
 
 문법상으로 `Class`키워드를 통해 객체지향프로그래밍을 구현하지만, 내부적으로는 Prototype 기반으로 작동을 하게 된다. 따라서 자바스크립트에서 제대로 된 객체지향 프로그래밍을 하고싶고 동작원리를 이해하고 싶다면 반드시 Prototype에 대한 개념을 익혀야 한다. [참조](../../../2021/javascript/하옹의-자바스크립트-식사---Prototype/)
-
-
 
 ## ES2015에서 객체지향프로그래밍 (Javascript Class)
 
@@ -270,8 +255,6 @@ ES5에서는 Prototype에서 익히 한대로 생성자 함수와 프로토타�
 
 따라서 ES2015 이후부터는 `Class`키워드를 사용한 객체지향 프로그래밍이 일반적인 방법이다.
 
-
-
 ### Class 키워드
 
 자바스크립트에서 Class 키워드를 통한 객체지향 프로그래밍 방법은 아래와 같다.
@@ -280,19 +263,19 @@ ES5에서는 Prototype에서 익히 한대로 생성자 함수와 프로토타�
 
 ```js
 class Animal {
-    // 생성자함수 (속성 선언)
-    constructor(name, age) {
-        this.name = name;
-        this.age = age;
-    }
-    
-    // 메서드 선언
-    speak() {
-		throw new Error('do not use Speak on Animal Object');
-    }
+  // 생성자함수 (속성 선언)
+  constructor(name, age) {
+    this.name = name
+    this.age = age
+  }
+
+  // 메서드 선언
+  speak() {
+    throw new Error('do not use Speak on Animal Object')
+  }
 }
 
-const animal = new Animal(); // 인스턴스 생성
+const animal = new Animal() // 인스턴스 생성
 ```
 
 > **Class 선언문은** Function 선언문과 다르게 **호이스팅이 일어나지 않는다**.
@@ -303,24 +286,24 @@ const animal = new Animal(); // 인스턴스 생성
 
 ```js
 const Animal = class {
-    // 생성자함수 (속성 선언)
-    constructor(name, age) {
-        this.name = name;
-        this.age = age;
-    }
-    
-    // 메서드 선언
-    speak() {
-		throw new Error('do not use Speak on Animal Object');
-    }
+  // 생성자함수 (속성 선언)
+  constructor(name, age) {
+    this.name = name
+    this.age = age
+  }
+
+  // 메서드 선언
+  speak() {
+    throw new Error('do not use Speak on Animal Object')
+  }
 }
 
-const animal = new Animal(); // 인스턴스 생성
+const animal = new Animal() // 인스턴스 생성
 ```
 
 표현식은 `const` 키워드로 받는게 일반적이고
 
-내부에 있는  `constructor()` 는 반드시 **단 하나만 존재해야하는** `생성자 함수`로, 선언하지 않는다면 **Default Constructor**가 자동적으로 생성된다.
+내부에 있는 `constructor()` 는 반드시 **단 하나만 존재해야하는** `생성자 함수`로, 선언하지 않는다면 **Default Constructor**가 자동적으로 생성된다.
 
 ```js
 constructor() {}
@@ -336,11 +319,7 @@ constructor() {}
 > }
 > ```
 
-
-
 인스턴스 생성은 기존과 마찬가지로 `new` 키워드를 이용해서 생성자 함수를 호출해야 한다.
-
-
 
 ### 속성과 메서드 선언
 
@@ -354,43 +333,41 @@ constructor() {}
 
 ```js{24,30-31}
 class Animal {
-    constructor(name, age) {
-        this._name = name;
-        this._age = age;
-    }
-    
-    get name() {
-        return this._name;
-    }
-    
-    set name(value) {
-        this._name = value;
-    }
-    
-    get age() {
-        return this._age;
-    }
-    
-    set age(value) {
-        this._age = value;
-    }
-    
-    print() {
-        console.log(`name : ${this.name}, age : ${this.age}`);
-    }
+  constructor(name, age) {
+    this._name = name
+    this._age = age
+  }
+
+  get name() {
+    return this._name
+  }
+
+  set name(value) {
+    this._name = value
+  }
+
+  get age() {
+    return this._age
+  }
+
+  set age(value) {
+    this._age = value
+  }
+
+  print() {
+    console.log(`name : ${this.name}, age : ${this.age}`)
+  }
 }
 
-const animal = new Animal(); // Default Constructor으로 인스턴스 생성
+const animal = new Animal() // Default Constructor으로 인스턴스 생성
 
-animal.name = 'nunu'; // setter를 이용
-animal.age = 1; // setter를 이용
+animal.name = 'nunu' // setter를 이용
+animal.age = 1 // setter를 이용
 
-animal.print();
+animal.print()
 ```
 
 위와 같이 `getter` `setter` 를 이용해서 `()` 괄호로 묶지 않아도 속성과 같이 간편하게 사용할 수 있다.
-
-
 
 ### Class 키워드로 만든 객체와 기존방식(ES2015이전)으로 만든 객체 비교해보기
 
@@ -398,41 +375,39 @@ animal.print();
 
 ```js
 function Animal_Origin(name, age) {
-    this.name = name;
-    this.age = age;
+  this.name = name
+  this.age = age
 }
 
-Animal_Origin.prototype.print = function () { 
-    console.log(this.name, this.age);
+Animal_Origin.prototype.print = function() {
+  console.log(this.name, this.age)
 }
 
 class Animal_Class {
-    constructor(name, age) {
-        this.name = name;
-        this.age = age;
-    }
-    
-    print() {
-        console.log(this.name, this.age);
-    }
+  constructor(name, age) {
+    this.name = name
+    this.age = age
+  }
+
+  print() {
+    console.log(this.name, this.age)
+  }
 }
 
-const animal_origin = new Animal_Origin('haha', 3);
-const animal_class = new Animal_Class('haha', 3);
+const animal_origin = new Animal_Origin('haha', 3)
+const animal_class = new Animal_Class('haha', 3)
 ```
 
 각각 `animal_origin`과 `animal_class`를 출력해보면 아래와 같다.
 
-- 기존방법 : 
-  ![기존방식으로 객체 생성](.\하옹의-자바스크립트-식사---Object-Oriented-Programming\animal_origin.png)
-- Class 이용 : 
-  ![Class 키워드로 객체 생성](.\하옹의-자바스크립트-식사---Object-Oriented-Programming\animal_class.png)
+- 기존방법 :
+  ![기존방식으로 객체 생성](./Eat_Javascript_Object-Oriented-Programming/animal_origin.png)
+- Class 이용 :
+  ![Class 키워드로 객체 생성](./Eat_Javascript_Object-Oriented-Programming/animal_class.png)
 
 보는바와 같이 `Class` 키워드를 이용하더라도 기존 방법과 동일한 Prototype 기반의 결과로 나오는 걸 확인할 수 있다.
 
 다만 차이점이 있다면, `__proto__` 의 `constructor`가 `function` 기반인지 `class`기반인지 구분할 수 있다는 차이점이 있다.
-
-
 
 ### static 키워드를 이용한 정적 메서드, 속성 만들기
 
@@ -443,31 +418,31 @@ Class 기반 객체지향 언어와 마찬가지로 Javascirpt Class는 `static`
 
 ```js{11,13,17}
 class Animal {
-    constructor(name, age) {
-        this.name = name;
-        this.age = age;
-    }
-    
-    print() {
-        console.log(this.name, this.age);
-    }
-	
-    static isMortal = true;
+  constructor(name, age) {
+    this.name = name
+    this.age = age
+  }
 
-    static generateRandomAnimal() {
-        const randomName = ['hoho', 'haha', 'nunu', 'amumu', 'ana'];
-        const randomIndex = Math.floor(Math.random()*4);
-        const randomAge = Math.floor(Math.random() * 100);
-        return new Animal(randomName[randomIndex], randomAge);
-    }
+  print() {
+    console.log(this.name, this.age)
+  }
+
+  static isMortal = true
+
+  static generateRandomAnimal() {
+    const randomName = ['hoho', 'haha', 'nunu', 'amumu', 'ana']
+    const randomIndex = Math.floor(Math.random() * 4)
+    const randomAge = Math.floor(Math.random() * 100)
+    return new Animal(randomName[randomIndex], randomAge)
+  }
 }
 
-const animal = new Animal('haha', 1);
-const randomAnimal = Animal.generateRandomAnimal();
+const animal = new Animal('haha', 1)
+const randomAnimal = Animal.generateRandomAnimal()
 
-console.log(animal.isMortal); // undefined
-console.log(animal.generateRandomAnimal); // undefined
-console.log(Animal.isMortal); // true
+console.log(animal.isMortal) // undefined
+console.log(animal.generateRandomAnimal) // undefined
+console.log(Animal.isMortal) // true
 ```
 
 먼저 출력 결과를 보자.
@@ -478,15 +453,13 @@ console.log(Animal.isMortal); // true
 
 이와 같은 것이 `static` 키워드로 선언한 정적인 속성과 메서드라 할 수 있다.
 
-> 주로 `static`키워드로 선언되는 것은 Util성이 대부분이다. 
+> 주로 `static`키워드로 선언되는 것은 Util성이 대부분이다.
 >
 > 위에서 선언한 generateRandomAnimal 또한 랜덤 Animal을 생성하는 Util성의 함수이다.
 
-
-
 자 그럼 이제 이 static 메서드는 어떤 식의 결과로 생성되는지 확인해보자.
 
-![static 키워드로 생성된 속성, 메서드](.\하옹의-자바스크립트-식사---Object-Oriented-Programming\staticProperty.png)
+![static 키워드로 생성된 속성, 메서드](./Eat_Javascript_Object-Oriented-Programming/staticProperty.png)
 
 위 처럼 `Animal`의 `__proto__`의 `constructor`에 속해지는 것을 알 수 있다.
 
@@ -494,22 +467,20 @@ console.log(Animal.isMortal); // true
 
 ```js
 function Animal(name, age) {
-    this.name = name;
-    this.age = age;
+  this.name = name
+  this.age = age
 }
 
-Animal.isMortal = true;
-Animal.generateRandomAnimal = function () {
-        const randomName = ['hoho', 'haha', 'nunu', 'amumu', 'ana'];
-        const randomIndex = Math.floor(Math.random()*4);
-        const randomAge = Math.floor(Math.random() * 100);
-        return new Animal(randomName[randomIndex], randomAge);
-    }
+Animal.isMortal = true
+Animal.generateRandomAnimal = function() {
+  const randomName = ['hoho', 'haha', 'nunu', 'amumu', 'ana']
+  const randomIndex = Math.floor(Math.random() * 4)
+  const randomAge = Math.floor(Math.random() * 100)
+  return new Animal(randomName[randomIndex], randomAge)
+}
 ```
 
 와 같이 생성자함수에 직접 Key, Value로 할당함으로써 만들 수 있다.
-
-
 
 ### Private 필드 선언
 
@@ -521,9 +492,7 @@ Animal.generateRandomAnimal = function () {
 
 자세한 사항은 [MDN](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Classes/Private_class_fields)을 참조하자.
 
->  기존에는 private 선언을 위해 클로저를 이용한 [다음과 같은 방식](../../../2020/javascript/하옹의-자바스크립트-식사---Closure/#information-hiding-정보-은닉)을 사용하였다.
-
-
+> 기존에는 private 선언을 위해 클로저를 이용한 [다음과 같은 방식](../../../2020/javascript/하옹의-자바스크립트-식사---Closure/#information-hiding-정보-은닉)을 사용하였다.
 
 ### Class에서의 상속
 
@@ -533,70 +502,66 @@ Animal.generateRandomAnimal = function () {
 
 ```js
 class Animal {
-    constructor(name, age) {
-        this.name = name;
-        this.age = age;
-    }
-    
-    speak() {
-		throw new Error('do not use Speak on Animal Object');
-    }
+  constructor(name, age) {
+    this.name = name
+    this.age = age
+  }
+
+  speak() {
+    throw new Error('do not use Speak on Animal Object')
+  }
 }
 
 // Animal을 상속받는 Dog
 class Dog extends Animal {
-    constructor(name) {
-        super(name); // super 키워드를 이용해 상위 클래스 생성자 호출
-    }
-    
-    // speak 메서드 overriding
-    speak() {
-        console.log(name, '왈왈');
-    }
+  constructor(name) {
+    super(name) // super 키워드를 이용해 상위 클래스 생성자 호출
+  }
+
+  // speak 메서드 overriding
+  speak() {
+    console.log(name, '왈왈')
+  }
 }
 
 class Cat extends Animal {
-    constructor(option1, option2, ...args) {
-        super(...args); // rest 연산자를 이용한 방법을 통해 상위 클래스 생성자를 호출하는 방법도 있다.
-        // 자식 클래스만의 속성 부여
-        this.option1 = option1; 
-        this.option2 = option2;
-    }
-    
-    speak() {
-        console.log(name, '야옹');
-    }
-    
-    // 자식 클래스만의 메서드 부여
-    doSikPPang() {
-        console.log('식빵굽기');
-    }
+  constructor(option1, option2, ...args) {
+    super(...args) // rest 연산자를 이용한 방법을 통해 상위 클래스 생성자를 호출하는 방법도 있다.
+    // 자식 클래스만의 속성 부여
+    this.option1 = option1
+    this.option2 = option2
+  }
+
+  speak() {
+    console.log(name, '야옹')
+  }
+
+  // 자식 클래스만의 메서드 부여
+  doSikPPang() {
+    console.log('식빵굽기')
+  }
 }
 ```
 
 위 처럼 상속을 구현 할 수 있다.
 
-
-
 ```js
 class KoreanShortHair extends Cat {
-    constructor(option1, ...args) {
-        super(...args);
-    }
+  constructor(option1, ...args) {
+    super(...args)
+  }
 }
 ```
 
 다음과 같이 연속으로 상속한 클래스 상에서 생성자 함수를 호출하면
 
 ```js
-const koshort = new KoreanShortHair('1', 2, 3, 'navi');
+const koshort = new KoreanShortHair('1', 2, 3, 'navi')
 ```
 
 `super`키워드를 통해 연쇄적으로 상위 클래스 상의 생성자 함수가 호출되어서 정상적인 상속이 이루어진다.
 
 `KoreanShortHair 생성자` -> `super<Cat>` -> `super<Animal>`
-
-
 
 ## 객체와 관련된 자바스크립트 디자인 패턴
 
@@ -612,8 +577,8 @@ const koshort = new KoreanShortHair('1', 2, 3, 'navi');
 
 ```js
 const obj = {
-    prop1: value1,
-    prop2: value2,
+  prop1: value1,
+  prop2: value2,
 }
 ```
 
@@ -625,13 +590,11 @@ const obj = {
 
 ```js
 function Animal(name) {
-    this.name = name;
+  this.name = name
 }
 
-const obj = Animal('hoho');
+const obj = Animal('hoho')
 ```
-
-
 
 #### 팩토리펑션
 
@@ -639,33 +602,31 @@ const obj = Animal('hoho');
 
 ```js
 function animalFactory(name) {
-    return {
-        name: name,
-    }
+  return {
+    name: name,
+  }
 }
 
-const obj = animalFactory('hoho');
+const obj = animalFactory('hoho')
 ```
 
 그리고 이 팩토리펑션과 클로저를 통해서 정보은닉을 시도할 수 있다.
 
 ```js
-function createPhone () {
-    let battery = 0;
-    return {
-        rechargeBattery: function () {
-            battery = 100;
-        },
-        showRemainBattery: function () {
-            return battery;
-        }
-    }
+function createPhone() {
+  let battery = 0
+  return {
+    rechargeBattery: function() {
+      battery = 100
+    },
+    showRemainBattery: function() {
+      return battery
+    },
+  }
 }
 ```
 
 소스 출처: [CodePlayground](https://im-developer.tistory.com/141)
-
-
 
 ### 속성 관련
 
@@ -673,51 +634,59 @@ function createPhone () {
 
 자바스크립트에서 상속이 아닌 속성을 확장하는 방법이 있는데, 그것이 바로 믹스인 디자인 패턴이다.
 
-> 주로 단일 상속만 허용되는 자바스크립트에서 **다중 상속**을 해야 될 필요가 있거나 상속을 제외한 **기능 확장**을  재사용성 있게 하고싶을 때 유용하게 사용된다.
+> 주로 단일 상속만 허용되는 자바스크립트에서 **다중 상속**을 해야 될 필요가 있거나 상속을 제외한 **기능 확장**을 재사용성 있게 하고싶을 때 유용하게 사용된다.
 
 ```js
 // 나는 행위를 담당하는 Mixin
-const FlyToMixin = (superclass) => class extends superclass {
-	flyTo(destination){
-        console.log(`${this.name} is flying to the ${destination}`);
+const FlyToMixin = superclass =>
+  class extends superclass {
+    flyTo(destination) {
+      console.log(`${this.name} is flying to the ${destination}`)
     }
-}
+  }
 
 // 먹는 행위를 담당하는 Mixin
-const EatMixin = (superclass) => class extends superclass {
-	eat(food){
-        console.log(`${this.name} is eating ${food}`);
+const EatMixin = superclass =>
+  class extends superclass {
+    eat(food) {
+      console.log(`${this.name} is eating ${food}`)
     }
-}
+  }
 
 // 헤엄치는 행위를 담당하는 Mixin
-const SwimAtMixin = (superclass) => class extends superclass {
-	swimAt(place){
-        console.log(`${this.name} is swiming at the ${place}`)
+const SwimAtMixin = superclass =>
+  class extends superclass {
+    swimAt(place) {
+      console.log(`${this.name} is swiming at the ${place}`)
     }
-}
+  }
 
 // 믹스인을 탑재한 Mouse
-class Mouse extends SwimAtMixin(EatMixin(Animal)) { /*...*/ }
+class Mouse extends SwimAtMixin(EatMixin(Animal)) {
+  /*...*/
+}
 
-const mickyMouse = new Mouse('Micky Mouse');
-mickyMouse.swimAt('river');
+const mickyMouse = new Mouse('Micky Mouse')
+mickyMouse.swimAt('river')
 ```
 
 코드 참조: [moggy님의 mixin 포스팅](https://velog.io/@moggy/Javascript-%EB%AF%B9%EC%8A%A4%EC%9D%B8-%EA%B8%B0%EB%B2%95Mixin-technique)
 
 ```js
-function extend( target, source ) {
-    Object.getOwnPropertyNames( source ).forEach(function( key ) {
-        Object.defineProperty( target, key, Object.getOwnPropertyDescriptor(source, key)) });
+function extend(target, source) {
+  Object.getOwnPropertyNames(source).forEach(function(key) {
+    Object.defineProperty(
+      target,
+      key,
+      Object.getOwnPropertyDescriptor(source, key)
+    )
+  })
 
-    return target
+  return target
 }
 ```
 
 아니면 다음과 같은 방식으로 속성을 할당해주는 것 또한 mixin이다.
-
-
 
 ### 사용 관련
 
@@ -729,18 +698,17 @@ function extend( target, source ) {
 
 ```js
 export default class Singleton {
+  static instance
 
-  static instance;
-
-  constructor(){
-    if(instance){
-      return instance;
+  constructor() {
+    if (instance) {
+      return instance
     }
   }
 }
 ```
 
-다음과 같이 `Class`키워드,  `static`키워드를 사용해서 쉽게 구현할 수 있다.
+다음과 같이 `Class`키워드, `static`키워드를 사용해서 쉽게 구현할 수 있다.
 
 > ES5로 구현할 수 있는데 [여기](https://stackoverflow.com/questions/1635800/javascript-best-singleton-pattern)를 참조하자.
 
@@ -749,25 +717,24 @@ export default class Singleton {
 모듈 패턴의 가장 큰 장점은 객체 내부에 존재하는 속성을 감추는 **정보은닉**이다.
 
 ```js
-var testModule = (function () { 
-    var counter = 0; 
-    return { 
-        incrementCounter: function () { 
-            return counter++; 
-        }, 
-        resetCounter: function () { 
-            console.log( "counter value prior to reset: " + counter ); counter = 0; 
-        } 
-    }; 
-})(); 
+var testModule = (function() {
+  var counter = 0
+  return {
+    incrementCounter: function() {
+      return counter++
+    },
+    resetCounter: function() {
+      console.log('counter value prior to reset: ' + counter)
+      counter = 0
+    },
+  }
+})()
 
-testModule.incrementCounter(); 
-testModule.resetCounter();
+testModule.incrementCounter()
+testModule.resetCounter()
 ```
 
 소스 참조: [Yuby's Lab - Module-Pattern](https://yubylab.tistory.com/entry/%EB%94%94%EC%9E%90%EC%9D%B8-%ED%8C%A8%ED%84%B4-for-javascript-Module-Pattern)
-
-
 
 ## 출처
 

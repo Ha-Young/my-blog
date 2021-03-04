@@ -16,16 +16,16 @@ n개의 섬 사이에 다리를 건설하는 비용(costs)이 주어질 때, 최
 
 - 섬의 개수 n은 1 이상 100 이하입니다.
 - costs의 길이는 `((n-1) * n) / 2`이하입니다.
-- 임의의 i에 대해, costs[i][0] 와 costs[i] [1]에는 다리가 연결되는 두 섬의 번호가 들어있고, costs[i] [2]에는 이 두 섬을 연결하는 다리를 건설할 때 드는 비용입니다.
+- 임의의 i에 대해, costs[i][0] 와 costs[i][1]에는 다리가 연결되는 두 섬의 번호가 들어있고, costs[i][2]에는 이 두 섬을 연결하는 다리를 건설할 때 드는 비용입니다.
 - 같은 연결은 두 번 주어지지 않습니다. 또한 순서가 바뀌더라도 같은 연결로 봅니다. 즉 0과 1 사이를 연결하는 비용이 주어졌을 때, 1과 0의 비용이 주어지지 않습니다.
 - 모든 섬 사이의 다리 건설 비용이 주어지지 않습니다. 이 경우, 두 섬 사이의 건설이 불가능한 것으로 봅니다.
 - 연결할 수 없는 섬은 주어지지 않습니다.
 
 ### **입출력 예**
 
-| n    | costs                                     | return |
-| ---- | ----------------------------------------- | ------ |
-| 4    | [[0,1,1],[0,2,2],[1,2,5],[1,3,1],[2,3,8]] | 4      |
+| n   | costs                                     | return |
+| --- | ----------------------------------------- | ------ |
+| 4   | [[0,1,1],[0,2,2],[1,2,5],[1,3,1],[2,3,8]] | 4      |
 
 ### **입출력 예 설명**
 
@@ -39,9 +39,7 @@ costs를 그림으로 표현하면 다음과 같으며, 이때 초록색 경로�
 
 추천할만한 테스트케이스 몇가지를 소개한다.
 
-![test case](./프로그래머스-섬연결하기/testcase.png)
-
-
+![test case](./programmers_IslandConnect/testcase.png)
 
 ## 나의 풀이
 
@@ -49,70 +47,70 @@ costs를 그림으로 표현하면 다음과 같으며, 이때 초록색 경로�
 
 ```js
 function union(nodeA, nodeB, list) {
-    const result = [...list];
-    
-    const linkA = find(nodeA, list);
-    const linkB = find(nodeB, list);
-    
-    linkA <= linkB ? result[linkB] = linkA : result[linkA] = linkB;
-    
-    return result;
+  const result = [...list]
+
+  const linkA = find(nodeA, list)
+  const linkB = find(nodeB, list)
+
+  linkA <= linkB ? (result[linkB] = linkA) : (result[linkA] = linkB)
+
+  return result
 }
 
 function find(node, list) {
-    if (node === list[node]) {
-        return node;
-    }
-    
-    list[node] = find(list[node], list);
-    return list[node];
+  if (node === list[node]) {
+    return node
+  }
+
+  list[node] = find(list[node], list)
+  return list[node]
 }
 
 function isLinked(nodeA, nodeB, list) {
-    return find(nodeA, list) === find(nodeB, list);
+  return find(nodeA, list) === find(nodeB, list)
 }
 
 function checkAllLink(list) {
-    if (list.length === 1) {
-        return true;
+  if (list.length === 1) {
+    return true
+  }
+
+  for (let i = 0; i < list.length - 1; i++) {
+    if (find(i, list) !== find(i + 1, list)) {
+      return false
     }
-    
-    for (let i = 0; i < list.length - 1; i++) {
-        if (find(i, list) !== find(i + 1, list)) {
-            return false;
-        }
-    }
-    
-    return true;
+  }
+
+  return true
 }
 
 function solution(n, costs) {
-    const sortedCosts = [...costs];
-    let islandLink = [];
-    let result = 0;
-    
-    for (let i = 0; i < n; i++) {
-        islandLink[i] = i;
+  const sortedCosts = [...costs]
+  let islandLink = []
+  let result = 0
+
+  for (let i = 0; i < n; i++) {
+    islandLink[i] = i
+  }
+
+  sortedCosts.sort((costA, costB) => {
+    return costA[2] - costB[2]
+  })
+
+  for (const [islandA, islandB, cost] of sortedCosts) {
+    if (isLinked(islandA, islandB, islandLink)) {
+      continue
     }
-    
-    sortedCosts.sort((costA, costB) => {
-        return costA[2] - costB[2];
-    });
-    
-    for (const [islandA, islandB, cost] of sortedCosts) {
-        if (isLinked(islandA, islandB, islandLink)) {
-            continue;
-        }
-        
-        result += cost;
-        islandLink = union(islandA, islandB, islandLink);
-        
-        if (checkAllLink(islandLink)) {
-            break;
-        }
+
+    result += cost
+    islandLink = union(islandA, islandB, islandLink)
+
+    if (checkAllLink(islandLink)) {
+      break
     }
-    
-    return result;
+  }
+
+  return result
 }
 ```
 
@@ -130,25 +128,24 @@ function solution(n, costs) {
 
 최소신장트리를 만드는 방법은 크루스칼 알고리즘으로 거리에 대한 그리디와 union-find알고리즘을 이용하면 쉽게 풀 수 있다.
 
-
-
 ## 다른사람의 풀이
 
 ```js
 function solution(n, costs) {
-    costs.sort((a,b) => a[2] - b[2]);
-    let [from, to, answer] = costs.shift();
-    let connected = new Set([from, to]);
-    while (connected.size < n) {
-        let index = costs.findIndex(([from, to]) =>
-                                    connected.has(from) && !connected.has(to)
-                                    || connected.has(to) && !connected.has(from)
-                                   );
-        let [[from, to, cost]] = costs.splice(index, 1);
-        answer += cost;
-        connected.add(from).add(to);
-    }
-    return answer;
+  costs.sort((a, b) => a[2] - b[2])
+  let [from, to, answer] = costs.shift()
+  let connected = new Set([from, to])
+  while (connected.size < n) {
+    let index = costs.findIndex(
+      ([from, to]) =>
+        (connected.has(from) && !connected.has(to)) ||
+        (connected.has(to) && !connected.has(from))
+    )
+    let [[from, to, cost]] = costs.splice(index, 1)
+    answer += cost
+    connected.add(from).add(to)
+  }
+  return answer
 }
 ```
 
@@ -157,8 +154,3 @@ function solution(n, costs) {
 그리고 cost에 해당하는 배열을 가져올 때 from과 to 둘 중 하나만 포함되는 것을 가져오게해서 연결되지않은 섬을 찾을 수 있게 처리하였다.
 
 굉장히 좋은 아이디어라고 생각하였다.
-
-
-
-
-

@@ -6,7 +6,7 @@ category: 'vanilla coding'
 tags: ['vanilla coding', 'prep', 'review', 'bootcamp']
 ---
 
-[![바닐라코딩](./바닐라코딩_logo.png)](https://www.vanillacoding.co/)
+[![바닐라코딩](./vanillacoding_logo.png)](https://www.vanillacoding.co/)
 
 <br>
 
@@ -83,7 +83,7 @@ tags: ['vanilla coding', 'prep', 'review', 'bootcamp']
 정해진 수순인지는 잘 모르겠지만 Prep을 신청을 하면 우선적으로 켄님과 면담을 하는 듯 하다. 면담은 원격으로 시간을 정하고 진행되는데, 켄님과의 면담은 주로 바닐라코딩에 대한 진행과정에 대해 듣고 질의 응답하는 시간을 가졌다. 나는 이 시간이 매우매우 좋았다고 생각된다. 부트캠프라는게 일반 학원이 아니라 인생에 있어서 큰 결정이 될 수 있다고 생각하시는지 신청자가 어떠한 마음을 가지고 신청을 했는지, 어떠한 상황인지 자세히 경청해주셨고, 그 마음과 상황에 맞게 이런저런 조언도 해주시면서 도움을 주실려고 하는게 보였다.
 
 이 부분에서 홈페이지에 적힌 문구처럼 진실되다고 느꼈고, 함께 하고싶다고 느꼈다.
-![image-20201212195350513](.\바닐라코딩_Prep후기_홈피문구.png)
+![image-20201212195350513](./vanillacoding_Prep_hompage_statement.png)
 
 <br>
 
@@ -101,7 +101,7 @@ Prep 코스도 어느정도 기본지식이 바탕이 되어야 진행을 할 �
 ## Prep 9기 진행방식
 
 Prep코스 진행방식은 매 기수마다 변화했다고 켄님이 말씀하시는데, 기본적인 틀은 커리큘럼대로 진행되는 JavaScript 강의이고, 이를 기반으로 최대한 현업과 비슷한 환경의 과제가 있다. 그리고 이는 초급에서 최대 중상급 정도까지 아우른다고 생각한다.
-<img src=".\바닐라코딩_Prep후기_커리큘럼.png" alt="Prep 커리큘럼"  />
+<img src="./vanillacoding_Prep_Curiculrum.png" alt="Prep 커리큘럼"  />
 
 > 매 기수마다 변화해서 다음에는 어떻게 진행될지 모르지만 계속 변화하면서 발전하는게 혁신을 추구하는 구글이 생각났다.
 
@@ -121,7 +121,7 @@ Prep9기는 모두 온라인으로 진행되었다.
 
 프렙 가이드도 만들어서 제공해준다.
 
-<img src=".\바닐라코딩_Prep후기_가이드.png" alt="바닐라코딩 프렙 가이드" style="zoom: 45%;" />
+<img src="./vanillacoding_Prep_Guide.png" alt="바닐라코딩 프렙 가이드" style="zoom: 45%;" />
 
 ### Javascript 온라인 강의 📘
 
@@ -168,7 +168,7 @@ Prep9기는 모두 온라인으로 진행되었다.
 
 ### Slack을 통한 24시간 질의응답 및 교류 📝
 
-<img src=".\바닐라코딩_Prep후기_Slack.png" alt="바닐라코딩 Prep Slack" style="zoom:50%;" />
+<img src="./vanillacoding_Prep_Slack.png" alt="바닐라코딩 Prep Slack" style="zoom:50%;" />
 
 기본적으로 질의응답이 있고, 수강생들의 정보공유를 할 수 있다.
 다들 열심히 하시는 분들이라 그런지 질문도 상당히 많았고, 꽤나 활발하게 진행이되었다고 생각한다.
@@ -205,7 +205,7 @@ Prep은 이후 부트캠프에 대한 확신을 가지게 해주고 기대감을
 함께했던 켄님과 합격한 Prep 9기들을 부트캠프에서 실제로 본다는 것에 기대되기도 하지만 부담도 된다... 낯가림...ㅎㅎㅎ
 아마 엄청 어색하겠지...
 
-<img src=".\바닐라코딩_Prep후기_마지막.png" alt="Prep9기 마지막" style="zoom:50%;" />
+<img src="./vanillacoding_Prep_fin.png" alt="Prep9기 마지막" style="zoom:50%;" />
 
 더군다나 마지막 인사를 이렇게 오글거리게 해버려서 큰일이가 나버렸다...
 
