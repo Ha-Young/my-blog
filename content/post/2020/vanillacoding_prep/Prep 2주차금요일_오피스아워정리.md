@@ -85,6 +85,9 @@ doSomething();
 
 
 
+
+<!--
+
 ## Tic Tac Toe 개발시 TIP. 네모판(cell) 클릭시 X, O 쓰는법? 중복 기입 회피방법?
 
 3*3 board로 markup 되었다고 가정.
@@ -156,7 +159,7 @@ if (targetElement.textContent === ""){
 
 다음과 같이 처리도 가능하겠다.
 
-
+-->
 
 ## Q. 이벤트 추가 말고도 브라우저에 부담을 주는 것들?
 
