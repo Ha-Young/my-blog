@@ -1,6 +1,6 @@
 ---
 title: '바닐라코딩 Prep 6주차 금요일 오피스아워 정리'
-draft: false
+draft: true
 date: '2020-11-13 21:52'
 category: 'vanilla coding'
 tags: ['vanilla coding', 'prep']
