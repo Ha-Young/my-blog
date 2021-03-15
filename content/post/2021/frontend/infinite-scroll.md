@@ -86,23 +86,25 @@ export default function useInfiniteScroll(fetchCallback) {
 다음과 같이 구현할 경우 컴포넌트에서 아래와 같이 사용 할 수 있다.
 
 ```js
-const [isFetching, setIsFetching] = useInfiniteScroll(updateVideos);
+const [isFetching, setIsFetching] = useInfiniteScroll(updateFunctionOnScroll);
 
-function updateVideos() {
-  getMostPopularVideos(YOUTUBE_API_ONCE_GET_SIZE, videos.nextPageToken)
-    .then(result => {
-    setVideos(addNewVideo(videos, result));
-  }).catch(error => {
-    setError(error.message);
-  }).finally(() => {
+async function updateFunctionOnScroll() {
+  try {
+    const result = await fetchFunction();
+    setState(result);
+  } catch(error) {
+    setErrorState(error.message);
+  } finally {
     setIsFetching(false);
-  });
+  }
 }
 
 useEffect(() => {
-  updateVideos();
+  updateFunctionOnScroll();
 }, []);
 ```
+
+
 
 ### 2. Scroll Event 최적화
 
@@ -207,8 +209,9 @@ export default function throttleOnRendering(cb) {
 
 이 `throttleOnRendering`을 이용하면 아래와 같이 코드를 구현할 수 있다.
 
-```js{2,7-12}
+```js{3,8-12}
 import { useEffect, useState } from "react";
+
 import throttleOnRendering from "../utils/throttleOnRendering";
 
 export default function useInfiniteScroll(fetchCallback) {
@@ -240,9 +243,187 @@ export default function useInfiniteScroll(fetchCallback) {
 
 ## IntersectionObserver
 
+IntersectionObserver는 요소의 가시성을 관찰할 수 있고, 해당 요소의 가시성에 대한 변화가 일어날 때마다 우리가 설정한 콜백함수를 실행시켜준다.
+
+> 일종의 Pub-Sub 패턴이자 요소 가시성에 대한 이벤트를 부여한다고 볼 수 있다.
+
+그리고 이 요소의 가시성이 변화할 때 마다 일어나는 콜백함수에서 가시성에 대한 조건을 걸어서 특정 조건일 때에만 특정 작업을 수행하도록 설정 할 수도 있다.
+
+IntersectionObserver에 대한 자세한 사용방법은 여기 [포스팅](https://heropy.blog/2019/10/27/intersection-observer/)을 참고하자. Heropy님이 잘 정리해두셨다.
 
 
-## Infinite Scroll VS Pagenation
+
+### IntersectionObserver를 사용한 useInfiniteScroll Custom Hook 만들기
+
+IntersectionObserver를 사용한 `useInfiniteScroll()` Custom Hook을 만들기 위해서는 위의 Scroll Event를 사용했던 `useInfiniteScroll()` 보다 인자가 더 필요한데, 바로 요소의 가시성에 대한 조건을 부여할 타겟 요소를 인자로 받아야 한다.
+
+> 추가로 IntersectionObserver에 대한 옵션값을 받아도 좋다.
+
+나는 `[isFetching, setIsFetching] = useInfiniteScroll(fetchCallback, targetElement, options)` 로 설계를 하였다.
+
+```js{12-20,26-27,30}
+import { useState, useEffect } from "react";
+
+const defaultOptions = {
+  root: null,
+  rootMargin: '1px',
+  threshold: '0.1',
+}
+
+export default function useInfiniteScroll(fetchCallback, targetElement, options = defaultOptions) {
+  const [isFetching, setIsFetching] = useState(false);
+  
+  const intersectionCallbackFunc = entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setIsFetching(true);
+      }
+    });
+
+    setIsFetching(false);
+  }
+
+  useEffect(() => {
+    let observer;
+
+    if (targetElement) {
+      observer = new IntersectionObserver(intersectionCallbackFunc, options);
+      observer.observe(targetElement);
+    }
+
+    return () => observer?.disconnect(targetElement);
+
+  }, []);
+
+  useEffect(() => {
+    if (!isFetching) {
+      return;   
+    }
+    fetchCallback();
+  }, [isFetching]);
+
+  return [isFetching, setIsFetching];
+}
+```
+
+- Line 12~20 : 요소의 가시성의 변화가 일어났을 때 발생하게 될 Callback Function 선언
+- Line 26~27 : 요소에 가시성 변화 관찰하기
+- Line 30 : 요소 가시성 종료시키기 (Side Effect Clear)
+
+위 처럼 만들면 끝이다.
+
+
+
+### Throttle 혹은 rAF로 최적화 시키기
+
+그리고 위의 Scroll Event 최적화 방법과 똑같이 요소의 가시성의 변화에 대해서 너무 자주일어나는 것이 우려된다면, Throttle이나 rAF를 사용해서 최적화를 시킬 수도 있다.
+
+방법은 쉽게 Intersection Observer의 Callback 함수에 적용시키면 된다.
+
+#### Throttle 적용
+
+```js{12-20,26}
+import { useState, useEffect } from "react";
+import { throttle } from "lodash";
+
+const THROTTLE_WAIT = 300;
+
+const defaultOptions = {
+  root: null,
+  rootMargin: '1px',
+  threshold: '0.1',
+}
+
+export default function useInfiniteScroll(fetchCallback, targetElement, options = defaultOptions) {
+  const [isFetching, setIsFetching] = useState(false);
+  
+  const intersectionCallbackFuncThrottle = throttle(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setIsFetching(true);
+      }
+    });
+
+    setIsFetching(false);
+  }, THROTTLE_WAIT);
+
+  useEffect(() => {
+    let observer;
+
+    if (targetElement) {
+      observer = new IntersectionObserver(intersectionCallbackFuncThrottle, options);
+      observer.observe(targetElement);
+    }
+
+    return () => observer?.disconnect(targetElement);
+
+  }, []);
+
+  useEffect(() => {
+    if (!isFetching) {
+      return;   
+    }
+    fetchCallback();
+  }, [isFetching]);
+
+  return [isFetching, setIsFetching];
+}
+```
+
+#### rAF 적용
+
+위 만들어 둔 `throttleOnRendering()` 를 사용하였다.
+
+```js{3,14}
+import { useState, useEffect } from "react";
+
+import throttleOnRendering from "../utils/throttleOnRendering";
+
+const defaultOptions = {
+  root: null,
+  rootMargin: '1px',
+  threshold: '0.1',
+}
+
+export default function useInfiniteScroll(fetchCallback, targetElement, options = defaultOptions) {
+  const [isFetching, setIsFetching] = useState(false);
+  
+  const intersectionCallbackFuncThrottle = throttleOnRendering(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setIsFetching(true);
+      }
+    });
+
+    setIsFetching(false);
+  }, THROTTLE_WAIT);
+
+  useEffect(() => {
+    let observer;
+
+    if (targetElement) {
+      observer = new IntersectionObserver(intersectionCallbackFuncThrottle, options);
+      observer.observe(targetElement);
+    }
+
+    return () => observer?.disconnect(targetElement);
+
+  }, []);
+
+  useEffect(() => {
+    if (!isFetching) {
+      return;   
+    }
+    fetchCallback();
+  }, [isFetching]);
+
+  return [isFetching, setIsFetching];
+}
+```
+
+
+
+## 번외: Infinite Scroll VS Pagenation
 
 기본적으로 Infinite Scroll과 Pagenation은 정보를 일부분만 가져와서 보여주고, 성능상의 이점을 제공해준다는 점은 동일하나, 사용자 경험적인 측면에서는 많은 차이가 있다.
 
@@ -287,4 +468,12 @@ Pagenation은 정보 파악이 느리거나 목표지향적인 곳에서
 > 예로 게시판이 있다.
 
 사용을 하면 된다.
+
+
+
+## 참고
+
+[make useInfiniteScroll CustomHook](https://upmostly.com/tutorials/build-an-infinite-scroll-component-in-react-using-react-hooks)
+
+[Jbee님의 rAF를 이용한Scroll Event 최적화](https://jbee.io/web/optimize-scroll-event/)
 
