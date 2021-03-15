@@ -15,6 +15,7 @@
 - [ ] 뒤로가기 버튼
 - [ ] about 페이지
 - [ ] blog 페이지 우측에 추천글 or 최신글 or 인기글 컴포넌트 만들기
+- [ ] 포스트 검색 기능
 
 # 포스트 할 거리
 
@@ -22,8 +23,10 @@
 - [ ] JavaScript - Design Pattern
 - [ ] JavaScript - Static modthod vs instance method
 - [ ] JavaScript - JSDocs
+- [ ] JavaScript - TDD (Test Driven Development)
 - [ ] React - useState, useEffect(라이프사이클, useEffect dependency)
 - [ ] React - Class Component VS Functional Component
+- [ ] React - 최적화: React.memo, useMemo, useCallback에 대하여
 - [ ] React - [Controlled Component](https://ko.reactjs.org/docs/forms.html#controlled-components) VS [UnControlled Component](https://ko.reactjs.org/docs/uncontrolled-components.html)
 - [ ] React - [Reconciliation](https://ko.reactjs.org/docs/reconciliation.html)
 - [ ] Redux - Nomalization
