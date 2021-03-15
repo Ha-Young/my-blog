@@ -18,7 +18,7 @@
 
 # 포스트 할 거리
 
-- [ ] JavaScript - Functional Oriented Programming
+- [ ] JavaScript - Functional Programming
 - [ ] JavaScript - Design Pattern
 - [ ] JavaScript - Static modthod vs instance method
 - [ ] JavaScript - JSDocs
@@ -26,4 +26,5 @@
 - [ ] React - Class Component VS Functional Component
 - [ ] React - [Controlled Component](https://ko.reactjs.org/docs/forms.html#controlled-components) VS [UnControlled Component](https://ko.reactjs.org/docs/uncontrolled-components.html)
 - [ ] React - [Reconciliation](https://ko.reactjs.org/docs/reconciliation.html)
+- [ ] Redux - Nomalization
 - [ ] [TDD in React App](https://jestjs.io/docs/en/tutorial-react)
