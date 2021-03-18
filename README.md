@@ -31,3 +31,5 @@
 - [ ] React - [Reconciliation](https://ko.reactjs.org/docs/reconciliation.html)
 - [ ] Redux - Nomalization
 - [ ] [TDD in React App](https://jestjs.io/docs/en/tutorial-react)
+- [ ] git rebase VS merge / rebase -i
+- [ ] git cherry-pick
