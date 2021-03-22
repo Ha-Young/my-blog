@@ -33,3 +33,5 @@
 - [ ] [TDD in React App](https://jestjs.io/docs/en/tutorial-react)
 - [ ] git rebase VS merge / rebase -i
 - [ ] git cherry-pick
+- [ ] Design Pattern - MVC
+- [ ] Design Pattern - PUB&SUB
