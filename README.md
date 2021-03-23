@@ -29,6 +29,7 @@
 - [ ] React - 최적화: React.memo, useMemo, useCallback에 대하여
 - [ ] React - [Controlled Component](https://ko.reactjs.org/docs/forms.html#controlled-components) VS [UnControlled Component](https://ko.reactjs.org/docs/uncontrolled-components.html)
 - [ ] React - [Reconciliation](https://ko.reactjs.org/docs/reconciliation.html)
+- [ ] React - Atomic Design Pattern
 - [ ] Redux - Nomalization
 - [ ] [TDD in React App](https://jestjs.io/docs/en/tutorial-react)
 - [ ] git rebase VS merge / rebase -i
