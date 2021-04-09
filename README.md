@@ -37,3 +37,4 @@
 - [ ] Design Pattern - MVC
 - [ ] Design Pattern - PUB&SUB
 - [ ] Node Js - 3 Layer Architecture
+- [ ] BackEnd - Socket.io
