@@ -14,7 +14,7 @@ export const LandingBio = () => (
       return (
         <div className="landingBio">
           <div className="landingBio-wrapper">
-            <Link to="/">
+            <Link to="/resume_web">
               <Image
                 className="author-image"
                 fixed={profileImg}
