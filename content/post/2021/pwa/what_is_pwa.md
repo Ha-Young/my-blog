@@ -6,7 +6,9 @@ category: 'frontend'
 tags: ['frontend', 'pwa', 'progressive web app']
 ---
 
+\* 이 글은 저의 개인 프로젝트 [Memona를 `PWA`구축하였는데, 이에 따른 경험으로 `PWA`를 소개하고자 적은 글 입니다.
 
+<br>
 
 ![Progressive web apps (PWAs) | MDN](./what_is_pwa/pwa_logo.png)
 
@@ -113,7 +115,8 @@ tags: ['frontend', 'pwa', 'progressive web app']
 
 > 우선 Service Worker에 캐싱을 해야되기 때문에 1, 2번은 페이지를 한 번이라도 방문 해야 한다.
 
-### 3. 검색 가능
+그리고 이제 웹 앱에서도 `Background Sync`가 가능하기 때문에 오프라인 상황에서 서버에 전달할 데이터들의 유실을 방지할 수 있다.
+
 
 ### 3. 검색 가능
 
@@ -145,13 +148,13 @@ tags: ['frontend', 'pwa', 'progressive web app']
 
 `PWA` 을 구현하기 위한 기술은 HTTPS 에서만 사용이 가능하고 브라우저의 보안정책인 CORS 등을 따르기 때문에 보안적인 이점도 배제할 수 없다.
 
-### 9. 구축이 쉬움
+### 9. 점진적, 구축이 쉬움
 
 이미 구축된 웹 앱이라고 해서 `PWA`로 사용하지 못하는 것은 아니다.
 
-기존에 구축된 웹 앱에 `Service Worker`와 `Manifest.json ` 파일을 만들어 PWA로 구축하는 것은 매우 쉽다.
+기존에 구축된 웹 앱에 `Service Worker`와 `Manifest.json ` 파일을 만들어 PWA로 구축하는 것은 매우 쉽고
 
-또 `Service Worker` 를 쉽게 사용할 수 있게 도와주는 `WorkBox` 가 있다.
+또, 점진적으로 `PWA`에 요구되는 기능들을 하나씩 점진적으로 추가해 갈 수 있다.
 
 
 
@@ -159,5 +162,27 @@ tags: ['frontend', 'pwa', 'progressive web app']
 
 ### Manifest.json
 
+`Manifest.json`은 웹 앱 매니페스트로 웹 앱을 디바이스의 홈 화면에 추가 할 수 있게 해주고 오프라인 상황에서 어떻게 할 지 등 그에 따른 설정을 할 수 있게 해준다.
+
+> 앱스토어에서 별도 설치없이 웹 페이지에서 디바이스에 추가 가능
+
+매니페스트에는 이름, 작성자, 아이콘, 버전, 설명, 필요한 모든 리소스 목록 등을 설정 할 수 있다.
+
+
+
 ### ServiceWorker
+
+`PWA`를 하기위한 가장 핵심기술을 꼽으라면 이 `Service Worker` 으로 `PWA`는 이 `Service Worker` 때문에 가능해졌다고 해도 과언이 아니다.
+
+`Service Worker`는 브라우저의 `thread`를 이용하는 `Web Worker`의 일종으로 Client의 Browser에 등록되어 Background로 동작하는 javascript script code file 이다.
+
+`Service Worker`의 주 역할은 브라우저에서 서버로 가는 request, response를 가로채는 proxy 서버로 작동하기 때문에 네트워크 작업을 통해 주고 받는 컨텐츠들을 수정하고 저장하는 등의 처리를 함으로써 웹 앱에 다양하고 유용한 기능을 구현 할 수 있다. 
+
+이러한 proxy 작업을 통해 정적 데이터 캐싱, 동적 데이터 캐싱과 같은 일이 가능해지고 캐싱된 데이터를 통해 오프라인 서비스 지원이 가능해 지며 서버로 요청되는 request를 오프라인시에 캐싱 및 작업 큐에 넣어두고, 온라인 환경이 되었을 때 관련 요청들을 큐에서 꺼내 다시 request 요청을 처리하게 하는 background sync 작업 도 가능해 진다.
+
+또 Push API, Notification API등을 `Service Worker`에 등록 및 연계해서 사용 할 수 있어 웹 알람을 구현 할 수 있는 핵심 기술이라 할 수 있다.
+
+<br>
+
+이상 `PWA`의 소개는 여기까지 하고, 어떻게 구현했는지에 대해서는 이후의 포스팅으로 알아보자.
 
