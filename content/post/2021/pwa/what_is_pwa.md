@@ -6,7 +6,7 @@ category: 'frontend'
 tags: ['frontend', 'pwa', 'progressive web app']
 ---
 
-\* 이 글은 저의 개인 프로젝트 [Memona를 `PWA`구축하였는데, 이에 따른 경험으로 `PWA`를 소개하고자 적은 글 입니다.
+\* 이 글은 저의 개인 프로젝트 [Memona](https://github.com/Ha-Young/memona-frontend) 개발 경험으로 `PWA`를 소개하고자 적은 글 입니다.
 
 <br>
 
@@ -174,9 +174,9 @@ tags: ['frontend', 'pwa', 'progressive web app']
 
 `PWA`를 하기위한 가장 핵심기술을 꼽으라면 이 `Service Worker` 으로 `PWA`는 이 `Service Worker` 때문에 가능해졌다고 해도 과언이 아니다.
 
-`Service Worker`는 브라우저의 `thread`를 이용하는 `Web Worker`의 일종으로 Client의 Browser에 등록되어 Background로 동작하는 javascript script code file 이다.
+`Service Worker`는 브라우저의 `thread`를 이용하는 `Web Worker`의 일종으로 Client의 Browser에 등록되어 Background로 동작하는 **javascript file** 이다.
 
-`Service Worker`의 주 역할은 브라우저에서 서버로 가는 request, response를 가로채는 proxy 서버로 작동하기 때문에 네트워크 작업을 통해 주고 받는 컨텐츠들을 수정하고 저장하는 등의 처리를 함으로써 웹 앱에 다양하고 유용한 기능을 구현 할 수 있다. 
+`Service Worker`의 주 역할은 브라우저에서 서버로 가는 request, response를 가로채는 **proxy 서버로 작동**하기 때문에 네트워크 작업을 통해 주고 받는 컨텐츠들을 수정하고 저장하는 등의 처리를 함으로써 웹 앱에 다양하고 유용한 기능을 구현 할 수 있다.
 
 이러한 proxy 작업을 통해 정적 데이터 캐싱, 동적 데이터 캐싱과 같은 일이 가능해지고 캐싱된 데이터를 통해 오프라인 서비스 지원이 가능해 지며 서버로 요청되는 request를 오프라인시에 캐싱 및 작업 큐에 넣어두고, 온라인 환경이 되었을 때 관련 요청들을 큐에서 꺼내 다시 request 요청을 처리하게 하는 background sync 작업 도 가능해 진다.
 
