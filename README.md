@@ -42,5 +42,7 @@
 - [ ] BackEnd - Socket.io
 - [ ] FrontEnd - PWA
 - [ ] GraphQL
-- [ ] Apollo Client
-- [ ] Apollo Server
+  - [ ] Apollo Client
+  - [ ] Apollo Server
+- [x] PWA - PWA란?
+- [ ] PWA - PWA 만드는 방법
